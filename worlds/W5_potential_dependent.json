@@ -1,0 +1,233 @@
+{
+  "id": "W5_potential_dependent",
+  "title": "Potential-dependent branching ratio",
+  "difficulty": "medium",
+  "reference": {
+    "citation": "Polatides & Kyriacou 2005 (style), alphas pending",
+    "notes": "Branching ratio R2/R3 shifts with E; single-potential data cannot separate alphas."
+  },
+  "ground_truth": {
+    "id": "w5_potential",
+    "description": "Series NO3->NO2->NH3 plus NO2->SINK, each step with its own Tafel-like potential dependence.",
+    "motif": "series_parallel",
+    "species": [
+      {
+        "id": "NO3",
+        "label": "NO3-",
+        "formula": "NO3-",
+        "role": "reactant",
+        "observable": true,
+        "N_oxidation_state": 5
+      },
+      {
+        "id": "NO2",
+        "label": "NO2-",
+        "formula": "NO2-",
+        "role": "intermediate",
+        "observable": true,
+        "N_oxidation_state": 3
+      },
+      {
+        "id": "NH3",
+        "label": "NH3/NH4+ (lumped)",
+        "formula": "NH3",
+        "role": "product",
+        "observable": true,
+        "N_oxidation_state": -3
+      },
+      {
+        "id": "SINK",
+        "label": "N2/N2O (not measured)",
+        "formula": "N2",
+        "role": "sink",
+        "observable": false,
+        "n_N_per_molecule": 2,
+        "N_oxidation_state": 0
+      }
+    ],
+    "reactions": [
+      {
+        "id": "R1",
+        "reactants": [
+          {
+            "species": "NO3",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "NO2",
+            "coeff": 1
+          }
+        ],
+        "electrons": 2,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.02,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+            }
+          },
+          "potential_dependence": {
+            "alpha": {
+              "value": 0.35,
+              "unit": "1",
+              "bounds": [
+                0.0,
+                2.0
+              ],
+              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+            },
+            "E_ref_V": -0.6
+          }
+        }
+      },
+      {
+        "id": "R2",
+        "reactants": [
+          {
+            "species": "NO2",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "NH3",
+            "coeff": 1
+          }
+        ],
+        "electrons": 6,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.06,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+            }
+          },
+          "potential_dependence": {
+            "alpha": {
+              "value": 0.15,
+              "unit": "1",
+              "bounds": [
+                0.0,
+                2.0
+              ],
+              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+            },
+            "E_ref_V": -0.6
+          }
+        }
+      },
+      {
+        "id": "R3",
+        "reactants": [
+          {
+            "species": "NO2",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "SINK",
+            "coeff": 1
+          }
+        ],
+        "electrons": 3,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.02,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+            }
+          },
+          "potential_dependence": {
+            "alpha": {
+              "value": 0.55,
+              "unit": "1",
+              "bounds": [
+                0.0,
+                2.0
+              ],
+              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+            },
+            "E_ref_V": -0.6
+          }
+        }
+      }
+    ]
+  },
+  "observation": {
+    "observed_species": [
+      "NO3",
+      "NO2",
+      "NH3"
+    ],
+    "sampling_times_min": [
+      0,
+      10,
+      20,
+      40,
+      60,
+      90,
+      120,
+      180
+    ],
+    "noise": {
+      "relative_sigma": 0.05,
+      "absolute_sigma_mM": 0.1,
+      "outlier_prob": 0.0,
+      "outlier_scale": 0.0
+    }
+  },
+  "design_space": {
+    "potential_V_vs_RHE": [
+      -0.9,
+      -0.3
+    ],
+    "pH": [
+      7.0
+    ],
+    "c0_mM_N": [
+      100.0
+    ],
+    "initial_conditions": [
+      {
+        "potential_V_vs_RHE": -0.6,
+        "pH": 7.0,
+        "c0_mM_N": 100.0
+      }
+    ]
+  },
+  "budget": {
+    "max_experiments": 5,
+    "points_per_experiment": 8
+  },
+  "scoring": {
+    "metrics": [
+      "exact_network_recovery",
+      "reaction_f1",
+      "parameter_rel_error",
+      "heldout_nmsle",
+      "identifiability_flag_accuracy"
+    ],
+    "pass_threshold_rmsle": 0.05
+  }
+}

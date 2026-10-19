@@ -1,0 +1,269 @@
+{
+  "id": "W3_katsounaros_hidden_intermediate",
+  "title": "Hidden intermediate between nitrite and N2 (Katsounaros 2012 model B)",
+  "difficulty": "hard",
+  "reference": {
+    "citation": "Katsounaros, Dortsiou, Polatides, Preston, Kypraios, Kyriacou, Electrochim. Acta 71 (2012) 270-276",
+    "notes": "Rate constants are the published Table 1 values. 0.5 M NaNO3 + 1 M NaOH, Sn, -2.2 V vs Ag/AgCl (about -1.2 V vs RHE before iR correction, rough conversion). Paper observed NO3, NO2, N2, N2O, NH3 and attributed the lost mass balance to X; in this model X peaks at about 24% of total N. Real curves still to be digitized (literature/02_kinetics_benchmarks).",
+    "real_dataset_ids": []
+  },
+  "ground_truth": {
+    "id": "w3_katsounaros_modelB",
+    "description": "Katsounaros 2012 model B: NO3- -> NO2-; NO2- -> X (hidden) -> N2; NO2- -> NH3; NO2- -> N2O. Eqs. (8)-(13) taken 1:1 in N-equivalents; this reproduces the paper's Fig. 1 curves.",
+    "motif": "hidden_intermediate",
+    "species": [
+      {
+        "id": "NO3",
+        "label": "NO3-",
+        "formula": "NO3-",
+        "role": "reactant",
+        "observable": true,
+        "N_oxidation_state": 5
+      },
+      {
+        "id": "NO2",
+        "label": "NO2-",
+        "formula": "NO2-",
+        "role": "intermediate",
+        "observable": true,
+        "N_oxidation_state": 3
+      },
+      {
+        "id": "X",
+        "label": "hidden intermediate (e.g. NO/NH2OH-like)",
+        "role": "hidden_intermediate",
+        "observable": false,
+        "N_oxidation_state": null
+      },
+      {
+        "id": "N2",
+        "label": "N2 (N-equivalent basis)",
+        "formula": "N2",
+        "role": "product",
+        "observable": true,
+        "N_oxidation_state": 0
+      },
+      {
+        "id": "N2O",
+        "label": "N2O (N-equivalent basis)",
+        "formula": "N2O",
+        "role": "product",
+        "observable": true,
+        "N_oxidation_state": 1
+      },
+      {
+        "id": "NH3",
+        "label": "NH3/NH4+ (lumped)",
+        "formula": "NH3",
+        "role": "product",
+        "observable": true,
+        "N_oxidation_state": -3
+      }
+    ],
+    "reactions": [
+      {
+        "id": "R1",
+        "reactants": [
+          {
+            "species": "NO3",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "NO2",
+            "coeff": 1
+          }
+        ],
+        "electrons": 2,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.0216,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "Katsounaros et al. 2012, Electrochim. Acta 71:270, Table 1 (posterior means, min^-1)"
+            }
+          }
+        }
+      },
+      {
+        "id": "R2",
+        "reactants": [
+          {
+            "species": "NO2",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "X",
+            "coeff": 1
+          }
+        ],
+        "electrons": null,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.0292,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "Katsounaros et al. 2012, Electrochim. Acta 71:270, Table 1 (posterior means, min^-1)"
+            }
+          }
+        }
+      },
+      {
+        "id": "R3",
+        "reactants": [
+          {
+            "species": "X",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "N2",
+            "coeff": 1
+          }
+        ],
+        "electrons": null,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.0219,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "Katsounaros et al. 2012, Electrochim. Acta 71:270, Table 1 (posterior means, min^-1)"
+            }
+          }
+        }
+      },
+      {
+        "id": "R4",
+        "reactants": [
+          {
+            "species": "NO2",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "NH3",
+            "coeff": 1
+          }
+        ],
+        "electrons": 6,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.0021,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "Katsounaros et al. 2012, Electrochim. Acta 71:270, Table 1 (posterior means, min^-1)"
+            }
+          }
+        }
+      },
+      {
+        "id": "R5",
+        "reactants": [
+          {
+            "species": "NO2",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "N2O",
+            "coeff": 1
+          }
+        ],
+        "electrons": 2,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.0048,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "Katsounaros et al. 2012, Electrochim. Acta 71:270, Table 1 (posterior means, min^-1)"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "observation": {
+    "observed_species": [
+      "NO3",
+      "NO2",
+      "N2",
+      "N2O",
+      "NH3"
+    ],
+    "sampling_times_min": [
+      0,
+      30,
+      60,
+      90,
+      120,
+      150,
+      180
+    ],
+    "noise": {
+      "relative_sigma": 0.08,
+      "absolute_sigma_mM": 3.0,
+      "outlier_prob": 0.0,
+      "outlier_scale": 0.0
+    },
+    "missing_species_note": "X is never observed; the N-closure deficit is the only evidence."
+  },
+  "design_space": {
+    "potential_V_vs_RHE": [
+      -1.2
+    ],
+    "pH": [
+      14.0
+    ],
+    "c0_mM_N": [
+      500.0
+    ]
+  },
+  "budget": {
+    "max_experiments": 1,
+    "points_per_experiment": 7
+  },
+  "scoring": {
+    "metrics": [
+      "exact_network_recovery",
+      "reaction_f1",
+      "parameter_rel_error",
+      "heldout_nmsle",
+      "identifiability_flag_accuracy"
+    ],
+    "pass_threshold_rmsle": 0.05
+  },
+  "plausibility_constraints": {
+    "max_hidden_fraction_of_total_N": 0.3
+  }
+}

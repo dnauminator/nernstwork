@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nernstwork/task.schema.json",
+  "title": "Benchmark task (world)",
+  "description": "A simulated benchmark world: a hidden ground-truth mechanism, how it is observed, and how an inference method is scored.",
+  "type": "object",
+  "required": ["id", "title", "ground_truth", "observation", "design_space", "budget", "scoring"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+$" },
+    "title": { "type": "string" },
+    "difficulty": { "type": "string", "enum": ["easy", "medium", "hard"] },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "citation": { "type": "string" },
+        "doi": { "type": "string" },
+        "real_dataset_ids": { "type": "array", "items": { "type": "string" }, "description": "Real datasets this world is calibrated to or validated against." },
+        "notes": { "type": "string" }
+      }
+    },
+    "ground_truth": { "$ref": "mechanism.schema.json" },
+    "observation": {
+      "type": "object",
+      "required": ["observed_species", "sampling_times_min", "noise"],
+      "additionalProperties": false,
+      "properties": {
+        "observed_species": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "sampling_times_min": { "type": "array", "items": { "type": "number", "minimum": 0 }, "minItems": 2 },
+        "noise": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "relative_sigma": { "type": "number", "minimum": 0, "description": "Multiplicative Gaussian noise, fraction of the true value." },
+            "absolute_sigma_mM": { "type": "number", "minimum": 0, "description": "Additive Gaussian noise floor, mM-N." },
+            "outlier_prob": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a point is replaced by an outlier (real example: NO2- jumps from 92 to 62 between adjacent points)." },
+            "outlier_scale": { "type": "number", "minimum": 0, "description": "Outlier relative deviation." }
+          }
+        },
+        "missing_species_note": { "type": "string" }
+      }
+    },
+    "design_space": {
+      "type": "object",
+      "required": ["potential_V_vs_RHE", "pH", "c0_mM_N"],
+      "additionalProperties": false,
+      "description": "Conditions the method may choose from when proposing experiments. Each entry is either a fixed value or a [min, max] range.",
+      "properties": {
+        "potential_V_vs_RHE": { "type": "array", "items": { "type": "number" }, "minItems": 1, "maxItems": 2 },
+        "pH": { "type": "array", "items": { "type": "number" }, "minItems": 1, "maxItems": 2 },
+        "c0_mM_N": { "type": "array", "items": { "type": "number" }, "minItems": 1, "maxItems": 2 },
+        "initial_conditions": {
+          "type": "array",
+          "description": "Conditions of the free initial experiments given to every method.",
+          "items": { "type": "object" }
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "required": ["max_experiments"],
+      "additionalProperties": false,
+      "properties": {
+        "max_experiments": { "type": "integer", "minimum": 1 },
+        "points_per_experiment": { "type": "integer", "minimum": 2 }
+      }
+    },
+    "candidate_library": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional starting hypothesis space and the traps planted in it.",
+      "properties": {
+        "mechanism_ids": { "type": "array", "items": { "type": "string" } },
+        "trap_mechanism_ids": { "type": "array", "items": { "type": "string" }, "description": "Candidates that fit well under AIC/BIC but violate plausibility constraints." }
+      }
+    },
+    "plausibility_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_hidden_fraction_of_total_N": { "type": "number", "minimum": 0, "maximum": 1, "description": "Peak concentration of any hidden intermediate, as a fraction of total N. Katsounaros 2012 rejects a model needing about 0.30." },
+        "rate_constant_bounds_min_inv": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+        "max_effective_alpha": { "type": "number" }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "required": ["metrics"],
+      "additionalProperties": false,
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "exact_network_recovery",
+              "reaction_f1",
+              "parameter_rel_error",
+              "credible_interval_coverage",
+              "heldout_nmsle",
+              "trap_avoided",
+              "identifiability_flag_accuracy",
+              "experiments_to_recovery"
+            ]
+          }
+        },
+        "heldout_conditions": { "type": "array", "items": { "type": "object" } },
+        "pass_threshold_rmsle": { "type": "number", "default": 0.05 }
+      }
+    }
+  }
+}

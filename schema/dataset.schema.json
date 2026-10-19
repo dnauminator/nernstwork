@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nernstwork/dataset.schema.json",
+  "title": "Dataset",
+  "description": "One electrolysis run: conditions plus time-resolved species concentrations. Used for real (Source Data, digitized) and simulated data alike.",
+  "type": "object",
+  "required": ["id", "provenance", "conditions", "series"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+$" },
+    "provenance": {
+      "type": "object",
+      "required": ["source_type"],
+      "additionalProperties": false,
+      "properties": {
+        "source_type": { "type": "string", "enum": ["source_data", "digitized", "manual_table", "simulated"] },
+        "doi": { "type": "string" },
+        "citation": { "type": "string" },
+        "figure": { "type": "string", "description": "Figure or table the numbers come from." },
+        "file": { "type": "string", "description": "Source file name (not committed to the repo if large or licensed)." },
+        "sheet": { "type": "string" },
+        "extraction": { "type": "string", "description": "Script or tool used, and any manual steps." },
+        "notes": { "type": "string" },
+        "verified_against_figure": { "type": "boolean", "default": false }
+      }
+    },
+    "conditions": {
+      "type": "object",
+      "required": ["potential_V_vs_RHE", "pH", "c0_mM_N"],
+      "additionalProperties": false,
+      "properties": {
+        "catalyst": { "type": "string" },
+        "electrolyte": { "type": "string" },
+        "cell": { "type": "string", "enum": ["H_cell", "flow_cell", "MEA", "undivided_batch", "divided_batch", "other"] },
+        "potential_V_vs_RHE": { "type": ["number", "null"], "description": "Null when not reported or not converted to RHE; explain in notes." },
+        "potential_as_reported": { "type": "string", "description": "e.g. '-2.0 V vs Ag/AgCl'." },
+        "potential_mode": { "type": "string", "enum": ["potentiostatic", "galvanostatic", "pulsed", "unknown"], "default": "potentiostatic" },
+        "pH": { "type": ["number", "null"] },
+        "temperature_C": { "type": ["number", "null"] },
+        "volume_mL": { "type": ["number", "null"] },
+        "stirring": { "type": "string" },
+        "c0_mM_N": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 },
+          "description": "Initial concentrations keyed by species id, in mM of nitrogen. Unlisted species start at 0."
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "series": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["species", "t_min", "y"],
+        "additionalProperties": false,
+        "properties": {
+          "species": { "type": "string" },
+          "t_min": { "type": "array", "items": { "type": "number", "minimum": 0 }, "minItems": 2 },
+          "y": { "type": "array", "items": { "type": ["number", "null"] }, "minItems": 2, "description": "Concentration in mM-N after normalization. Null for missing points." },
+          "sigma": { "type": "array", "items": { "type": ["number", "null"] }, "description": "Optional 1-sigma uncertainty per point, mM-N." },
+          "reported_unit": { "type": "string", "description": "Unit as reported in the source, e.g. 'ug mL-1 as N'." },
+          "conversion": { "type": "string", "description": "How reported values were converted to mM-N." }
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "n_closure": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Fraction of initial N accounted for by the measured species at each time.",
+          "properties": {
+            "t_min": { "type": "array", "items": { "type": "number" } },
+            "fraction": { "type": "array", "items": { "type": "number" } }
+          }
+        },
+        "reported_n_loss": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Loss of nitrogen mass balance as plotted or tabulated by the source authors (mM-N), independent of our own closure calculation. Not a species and never a fitting target.",
+          "properties": {
+            "t_min": { "type": "array", "items": { "type": "number", "minimum": 0 } },
+            "y": { "type": "array", "items": { "type": "number", "minimum": 0 } }
+          }
+        },
+        "n_basis_note": { "type": "string", "description": "How the N basis of each species (per molecule vs per N atom) was established." },
+        "flags": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["unobserved_sink_suspected", "noisy", "sparse", "single_species_only", "units_unverified", "potential_unverified"] }
+        }
+      }
+    }
+  }
+}

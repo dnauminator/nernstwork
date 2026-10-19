@@ -1,0 +1,293 @@
+{
+  "id": "katsounaros2008_fig2_sn_nacl_1M",
+  "provenance": {
+    "citation": "Katsounaros I., Kyriacou G., Electrochim. Acta 53 (2008) 5477-5484",
+    "figure": "Fig. 2",
+    "file": "literature/02_kinetics_benchmarks/katsounaros2008_Sn_nitrate_concentration_intermediates.pdf",
+    "notes": "Digitized by Daniel with WebPlotDigitizer (wpd_datasets.csv in this folder). Negative digitized values clamped to 0. Nitrate, nitrite, ammonia, N2O and N2 vs time at -2.8 V vs Ag/AgCl, 1 M NaNO3 + 1 M NaCl (ionic strength 2 M). Sampling every 15 min to 210 min (N2 and N2O have an extra 195 min point). Digitized values compared with the figure image by eye and against the paper's final product distribution, not pixel-overlaid.",
+    "verified_against_figure": true,
+    "source_type": "digitized",
+    "extraction": "scripts/digitized_to_dataset.py (WebPlotDigitizer unified CSV)"
+  },
+  "conditions": {
+    "catalyst": "Sn",
+    "electrolyte": "1 M NaNO3 + 1 M NaCl",
+    "cell": "divided_batch",
+    "potential_V_vs_RHE": null,
+    "potential_as_reported": "-2.8 V vs Ag/AgCl",
+    "potential_mode": "potentiostatic",
+    "pH": null,
+    "temperature_C": null,
+    "volume_mL": null,
+    "stirring": "not recorded here",
+    "c0_mM_N": {
+      "NO3": 1000.0
+    },
+    "notes": "Unbuffered chloride electrolyte; pH rises during electrolysis and is not tracked here. Reference is saturated Ag/AgCl. Not converted to RHE."
+  },
+  "series": [
+    {
+      "species": "NO3",
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180,
+        210
+      ],
+      "y": [
+        1000.0,
+        853.415,
+        711.84,
+        555.243,
+        424.935,
+        297.131,
+        188.106,
+        121.648,
+        75.222,
+        48.826,
+        28.691,
+        19.823,
+        17.214,
+        15.754
+      ],
+      "reported_unit": "mM (N2 and N2O per molecule)",
+      "conversion": "mM-N = digitized y * 1.0"
+    },
+    {
+      "species": "NO2",
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180,
+        210
+      ],
+      "y": [
+        0.0,
+        57.173,
+        88.367,
+        122.066,
+        135.733,
+        135.629,
+        111.737,
+        86.594,
+        51.435,
+        25.039,
+        11.163,
+        4.799,
+        0.939,
+        0.0
+      ],
+      "reported_unit": "mM (N2 and N2O per molecule)",
+      "conversion": "mM-N = digitized y * 1.0"
+    },
+    {
+      "species": "NH3",
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180,
+        210
+      ],
+      "y": [
+        0.0,
+        9.598,
+        11.997,
+        21.909,
+        20.553,
+        22.953,
+        21.596,
+        29.004,
+        35.159,
+        42.567,
+        47.47,
+        62.389,
+        69.797,
+        85.863
+      ],
+      "reported_unit": "mM (N2 and N2O per molecule)",
+      "conversion": "mM-N = digitized y * 1.0"
+    },
+    {
+      "species": "N2O",
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180,
+        195,
+        210
+      ],
+      "y": [
+        0.0,
+        6.677,
+        8.972,
+        16.275,
+        33.594,
+        40.897,
+        48.2,
+        50.496,
+        52.791,
+        52.582,
+        54.877,
+        54.669,
+        54.46,
+        54.251,
+        56.547
+      ],
+      "reported_unit": "mM (N2 and N2O per molecule)",
+      "conversion": "mM-N = digitized y * 2.0"
+    },
+    {
+      "species": "N2",
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180,
+        195,
+        210
+      ],
+      "y": [
+        0.0,
+        9.181,
+        34.009,
+        76.367,
+        151.275,
+        246.218,
+        358.685,
+        481.168,
+        598.644,
+        693.584,
+        753.469,
+        790.819,
+        810.642,
+        827.96,
+        835.263
+      ],
+      "reported_unit": "mM (N2 and N2O per molecule)",
+      "conversion": "mM-N = digitized y * 2.0"
+    }
+  ],
+  "quality": {
+    "n_closure": {
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180,
+        210
+      ],
+      "fraction": [
+        1.0,
+        0.936,
+        0.8552,
+        0.7919,
+        0.7661,
+        0.7428,
+        0.7283,
+        0.7689,
+        0.8133,
+        0.8626,
+        0.8957,
+        0.9325,
+        0.9531,
+        0.9934
+      ]
+    },
+    "flags": [
+      "potential_unverified"
+    ],
+    "reported_n_loss": {
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180,
+        210
+      ],
+      "y": [
+        0.0,
+        58.425,
+        134.69,
+        192.175,
+        225.874,
+        248.305,
+        260.72,
+        218.049,
+        172.874,
+        123.944,
+        91.288,
+        54.877,
+        30.986,
+        0.0
+      ]
+    },
+    "n_basis_note": "N2 and N2O are plotted as molecules; converted x2 to N atoms. Verified by closure: at 210 min NO3 + NO2 + NH3 + 2 N2O + 2 N2 = 993 of 1000 mM-N, and the final distribution (N2 83.5%, N2O 5.7%, NH3 8.6% of N) matches the paper's 85.7% / 6% / 8.9%. The dataset labelled 'Ag/AgCl' in the export is the paper's plotted loss of mass balance (caption: star represents the loss of mass balance), not a species."
+  }
+}

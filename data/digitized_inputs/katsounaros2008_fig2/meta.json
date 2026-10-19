@@ -1,0 +1,65 @@
+{
+  "id": "katsounaros2008_fig2_sn_nacl_1M",
+  "species": [
+    "NO3",
+    "NO2",
+    "NH3",
+    "N2O",
+    "N2"
+  ],
+  "derived_series": {
+    "Ag/AgCl": "reported_n_loss"
+  },
+  "to_mM_N": {
+    "default": 1.0,
+    "N2": 2.0,
+    "N2O": 2.0
+  },
+  "reported_unit": "mM (N2 and N2O per molecule)",
+  "n_basis_note": "N2 and N2O are plotted as molecules; converted x2 to N atoms. Verified by closure: at 210 min NO3 + NO2 + NH3 + 2 N2O + 2 N2 = 993 of 1000 mM-N, and the final distribution (N2 83.5%, N2O 5.7%, NH3 8.6% of N) matches the paper's 85.7% / 6% / 8.9%. The dataset labelled 'Ag/AgCl' in the export is the paper's plotted loss of mass balance (caption: star represents the loss of mass balance), not a species.",
+  "t_grid_min": [
+    0,
+    15,
+    30,
+    45,
+    60,
+    75,
+    90,
+    105,
+    120,
+    135,
+    150,
+    165,
+    180,
+    195,
+    210
+  ],
+  "snap_tol_min": 5,
+  "pin_t0_to_c0": true,
+  "flags": [
+    "potential_unverified"
+  ],
+  "provenance": {
+    "citation": "Katsounaros I., Kyriacou G., Electrochim. Acta 53 (2008) 5477-5484",
+    "figure": "Fig. 2",
+    "file": "literature/02_kinetics_benchmarks/katsounaros2008_Sn_nitrate_concentration_intermediates.pdf",
+    "notes": "Digitized by Daniel with WebPlotDigitizer (wpd_datasets.csv in this folder). Negative digitized values clamped to 0. Nitrate, nitrite, ammonia, N2O and N2 vs time at -2.8 V vs Ag/AgCl, 1 M NaNO3 + 1 M NaCl (ionic strength 2 M). Sampling every 15 min to 210 min (N2 and N2O have an extra 195 min point). Digitized values compared with the figure image by eye and against the paper's final product distribution, not pixel-overlaid.",
+    "verified_against_figure": true
+  },
+  "conditions": {
+    "catalyst": "Sn",
+    "electrolyte": "1 M NaNO3 + 1 M NaCl",
+    "cell": "divided_batch",
+    "potential_V_vs_RHE": null,
+    "potential_as_reported": "-2.8 V vs Ag/AgCl",
+    "potential_mode": "potentiostatic",
+    "pH": null,
+    "temperature_C": null,
+    "volume_mL": null,
+    "stirring": "not recorded here",
+    "c0_mM_N": {
+      "NO3": 1000.0
+    },
+    "notes": "Unbuffered chloride electrolyte; pH rises during electrolysis and is not tracked here. Reference is saturated Ag/AgCl. Not converted to RHE."
+  }
+}

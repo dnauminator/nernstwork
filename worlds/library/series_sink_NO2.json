@@ -1,0 +1,129 @@
+{
+  "id": "series_sink_NO2",
+  "description": "series + NO2->SINK",
+  "motif": "series_with_sink",
+  "species": [
+    {
+      "id": "NO3",
+      "label": "NO3-",
+      "formula": "NO3-",
+      "role": "reactant",
+      "observable": true,
+      "N_oxidation_state": 5
+    },
+    {
+      "id": "NO2",
+      "label": "NO2-",
+      "formula": "NO2-",
+      "role": "intermediate",
+      "observable": true,
+      "N_oxidation_state": 3
+    },
+    {
+      "id": "NH3",
+      "label": "NH3/NH4+ (lumped)",
+      "formula": "NH3",
+      "role": "product",
+      "observable": true,
+      "N_oxidation_state": -3
+    },
+    {
+      "id": "SINK",
+      "label": "N2/N2O (not measured)",
+      "formula": "N2",
+      "role": "sink",
+      "observable": false,
+      "n_N_per_molecule": 2,
+      "N_oxidation_state": 0
+    }
+  ],
+  "reactions": [
+    {
+      "id": "R1",
+      "reactants": [
+        {
+          "species": "NO3",
+          "coeff": 1
+        }
+      ],
+      "products": [
+        {
+          "species": "NO2",
+          "coeff": 1
+        }
+      ],
+      "electrons": 2,
+      "rate_law": {
+        "family": "mass_action",
+        "params": {
+          "k": {
+            "value": 0.001,
+            "unit": "min^-1",
+            "bounds": [
+              1e-06,
+              10.0
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "R2",
+      "reactants": [
+        {
+          "species": "NO2",
+          "coeff": 1
+        }
+      ],
+      "products": [
+        {
+          "species": "NH3",
+          "coeff": 1
+        }
+      ],
+      "electrons": 6,
+      "rate_law": {
+        "family": "mass_action",
+        "params": {
+          "k": {
+            "value": 0.01,
+            "unit": "min^-1",
+            "bounds": [
+              1e-06,
+              10.0
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "R3",
+      "reactants": [
+        {
+          "species": "NO2",
+          "coeff": 1
+        }
+      ],
+      "products": [
+        {
+          "species": "SINK",
+          "coeff": 1
+        }
+      ],
+      "electrons": 3,
+      "rate_law": {
+        "family": "mass_action",
+        "params": {
+          "k": {
+            "value": 0.001,
+            "unit": "min^-1",
+            "bounds": [
+              1e-06,
+              10.0
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

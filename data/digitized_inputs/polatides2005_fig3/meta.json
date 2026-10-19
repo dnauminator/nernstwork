@@ -1,0 +1,55 @@
+{
+  "id": "polatides2005_fig3_sn85cu15_50mM",
+  "species": [
+    "NO3",
+    "NO2",
+    "NH3",
+    "N2"
+  ],
+  "to_mM_N": {
+    "default": 1.0,
+    "N2": 2.0
+  },
+  "reported_unit": "mM (N2 per molecule)",
+  "n_basis_note": "N2 is plotted as molecules and converted x2 to N atoms. Established by closure, not by the paper text: NO3 + NO2 + NH3 + 2 N2 = 49.9, 50.3 and 46.3 mM-N at 60, 75 and 90 min against 50 mM initial, whereas N2 taken 1:1 would leave 8%, 11% and 22% of N unaccounted for. Closure over all times is 0.93-1.12, so the paper's own scatter is about 10% (nitrate + nitrite alone exceed 50 mM at 15 min).",
+  "t_grid_min": [
+    0,
+    15,
+    30,
+    45,
+    60,
+    75,
+    90,
+    120
+  ],
+  "snap_tol_min": 5,
+  "pin_t0_to_c0": true,
+  "flags": [
+    "potential_unverified",
+    "noisy",
+    "units_unverified"
+  ],
+  "provenance": {
+    "citation": "Polatides C., Kyriacou G., J. Appl. Electrochem. 35 (2005) 421-427",
+    "figure": "Fig. 3",
+    "file": "literature/02_kinetics_benchmarks/polatides2005_bronze_cathode_potential_dependent_kinetics.pdf",
+    "notes": "Digitized by Daniel with WebPlotDigitizer (wpd_datasets.csv in this folder). Negative digitized values clamped to 0. Sn85Cu15 (bronze) cathode, -2.0 V vs Ag/AgCl, 50 mM nitrate, 0-120 min. The paper's model is NO3 -> NO2 (k1) -> NH3 (k2) plus 2 NO2 -> N2 (k3, second order); the curves in its Fig. 3 are that model. Digitized values compared with the figure image by eye, not pixel-overlaid. CAUTION: the printed k2 = 1.76e-5 s^-1 does not reproduce the paper's own NH3 curve (simulated NH3 at 120 min is 2.2 mM against 20.3 digitized); 1.76e-4 s^-1 does (RMSE 1.5 mM), so the printed exponent is probably a typo. Our fit of the digitized data gives k1 = 4.2e-4 s^-1, k2 = 1.8e-4 s^-1, k3 = 4.3e-3 L mol^-1 s^-1 against the printed k1 = 4.9e-4 and k3 = 7.66e-3. Supporting electrolyte is stated as 0.1 M K2SO4 for the cyclic voltammetry; confirm it was the electrolysis electrolyte too.",
+    "verified_against_figure": true
+  },
+  "conditions": {
+    "catalyst": "Sn85Cu15 (bronze)",
+    "electrolyte": "50 mM KNO3 (0.1 M K2SO4 supporting electrolyte per CV section; confirm)",
+    "cell": "divided_batch",
+    "potential_V_vs_RHE": null,
+    "potential_as_reported": "-2.0 V vs Ag/AgCl",
+    "potential_mode": "potentiostatic",
+    "pH": null,
+    "temperature_C": null,
+    "volume_mL": 20,
+    "stirring": "not recorded here",
+    "c0_mM_N": {
+      "NO3": 50.0
+    },
+    "notes": "40 mL Teflon cell split by a Nafion 117 membrane into two equal compartments, so about 20 mL catholyte (volume inferred from that). pH of the catholyte shifts basic during electrolysis. Not converted to RHE."
+  }
+}

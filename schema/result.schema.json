@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nernstwork/result.schema.json",
+  "title": "Inference result",
+  "description": "Output contract between the proposer/critic (LLM side) and the fitter/evaluator. One file per method run on one task or real dataset.",
+  "type": "object",
+  "required": ["task_or_dataset_id", "method", "candidates", "selected_candidate"],
+  "additionalProperties": false,
+  "properties": {
+    "task_or_dataset_id": { "type": "string" },
+    "method": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "description": "e.g. 'aic_enumeration', 'sindy', 'llm_propose_critic'." },
+        "llm": { "type": "string" },
+        "seed": { "type": "integer" },
+        "config": { "type": "object" }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["mechanism", "fit"],
+        "additionalProperties": false,
+        "properties": {
+          "mechanism": { "$ref": "mechanism.schema.json" },
+          "proposed_by": { "type": "string", "enum": ["enumerator", "llm", "library", "revision"] },
+          "fit": {
+            "type": "object",
+            "required": ["neg_log_lik", "n_params"],
+            "additionalProperties": false,
+            "properties": {
+              "neg_log_lik": { "type": "number" },
+              "n_params": { "type": "integer" },
+              "aic": { "type": "number" },
+              "bic": { "type": "number" },
+              "posterior": {
+                "type": "object",
+                "description": "Per-parameter summaries keyed like 'R1.k'.",
+                "additionalProperties": {
+                  "type": "object",
+                  "required": ["median"],
+                  "properties": {
+                    "median": { "type": "number" },
+                    "ci95": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 }
+                  }
+                }
+              },
+              "peak_hidden_fraction_of_total_N": { "type": "number" }
+            }
+          },
+          "plausibility": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "passed": { "type": "boolean" },
+              "violations": { "type": "array", "items": { "type": "string" } },
+              "critic": { "type": "string", "enum": ["rules", "llm", "both"] },
+              "rationale": { "type": "string" }
+            }
+          },
+          "identifiability": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "unidentifiable_params": { "type": "array", "items": { "type": "string" } },
+              "method": { "type": "string", "description": "e.g. profile likelihood, posterior width ratio." }
+            }
+          }
+        }
+      }
+    },
+    "selected_candidate": { "type": "integer", "minimum": 0, "description": "Index into candidates." },
+    "proposed_experiments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["conditions"],
+        "additionalProperties": false,
+        "properties": {
+          "conditions": { "type": "object" },
+          "sampling_times_min": { "type": "array", "items": { "type": "number" } },
+          "expected_information_gain": { "type": "number" },
+          "rationale": { "type": "string" }
+        }
+      }
+    },
+    "metrics": { "type": "object", "additionalProperties": { "type": "number" } }
+  }
+}

@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+# source workbooks/PDFs are not redistributed; see data/real/README.md
+*.xlsx
+*.pdf
+*.rar
+*.zip
+*.docx
+# literature stays local (copyright, size): only literature/README.md is tracked; the index is LITERATURE.md
+literature/**
+!literature/README.md

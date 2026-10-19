@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nernstwork/mechanism.schema.json",
+  "title": "Mechanism",
+  "description": "A candidate or ground-truth reaction network. State variables are concentrations in mM of nitrogen-equivalents (mM-N). All stoichiometry is written per N-equivalent, so N is conserved when the coefficients on both sides sum to the same number. H, O and charge balance are implicit (water, H+/OH-, electrons) and are not tracked; electron count is tracked via nitrogen oxidation states.",
+  "type": "object",
+  "required": ["id", "species", "reactions"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+$" },
+    "description": { "type": "string" },
+    "motif": {
+      "type": "string",
+      "enum": ["series", "parallel", "series_parallel", "series_with_sink", "hidden_intermediate", "reversible", "other"],
+      "description": "Coarse branching motif, used for reporting benchmark results by motif."
+    },
+    "species": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/species" }
+    },
+    "reactions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/reaction" }
+    },
+    "sinks_to_unobserved": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional: species ids that are real products but not measured in the lab setup (e.g. N2, N2O in an aqueous-only analysis)."
+    }
+  },
+  "$defs": {
+    "species": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9_]+$" },
+        "label": { "type": "string", "description": "Human-readable, e.g. 'NO2-'." },
+        "formula": { "type": "string" },
+        "role": { "type": "string", "enum": ["reactant", "intermediate", "product", "sink", "hidden_intermediate"] },
+        "observable": { "type": "boolean", "default": true, "description": "False means the species exists in the model but is never measured." },
+        "phase": { "type": "string", "enum": ["aq", "gas", "surface", "solid"], "default": "aq" },
+        "n_N_per_molecule": { "type": "integer", "minimum": 1, "default": 1, "description": "N atoms per molecule, used only to convert reported units to mM-N (e.g. N2 -> 2)." },
+        "N_oxidation_state": { "type": ["number", "null"], "description": "Mean oxidation state of N. NO3- +5, NO2- +3, NO +2, N2O +1, N2 0, NH2OH -1, NH3/NH4+ -3. Null if unknown (hidden intermediates)." }
+      }
+    },
+    "reaction": {
+      "type": "object",
+      "required": ["id", "reactants", "products", "rate_law"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9_]+$" },
+        "reactants": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/term" } },
+        "products": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/term" } },
+        "electrons": { "type": ["number", "null"], "description": "Electrons consumed per reaction event (N-equivalent basis). Null if not applicable or unknown. Checked against oxidation states when all are known." },
+        "reversible": { "type": "boolean", "default": false },
+        "rate_law": { "$ref": "#/$defs/rate_law" }
+      }
+    },
+    "term": {
+      "type": "object",
+      "required": ["species", "coeff"],
+      "additionalProperties": false,
+      "properties": {
+        "species": { "type": "string" },
+        "coeff": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "parameter": {
+      "type": "object",
+      "required": ["value"],
+      "additionalProperties": false,
+      "properties": {
+        "value": { "type": "number" },
+        "unit": { "type": "string" },
+        "bounds": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+        "prior": {
+          "type": "object",
+          "required": ["dist"],
+          "properties": {
+            "dist": { "type": "string", "enum": ["uniform", "loguniform", "lognormal", "normal", "exponential"] },
+            "args": { "type": "array", "items": { "type": "number" } }
+          }
+        },
+        "fixed": { "type": "boolean", "default": false },
+        "source": { "type": "string", "description": "Where the value came from, e.g. 'Katsounaros 2012 Table 1'." }
+      }
+    },
+    "rate_law": {
+      "type": "object",
+      "required": ["family", "params"],
+      "additionalProperties": false,
+      "properties": {
+        "family": {
+          "type": "string",
+          "enum": ["mass_action", "power_law", "langmuir_saturation"],
+          "description": "mass_action: r = k * prod(c_i ^ coeff_i) over reactants. power_law: r = k * prod(c_i ^ order_i) with orders given or free. langmuir_saturation: r = k * c / (1 + c / K) for the single reactant."
+        },
+        "orders": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/parameter" },
+          "description": "Reaction orders per reactant species (power_law only). Default for mass_action is the stoichiometric coefficient."
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "k": { "$ref": "#/$defs/parameter" },
+            "K": { "$ref": "#/$defs/parameter", "description": "Langmuir constant (mM-N)." },
+            "k_mt": { "$ref": "#/$defs/parameter", "description": "Optional mass-transport rate constant. Effective k = 1/(1/k + 1/k_mt)." }
+          },
+          "required": ["k"],
+          "additionalProperties": false
+        },
+        "potential_dependence": {
+          "type": "object",
+          "required": ["alpha", "E_ref_V"],
+          "additionalProperties": false,
+          "description": "k(E) = k * exp(alpha * F * (E_ref - E) / (R * T)). E in V vs RHE. alpha is a lumped effective transfer coefficient (slope of ln k vs -E times RT/F), so it need not lie in (0,1).",
+          "properties": {
+            "alpha": { "$ref": "#/$defs/parameter" },
+            "E_ref_V": { "type": "number", "description": "Potential (V vs RHE) at which k is quoted." }
+          }
+        },
+        "time_modulation": {
+          "type": "object",
+          "required": ["kind", "tau_min"],
+          "additionalProperties": false,
+          "description": "Catalyst-state factor g(t) multiplying k. activation: g = 1 - exp(-t/tau) (induction period). deactivation: g = exp(-t/tau) (fouling, pH drift, surface reconstruction). Added after real-data calibration: Liao 2025 Supp. Fig. 49 needs activation (tau about 70 min) and Supp. Fig. 50 needs deactivation (tau about 300-500 min). Also the hook for a catalyst-phase vector that evolves in time.",
+          "properties": {
+            "kind": { "type": "string", "enum": ["activation", "deactivation"] },
+            "tau_min": { "$ref": "#/$defs/parameter" }
+          }
+        },
+        "ph_dependence": {
+          "type": "object",
+          "required": ["order", "pH_ref"],
+          "additionalProperties": false,
+          "description": "k(pH) = k * 10^(-order * (pH - pH_ref)).",
+          "properties": {
+            "order": { "$ref": "#/$defs/parameter" },
+            "pH_ref": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

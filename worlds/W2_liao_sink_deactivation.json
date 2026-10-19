@@ -1,0 +1,299 @@
+{
+  "id": "W2_liao_sink_deactivation",
+  "title": "Parallel branches, N sink and catalyst deactivation (calibrated to real data)",
+  "difficulty": "hard",
+  "reference": {
+    "citation": "Liao et al. Nat. Commun. 2025",
+    "doi": "10.1038/s41467-025-60671-y",
+    "real_dataset_ids": [
+      "liao2025_mos2_suppfig50b",
+      "liao2025_wmos2_suppfig50a"
+    ],
+    "notes": "Fit RMSE about 3-4 mM-N on the real curves. Leak placement (NO3 vs NO2) is weakly identified."
+  },
+  "ground_truth": {
+    "id": "w2_liao50b",
+    "description": "Series + direct NO3->NH3 branch + nitrate-side N sink, catalyst deactivation. Calibrated to Liao 2025 Supp. Fig. 50b.",
+    "motif": "series_with_sink",
+    "species": [
+      {
+        "id": "NO3",
+        "label": "NO3-",
+        "formula": "NO3-",
+        "role": "reactant",
+        "observable": true,
+        "N_oxidation_state": 5
+      },
+      {
+        "id": "NO2",
+        "label": "NO2-",
+        "formula": "NO2-",
+        "role": "intermediate",
+        "observable": true,
+        "N_oxidation_state": 3
+      },
+      {
+        "id": "NH3",
+        "label": "NH3/NH4+ (lumped)",
+        "formula": "NH3",
+        "role": "product",
+        "observable": true,
+        "N_oxidation_state": -3
+      },
+      {
+        "id": "SINK",
+        "label": "N2/N2O (not measured)",
+        "formula": "N2",
+        "role": "sink",
+        "observable": false,
+        "n_N_per_molecule": 2,
+        "N_oxidation_state": 0
+      }
+    ],
+    "reactions": [
+      {
+        "id": "R1",
+        "reactants": [
+          {
+            "species": "NO3",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "NO2",
+            "coeff": 1
+          }
+        ],
+        "electrons": 2,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.0004,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "CALIBRATED to liao2025_mos2_suppfig50b (docs/SPEC.md s7)"
+            }
+          },
+          "time_modulation": {
+            "kind": "deactivation",
+            "tau_min": {
+              "value": 368,
+              "unit": "min",
+              "bounds": [
+                1,
+                100000.0
+              ],
+              "source": "CALIBRATED to liao2025_mos2_suppfig50b (docs/SPEC.md s7)"
+            }
+          }
+        }
+      },
+      {
+        "id": "R2",
+        "reactants": [
+          {
+            "species": "NO2",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "NH3",
+            "coeff": 1
+          }
+        ],
+        "electrons": 6,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.0027,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "CALIBRATED to liao2025_mos2_suppfig50b (docs/SPEC.md s7)"
+            }
+          },
+          "time_modulation": {
+            "kind": "deactivation",
+            "tau_min": {
+              "value": 368,
+              "unit": "min",
+              "bounds": [
+                1,
+                100000.0
+              ],
+              "source": "CALIBRATED to liao2025_mos2_suppfig50b (docs/SPEC.md s7)"
+            }
+          }
+        }
+      },
+      {
+        "id": "R3",
+        "reactants": [
+          {
+            "species": "NO3",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "NH3",
+            "coeff": 1
+          }
+        ],
+        "electrons": 8,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.0037,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "CALIBRATED to liao2025_mos2_suppfig50b (docs/SPEC.md s7)"
+            }
+          },
+          "time_modulation": {
+            "kind": "deactivation",
+            "tau_min": {
+              "value": 368,
+              "unit": "min",
+              "bounds": [
+                1,
+                100000.0
+              ],
+              "source": "CALIBRATED to liao2025_mos2_suppfig50b (docs/SPEC.md s7)"
+            }
+          }
+        }
+      },
+      {
+        "id": "R4",
+        "reactants": [
+          {
+            "species": "NO3",
+            "coeff": 1
+          }
+        ],
+        "products": [
+          {
+            "species": "SINK",
+            "coeff": 1
+          }
+        ],
+        "electrons": 5,
+        "rate_law": {
+          "family": "mass_action",
+          "params": {
+            "k": {
+              "value": 0.0015,
+              "unit": "min^-1",
+              "bounds": [
+                1e-06,
+                10.0
+              ],
+              "source": "CALIBRATED to liao2025_mos2_suppfig50b (docs/SPEC.md s7)"
+            }
+          },
+          "time_modulation": {
+            "kind": "deactivation",
+            "tau_min": {
+              "value": 368,
+              "unit": "min",
+              "bounds": [
+                1,
+                100000.0
+              ],
+              "source": "CALIBRATED to liao2025_mos2_suppfig50b (docs/SPEC.md s7)"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "observation": {
+    "observed_species": [
+      "NO3",
+      "NO2",
+      "NH3"
+    ],
+    "sampling_times_min": [
+      0,
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      80,
+      100,
+      120,
+      150,
+      180,
+      360,
+      720,
+      1080,
+      1440,
+      2160,
+      2880
+    ],
+    "noise": {
+      "relative_sigma": 0.04,
+      "absolute_sigma_mM": 0.3,
+      "outlier_prob": 0.03,
+      "outlier_scale": 0.3
+    },
+    "missing_species_note": "SINK (N2/N2O) is never observed; closure gap is the only evidence."
+  },
+  "design_space": {
+    "potential_V_vs_RHE": [
+      -0.6
+    ],
+    "pH": [
+      7.0
+    ],
+    "c0_mM_N": [
+      50.0,
+      100.0
+    ]
+  },
+  "budget": {
+    "max_experiments": 3,
+    "points_per_experiment": 18
+  },
+  "scoring": {
+    "metrics": [
+      "exact_network_recovery",
+      "reaction_f1",
+      "parameter_rel_error",
+      "heldout_nmsle",
+      "identifiability_flag_accuracy",
+      "experiments_to_recovery"
+    ],
+    "pass_threshold_rmsle": 0.05
+  },
+  "candidate_library": {
+    "mechanism_ids": [
+      "series_closed",
+      "series_sink_NO3",
+      "series_sink_NO2",
+      "parallel_sink_NO3_deact"
+    ]
+  },
+  "plausibility_constraints": {
+    "rate_constant_bounds_min_inv": [
+      1e-06,
+      10.0
+    ]
+  }
+}

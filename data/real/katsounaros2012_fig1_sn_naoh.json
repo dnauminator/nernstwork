@@ -1,0 +1,170 @@
+{
+  "id": "katsounaros2012_fig1_sn_naoh",
+  "provenance": {
+    "citation": "Katsounaros I., Dortsiou M., Polatides C., Preston S., Kypraios T., Kyriacou G., Electrochim. Acta 71 (2012) 270-276",
+    "figure": "Fig. 1",
+    "file": "literature/02_kinetics_benchmarks/katsounaros2012_Sn_reaction_pathways_Bayesian_hidden_intermediate.pdf",
+    "notes": "Markers: square NO3, open circle NO2, filled inverted triangle N2, star N2O, open triangle NH3 (check against the caption). Solid curves in the figure are the paper's model-B fit (Table 1). y axis 0-0.5 mol/L; model B conserves N 1:1 in these units, so N2 and N2O are taken as N-equivalents. Confirm that against the paper text before use. Digitized by Daniel with WebPlotDigitizer (data/digitized_inputs/katsounaros2012_fig1/wpd_datasets.csv); t=0 points pinned to the stated initial concentrations. Checked against the figure image by overlaying the published model B: the residual pattern matches the figure (e.g. NO2 at 30 min sits below the curve, N2 at 180 min below the curve). One visual pass, not pixel-level.",
+    "verified_against_figure": true,
+    "source_type": "digitized",
+    "extraction": "scripts/digitized_to_dataset.py (WebPlotDigitizer unified CSV)"
+  },
+  "conditions": {
+    "catalyst": "Sn",
+    "electrolyte": "0.5 M NaNO3 + 1 M NaOH",
+    "cell": "other",
+    "potential_V_vs_RHE": null,
+    "potential_as_reported": "-2.2 V vs Ag/AgCl",
+    "potential_mode": "potentiostatic",
+    "pH": 14,
+    "temperature_C": null,
+    "volume_mL": null,
+    "stirring": "not recorded here",
+    "c0_mM_N": {
+      "NO3": 500.0
+    },
+    "notes": "RHE conversion not done (iR and reference details unchecked). Roughly -1.2 V vs RHE ignoring iR."
+  },
+  "series": [
+    {
+      "species": "NO3",
+      "t_min": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "y": [
+        500.0,
+        250.831,
+        123.92,
+        85.382,
+        30.233,
+        27.575,
+        16.279
+      ],
+      "reported_unit": "mol L-1",
+      "conversion": "mM-N = digitized y * 1000.0"
+    },
+    {
+      "species": "NO2",
+      "t_min": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "y": [
+        0.0,
+        107.309,
+        131.894,
+        98.671,
+        38.87,
+        10.299,
+        6.312
+      ],
+      "reported_unit": "mol L-1",
+      "conversion": "mM-N = digitized y * 1000.0"
+    },
+    {
+      "species": "N2",
+      "t_min": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "y": [
+        0.0,
+        18.272,
+        74.751,
+        165.116,
+        248.837,
+        292.027,
+        309.302
+      ],
+      "reported_unit": "mol L-1",
+      "conversion": "mM-N = digitized y * 1000.0"
+    },
+    {
+      "species": "N2O",
+      "t_min": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "y": [
+        0.0,
+        4.319,
+        19.601,
+        41.528,
+        56.146,
+        60.133,
+        62.791
+      ],
+      "reported_unit": "mol L-1",
+      "conversion": "mM-N = digitized y * 1000.0"
+    },
+    {
+      "species": "NH3",
+      "t_min": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "y": [
+        0.0,
+        4.983,
+        7.641,
+        13.621,
+        19.601,
+        23.588,
+        27.575
+      ],
+      "reported_unit": "mol L-1",
+      "conversion": "mM-N = digitized y * 1000.0"
+    }
+  ],
+  "quality": {
+    "n_closure": {
+      "t_min": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "fraction": [
+        1.0,
+        0.7714,
+        0.7156,
+        0.8086,
+        0.7874,
+        0.8272,
+        0.8445
+      ]
+    },
+    "flags": [
+      "potential_unverified"
+    ]
+  }
+}
