@@ -8,20 +8,21 @@ Ordered by how much each one unblocks. Time estimates are rough.
 
 Digitized, converted to `data/real/katsounaros2012_fig1_sn_naoh.json` and checked against published model B (SPEC section 7b). The convention for the next figures is in `docs/DIGITIZING.md`: name each WebPlotDigitizer dataset by species id, export the unified CSV, drop it in a new folder with a copied `meta.json`, and run the converter.
 
-### 2. Digitize two more figures only if time allows (about 30 min each)
+### 2. Digitize more figures: mostly done
 
-- Katsounaros 2008 Fig. 2 (1 M nitrate, 15-min sampling to 210 min). Same procedure (`docs/DIGITIZING.md`); make a new `meta.json` with the 2008 conditions and a 15-min time grid. This is the high-concentration regime.
-- Polatides 2005 Fig. 3 (50 mM nitrate, 0-120 min). Then read Figs. 5-6 (rate constants vs potential) to replace the illustrative alphas in W5.
+- Katsounaros 2008 Fig. 2: done. Converted to `data/real/katsounaros2008_fig2_sn_nacl_1M.json` (SPEC section 7c).
+- Polatides 2005 Fig. 3: done. Converted to `data/real/polatides2005_fig3_sn85cu15_50mM.json` (SPEC section 7c).
+- Polatides 2005 Figs. 5-6 (rate constants vs potential): still to do. Needed to replace the illustrative alphas in W5. No `data/digitized_inputs/` folder exists for them yet.
 
-### 3. Read Ebenezer 2026 properly (about 30-45 min)
+### 3. Read Ebenezer 2026: done
 
-The keyword scan found rate constants vs potential, reaction orders for nitrate, nitrite and hydroxylamine, and ODEs for NO3/NO2/NH2OH. If the numbers are usable it may be a better potential-dependent benchmark than Polatides. Check whether there are time-course data or only initial-rate data.
+Initial-rate and 1 h data only; no time courses, and its reaction orders disagree between the table and the text. Not a replacement for Polatides Figs. 5-6 as the W5 calibration source. Details in `docs/SPEC.md` section 8b.
 
 ### 4. Check three small facts (15 min)
 
-- The potential for Liao Supp. Fig. 49 (look in the main-text figure legend; currently assumed -0.6 V vs RHE).
+- ~~The potential for Liao Supp. Fig. 49~~: -0.6 V vs RHE, confirmed (identical to Fig. 48).
 - Whether Liu 2024, Wang 2025 and Wu 2025 Source Data contain concentration-time sheets (match sheet names to figure captions; sheets are labelled by figure number only).
-- The Sanofi paper: find the main article, not just the SI.
+- ~~The Sanofi paper~~: main article now in the folder; DOI confirmed.
 
 ### 5. Get the repo to Jarrod (30 min)
 

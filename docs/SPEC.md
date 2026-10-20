@@ -72,7 +72,7 @@ Observed value = true * (1 + N(0, relative_sigma)) + N(0, absolute_sigma_mM), wi
 
 ## 7. What the real data say (first calibration)
 
-Data: Liao et al. Nat. Commun. 2025 (doi 10.1038/s41467-025-60671-y) Source Data, Supp. Figs. 49, 50a, 50b. 0.5 M K2SO4 + 100 mM KNO3, H-cell, -0.6 V vs RHE (Fig. 49 potential assumed; flagged `potential_unverified`). Fig. 49: 12 points over 180 min, N closure 0.95-1.01. Fig. 50a/b: 18 points over 48 h, closure drops to about 0.77 by 3 h and 0.67-0.74 at 48 h. Catalyst assignment for Fig. 50a/b is from the caption (W-MoS2 / MoS2).
+Data: Liao et al. Nat. Commun. 2025 (doi 10.1038/s41467-025-60671-y) Source Data, Supp. Figs. 49, 50a, 50b. 0.5 M K2SO4 + 100 mM KNO3, H-cell, -0.6 V vs RHE (Fig. 49 is not stated in its caption, but its values are identical to Supp. Fig. 48, which states -0.6 V; confirmed Oct 19). Fig. 49: 12 points over 180 min, N closure 0.95-1.01. Fig. 50a/b: 18 points over 48 h, closure drops to about 0.77 by 3 h and 0.67-0.74 at 48 h. Catalyst assignment for Fig. 50a/b is from the caption (W-MoS2 / MoS2).
 
 Calibration (`scripts/calibrate_liao.py`, least squares on scaled residuals, grid of starts, no uncertainty):
 
@@ -122,7 +122,7 @@ Both the hidden species and the saturating rate law are demanded by the data, co
 |---|---|---|
 | Liao 2025 Supp. Figs. 49, 50a, 50b | extracted to `data/real/` (Source Data) | calibration of W2; held-out evaluation of any method |
 | Katsounaros 2012 Fig. 1 (0.5 M NaNO3 + 1 M NaOH, Sn; NO3, NO2, N2, N2O, NH3 at 0-180 min; model-B fit curves overlaid) | **digitized** (Daniel, WebPlotDigitizer) -> `data/real/katsounaros2012_fig1_sn_naoh.json`; see section 7b | W3 validation, W4 trap (model A vs B) |
-| Ebenezer et al. 2026 (NiCo2S4, Chem. Eng. J. 545:179676) | keyword scan only: reports rate constants vs potential, reaction orders and an NO3/NO2/NH2OH ODE system; not yet read in detail | potential-dependent and NH2OH-intermediate benchmark, candidate for W5 calibration |
+| Ebenezer et al. 2026 (NiCo2S4, Chem. Eng. J. 545:179676) | **read** (main + SI). Initial-rate and 1 h electrolysis data only: no concentration-time curves, so it is not a fit benchmark. See section 8b | qualitative W5 targets (selectivity vs potential), feed-the-intermediate experiment design |
 | Katsounaros 2008 Fig. 2 (1 M nitrate, 15-min sampling to 210 min, 5 species + authors' mass-balance loss) | **digitized** -> `data/real/katsounaros2008_fig2_sn_nacl_1M.json`; section 7c | hidden-intermediate and saturating-kinetics benchmark, model A vs B |
 | Polatides 2005 Fig. 3 (50 mM nitrate, 0-120 min) | **digitized** -> `data/real/polatides2005_fig3_sn85cu15_50mM.json`; section 7c | second-order N2 branch; printed k2 looks 10x off |
 | Polatides 2005 Figs. 5-6 (rate constants vs potential) | needs digitizing/tabulating | W5 calibration (alphas) |
@@ -130,10 +130,29 @@ Both the hidden species and the saturating rate law are demanded by the data, co
 
 Protocol: a digitized curve is accepted only after the published rate constants, simulated with our simulator, reproduce the published curve within digitization error. Record `verified_against_figure: true` only then. Use real data for validation, not for tuning a method.
 
+## 8b. Ebenezer 2026 read, and other literature added Oct 19
+
+**Ebenezer (NiCo2S4, 0.1 M KOH + 0.5 M KNO3, H-cell).** Only 1 h potentiostatic runs at 50 mV steps (-0.05 to -0.50 V vs RHE) and initial-rate series versus concentration, with separate nitrate, nitrite and hydroxylamine feeds. No time courses in the paper or the SI (the SI has calibrations, spectra and tables), so nothing to digitize into our dataset schema. What it does give:
+
+- Selectivity versus potential at fixed time: FE of NH3 about 57-67% across potential, NO2- 18.4% at -0.05 V falling to 7.7% at -0.50 V, NH2OH 5.9% falling to 1.1%, HER 18.7% rising to 37.4%. Usable as a qualitative target for W5 (branching ratio shifts with E), not as a calibration.
+- Intermediate-feed experiments (nitrite alone, hydroxylamine alone) as a way to isolate step k's. This is an experiment type the planner should be able to propose.
+- NH2OH as a measured intermediate, which no world includes yet.
+- Warning on the numbers: the reaction orders are inconsistent inside the paper (Table 2: 0.47 / 0.36 / 0.97 for NO3 / NO2 / NH2OH; text on Fig. 3e: 0.79 / 0.52 / 1.43; Fig. 5 apparent orders: 0.41 / 0.59 / 1.29), the "rate constants" carry units of M s-1, which is a rate, and Eq. 15 for d[NH3]/dt has minus signs on the intermediate terms. Do not take W5 alphas or rate constants from this paper without resolving which set is meant. The paper also treats the sequence as strictly NO3 -> NO2 -> NH2OH -> NH3 with no direct branch, which is the structure our Liao fits say is insufficient.
+
+**Sanofi SKAI (Li et al., Ind. Eng. Chem. Res. 2025, 64, 6825; doi 10.1021/acs.iecr.4c04301; main paper now in the folder).** Closest method relative to ours. Takeaways: (1) models are ranked by elpd_loo / WAIC from MCMC (NumPyro), a more honest comparison than point-estimate AIC for our 7-18 point datasets; (2) the random-forest classifier over 456 two-step mechanisms is only 52% exact, but errors cluster on near-neighbours, and Bayesian inference then picks among the top 3, so a classifier is a proposer, not a judge; (3) they note two top candidates have nearly identical ODEs when k2 is small, and say this could drive the next experiment, then leave it out of scope, which is our planner; (4) few-shot LLM text-to-JSON reaches 90% key accuracy on 10 curated pairs, a direct precedent for Jarrod's serializer and a ready-made eval for it; (5) limits that leave our niche open: two-step mechanisms only, simulated training data, no potential or pH dependence, no hidden intermediates, no mass-balance gap; (6) their Savitzky-Golay + spline smoothing is not appropriate for us: our curves have 7-18 points and the jumps are signal.
+
+**Liu et al., Nature 626, 98 (2024), Li-S 16-electron network.** Not NO3RR, but three transferable points. (1) The network is electrochemical steps plus a non-electrochemical comproportionation (Li2S8 + Li2S4 -> 2 Li2S6) that creates a species no electrochemical step makes. The schema already allows this (`electrons: 0`), but `potential_dependence` must not be applied to such steps; add that check to `validate_mechanism`. NO3RR analogues are N-N coupling toward N2/N2O and the second-order 2 NO2 -> N2 of Polatides. (2) Charge bookkeeping splits the network into stages (4.08 : 11.92 electrons, about 1 : 3, identifies Li2S4 as the hinge). For us, charge passed depends on where the sink sits (NO3 -> N2 is 5 e per N, NO2 -> N2 is 3 e), but HER takes charge too, so it only helps if FE or total charge is recorded. Worth adding as an optional observable, not a promise. (3) A solubility limit (Li2S4, about 10 mM) shifts the apparent profile; the NO3RR counterpart is gaseous N2/N2O leaving solution, a plausible physical identity for part of the closure gap. Also, the same network with different catalysts (N,S-HGF versus HGF) changes only rates, which supports fitting Liao Figs. 49, 50a and 50b with a shared topology and per-catalyst parameters.
+
+**Barter et al., Digital Discovery 2023 (HiPRGen).** Enumerate-then-filter: bucket species by composition, generate every stoichiometrically valid reaction, then drop by rules (more than two bonds changing, dissociative redox). Our species set is about 8, so full enumeration is cheap. The enumerator baseline should generate all N-balanced reactions among {NO3, NO2, NO, N2O, N2, NH2OH, NH3, X}, filter by electron count versus oxidation states (already in `validate_mechanism`) and a maximum step size, then search subsets simplest-first. Their kinetic Monte Carlo with arbitrary rate constants only finds which products are reachable, not rates, and they say so, so it is not a kinetics method. They keep only exergonic steps to avoid loops, matching our irreversible-by-default convention.
+
+**Bagger and Wuttke, PCCP 2025.** Isomer generator (Surge) enumerating surface intermediates for CO/NO reduction, showing the count grows exponentially with reactants and steps. Atomistic and DFT-facing, which v0.1 excludes. One use: a sentence for the pitch on why hypothesis spaces explode and why a human-curated list misses things.
+
+**Horno et al., J. Electroanal. Chem. 352, 83 (1993).** Network (circuit) simulation of diffusion-reaction systems, chronoamperometry and ECE. Spatial transport, out of scope. Skip.
+
 ## 9. Inference pipeline (stages and interfaces)
 
-1. Propose: enumerate or LLM-propose candidate mechanisms from the library plus revisions (output: `mechanism.schema.json` objects).
-2. Fit: parameters by maximum likelihood or MCMC under the noise model; report `neg_log_lik`, AIC, BIC, posterior summaries.
+1. Propose: enumerate (all N-balanced reactions over the species list, filtered by oxidation-state rules, simplest subsets first; section 8b, Barter) or LLM-propose candidate mechanisms from the library plus revisions (output: `mechanism.schema.json` objects).
+2. Fit: parameters by maximum likelihood or MCMC under the noise model; report `neg_log_lik`, AIC, BIC, posterior summaries, and elpd_loo/WAIC when MCMC is used (section 8b, SKAI).
 3. Critique: rule-based plausibility (`max_hidden_fraction_of_total_N`, rate-constant bounds, `max_effective_alpha`) and optional LLM critic with rationale. A candidate may win BIC and fail plausibility.
 4. Revise: if no candidate passes, change the model class (add a branch, a sink, a time term) rather than only re-fitting.
 5. Identify: profile likelihood or posterior-width ratio; list `unidentifiable_params`.
@@ -160,7 +179,7 @@ The interface is the four schemas. Neither side should need to change the other'
 
 ## 12. Open questions
 
-- Is Fig. 49 really at -0.6 V vs RHE? Check the main-text figure legend.
+- ~~Is Fig. 49 really at -0.6 V vs RHE?~~ Resolved Oct 19: yes, its values are identical to Fig. 48, which states -0.6 V. The `potential_unverified` flag is removed.
 - Sink on NO3 or NO2 in Liao Fig. 50: needs profile likelihood, not just a cost comparison.
 - Deactivation vs pH drift: can a pH-dependence term plus a pH-evolution state explain the stall instead of an empirical tau?
 - Which observed-species sets should the benchmark vary (NH3 only, NO3+NH3, all three)?

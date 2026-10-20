@@ -38,10 +38,10 @@ RUNS = [
         "figure": "Supplementary Fig. 49",
         "extra_flags": [],
         "notes": (
-            "Potential not stated in the Supp. Fig. 49 caption; main-text Fig. 5e and Supp. Fig. 50 "
-            "use -0.6 V vs RHE in the same H-cell, so -0.6 V is assumed here."
+            "Potential not stated in the Supp. Fig. 49 caption. Confirmed -0.6 V vs RHE by the dataset owner "
+            "(Oct 19 2026): the values are identical to Supp. Fig. 48, which states the conditions explicitly."
         ),
-        "potential_verified": False,
+        "potential_verified": True,
         "caption_catalyst_verified": True,
     },
     {
