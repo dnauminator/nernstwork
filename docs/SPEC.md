@@ -10,6 +10,16 @@ Primary demo: electrochemical nitrate reduction (NO3RR), because the branch poin
 
 Out of scope for v0.1: spatial transport models, DFT, microkinetic mechanisms with surface coverages, CO2RR.
 
+## 1b. Direction change (Oct 20): from NO3RR mechanisms to synthesis branch points
+
+Decision (Daniel, Oct 20): the hackathon project moves from inferring NO3RR mechanisms to inferring **solid-state synthesis pathways**, to avoid overlap with ongoing work outside the hackathon. Same engine (propose a candidate network, fit, critique for plausibility, report what the data cannot settle, plan the next experiment), different domain. Everything in sections 3-9 about NO3RR stays as the validated test bed and as the downstream illustration described below. Sections 7e and 11 are the new material; the rest of the document is unchanged unless a section says otherwise.
+
+Why synthesis fits the engine. In a solid-state synthesis the precursor set and temperature decide which intermediates form, and some intermediates consume the driving force needed for the target (the ARROWS3 and Miura et al. picture). That is a branched network with hidden intermediates and a "what is not observed" problem, which is what the engine reports on.
+
+Two links to NO3RR, one of them an assumption. (1) The engine and its worlds (W1-W5) already exist and are the sanity test bed. (2) A catalyst-state vector (phase fractions out of the synthesis model) could feed the NO3RR toy model as modifiers on its rate constants. No dataset ties a synthesis outcome to NO3RR rate constants, and none of the three ARROWS3 targets (YBCO, Na2Te3Mo3O16, LiTiOPO4) is an NO3RR catalyst, so this link is a hypothetical mapping. In any demo it is labelled illustrative and is never presented as a prediction. Use only catalysts from public publications.
+
+Status: pivot is proposed, data check is partly done (section 7e). Go/no-go inputs: the YBCO table is present and usable (done); NTMO and LTOPO tables not inspected; the curated kickoff datasets are unknown.
+
 ## 2. What is already known (prior art, one line each)
 
 - SiMBA: simplest-mechanism-first enumeration with AIC, handles unobserved intermediates.
@@ -122,6 +132,34 @@ Fig. 6 plots ln k2 and ln k3 against -E (V vs Ag/AgCl), four potentials from -1.
 
 W5 now carries these values: R1 NO3 -> NO2 k = 0.0294 min^-1, alpha 0 (not reported, diffusion limited); R2 NO2 -> NH3 k = 0.01056 min^-1, alpha 0.131; R3 2 NO2 -> N2 (SINK, mM-N basis) mass action with reactant coefficient 2, k = 4.6e-4 mM^-1 min^-1, alpha 0.089. Anchored at -2.0 V vs Ag/AgCl, which the world file expresses as -1.39 V vs RHE assuming pH 7 (catholyte pH drifted basic, so the offset is approximate; it moves E_ref, not the alphas). Check against the digitized Fig. 3 at E_ref: RMSE 3.4 / 3.0 / 1.6 mM for NO3 / NO2 / NH3 and 5.5 mM-N for N2 (simulated N2 is 23 mM-N at 120 min against 34 digitized, so the printed k3 undershoots the N2 curve). Limits: the alphas are apparent, from four points over a 0.4 V window; they say nothing outside -1.6 to -2.0 V; the paper reports Table 1 selectivities at only two potentials for Sn85Cu15 (-1.6 and -2.0 V), which can serve as a coarse held-out check on W5 (about 86/4/14% NO2/NH3/N2 at -1.6 V against 17/41/35% at -2.0 V, 12 h).
 
+## 7e. Synthesis domain (draft, Oct 20): data, observation model, engine changes
+
+**Data found.**
+
+| Dataset | What it is | State |
+|---|---|---|
+| ARROWS3 experiments (Szymanski et al., Nat. Commun. 2023, doi 10.1038/s41467-023-42329-9; repo github.com/njszym/ARROWS, archived at doi 10.5281/zenodo.8331001) | YBCO, Na2Te3Mo3O16 (NTMO), triclinic LiTiOPO4 (t-LTOPO) synthesis outcomes by precursor set and temperature, 4 h holds. Paper: 188 / 46 / 120 experiments over 47 / 23 / 30 precursor sets (YBCO 600-900 C, NTMO 300-400 C, LTOPO 400-700 C) | The paper's data availability statement points to the ARROWS3 repository. Files `Examples/<TARGET>/Exp.json` are Git LFS pointers; a plain `git clone` leaves 133-byte stubs and the real file comes from `https://media.githubusercontent.com/media/njszym/ARROWS/main/Examples/YBCO/Exp.json` (52 MB). Only the YBCO file has been inspected |
+| Precursor Genome (Walters et al., arXiv:2607.09903, July 2026) | 1,035 pairwise solid-state reactions from the A-Lab, 46 precursors, 39 elements, 1,351 XRD scans, Dara automated Rietveld with expert review, CC BY 4.0 | Found from the abstract page only. No repository URL was visible there; hold time, phase fractions and temperatures not confirmed |
+| Miura et al. (Observing and modeling the sequential pairwise reactions..., arXiv:2009.10896) | Pairwise-reaction model for solid-state synthesis; SI has a table of reported Y-Ba-Cu-O synthesis conditions and products | not inspected |
+
+**What the YBCO `Exp.json` contains (inspected Oct 20).** 47 precursor sets; 200 (set, temperature) entries at 600, 700, 800, 900 and 1000 C (the 1000 C ones cover only 12 sets). Each entry has `products` (phase names with an ICSD-style suffix, e.g. `Ba2YCu3O7_47`), `product weight fractions`, and a flag `Experimentally Verified`. 149 entries are verified and carry a raw XRD pattern; the other 51 are not verified and (for 50 of them) carry a `Source` field naming the experiment they were inferred from. Do not treat the unverified entries as data. The paper says 188 experiments for YBCO and the verified count here is 149, so the two do not match yet; find out why (the file may hold a subset, or count differently). The target phase appears in 75 of the 149 verified entries. Mean number of phases per entry is 3.3. The weight fractions sum to 98.5-102 in every verified entry.
+
+**Cautions that shape the noise model.**
+- Weight fractions were estimated from relative peak intensities with XRD-AutoAnalyzer, not Rietveld refinement; the authors say Rietveld would be needed for precise values. Treat them as semi-quantitative.
+- Because the fractions are normalized to about 100, amorphous or unidentified material is invisible. There is no analogue of the nitrogen-closure check, so the "unobserved" part of the problem has to be framed differently (see below).
+- Leeman et al. (PRX Energy, March 2024) argue that automated Rietveld analysis of powder XRD is not yet reliable and that disorder is often neglected, using the A-Lab study as the example. Expect phase assignments to carry label noise.
+- No repository licence was visible on the GitHub page (Zenodo lists "Other (Open)"). Do not commit the 52 MB file; commit only small derived tables, after checking the licence.
+
+**Observation model (draft).** A dataset is a table of (precursor set with stoichiometry, temperature, hold time, phase weight fractions). The data have no time axis: each target has 4 to 5 temperatures per precursor set at a fixed hold. The unit of inference is therefore the pathway topology (which pairwise reactions occur, which intermediates form, which are consumed at higher temperature), not rate constants. With one hold time, an onset temperature and the steepness of a reaction's temperature response are only partly separable; report that as an identifiability finding, not a fit failure.
+
+**Engine changes needed (none exist yet).**
+1. Species type `phase` with a composition. Balance elements, not nitrogen; the mM-N convention in `mechanism.schema.json` does not apply here.
+2. A pairwise reaction with a temperature response: extent after the fixed hold as a function of T (an onset temperature and a width), or an Arrhenius plus Avrami form if a time-resolved dataset turns up. Avrami/JMAK is listed in the registry as not implemented.
+3. Plausibility rules: element balance; non-negative driving force from Materials Project thermochemistry (as ARROWS3 uses); at most two reactants per step (pairwise-first, per Miura); a cap on the fraction of material that cannot be assigned to an observed phase.
+4. A converter from `Exp.json` (verified entries only) to the dataset schema, with a flag for phase-label noise.
+
+**What is not new.** Pairwise-reaction reasoning and learning from failed syntheses are ARROWS3's contribution. What we can add is uncertainty and identifiability reporting, an explicit statement of what is not observable, an LLM proposer that cites literature, and next-experiment planning with an information-gain criterion. State this plainly in the pitch. A literature search found no paper combining a kinetic reaction network, in situ XRD phase tracking and Bayesian inference for thermal solid-state synthesis, which may be a gap or may be a narrow search; check before claiming it.
+
 ## 8. Real-data inventory and validation protocol
 
 | Dataset | Status | Use |
@@ -179,11 +217,11 @@ The interface is the four schemas. Neither side should need to change the other'
 
 ## 11. Timeline to Oct 21-22
 
-Decision (Daniel, Oct 20): no fitter work before the event. Starting the fitter is the project's start, so it begins at kickoff on Oct 21. Everything below assumes that; what can still be prepared beforehand is data, worlds and docs only.
+Decision (Daniel, Oct 20): no fitter work before the event. Starting the fitter is the project's start, so it begins at kickoff on Oct 21. The domain is now synthesis pathways (section 1b); the NO3RR worlds stay as the test bed.
 
-- Before the event: digitizing and world calibration (done), GitHub repo shared with Jarrod (done), Source Data screening (optional), a proposer stub on Jarrod's side.
-- Day 1 (Oct 21): look at the curated datasets at kickoff (decision rule in section 11b); fitter (MLE + AIC/BIC) and enumeration baseline on W1-W3, W5 and Liao 49/50; W4 on the digitized Katsounaros data; Jarrod's proposer/critic against W2 and W3 as soon as the fitter returns results; start the marimo app.
-- Day 2 (Oct 22): identifiability output, experiment planning on W5, headline figure, video and one-pager by midday, buffer before the submission deadline (stated as 5 pm PT; confirm on the event page). Synthesis module is cut.
+- Before the event: data and reading only. Inspect the NTMO and LTOPO `Exp.json` files, resolve the 188-versus-149 count, read ARROWS3 and Miura (the reading list is in NEXT_STEPS), keep the NO3RR datasets and worlds as they are.
+- Day 1 (Oct 21): look at the curated datasets at kickoff (decision rule in section 11b); extend the schema to phases and elements (7e); converter for the YBCO table; fitter (MLE + AIC/BIC) and enumeration baseline, first on W1-W3 and W5 as regression tests of the engine, then on YBCO; Jarrod's proposer/critic once the fitter returns results; start the marimo app.
+- Day 2 (Oct 22): identifiability output, next-experiment planning, headline figure, video and one-pager by midday, buffer before the submission deadline (stated as 5 pm PT; confirm on the event page). The synthesis-to-catalyst coupling is shown as a labelled illustration only. Cut it first if time runs short.
 
 ## 11b. Sponsors, demo and headline figure
 
@@ -199,7 +237,7 @@ Design constraints that follow (ours, not from the chat): the live-fit path in t
 
 Judging fit, as assessed there: impact and relevance decent; novelty defensible only in our niche (real potential-dependent electrochemical data, hidden intermediates, identifiability reporting), since generic LLM-guided model discovery and AIC enumeration are already published; innovativeness moderate. The real risks are execution: fitter and baseline not built, LLM side depends on Jarrod, only six small datasets (the Liao three from Source Data, the others digitized), and the 4-minute video needs one clear headline figure.
 
-Headline figure: the Katsounaros case (W4). Show the enumeration baseline selecting model B on real digitized data by BIC while needing an implausibly large hidden pool, and show the literature-grounded proposer, critic and identifiability flags flagging or correcting it. Two cautions. (1) Katsounaros 2012 itself reports model B favored (Bayes factor 2921), so "wrong" here means implausible by our `max_hidden_fraction_of_total_N` rule (X peaks near 24% of N in W3), not contradicted by the paper; state it that way. (2) W1, W3 and W5 parameters come from our own calibration or illustrative choices, so report the synthetic worlds as sanity checks, never as evidence.
+Headline figure (written before the Oct 20 direction change; revisit after the data check): the Katsounaros case (W4). If the synthesis pivot goes ahead, the headline should come from the YBCO table instead, for example a precursor set where several pathway topologies fit the 4-5 temperatures equally well, with the identifiability flags and the proposed discriminating experiment. W4 then becomes a supporting sanity check. Show the enumeration baseline selecting model B on real digitized data by BIC while needing an implausibly large hidden pool, and show the literature-grounded proposer, critic and identifiability flags flagging or correcting it. Two cautions. (1) Katsounaros 2012 itself reports model B favored (Bayes factor 2921), so "wrong" here means implausible by our `max_hidden_fraction_of_total_N` rule (X peaks near 24% of N in W3), not contradicted by the paper; state it that way. (2) W1, W3 and W5 parameters come from our own calibration or illustrative choices, so report the synthetic worlds as sanity checks, never as evidence.
 
 Kickoff decision rule: if a curated dataset has multi-species time-course kinetics, add it as a seventh case. If the datasets are all materials-property tables with nothing kinetic, relevance to the judging criteria drops and the plan gets reassessed on the spot (the Catechol Benchmark, with its three-species flow time series, is a fallback out-of-domain case; section 12).
 
@@ -210,5 +248,8 @@ Kickoff decision rule: if a curated dataset has multi-species time-course kineti
 - Deactivation vs pH drift: can a pH-dependence term plus a pH-evolution state explain the stall instead of an empirical tau?
 - Which observed-species sets should the benchmark vary (NH3 only, NO3+NH3, all three)?
 - Licence terms for redistributing digitized curves; keep source workbooks out of the repo.
+- Why does the YBCO `Exp.json` hold 149 verified entries when the paper reports 188 experiments? Are NTMO (46) and LTOPO (120) complete in the repo?
+- Licence of the ARROWS3 data and of the Precursor Genome ledger; where the Precursor Genome ledger is hosted.
+- Is there any catalyst with both public synthesis-phase data and public NO3RR kinetics? If not, the synthesis-to-NO3RR coupling stays a labelled illustration.
 - Sponsor facts (section 11b) and the submission deadline are unverified; confirm at kickoff.
 - Can the fitter run in the marimo WASM export at interactive speed (scipy in Pyodide, ODE solve per slider move)? Test early on Oct 21.
