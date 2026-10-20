@@ -1,0 +1,121 @@
+{
+  "source": {
+    "citation": "Liao et al., Near-unity nitrate to ammonia conversion via reactant enrichment at the solid-liquid interface, Nat. Commun. (2025)",
+    "doi": "10.1038/s41467-025-60671-y",
+    "read": "Main-text HTML (nature.com) and Supplementary Information PDF (MOESM1) read as text on 2026-10-20 by an assistant subagent; the Peer Review File (MOESM4) keyword-searched. SI figure panels (raster images) were NOT viewed, so axes, time points and error bars inside Supp. Figs. 48-50 are unchecked. The Source Data workbook was deliberately not opened for this note. Not yet re-checked by a person.",
+    "page_numbers": "SI PDF page numbers equal the printed page numbers"
+  },
+  "claims": [
+    {
+      "id": "L1",
+      "topic": "conditions",
+      "statement": "Supp. Fig. 50: NO3- removal over (a) W-MoS2 and (b) MoS2 at -0.6 V vs RHE in an H-cell, 0.5 M K2SO4 + 100 mM NO3- (1400 ug/mL NO3--N).",
+      "location": "SI p.59, Supp. Fig. 50 caption",
+      "status": "stated"
+    },
+    {
+      "id": "L2",
+      "topic": "duration",
+      "statement": "The 48 h duration of the Fig. 50 runs comes from the main text ('even after 48 h (Supplementary Fig. 50)'), not the caption.",
+      "location": "main text, results on long-term NO3- removal",
+      "status": "stated"
+    },
+    {
+      "id": "L3",
+      "topic": "catalyst assignment",
+      "statement": "Main text: 'the NO3- to NH3 conversion efficiency of W-MoS2 and MoS2 were as low as ~16% and ~30%, and the residual NO3- still remained ... 4.64 mM and 11.78 mM even after 48 h'. In the repository, liao2025_mos2_suppfig50b (MoS2 per caption) ends at 4.55 mM NO3 and liao2025_wmos2_suppfig50a (W-MoS2 per caption) at 11.47 mM. If the text lists values in catalyst order, the text and the caption disagree on which run is which catalyst.",
+      "location": "main text vs SI p.59 caption",
+      "status": "unresolved discrepancy",
+      "reveals_holdout": [
+        "liao2025_wmos2_suppfig50a"
+      ]
+    },
+    {
+      "id": "L4",
+      "topic": "selectivity numbers",
+      "statement": "The '~16% and ~30%' conversion efficiencies are not defined for these runs and do not match NH3/initial N from the Source Data (about 52% and 66%).",
+      "location": "main text (same sentence as L3); SI eqs. 6-7 define selectivity from NO2- and NH4+ only",
+      "status": "unresolved",
+      "reveals_holdout": [
+        "liao2025_wmos2_suppfig50a"
+      ]
+    },
+    {
+      "id": "L5",
+      "topic": "pH",
+      "statement": "Electrolyte is unbuffered; the main text quotes 'neutral conditions (pH 6.71)'. SI note to Supp. Fig. 46: 'the pH of K2SO4 electrolyte varied from 6.71 11.87' (before vs after NO3RR, a different experiment; no duration or cell given). No pH-versus-time data for the H-cell runs.",
+      "location": "main text (Eredox statement); SI p.55",
+      "status": "stated for a related experiment; not measured for these runs"
+    },
+    {
+      "id": "L6",
+      "topic": "NH3 escape",
+      "statement": "'alkaline environment was conducive to the escape of NH3'.",
+      "location": "SI p.55",
+      "status": "stated (qualitative)"
+    },
+    {
+      "id": "L7",
+      "topic": "reference and iR",
+      "statement": "SCE reference; E(RHE) = E(SCE) + 0.244 + 0.0591 pH; no iR compensation. Which pH (initial or final) enters the conversion is not stated. Described for the flow cell; the H-cell is not described separately.",
+      "location": "Methods, Electrochemical testing",
+      "status": "stated (flow cell)"
+    },
+    {
+      "id": "L8",
+      "topic": "membrane",
+      "statement": "H-cell membrane not described. The flow cell uses Nafion 117 between compartments.",
+      "location": "Methods, Electrochemical testing",
+      "status": "not found for the H-cell"
+    },
+    {
+      "id": "L9",
+      "topic": "volume",
+      "statement": "'V was the volume of the cathode electrolyte (60 mL)' in the FE/yield equations of the 0.5 h tests; not explicitly tied to the H-cell runs. Anolyte composition and volume not found.",
+      "location": "SI p.2",
+      "status": "stated for 0.5 h tests"
+    },
+    {
+      "id": "L10",
+      "topic": "analytics",
+      "statement": "NH3: salicylic acid (indophenol blue) method at 655 nm; NO3-: UV A220 - A275 after HCl; NO2-: sulfanilamide/N-(1-naphthyl)ethylenediamine at 540 nm; 15N/14N 1H NMR cross-check; samples 'diluted to the detection range' (factors not given).",
+      "location": "Methods",
+      "status": "stated"
+    },
+    {
+      "id": "L11",
+      "topic": "gas and crossover",
+      "statement": "Gases only by DEMS, qualitatively, in a separate reactor at 10 mM NO3- (signals NH3, H2, N2, NO, NH2OH, N2O detected). No gas quantification, NH3 volatilization or anolyte crossover measurement for the H-cell runs.",
+      "location": "Methods / main text DEMS paragraph",
+      "status": "not measured for these runs"
+    },
+    {
+      "id": "L12",
+      "topic": "N balance",
+      "statement": "No nitrogen mass balance, N loss or N2 quantification is reported for the 48 h runs; no explanation of missing N is given.",
+      "location": "main text, SI and Peer Review File searched",
+      "status": "not found"
+    },
+    {
+      "id": "L13",
+      "topic": "charge",
+      "statement": "No Faradaic efficiency or charge data for these runs (FE reported only for 0.5 h tests at 10 mM, e.g. 99.7% at -0.6 V).",
+      "location": "SI p.55; main Fig. 5a",
+      "status": "not found for these runs"
+    },
+    {
+      "id": "L14",
+      "topic": "mechanism (authors)",
+      "statement": "DFT pathway *NO3 -> *NO2 -> *NO -> *N -> *NH -> *NH2 -> *NH3 with *NH2 -> *NH3 as potential-determining step; ATR-IR NO2 band (~1530 cm-1) read as deoxygenation of NO3-. NH2OH appears only as a DEMS signal, not as a proposed intermediate.",
+      "location": "main text, in situ ATR-IR/DEMS/DFT paragraph; SI Figs. 61-65",
+      "status": "stated (surface pathway, not a solution-phase kinetic model)"
+    },
+    {
+      "id": "L15",
+      "topic": "replicates",
+      "statement": "Supp. Figs. 48-50 captions mention no error bars or replicates; main Fig. 5 caption says error bars are RSD (n = 3) without naming panels.",
+      "location": "SI pp.57-59; main Fig. 5 caption",
+      "status": "no replicate information for these runs"
+    }
+  ]
+}

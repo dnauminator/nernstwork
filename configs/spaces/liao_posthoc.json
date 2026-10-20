@@ -1,0 +1,17 @@
+{
+  "space_id": "liao-posthoc-v1",
+  "description": "POST-HOC space, declared after seeing the development-phase agent proposals (not the held-out run). It systematically explores the dimensions the agents introduced: nitrite-ammonium comproportionation to N2 (NO2- + NH4+ -> N2, electrons 0, second order), a separate deactivation time constant for every nitrogen-loss step, and one shared free reaction order on nitrate-consuming steps. Used to attribute agent gains to model-space expansion versus search within a space.",
+  "species": [
+    {"id": "NO3", "label": "NO3-", "role": "reactant", "observable": true, "N_oxidation_state": 5},
+    {"id": "NO2", "label": "NO2-", "role": "intermediate", "observable": true, "N_oxidation_state": 3},
+    {"id": "NH3", "label": "NH3/NH4+ (lumped)", "role": "product", "observable": true, "N_oxidation_state": -3},
+    {"id": "SINK", "label": "unmeasured N product (N2/N2O-like)", "role": "sink", "observable": false, "N_oxidation_state": 0}
+  ],
+  "initial": ["NO3"],
+  "pool": [["NO3", "NO2"], ["NO3", "NH3"], ["NO3", "SINK"], ["NO2", "NH3"], ["NO2", "SINK"],
+           {"reactants": {"NO2": 1, "NH3": 1}, "products": {"SINK": 2}}],
+  "require": {"consumed": ["NO3"], "produced": ["NO2", "NH3"]},
+  "rate_laws": ["mass_action", "power_NO3_shared_order"],
+  "catalyst_state": ["shared_deactivation", "split_deactivation"],
+  "max_reactions": 6
+}

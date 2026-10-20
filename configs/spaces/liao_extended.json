@@ -1,0 +1,19 @@
+{
+  "space_id": "liao-extended-v1",
+  "description": "liao-core-v1 plus one hidden intermediate X (unknown oxidation state; between nitrate/nitrite and the products) and a Langmuir-saturating variant for every nitrate-consuming step (one shared K). Still first-order or saturating 1:1 steps, one shared catalyst-state time constant.",
+  "species": [
+    {"id": "NO3", "label": "NO3-", "role": "reactant", "observable": true, "N_oxidation_state": 5},
+    {"id": "NO2", "label": "NO2-", "role": "intermediate", "observable": true, "N_oxidation_state": 3},
+    {"id": "NH3", "label": "NH3/NH4+ (lumped)", "role": "product", "observable": true, "N_oxidation_state": -3},
+    {"id": "SINK", "label": "unmeasured N product (N2/N2O-like)", "role": "sink", "observable": false, "N_oxidation_state": 0},
+    {"id": "X", "label": "hidden intermediate", "role": "hidden_intermediate", "observable": false, "N_oxidation_state": null}
+  ],
+  "initial": ["NO3"],
+  "pool": [["NO3", "NO2"], ["NO3", "NH3"], ["NO3", "SINK"], ["NO2", "NH3"], ["NO2", "SINK"],
+           ["NO3", "X"], ["NO2", "X"], ["X", "NH3"], ["X", "SINK"]],
+  "require": {"consumed": ["NO3"], "produced": ["NO2", "NH3"]},
+  "rate_laws": ["mass_action", "langmuir_shared_K"],
+  "langmuir_reactants": ["NO3"],
+  "catalyst_state": ["none", "shared_deactivation", "shared_activation"],
+  "max_reactions": 6
+}

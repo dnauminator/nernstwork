@@ -13,7 +13,10 @@ Read `docs/SPEC.md` first, then `docs/NEXT_STEPS.md`. To add a digitized figure 
 - `scripts/`: `build_real_datasets.py`, `build_worlds.py`, `calibrate_liao.py`, `calibrate_katsounaros2008.py`, `digitized_to_dataset.py`.
 - `data/digitized_inputs/`: per-figure folders (metadata + digitized CSVs) turned into datasets by `scripts/digitized_to_dataset.py`.
 - `LITERATURE.md`: every paper with DOI/arXiv link, use and local file name. `literature/` is the local, git-ignored folder for the PDFs.
-- `tests/`: schema, simulation and converter checks.
+- `tests/`: schema, simulation and converter checks, plus investigator contract and synthetic-recovery tests.
+- `src/nernstwork/{model,fit,evaluate,canonical,store,investigation,enumerate,review,report,cli}.py`: the shared evaluator, enumeration baseline, investigation store and JSON CLI (`python -m nernstwork.cli`).
+- `agent/`: Pi host for the LLM investigator and reviewer (TypeScript, `@earendil-works/pi-coding-agent` 1.3.0). See `docs/INVESTIGATOR.md`.
+- `configs/`: evaluation protocols, enumeration spaces and investigation configs.
 
 ## Quick start
 
@@ -23,4 +26,4 @@ Read `docs/SPEC.md` first, then `docs/NEXT_STEPS.md`. To add a digitized figure 
 
 ## Status
 
-Schemas, simulator, four worlds, six real datasets and the first calibration are in. Not yet written: the fitter, enumeration baseline, LLM proposer/critic, experiment planner. W3 uses the published Katsounaros 2012 constants; W1 and W5 use illustrative parameters; W4 (model A vs model B trap) can now be built from the digitized Katsounaros curves.
+Schemas, simulator, four worlds, six real datasets and the first calibration are in. The fitter (maximum likelihood with identifiability diagnostics), enumeration baseline, LLM proposer/reviewer loop and a discrimination check for experiments are in (`docs/INVESTIGATOR.md`); a full information-gain experiment planner is not. W3 uses the published Katsounaros 2012 constants; W5 uses the Polatides 2005 constants and Fig. 6 alphas; W1 uses illustrative parameters; W4 (model A vs model B trap) can now be built from the digitized Katsounaros curves.

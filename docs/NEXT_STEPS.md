@@ -38,6 +38,12 @@ Order of the three: Liu 2024 first (nitrate and nitrite steps are already locate
 
 PDFs and workbooks are git-ignored, so only code, schemas, worlds, small datasets and the literature index go up. Repo has been shared.
 
+## Jarrod: investigator pipeline (Oct 20)
+
+Built and tested: shared evaluator (MLE, profiled noise, AICc, Fisher and profile-likelihood identifiability, adequacy),
+enumeration baseline over declared spaces, file-based investigation store with recovery, and a Pi-hosted investigator and
+fresh-context reviewer. Design, commands, results and open questions for Daniel: `docs/INVESTIGATOR.md`.
+
 ## Jarrod (what to ask him for)
 
 The LLM side: given a dataset or world observation, propose candidate mechanisms as `mechanism.schema.json` objects, critique them for plausibility, and emit a `result.schema.json` file. Give him the four schemas, `docs/SPEC.md` section 9, worlds W2 and W3, and `worlds/library/`. A stub that returns the library mechanisms unchanged is enough to start, so his work never blocks on the fitter. Ask him to confirm the split before you commit to it. If he has time after the stub works, a second step is retrieving published NO3RR pathways through Valency's Bond and attaching a citation to each candidate (SPEC section 11b); it is optional.

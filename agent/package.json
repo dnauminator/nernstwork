@@ -1,0 +1,23 @@
+{
+  "name": "nernstwork-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pi host for the NernstWork mechanism investigator (thin adapter over the Python backend)",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "dependencies": {
+    "@earendil-works/pi-coding-agent": "1.3.0",
+    "typebox": "1.3.27"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "typescript": "7.0.2"
+  },
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "test": "node --test test/host.test.ts",
+    "nw": "node src/cli.ts"
+  }
+}

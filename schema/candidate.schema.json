@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nernstwork/candidate.schema.json",
+  "title": "Candidate submission",
+  "description": "A mechanism proposed for evaluation (by the enumerator, an agent, a reviewer-driven revision or a person), plus the metadata the evaluator and reviewers need: how model species map to measured channels, what supports each element, and what the proposer assumed. The mechanism itself is the native mechanism.schema.json object; nothing here changes how it is simulated.",
+  "type": "object",
+  "required": ["name", "mechanism"],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+$", "maxLength": 80, "description": "Proposer's short label. Not an identity: the store assigns candidate ids from the canonical chemistry." },
+    "parent": { "type": "string", "description": "Candidate id this submission revises (new version of that candidate)." },
+    "mechanism": { "$ref": "mechanism.schema.json" },
+    "observation_map": {
+      "type": "object",
+      "description": "Measured channel id -> model species whose sum is that channel (mM-N). Default: identity for every channel that has a same-named model species. Use it to lump, e.g. {\"NH3\": [\"NH3\", \"NH2OH\"]} if the assay cannot separate them.",
+      "additionalProperties": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+    },
+    "support": {
+      "type": "array",
+      "description": "One entry per reaction, species or rate-law choice that needs justification.",
+      "items": {
+        "type": "object",
+        "required": ["target", "basis"],
+        "additionalProperties": false,
+        "properties": {
+          "target": { "type": "string", "description": "Reaction id (R1), species (species:X), or a rate-law element (R1.time_modulation)." },
+          "basis": { "type": "string", "enum": ["literature", "data", "speculative"], "description": "literature: a cited source states it. data: motivated by a specific feature of the evidence. speculative: neither." },
+          "source": { "type": "string", "description": "literature: DOI or citation plus location (figure, table, section). data: evidence reference such as dataset id and field." },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "rationale": { "type": "string" },
+    "predictions": {
+      "type": "array",
+      "description": "Statements fixed before evaluation (stored with a timestamp before any fit is run).",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -44,6 +44,9 @@ def validate_mechanism(m: dict) -> list[str]:
             if not math.isclose(calc, e, abs_tol=1e-9):
                 problems.append(f"{rid}: electrons={e} but oxidation states imply {calc}")
         rl = rxn["rate_law"]
+        if rl.get("potential_dependence") and e == 0:
+            # SPEC 8b (Liu 2024): a chemical step such as comproportionation has no Tafel dependence
+            problems.append(f"{rid}: potential_dependence on a non-electrochemical step (electrons = 0)")
         if rl["family"] == "langmuir_saturation":
             if "K" not in rl["params"]:
                 problems.append(f"{rid}: langmuir_saturation needs params.K")

@@ -1,0 +1,16 @@
+{
+  "protocol_id": "legacy-scaled-v1",
+  "description": "Reproduces the objective of scripts/calibrate_liao.py inside the shared evaluator: residuals divided by each channel's maximum, one shared sigma. For checking the evaluator against the earlier calibration only; not used for ranking.",
+  "exclude_t0": true,
+  "noise": {"model": "legacy_scaled"},
+  "ode": {"method": "LSODA", "rtol": 1e-8, "atol": 1e-10},
+  "optimizer": {"seed": "nernstwork-mle-v1", "n_starts": 12, "max_nfev": 400, "max_outer": 10,
+                "ftol": 1e-10, "xtol": 1e-10, "gtol": 1e-10, "replicate_tol_nll": 0.01},
+  "bounds": {"k_order1": [1e-7, 10.0], "k_order2": [1e-10, 1.0], "k_other": [1e-10, 10.0], "K": [0.01, 100000.0],
+             "k_mt": [1e-6, 100.0], "tau_min": [1.0, 1000000.0], "alpha": [-1.0, 3.0], "order": [0.0, 3.0],
+             "ph_order": [-2.0, 2.0]},
+  "profile": {"first_step_log10": 0.02, "first_step_linear_frac": 0.005, "growth": 1.6, "max_steps": 16},
+  "plausibility": {"max_hidden_fraction_of_total_N": 0.30,
+                   "max_hidden_fraction_source": "docs/SPEC.md section 5"},
+  "ranking": {"criterion": "aicc", "indistinguishable_delta": 2.0, "considerable_delta": 4.0}
+}

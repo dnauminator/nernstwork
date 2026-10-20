@@ -1,0 +1,99 @@
+{
+  "investigation_id": "liao50",
+  "question": "Which reaction networks and rate laws are supported by the 48 h H-cell nitrate-reduction time courses of Liao et al. 2025 (MoS2-family catalysts, -0.6 V vs RHE), what do the data leave ambiguous (in particular where the missing nitrogen goes and why the rates slow down), and which feasible measurement would best separate the surviving explanations?",
+  "system_boundary": "Catholyte of an H-cell at fixed potential. Measured: NO3-, NO2- and NH4+/NH3 (lumped as NH3) in mM-N. Not measured: gas phase (N2, N2O, NH3 escape), anolyte (crossover), adsorbed or hidden species, pH, charge. Any nitrogen that leaves the measured channels must be represented by an explicit model species (an unmeasured product, a hidden intermediate, or a reservoir for transport out of the catholyte); the model as a whole must conserve N.",
+  "datasets": {
+    "development": [
+      "data/real/liao2025_mos2_suppfig50b.json"
+    ],
+    "final_holdout": [
+      "data/real/liao2025_wmos2_suppfig50a.json"
+    ],
+    "excluded": [
+      {
+        "path": "data/real/liao2025_agmos2_suppfig49.json",
+        "reason": "different catalyst (Ag-MoS2) and regime (3 h, N closure about 1.0); not used in this investigation"
+      },
+      {
+        "path": "data/real/katsounaros2012_fig1_sn_naoh.json",
+        "reason": "different system (Sn, 1 M NaOH); separate investigation"
+      },
+      {
+        "path": "data/real/katsounaros2008_fig2_sn_nacl_1M.json",
+        "reason": "different system"
+      },
+      {
+        "path": "data/real/polatides2005_fig3_sn85cu15_50mM.json",
+        "reason": "different system"
+      }
+    ],
+    "partition_policy": "Complete experimental runs are reserved. Supp. Fig. 50a (other catalyst, same conditions and sampling) is the final held-out run; it is not read by any development-phase command, tool or evidence file. The final evaluation tests structure transfer: frozen candidate structures are refit on the held-out run with the same protocol (catalysts differ, so parameters are not transferred)."
+  },
+  "protocol": "configs/protocols/mle-profiled-v1.json",
+  "enumeration_spaces": [
+    "configs/spaces/liao_core.json",
+    "configs/spaces/liao_extended.json"
+  ],
+  "evidence": {
+    "documents": [
+      "data/evidence/liao2025_paper_notes.json"
+    ],
+    "include_literature_index": true,
+    "include_reference_simulator": true
+  },
+  "contamination_audit": {
+    "repository_annotations_withheld": [
+      "worlds/W2_liao_sink_deactivation.json and worlds/library/*.json (Daniel's fitted mechanism for Fig. 50b)",
+      "docs/SPEC.md sections 7 and 12 (fit results and conclusions for Fig. 49/50)",
+      "scripts/calibrate_liao.py (the earlier model class)"
+    ],
+    "annotations_shown": [
+      "dataset quality flag 'unobserved_sink_suspected' and the n_closure series (derived by the extraction script from the measured channels)"
+    ],
+    "literature": "The Liao paper reports no solution-phase kinetic model (only a DFT surface pathway), so neither the paper nor model pretraining can reveal a fitted network for these runs. The paper text does state the held-out run's 48 h residual nitrate; the Liao article, SI and Source Data URLs are therefore blocked for the investigator's fetch tool during development, and claims L3/L4 in the evidence notes are withheld from the evidence pack.",
+    "honest_label": "Retrospective analysis with literature-informed priors, not blind discovery: the proposer sees the development run, its derived N-closure series and a curated metadata note, and its pretraining may include general NO3RR mechanism knowledge."
+  },
+  "fetch_policy": {
+    "enabled": true,
+    "allow_hosts": [
+      "doi.org",
+      "www.doi.org",
+      "api.crossref.org",
+      "arxiv.org",
+      "export.arxiv.org",
+      "pubs.acs.org",
+      "pubs.rsc.org",
+      "www.sciencedirect.com",
+      "link.springer.com",
+      "www.nature.com"
+    ],
+    "deny_patterns": [
+      "s41467-025-60671-y",
+      "41467_2025_60671",
+      "10.1038/s41467-025-60671"
+    ],
+    "max_bytes": 400000
+  },
+  "agent": {
+    "model": {
+      "provider": "anthropic",
+      "id": "claude-opus-5-5"
+    },
+    "thinking": "high",
+    "arms": {
+      "propose_only": {
+        "candidate_budget": 10,
+        "review": false,
+        "max_turn_prompts": 3
+      },
+      "critique_revise": {
+        "candidate_budget": 10,
+        "initial_round_max": 6,
+        "review": true,
+        "review_rounds": 1,
+        "max_turn_prompts": 6
+      }
+    },
+    "max_cost_usd_per_run": 8
+  }
+}
