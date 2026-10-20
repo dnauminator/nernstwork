@@ -24,9 +24,9 @@ Initial-rate and 1 h data only; no time courses, and its reaction orders disagre
 - Whether Liu 2024, Wang 2025 and Wu 2025 Source Data contain concentration-time sheets (match sheet names to figure captions; sheets are labelled by figure number only).
 - ~~The Sanofi paper~~: main article now in the folder; DOI confirmed.
 
-### 5. Get the repo to Jarrod (30 min)
+### 5. Get the repo to Jarrod: done
 
-`git init`, commit, push to a private GitHub repo and add him. PDFs and workbooks are git-ignored, so only code, schemas, worlds, small datasets and the literature index go up. Do this before you write him, so the email can point to the repo.
+PDFs and workbooks are git-ignored, so only code, schemas, worlds, small datasets and the literature index go up. Repo has been shared.
 
 ## Jarrod (what to ask him for)
 
@@ -37,7 +37,7 @@ The LLM side: given a dataset or world observation, propose candidate mechanisms
 1. **The fitter and enumeration baseline** (highest priority; everything else needs it). Maximum-likelihood fit under the noise model, AIC/BIC, plausibility rules (hidden-pool fraction, rate bounds), run on W1-W3 and on the Liao datasets. This is also what Jarrod's LLM side has to beat.
 2. **W4 trap**: fit model A and model B to the digitized Katsounaros data and check we reproduce the reported Bayes factor of 2921. Needs your digitized CSVs.
 3. **Identifiability**: profile likelihood for the sink placement question in Liao Fig. 50.
-4. **A reply to Jarrod** and a one-page project summary for the hackathon team.
+4. One-page project summary for the hackathon team.
 
 ## Suggested plan for the two days
 
