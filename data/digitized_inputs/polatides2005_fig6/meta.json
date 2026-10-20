@@ -1,0 +1,15 @@
+{
+  "id": "polatides2005_fig6_lnk_vs_potential",
+  "kind": "rate_constant_vs_potential",
+  "note": "Not a time course; scripts/digitized_to_dataset.py does not apply. x = -E / V vs Ag/AgCl, y = ln k with k2 in min^-1 and k3 in L mmol^-1 min^-1 (units inferred, see below).",
+  "units_check": {
+    "k2": "printed 1.76e-4 s^-1 (abstract says 1.76e-5, a typo) x 60 = 1.056e-2 min^-1, ln = -4.55; digitized ln k2 at -2.0 V = -4.51",
+    "k3": "printed 7.66e-3 L mol^-1 s^-1 = 7.66e-6 L mmol^-1 s^-1, x 60 = 4.60e-4 L mmol^-1 min^-1, ln = -7.69; digitized ln k3 at -2.0 V = -7.69"
+  },
+  "published_slopes": {"k2": {"slope_per_V": 5.12, "alpha": 0.131, "r": 0.994}, "k3": {"alpha": 0.089, "r": 0.945}},
+  "provenance": {
+    "citation": "Polatides C., Kyriacou G., J. Appl. Electrochem. 35 (2005) 421-427",
+    "figure": "Fig. 6, text section 3.3 (Eq. 9)",
+    "verified_against_figure": true
+  }
+}

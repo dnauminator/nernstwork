@@ -46,12 +46,27 @@ def test_calibrated_world_reproduces_real_curve_shape(root):
 
 def test_potential_dependence_shifts_branching(root):
     w = _load(root, "worlds/W5_potential_dependent.json")
-    t = np.array([0.0, 180.0])
-    lo = simulate(w["ground_truth"], {"NO3": 100.0}, t, E_V=-0.4)
-    hi = simulate(w["ground_truth"], {"NO3": 100.0}, t, E_V=-0.8)
-    # more negative E speeds R1 and R3 more than R2 (alpha 0.35, 0.55 vs 0.15): more sink fraction
-    assert hi["NO3"][-1] < lo["NO3"][-1]
-    assert hi["SINK"][-1] / max(hi["NH3"][-1] + hi["SINK"][-1], 1e-9) > lo["SINK"][-1] / max(lo["NH3"][-1] + lo["SINK"][-1], 1e-9)
+    t = np.array([0.0, 120.0])
+    lo = simulate(w["ground_truth"], {"NO3": 50.0}, t, E_V=-1.19, pH=7.0)
+    hi = simulate(w["ground_truth"], {"NO3": 50.0}, t, E_V=-1.59, pH=7.0)
+    # R1 has alpha 0 (diffusion limited, Polatides), so nitrate decay is the same at both potentials
+    assert abs(hi["NO3"][-1] - lo["NO3"][-1]) < 1e-5
+    # R2 (alpha 0.131) speeds up more than R3 (alpha 0.089): less nitrite left, more ammonia (Polatides Fig. 5 trend)
+    assert hi["NO2"][-1] < lo["NO2"][-1]
+    assert hi["NH3"][-1] > lo["NH3"][-1]
+
+
+def test_w5_reproduces_polatides_fig3_at_reference_potential(root):
+    """W5 uses the printed Polatides constants; at E_ref they should track the digitized Fig. 3 within its scatter."""
+    w = _load(root, "worlds/W5_potential_dependent.json")
+    real = _load(root, "data/real/polatides2005_fig3_sn85cu15_50mM.json")
+    t = np.array(real["series"][0]["t_min"], dtype=float)
+    tr = simulate(w["ground_truth"], {"NO3": 50.0}, t, E_V=-1.39, pH=7.0)
+    for s in real["series"]:
+        sp = s["species"]
+        sim = tr["SINK"] if sp == "N2" else tr[sp]
+        obs = np.array(s["y"]) * (2.0 if sp == "N2" else 1.0)
+        assert np.sqrt(np.mean((sim - obs) ** 2)) < 7.0, sp
 
 
 def test_katsounaros_model_b_matches_eyeballed_fig1(root):

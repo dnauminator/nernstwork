@@ -3,12 +3,12 @@
   "title": "Potential-dependent branching ratio",
   "difficulty": "medium",
   "reference": {
-    "citation": "Polatides & Kyriacou 2005 (style), alphas pending",
-    "notes": "Branching ratio R2/R3 shifts with E; single-potential data cannot separate alphas."
+    "citation": "Polatides & Kyriacou 2005, J. Appl. Electrochem. 35:421-427",
+    "notes": "Branching ratio R2/R3 shifts with E (alphas 0.131 vs 0.089 from Fig. 6; R3 is second order in nitrite so branching also depends on nitrite level). Single-potential data cannot separate alphas. Rate constants at -2.0 V vs Ag/AgCl (about -1.39 V vs RHE at assumed pH 7); only 4 potentials (-1.6 to -2.0 V) were measured."
   },
   "ground_truth": {
     "id": "w5_potential",
-    "description": "Series NO3->NO2->NH3 plus NO2->SINK, each step with its own Tafel-like potential dependence.",
+    "description": "Polatides scheme: NO3->NO2->NH3 plus second-order 2 NO2->N2 (SINK), each step with its own Tafel-like potential dependence.",
     "motif": "series_parallel",
     "species": [
       {
@@ -65,26 +65,26 @@
           "family": "mass_action",
           "params": {
             "k": {
-              "value": 0.02,
+              "value": 0.0294,
               "unit": "min^-1",
               "bounds": [
                 1e-06,
                 10.0
               ],
-              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+              "source": "Polatides & Kyriacou 2005, J. Appl. Electrochem. 35:421, Sn85Cu15, -2.0 V vs Ag/AgCl"
             }
           },
           "potential_dependence": {
             "alpha": {
-              "value": 0.35,
+              "value": 0.0,
               "unit": "1",
               "bounds": [
                 0.0,
                 2.0
               ],
-              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+              "source": "Polatides & Kyriacou 2005, J. Appl. Electrochem. 35:421, Sn85Cu15, -2.0 V vs Ag/AgCl; nitrate step diffusion limited at -1.7 to -2.0 V, alpha not reported, set to 0"
             },
-            "E_ref_V": -0.6
+            "E_ref_V": -1.39
           }
         }
       },
@@ -107,26 +107,26 @@
           "family": "mass_action",
           "params": {
             "k": {
-              "value": 0.06,
+              "value": 0.01056,
               "unit": "min^-1",
               "bounds": [
                 1e-06,
                 10.0
               ],
-              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+              "source": "Polatides & Kyriacou 2005, J. Appl. Electrochem. 35:421, Sn85Cu15, -2.0 V vs Ag/AgCl"
             }
           },
           "potential_dependence": {
             "alpha": {
-              "value": 0.15,
+              "value": 0.131,
               "unit": "1",
               "bounds": [
                 0.0,
                 2.0
               ],
-              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+              "source": "Polatides & Kyriacou 2005, J. Appl. Electrochem. 35:421, Sn85Cu15, -2.0 V vs Ag/AgCl (apparent alpha from Fig. 6 slope; 4 points)"
             },
-            "E_ref_V": -0.6
+            "E_ref_V": -1.39
           }
         }
       },
@@ -135,40 +135,40 @@
         "reactants": [
           {
             "species": "NO2",
-            "coeff": 1
+            "coeff": 2
           }
         ],
         "products": [
           {
             "species": "SINK",
-            "coeff": 1
+            "coeff": 2
           }
         ],
-        "electrons": 3,
+        "electrons": 6,
         "rate_law": {
           "family": "mass_action",
           "params": {
             "k": {
-              "value": 0.02,
+              "value": 0.00046,
               "unit": "min^-1",
               "bounds": [
                 1e-06,
                 10.0
               ],
-              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+              "source": "Polatides & Kyriacou 2005, J. Appl. Electrochem. 35:421, Sn85Cu15, -2.0 V vs Ag/AgCl"
             }
           },
           "potential_dependence": {
             "alpha": {
-              "value": 0.55,
+              "value": 0.089,
               "unit": "1",
               "bounds": [
                 0.0,
                 2.0
               ],
-              "source": "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
+              "source": "Polatides & Kyriacou 2005, J. Appl. Electrochem. 35:421, Sn85Cu15, -2.0 V vs Ag/AgCl (apparent alpha from Fig. 6 slope; 4 points)"
             },
-            "E_ref_V": -0.6
+            "E_ref_V": -1.39
           }
         }
       }
@@ -199,20 +199,20 @@
   },
   "design_space": {
     "potential_V_vs_RHE": [
-      -0.9,
-      -0.3
+      -1.79,
+      -1.39
     ],
     "pH": [
       7.0
     ],
     "c0_mM_N": [
-      100.0
+      50.0
     ],
     "initial_conditions": [
       {
-        "potential_V_vs_RHE": -0.6,
+        "potential_V_vs_RHE": -1.39,
         "pH": 7.0,
-        "c0_mM_N": 100.0
+        "c0_mM_N": 50.0
       }
     ]
   },

@@ -60,11 +60,11 @@ Semantic checks the schemas cannot express live in `nernstwork.validate_mechanis
 | W1_series_closed | series | illustrative | sanity: every method should pass |
 | W2_liao_sink_deactivation | series + direct branch + N sink + deactivation | calibrated to Liao Supp. Fig. 50b | sink placement, catalyst-state term, identifiability |
 | W3_katsounaros_hidden_intermediate | NO3- -> NO2- -> hidden X -> N2, plus NO2- -> NH3 and NO2- -> N2O | published: Katsounaros 2012 model B, Table 1 constants (min^-1) | does the method invent X, and how big does it let X get (about 24% of total N here; `max_hidden_fraction_of_total_N`) |
-| W5_potential_dependent | series + NO2- -> sink, per-step alpha | illustrative | branching ratio shifts with E, experiment design across potential |
+| W5_potential_dependent | series + second-order NO2- -> N2 sink, per-step alpha | published: Polatides 2005 constants at -2.0 V vs Ag/AgCl and Fig. 6 alphas (section 7d) | branching ratio shifts with E, experiment design across potential |
 
 W4 (the "Model B trap": a candidate that wins on BIC but needs an implausibly large hidden pool) is deliberately not generated yet. Katsounaros 2012 reports model A (no hidden species) against model B (hidden X) with a Bayes factor of 2921 favouring B. W4 should be built from the digitized Fig. 1 data by fitting both models and checking that we reproduce that comparison (section 8); a trap with synthetic parameters would be arbitrary.
 
-W3 uses the published Table 1 constants; with them the simulator reproduces the paper's Fig. 1 curves to within eyeballed reading error (the test is coarse until Fig. 1 is digitized). W1 and W5 are still illustrative and labelled so in each file's `source` fields; replace W5's alphas with values read from Polatides 2005 (Figs. 5-6).
+W3 uses the published Table 1 constants; with them the simulator reproduces the paper's Fig. 1 curves to within eyeballed reading error (the test is coarse until Fig. 1 is digitized). W1 is still illustrative and labelled so in its `source` fields. W5 now uses the Polatides 2005 constants and Fig. 6 alphas (section 7d).
 
 ## 6. Observation and noise model
 
@@ -116,6 +116,12 @@ Both the hidden species and the saturating rate law are demanded by the data, co
 
 **Polatides 2005 Fig. 3** (`polatides2005_fig3_sn85cu15_50mM`): Sn85Cu15 at -2.0 V vs Ag/AgCl, 50 mM nitrate, 8 points to 120 min. N2 is again per molecule (x2), established from closure only (0.93-1.12, so the paper's scatter is about 10%); flagged `units_unverified` and `noisy`. The paper's scheme is NO3 -> NO2 -> NH3 plus a second-order 2 NO2 -> N2. The printed k2 = 1.76e-5 s^-1 does not reproduce the paper's own NH3 curve (2.2 mM at 120 min against 20.3 digitized); 1.76e-4 s^-1 does (RMSE 1.5 mM), so the printed exponent is probably a typo. A fit of the digitized data gives k1 = 4.2e-4 s^-1, k2 = 1.8e-4 s^-1, k3 = 4.3e-3 L mol^-1 s^-1, against printed k1 = 4.9e-4 and k3 = 7.66e-3. A second-order step is expressible in the schema as a mass_action reaction with coefficient 2, which also makes this the first dataset with a bimolecular branch.
 
+## 7d. Polatides 2005 Fig. 6 and W5
+
+Fig. 6 plots ln k2 and ln k3 against -E (V vs Ag/AgCl), four potentials from -1.6 to -2.0 V. k1 is absent because nitrate reduction is diffusion limited between -1.7 and -2.0 V (the paper's Eq. 8 diffusion estimate is lower than the measured rate, which the authors attribute to forced convection from the He stream and electrode roughness). The plotted k values are in min and mM units: the printed constants at -2.0 V converted to min^-1 and L mmol^-1 min^-1 give ln k2 = -4.55 and ln k3 = -7.69, against digitized -4.51 and -7.69. That conversion also confirms independently that the abstract's k2 = 1.76e-5 s^-1 is a typo for 1.76e-4. Linear fits of the digitized points give slopes 5.17 and 3.50 V^-1 (r = 0.994, 0.935), i.e. alpha 0.133 and 0.090 at 298 K, against the paper's 5.12 (alpha 0.131) and alpha 0.089 (r = 0.994, 0.945).
+
+W5 now carries these values: R1 NO3 -> NO2 k = 0.0294 min^-1, alpha 0 (not reported, diffusion limited); R2 NO2 -> NH3 k = 0.01056 min^-1, alpha 0.131; R3 2 NO2 -> N2 (SINK, mM-N basis) mass action with reactant coefficient 2, k = 4.6e-4 mM^-1 min^-1, alpha 0.089. Anchored at -2.0 V vs Ag/AgCl, which the world file expresses as -1.39 V vs RHE assuming pH 7 (catholyte pH drifted basic, so the offset is approximate; it moves E_ref, not the alphas). Check against the digitized Fig. 3 at E_ref: RMSE 3.4 / 3.0 / 1.6 mM for NO3 / NO2 / NH3 and 5.5 mM-N for N2 (simulated N2 is 23 mM-N at 120 min against 34 digitized, so the printed k3 undershoots the N2 curve). Limits: the alphas are apparent, from four points over a 0.4 V window; they say nothing outside -1.6 to -2.0 V; the paper reports Table 1 selectivities at only two potentials for Sn85Cu15 (-1.6 and -2.0 V), which can serve as a coarse held-out check on W5 (about 86/4/14% NO2/NH3/N2 at -1.6 V against 17/41/35% at -2.0 V, 12 h).
+
 ## 8. Real-data inventory and validation protocol
 
 | Dataset | Status | Use |
@@ -125,7 +131,7 @@ Both the hidden species and the saturating rate law are demanded by the data, co
 | Ebenezer et al. 2026 (NiCo2S4, Chem. Eng. J. 545:179676) | **read** (main + SI). Initial-rate and 1 h electrolysis data only: no concentration-time curves, so it is not a fit benchmark. See section 8b | qualitative W5 targets (selectivity vs potential), feed-the-intermediate experiment design |
 | Katsounaros 2008 Fig. 2 (1 M nitrate, 15-min sampling to 210 min, 5 species + authors' mass-balance loss) | **digitized** -> `data/real/katsounaros2008_fig2_sn_nacl_1M.json`; section 7c | hidden-intermediate and saturating-kinetics benchmark, model A vs B |
 | Polatides 2005 Fig. 3 (50 mM nitrate, 0-120 min) | **digitized** -> `data/real/polatides2005_fig3_sn85cu15_50mM.json`; section 7c | second-order N2 branch; printed k2 looks 10x off |
-| Polatides 2005 Figs. 5-6 (rate constants vs potential) | needs digitizing/tabulating | W5 calibration (alphas) |
+| Polatides 2005 Fig. 6 (ln k2, ln k3 vs potential) | **digitized** -> `data/digitized_inputs/polatides2005_fig6/` (not a time course, so no `data/real` file); section 7d | W5 alphas. Fig. 5 (average rates vs potential) not digitized; only a qualitative cross-check |
 | Liu et al. Source Data (nitrate/nitrite steps) | located, not yet converted | extra series, nitrite feed |
 
 Protocol: a digitized curve is accepted only after the published rate constants, simulated with our simulator, reproduce the published curve within digitization error. Record `verified_against_figure: true` only then. Use real data for validation, not for tuning a method.
@@ -167,15 +173,35 @@ Contract: the proposer/critic (LLM side) consumes a dataset or task observation 
 |---|---|
 | Daniel | domain content: rate-law registry, plausibility constraints, digitizing and verifying Katsounaros/Polatides curves, world calibration, interpreting the real-data fits |
 | Jarrod (proposed, to confirm with him) | LLM proposer and critic, prompt/agent loop, candidate-to-`mechanism.schema.json` serialization, result logging |
-| Shared | fitter + information-gain planner, scoring harness, demo |
+| Shared | fitter + information-gain planner, scoring harness, demo (marimo app, section 11b) |
 
 The interface is the four schemas. Neither side should need to change the other's code to run a baseline: a trivial enumerator in place of the LLM must work end to end.
 
 ## 11. Timeline to Oct 21-22
 
-- Before the event: fitter (MLE + AIC/BIC) and enumeration baseline running on W1-W3; Katsounaros digitization; GitHub repo shared with Jarrod; LLM proposer stub.
-- Day 1: LLM proposer/critic on W2, W3; real-data run on Liao 49/50 with identifiability output.
-- Day 2: experiment planning on W5, result tables, demo. Synthesis module only if everything else is stable.
+Decision (Daniel, Oct 20): no fitter work before the event. Starting the fitter is the project's start, so it begins at kickoff on Oct 21. Everything below assumes that; what can still be prepared beforehand is data, worlds and docs only.
+
+- Before the event: digitizing and world calibration (done), GitHub repo shared with Jarrod (done), Source Data screening (optional), a proposer stub on Jarrod's side.
+- Day 1 (Oct 21): look at the curated datasets at kickoff (decision rule in section 11b); fitter (MLE + AIC/BIC) and enumeration baseline on W1-W3, W5 and Liao 49/50; W4 on the digitized Katsounaros data; Jarrod's proposer/critic against W2 and W3 as soon as the fitter returns results; start the marimo app.
+- Day 2 (Oct 22): identifiability output, experiment planning on W5, headline figure, video and one-pager by midday, buffer before the submission deadline (stated as 5 pm PT; confirm on the event page). Synthesis module is cut.
+
+## 11b. Sponsors, demo and headline figure
+
+Source: a planning conversation on claude.ai (Oct 20) that looked up the sponsors from their websites. The event pages list no sponsors, datasets or prize terms, so everything below about sponsor products is unverified until kickoff. Recommendation there: keep the project, narrow it, and let the sponsors shape the demo; no pivot looked better.
+
+| Sponsor | What it is (from its site) | Use for us | Cost | Verdict |
+|---|---|---|---|---|
+| Marimo | open-source reactive Python notebook; can run as an app or export to WebAssembly HTML | the demo: sliders for potential and pH, live fit and mechanism ranking, public WASM link, and the video's visual | low | do it |
+| Valency | Bond: literature search and citation graph for an LLM through one MCP endpoint (500M+ papers); early-access hub for publishing AI-assisted work | proposer retrieves published NO3RR pathways and attaches a citation to each candidate; critic checks plausibility against them | some of Jarrod's time | do it only after the stub proposer works end to end; the interface contract in section 9 is unchanged |
+| Adaption | custom model training, dataset optimization | none obvious | | skip unless a curated kickoff dataset makes it natural |
+
+Design constraints that follow (ours, not from the chat): the live-fit path in the marimo app must run in a browser (Pyodide), so the baseline fitter should depend on numpy and scipy only, and MCMC (NumPyro/JAX) stays an offline option, not the demo path. Check scipy availability in the marimo WASM export early on Oct 21.
+
+Judging fit, as assessed there: impact and relevance decent; novelty defensible only in our niche (real potential-dependent electrochemical data, hidden intermediates, identifiability reporting), since generic LLM-guided model discovery and AIC enumeration are already published; innovativeness moderate. The real risks are execution: fitter and baseline not built, LLM side depends on Jarrod, only six small datasets (the Liao three from Source Data, the others digitized), and the 4-minute video needs one clear headline figure.
+
+Headline figure: the Katsounaros case (W4). Show the enumeration baseline selecting model B on real digitized data by BIC while needing an implausibly large hidden pool, and show the literature-grounded proposer, critic and identifiability flags flagging or correcting it. Two cautions. (1) Katsounaros 2012 itself reports model B favored (Bayes factor 2921), so "wrong" here means implausible by our `max_hidden_fraction_of_total_N` rule (X peaks near 24% of N in W3), not contradicted by the paper; state it that way. (2) W1, W3 and W5 parameters come from our own calibration or illustrative choices, so report the synthetic worlds as sanity checks, never as evidence.
+
+Kickoff decision rule: if a curated dataset has multi-species time-course kinetics, add it as a seventh case. If the datasets are all materials-property tables with nothing kinetic, relevance to the judging criteria drops and the plan gets reassessed on the spot (the Catechol Benchmark, with its three-species flow time series, is a fallback out-of-domain case; section 12).
 
 ## 12. Open questions
 
@@ -184,3 +210,5 @@ The interface is the four schemas. Neither side should need to change the other'
 - Deactivation vs pH drift: can a pH-dependence term plus a pH-evolution state explain the stall instead of an empirical tau?
 - Which observed-species sets should the benchmark vary (NH3 only, NO3+NH3, all three)?
 - Licence terms for redistributing digitized curves; keep source workbooks out of the repo.
+- Sponsor facts (section 11b) and the submission deadline are unverified; confirm at kickoff.
+- Can the fitter run in the marimo WASM export at interactive speed (scipy in Pyodide, ODE solve per slider move)? Test early on Oct 21.

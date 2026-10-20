@@ -128,20 +128,37 @@ def build():
         {"max_experiments": 1, "points_per_experiment": 7},
         plaus={"max_hidden_fraction_of_total_N": 0.30})
 
-    # W5: potential dependent, ILLUSTRATIVE (Polatides 2005 style)
-    src = "ILLUSTRATIVE; replace with Polatides 2005 alphas after PDF check"
-    gt = mech("w5_potential", "Series NO3->NO2->NH3 plus NO2->SINK, each step with its own Tafel-like potential dependence.",
+    # W5: potential dependent, parameters from Polatides & Kyriacou 2005 (Sn85Cu15, Figs. 3 and 6, section 3.3)
+    # Rate constants are the printed values at -2.0 V vs Ag/AgCl converted to min and mM-N units:
+    # k1 4.9e-4 s^-1 -> 0.0294 min^-1; k2 1.76e-4 s^-1 (abstract's 1.76e-5 is a typo, see SPEC 7c) -> 0.01056 min^-1;
+    # k3 7.66e-3 L mol^-1 s^-1 -> 4.60e-4 mM^-1 min^-1 (second order, 2 NO2- -> N2, so SINK is on the mM-N basis).
+    # Alphas: paper's slopes of ln k2, ln k3 vs E (Fig. 6): 0.131, 0.089. k1 is diffusion limited between
+    # -1.7 and -2.0 V and the paper gives no alpha for it, so R1 gets 0 (bounds still allow a fit).
+    # The world's potential axis is V vs RHE; the paper's -2.0 V vs Ag/AgCl is mapped at an assumed pH 7
+    # (E_RHE = E_Ag/AgCl + 0.197 + 0.059 pH = -1.39 V). Catholyte pH actually drifted basic, so this offset
+    # is approximate; it shifts E_ref only and does not touch the alphas (slopes).
+    src = "Polatides & Kyriacou 2005, J. Appl. Electrochem. 35:421, Sn85Cu15, -2.0 V vs Ag/AgCl"
+    src_a = src + " (apparent alpha from Fig. 6 slope; 4 points)"
+    src_k1 = src + "; nitrate step diffusion limited at -1.7 to -2.0 V, alpha not reported, set to 0"
+    E_ref = -1.39
+    def r5(rid, a, b, k, e, alpha, s, ksrc=src, kind="mass_action"):
+        rl = {"family": "mass_action", "params": {"k": p(k, bounds=[1e-6, 10.0], source=ksrc)},
+              "potential_dependence": {"alpha": p(alpha, "1", [0.0, 2.0], s), "E_ref_V": E_ref}}
+        return {"id": rid, "reactants": a, "products": b, "electrons": e, "rate_law": rl}
+    gt = mech("w5_potential", "Polatides scheme: NO3->NO2->NH3 plus second-order 2 NO2->N2 (SINK), each step with its own Tafel-like potential dependence.",
               "series_parallel", ["NO3", "NO2", "NH3", "SINK"],
-              [rxn("R1", "NO3", "NO2", 0.02, 2, pot=0.35, src=src), rxn("R2", "NO2", "NH3", 0.06, 6, pot=0.15, src=src),
-               rxn("R3", "NO2", "SINK", 0.02, 3, pot=0.55, src=src)])
+              [r5("R1", [{"species": "NO3", "coeff": 1}], [{"species": "NO2", "coeff": 1}], 0.0294, 2, 0.0, src_k1),
+               r5("R2", [{"species": "NO2", "coeff": 1}], [{"species": "NH3", "coeff": 1}], 0.01056, 6, 0.131, src_a),
+               r5("R3", [{"species": "NO2", "coeff": 2}], [{"species": "SINK", "coeff": 2}], 4.6e-4, 6, 0.089, src_a)])
     worlds["W5_potential_dependent"] = task(
         "W5_potential_dependent", "Potential-dependent branching ratio", "medium",
-        {"citation": "Polatides & Kyriacou 2005 (style), alphas pending", "notes": "Branching ratio R2/R3 shifts with E; single-potential data cannot separate alphas."},
+        {"citation": "Polatides & Kyriacou 2005, J. Appl. Electrochem. 35:421-427",
+         "notes": "Branching ratio R2/R3 shifts with E (alphas 0.131 vs 0.089 from Fig. 6; R3 is second order in nitrite so branching also depends on nitrite level). Single-potential data cannot separate alphas. Rate constants at -2.0 V vs Ag/AgCl (about -1.39 V vs RHE at assumed pH 7); only 4 potentials (-1.6 to -2.0 V) were measured."},
         gt,
         {"observed_species": ["NO3", "NO2", "NH3"], "sampling_times_min": [0, 10, 20, 40, 60, 90, 120, 180],
          "noise": NOISE},
-        {"potential_V_vs_RHE": [-0.9, -0.3], "pH": [7.0], "c0_mM_N": [100.0],
-         "initial_conditions": [{"potential_V_vs_RHE": -0.6, "pH": 7.0, "c0_mM_N": 100.0}]},
+        {"potential_V_vs_RHE": [-1.79, -1.39], "pH": [7.0], "c0_mM_N": [50.0],
+         "initial_conditions": [{"potential_V_vs_RHE": -1.39, "pH": 7.0, "c0_mM_N": 50.0}]},
         {"max_experiments": 5, "points_per_experiment": 8})
 
     # candidate library for W2
