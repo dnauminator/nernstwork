@@ -33,7 +33,10 @@ const RateLaw = Type.Object({
 	orders: Type.Optional(Type.Record(Type.String(), Param)),
 	potential_dependence: Type.Optional(Type.Object({ alpha: Param, E_ref_V: Type.Number() })),
 	ph_dependence: Type.Optional(Type.Object({ order: Param, pH_ref: Type.Number() })),
-	time_modulation: Type.Optional(Type.Object({ kind: lit(["activation", "deactivation"]), tau_min: Param })),
+	temperature_dependence: Type.Optional(Type.Object({ Ea_kJ_mol: Param, T_ref_C: Type.Number() })),
+	time_modulation: Type.Optional(Type.Object({
+		kind: lit(["activation", "deactivation", "avrami"]), tau_min: Type.Optional(Param), n: Type.Optional(Param),
+	})),
 });
 export const CANDIDATE_SCHEMA = Type.Object({
 	name: Type.String(),
@@ -44,6 +47,7 @@ export const CANDIDATE_SCHEMA = Type.Object({
 			id: Type.String(), label: Type.Optional(Type.String()), formula: Type.Optional(Type.String()),
 			role: Type.Optional(Type.String()), observable: Type.Optional(Type.Boolean()), phase: Type.Optional(Type.String()),
 			n_N_per_molecule: Type.Optional(Type.Number()), N_oxidation_state: Type.Optional(Type.Union([Type.Number(), Type.Null()])),
+			composition: Type.Optional(Type.Record(Type.String(), Type.Number())),
 		})),
 		reactions: Type.Array(Type.Object({
 			id: Type.String(), reactants: Type.Array(Term), products: Type.Array(Term),
@@ -51,6 +55,7 @@ export const CANDIDATE_SCHEMA = Type.Object({
 			rate_law: RateLaw,
 		})),
 		sinks_to_unobserved: Type.Optional(Type.Array(Type.String())),
+		conservation: Type.Optional(Type.Object({ basis: Type.Literal("elements"), elements: Type.Array(Type.String()) })),
 	}),
 	observation_map: Type.Optional(Type.Record(Type.String(), Type.Array(Type.String()))),
 	support: Type.Optional(Type.Array(Type.Object({
@@ -60,6 +65,50 @@ export const CANDIDATE_SCHEMA = Type.Object({
 	assumptions: Type.Optional(Type.Array(Type.String())),
 	rationale: Type.Optional(Type.String()),
 	predictions: Type.Optional(Type.Array(Type.String())),
+});
+
+const Support = Type.Object({
+	basis: lit(["literature", "data", "speculative"]), source: Type.Optional(Type.String()), note: Type.Optional(Type.String()),
+});
+// The parts of a hypothesis space (synthesis): code enumerates and fits every allowed combination.
+export const SPACE_SCHEMA = Type.Object({
+	space_id: Type.String({ description: "letters, digits, '-', '_', '.'" }),
+	description: Type.Optional(Type.String()),
+	conservation: Type.Object({ basis: Type.Literal("elements"), elements: Type.Array(Type.String(), { minItems: 1 }) }),
+	species: Type.Array(Type.Object({
+		id: Type.String(), label: Type.Optional(Type.String()), formula: Type.Optional(Type.String()), role: Type.Optional(Type.String()),
+		observable: Type.Optional(Type.Boolean()), phase: Type.Optional(Type.String()),
+		composition: Type.Record(Type.String(), Type.Number(), { description: "atoms per formula unit of the conserved elements" }),
+	})),
+	initial: Type.Array(Type.String(), { description: "species present at t = 0 (must include every dataset initial species)" }),
+	steps: Type.Array(Type.Object({
+		id: Type.String(),
+		reactants: Type.Record(Type.String(), Type.Number(), { description: "{species: stoichiometric coefficient}" }),
+		products: Type.Record(Type.String(), Type.Number()),
+		rate_laws: Type.Optional(Type.Array(lit(["first_order", "avrami"]), { description: "allowed forms; default [first_order]" })),
+		orders: Type.Optional(Type.Record(Type.String(), Type.Number(), { description: "fixed order per reactant (default 1 each)" })),
+		support: Type.Optional(Type.Array(Support)),
+	}), { minItems: 1 }),
+	require: Type.Optional(Type.Object({
+		produced: Type.Optional(Type.Array(Type.String())), steps: Type.Optional(Type.Array(Type.String())),
+	})),
+	min_steps: Type.Optional(Type.Number()),
+	max_steps: Type.Optional(Type.Number()),
+	temperature_dependence: Type.Optional(Type.Object({
+		Ea: Type.Optional(lit(["per_step", "shared", "none"])), T_ref_C: Type.Optional(Type.Number()),
+	})),
+	avrami_exponent: Type.Optional(lit(["per_step", "shared"])),
+	observation_map: Type.Optional(Type.Record(Type.String(), Type.Array(Type.String()))),
+	max_members: Type.Optional(Type.Number()),
+});
+const Design = Type.Object({
+	name: Type.String(),
+	c0: Type.Optional(Type.Record(Type.String(), Type.Number(), { description: "initial amounts on the dataset basis" })),
+	c0_mM_N: Type.Optional(Type.Record(Type.String(), Type.Number(), { description: "electrochemical datasets: initial mM-N" })),
+	temperature_C: Type.Optional(Type.Number()),
+	t_end_min: Type.Optional(Type.Number()),
+	t_sample_min: Type.Optional(Type.Array(Type.Number(), { description: "sampling times (planner); default: the development grid" })),
+	observe: Type.Optional(Type.Array(Type.String())),
 });
 
 const parseMaybeJson = (v: unknown) => (typeof v === "string" && /^\s*[[{]/.test(v) ? JSON.parse(v) : v);
@@ -250,16 +299,11 @@ export function scientificTools(ctx: ToolContext): ToolDefinition[] {
 	tools.push(defineTool({
 		name: "nw_discriminate",
 		label: "Discriminating designs",
-		description: "Simulate fitted candidates (at their development MLE) under alternative experimental designs and report where predictions differ most, in mM-N and in development-sigma units. A design is {name, c0_mM_N: {species: mM-N}, t_end_min, observe?: [species ids]}. Parameter uncertainty is not propagated.",
+		description: "Simulate fitted candidates (at their development MLE) under alternative experimental designs and report where predictions differ most, in data units and in development-sigma units. A design is {name, c0 (or c0_mM_N): {species: amount}, t_end_min, temperature_C?, observe?: [species ids]}. Parameter uncertainty is not propagated (nw_plan_experiments does that).",
 		promptSnippet: "Find designs whose outcomes separate fitted candidates",
 		parameters: Type.Object({
 			candidate_ids: Type.Array(Type.String(), { minItems: 2, maxItems: 6 }),
-			designs: Type.Array(Type.Object({
-				name: Type.String(),
-				c0_mM_N: Type.Record(Type.String(), Type.Number()),
-				t_end_min: Type.Optional(Type.Number()),
-				observe: Type.Optional(Type.Array(Type.String())),
-			}), { minItems: 1, maxItems: 6 }),
+			designs: Type.Array(Design, { minItems: 1, maxItems: 6 }),
 		}),
 		async execute(id, p, signal) {
 			const c = closed(ctx);
@@ -267,6 +311,79 @@ export function scientificTools(ctx: ToolContext): ToolDefinition[] {
 			const r = await call(ctx, id, "nw_discriminate", ["discriminate"], p, signal);
 			if (!r.ok) return text(`error: ${r.error}`, true);
 			return text(JSON.stringify(r.result, null, 1).slice(0, 40000));
+		},
+	}));
+
+	tools.push(defineTool({
+		name: "nw_plan_experiments",
+		label: "Plan experiments",
+		description: "Rank candidate experiments by how well they would separate the surviving models (fitted candidates within delta AICc 4 of the best, one per distinct dynamics, at most max_models), using each model's development MLE and Fisher covariance: U = sum over pairs of w_i w_j D_ij with D_ij = d^T (2 S_eps + G_i V_i G_i^T + G_j V_j G_j^T)^-1 d (Buzzi-Ferraris). Disagreement that only reflects poorly determined parameters is discounted. A pair is separable on a design when D_ij exceeds the number of predicted points. Without designs it scores a default menu (other temperatures, dense early sampling, a rutile precursor, other Li2CO3 ratios).",
+		promptSnippet: "Rank experiments by expected separation of the surviving models",
+		parameters: Type.Object({
+			designs: Type.Optional(Type.Array(Design, { maxItems: 16 })),
+			candidate_ids: Type.Optional(Type.Array(Type.String(), { maxItems: 8, description: "models to separate (default: survivors by AICc)" })),
+			max_models: Type.Optional(Type.Number()),
+		}),
+		async execute(id, p, signal) {
+			const c = closed(ctx);
+			if (c) return c;
+			const r = await call(ctx, id, "nw_plan_experiments", ["plan"], p, signal);
+			if (!r.ok) return text(`error: ${r.error}`, true);
+			const d = r.result;
+			if (d.error) return text(d.error, true);
+			const lines = [`models: ${d.models.map((m: any) => `${m.candidate_id} (AICc ${fmt(m.aicc, 6)}, w ${fmt(m.weight)})`).join(", ")}`];
+			if (d.models_not_considered?.length) lines.push(`not considered (beyond max_models): ${d.models_not_considered.join(", ")}`);
+			lines.push("design ranking (U, bounded score, separable pairs):");
+			for (const row of d.ranking) lines.push(`  ${row.design}: U=${fmt(row.U)} bounded=${fmt(row.bounded_score)} separable=${row.separable_pairs}`);
+			for (const des of d.designs.slice(0, 3)) {
+				if (!des.pairs) continue;
+				lines.push(`${des.design.name}: ` + des.pairs.map((q: any) => `${q.pair.join(" vs ")} D=${fmt(q.D)}${q.separable ? " separable" : ""} (largest gap ${q.largest_gap.channel} at ${fmt(q.largest_gap.t_min)} min: ${fmt(q.largest_gap.in_noise_sigma)} sigma)`).join("; "));
+			}
+			const failed = d.designs.filter((x: any) => x.error);
+			if (failed.length) lines.push(`failed designs: ${failed.map((x: any) => `${x.design.name}: ${x.error}`).join("; ")}`);
+			if (d.note) lines.push(d.note);
+			lines.push(`method: ${d.method}`);
+			return text(lines.join("\n"));
+		},
+	}));
+
+	tools.push(defineTool({
+		name: "nw_submit_space",
+		label: "Submit hypothesis space",
+		description: "Submit the parts of a hypothesis space instead of finished mechanisms: species with compositions, candidate steps (element-balanced) with the rate-law forms allowed for each (first_order, avrami) and their support (literature with source, data, or speculative), plus combination rules (require, min/max_steps, temperature_dependence {Ea: per_step|shared|none, T_ref_C}, avrami_exponent per_step|shared). Code enumerates every allowed combination (no dead steps, required products present), submits each member as a candidate and the shared evaluator fits and ranks them; you do not choose among members. Rejected with plain-language errors if invalid or larger than the member cap. Inline as space, or as file (a JSON file in the workspace).",
+		promptSnippet: "Submit a hypothesis space (parts); code enumerates and fits every member",
+		parameters: Type.Object({
+			space: Type.Optional(SPACE_SCHEMA),
+			file: Type.Optional(Type.String({ description: "instead of inline: a JSON file in the workspace holding the space" })),
+			note: Type.Optional(Type.String({ description: "what this space tests" })),
+		}),
+		prepareArguments: ((a: any) => (a && a.space !== undefined ? { ...a, space: parseMaybeJson(a.space) } : a)) as any,
+		async execute(id, p, signal) {
+			const st = ctx.state;
+			if (p.file && p.space) return text("give either space or file, not both", true);
+			let space: any = p.space;
+			if (p.file) {
+				if (!ctx.guard) return text("file submission is not available in this session", true);
+				try {
+					const abs = path.isAbsolute(p.file) ? p.file : path.join(runDir(ctx.runId), "workspace", p.file);
+					space = JSON.parse((await ctx.guard.readOps().readFile(abs)).toString("utf8"));
+				} catch (e: any) {
+					return text(`could not read ${p.file}: ${e?.message ?? e}`, true);
+				}
+			}
+			if (!space) return text("no space given", true);
+			if (!st.data.submissionsOpen) return text(`submissions are closed in this phase (${st.data.phase}).`, true);
+			const origin = { source: "agent_space", round: st.data.round, arm: st.data.arm, note: p.note,
+				session: st.data.sessionFile ? path.basename(st.data.sessionFile) : undefined };
+			const r = await call(ctx, id, "nw_submit_space", ["submit-space"], { space, origin }, signal);
+			if (!r.ok) return text(`error: ${r.error}`, true);
+			const d = r.result;
+			if (!d.accepted) return text(`space rejected:\n- ${d.errors.join("\n- ")}`, true);
+			st.update({ spacesSubmitted: (st.data.spacesSubmitted ?? 0) + 1 });
+			return text(`space ${d.space_id} accepted (#${d.space_number}): ${d.n_structures} step subsets, ${d.n_members} members, ` +
+				`${d.n_new_candidates} new candidates, ${d.n_duplicates} duplicates of earlier submissions; statuses ${JSON.stringify(d.status_counts)}; ` +
+				`spaces left: ${d.spaces_left}.` + (d.problems.length ? `\nproblems (first ${d.problems.length}): ${JSON.stringify(d.problems)}` : "") +
+				"\nMembers are fitted when submissions close.");
 		},
 	}));
 

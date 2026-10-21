@@ -60,6 +60,9 @@ function watchCost(ctx: Ctx, session: AgentSession, label: string) {
 
 export function plan(arm: string, reviewRounds = 1): string[] {
 	if (arm === "propose_only") return ["propose:1", "evaluate:1", "conclude", "freeze"];
+	// the model proposes the parts of a hypothesis space; code enumerates, fits and ranks every member; the model then
+	// interprets what the data cannot settle and plans the next experiment
+	if (arm === "propose_space") return ["space:1", "evaluate:1", "conclude", "freeze"];
 	if (arm === "self_revise") return ["propose:1", "evaluate:1", "revise:2", "evaluate:2", "conclude", "freeze"];
 	if (arm === "critique_revise") {
 		const s = ["propose:1", "evaluate:1"];
@@ -130,7 +133,9 @@ async function investigator(ctx: Ctx): Promise<AgentSession> {
 	};
 	const tctx: ToolContext = { runId: ctx.runId, state: ctx.state, fetchPolicy: ctx.runCfg.config_snapshot.fetch_policy, guard: new PathGuard(spec) };
 	const tools = [...sandboxedBuiltins(spec), ...scientificTools(tctx)];
-	const system = loadPrompt("investigator", {
+	const pack = ctx.runCfg.config_snapshot.agent?.prompts === "synthesis" ? "investigator_synthesis" : "investigator";
+	const system = loadPrompt(pack, {
+		SPACE_BUDGET: String(ctx.runCfg.arm_config.space_budget ?? 2), MEMBER_CAP: String(ctx.runCfg.arm_config.max_space_members ?? 200),
 		WORKSPACE: spec.workspace, EVIDENCE: spec.readOnly[0], BUDGET: String(ctx.runCfg.budget.candidate_budget ?? "unlimited"),
 		TOOLKIT: hasToolkit ? `\n- An exploratory toolkit is importable in the sandbox: \`import nwlab\` (read-only, ${toolkit}). \`nwlab.check(c)\`, \`nwlab.simulate(c)\`, \`nwlab.quick_fit(c)\` and \`nwlab.plot(c, fit, path)\` take a candidate dict and run the official validator and a lighter version of the fitter in seconds. Its numbers are exploratory; official results come only from nw_evaluate.` : "",
 	});
@@ -179,13 +184,15 @@ async function status(ctx: Ctx) {
 	return await backendOrThrow(["status", "--run", ctx.runId]);
 }
 
-async function compareText(ctx: Ctx): Promise<string> {
+async function compareText(ctx: Ctx, maxRows = Infinity): Promise<string> {
 	const d = await backendOrThrow(["compare", "--run", ctx.runId]);
 	const lines = [d.ranking.note];
-	for (const g of d.ranking.groups)
-		for (const r of g.rows)
+	for (const g of d.ranking.groups) {
+		if (g.rows.length > maxRows) lines.push(`(top ${maxRows} of ${g.rows.length} fitted candidates shown; nw_compare lists all)`);
+		for (const r of g.rows.slice(0, maxRows))
 			lines.push(`${r.candidate_id} ${r.name} AICc=${r.aicc.toFixed(2)} dAICc=${r.delta_aicc.toFixed(2)} ${r.band} adequacy=${r.adequacy} in_declared_space=${r.in_enumeration_spaces.join(",") || "no"}${r.plausibility_flags.length ? ` flags=${r.plausibility_flags.join("; ")}` : ""}`);
-	if (d.ranking.not_ranked.length) lines.push(`not fitted: ${JSON.stringify(d.ranking.not_ranked)}`);
+	}
+	if (d.ranking.not_ranked.length) lines.push(`not fitted: ${JSON.stringify(d.ranking.not_ranked.slice(0, 20))}${d.ranking.not_ranked.length > 20 ? ` (+${d.ranking.not_ranked.length - 20} more)` : ""}`);
 	return lines.join("\n");
 }
 
@@ -213,12 +220,26 @@ async function doStep(ctx: Ctx, step: string) {
 		st.update({ submissionsOpen: false });
 		return;
 	}
+	if (kind === "space") {
+		if (st.data.phase !== "propose" || st.data.round !== n) {
+			st.update({ phase: "propose", round: n, submissionsOpen: true, analysisOpen: false, roundCap: budget, roundSubmitted: 0 });
+		}
+		const spaces = ctx.runCfg.arm_config.space_budget ?? 2;
+		await prompt(ctx, `Phase: hypothesis space. Read the evidence (nw_evidence, the plots, the datasets), explore with your own code if useful (nwlab.quick_fit is quick), then submit the parts of a hypothesis space with nw_submit_space: the phases (with compositions and the elements you conserve), every step you consider chemically plausible (element-balanced, each with literature, data or speculative support), the rate-law forms allowed for each step, and the rules for combining them. Code enumerates every allowed combination, fits each jointly to the development temperatures and ranks them; you do not pick among the members, so include rival hypotheses rather than your favourite. You may submit up to ${spaces} spaces (at most ${ctx.runCfg.arm_config.max_space_members ?? 200} members each) and up to ${budget ?? "unlimited"} individual candidates (nw_submit_candidates) for hypotheses a space cannot express. Fitted results stay hidden until submissions close; afterwards you interpret the results and plan the next experiment, but cannot add candidates. End with a short note on what each space tests.`);
+		for (let k = 0; k < ctx.maxNudges && !(st.data.spacesSubmitted ?? 0); k++) {
+			ctx.log("[host] no space accepted yet; nudging");
+			await prompt(ctx, "No hypothesis space has been accepted yet. Submit one with nw_submit_space now; fix any errors it reports (they are listed in plain language).");
+		}
+		st.update({ submissionsOpen: false });
+		return;
+	}
 	if (kind === "evaluate") {
 		st.update({ phase: "evaluate", submissionsOpen: false });
 		const s = await status(ctx);
 		const ids: string[] = s.not_evaluated;
 		if (ids.length) {
-			const r = await backendOrThrow(["evaluate", "--run", ctx.runId, "--ids", ...ids]);
+			const workers = process.env.NW_EVAL_WORKERS ?? "8";
+			const r = await backendOrThrow(["evaluate", "--run", ctx.runId, "--workers", workers, "--ids", ...ids], undefined, { timeoutMs: 8 * 3_600_000 });
 			ctx.log(`[host] evaluated ${ids.length} candidate(s); fits run ${r.n_fits_run}`);
 		}
 		return;
@@ -247,6 +268,16 @@ async function doStep(ctx: Ctx, step: string) {
 			await prompt(ctx, `Submissions for round ${n - 1} are closed and every candidate has been fitted with the shared evaluator. Code-computed ranking:\n${results}\n\nThis is your revision round: inspect the fits (nw_candidate_details, nw_profile, nw_discriminate, your own code) and submit up to ${remaining ?? "unlimited"} new candidates (set "parent" when revising one), then evaluate them with nw_evaluate. Original candidates and results are kept.`);
 		}
 		st.update({ submissionsOpen: false });
+		return;
+	}
+	if (kind === "conclude" && arm === "propose_space") {
+		st.update({ phase: "conclude", submissionsOpen: false, analysisOpen: true });
+		const results = await compareText(ctx, 25);
+		await prompt(ctx, `Submissions are closed and every member of your space(s) has been fitted jointly to the development temperatures with the shared evaluator. Code-computed ranking:\n${results}\n\nNow interpret, without re-ranking: inspect the leading candidates (nw_candidate_details, nw_profile for identifiability, your own code), say which steps and rate-law forms the data support and which they cannot pin down (flat or one-sided profiles, sloppy directions, observationally equivalent members, adequacy), then rank feasible next experiments with nw_plan_experiments (it scores designs by how well they would separate the surviving models, discounting disagreement that only reflects poorly determined parameters; pass your own designs if the default menu misses one). Record your conclusion with nw_record_conclusion: plausible candidates and why (tie reasons to computed numbers), rejected ones and why, ambiguities, adequacy, and recommended_experiments taken from the planner's ranking with its numbers in the rationale. Several plausible candidates, or none adequate, are acceptable conclusions.`);
+		for (let k = 0; k < ctx.maxNudges && !st.data.concluded; k++) {
+			ctx.log("[host] no conclusion recorded; nudging");
+			await prompt(ctx, "Record your conclusion now with nw_record_conclusion.");
+		}
 		return;
 	}
 	if (kind === "conclude") {

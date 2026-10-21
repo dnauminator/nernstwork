@@ -1,0 +1,110 @@
+{
+  "source": {
+    "citation": "Hu D., Beauvais M. L., Kamm G. E., Mullens B. G., Sanchez Monserrate B. A., Vornholt S. M., Chupas P. J., Chapman K. W., Resolving fast relative kinetics in inorganic solid-state synthesis, J. Am. Chem. Soc. 145 (2023) 26545-26549",
+    "doi": "10.1021/jacs.3c10916",
+    "read": "The full text is paywalled and was not read for this note. Read on 2026-10-21 by an assistant subagent: (1) the abstract only. The ACS abstract page (https://pubs.acs.org/doi/10.1021/jacs.3c10916, also reached via the doi.org link) returned HTTP 403 to the automated fetch, so the abstract text was taken from the Europe PMC record of the PubMed entry (PMID 38019924); Crossref metadata confirmed title, authors, volume and pages. (2) The authors' statements as recorded by D. Naumov in docs/SPEC.md section 7e and data/digitized_inputs/chapman2023_fig2/meta.json (commit f135e65), not re-checked against the full text. Claims S1-S3 come from a different paper (Shen et al., Chem. Mater. 2014; see each claim's location): the ACS abstract page for that paper also returned HTTP 403, Crossref and Semantic Scholar carry no abstract, and the abstract was read from its OpenAlex record (W1972178036). No figure of either paper was viewed for this note. Not yet re-checked by a person.",
+    "page_numbers": "Not available: the full text was not read. Locations name the abstract, a figure, or the repository note (SPEC.md 7e, meta.json) that recorded the statement."
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "topic": "method",
+      "statement": "Abstract: a custom-designed reactor rapidly initiates the solid-state reaction so that its earliest stages are captured by in situ X-ray scattering; the reaction studied is TiO2 + Li2CO3 to spinel Li4Ti5O12.",
+      "location": "abstract",
+      "status": "stated"
+    },
+    {
+      "id": "C2",
+      "topic": "conditions and preparation",
+      "statement": "5:2 TiO2 (anatase):Li2CO3 molar mix, pelletized and loaded in a capillary. The sample is moved into a pre-heated hot zone and heats in under 10 s (a grey 'Heating' strip in Fig. 3 covers about the first 0.17 min); t = 0 is insertion. Phase fractions versus time come from Rietveld refinement. Atmosphere not stated in the main text. Figures only: no data availability statement, and the SI holds a heating profile.",
+      "location": "main text, Fig. 3 and SI, as recorded in meta.json (system) and SPEC.md 7e",
+      "status": "recorded by D. Naumov; not re-checked against the full text"
+    },
+    {
+      "id": "C3",
+      "topic": "phases observed",
+      "statement": "Phases tracked: anatase TiO2, rutile TiO2, Li2CO3, Li2TiO3 (intermediate) and Li4Ti5O12 (product). Reaction as summarised in our notes: anatase TiO2 + Li2CO3 -> Li2TiO3 (+ CO2) -> Li4Ti5O12, with anatase -> rutile in parallel. Fig. 2 plots weight % of the five phases as a normalised stack.",
+      "location": "Fig. 2 legend and main text, as recorded in meta.json (phases, system.reaction) and SPEC.md 7e",
+      "status": "recorded by D. Naumov; not re-checked against the full text"
+    },
+    {
+      "id": "C4",
+      "topic": "temperatures studied",
+      "statement": "Temperatures studied: 482, 700, 725 and 750 C. Fig. 2 shows phase fractions at 700, 725 and 750 C over about 10 min; Fig. 3 shows Li2TiO3 at 482 C over 5 min (y axis without ticks). The abstract names the high-temperature range 700-750 C and the lower temperature 482 C, the latter consistent with conditions chosen by 'Tamman's rule'.",
+      "location": "abstract; Figs. 2-3 as recorded in meta.json (system.temperatures_C, files)",
+      "status": "stated (abstract: 700-750 and 482 C); panel list and figure contents recorded by D. Naumov, not re-checked"
+    },
+    {
+      "id": "C5",
+      "topic": "Li2CO3 consumption",
+      "statement": "Li2CO3 peaks are no longer distinguishable after about 30 s. Which temperature(s) this sentence refers to is not recorded in our notes.",
+      "location": "main text, as recorded in meta.json (caveats)",
+      "status": "recorded by D. Naumov; not re-checked against the full text"
+    },
+    {
+      "id": "C6",
+      "topic": "Li2TiO3 stoichiometry",
+      "statement": "Li2TiO3 peaks at about 52 wt %, above the about 48 wt % that stoichiometric Li2TiO3 can reach from a 5:2 TiO2:Li2CO3 mix; the authors attribute the excess to a Li-deficient, non-stoichiometric Li2-xTiO3. Which panel the 52 wt % refers to is not recorded in our notes.",
+      "location": "main text, as recorded in SPEC.md 7e and meta.json (caveats)",
+      "status": "recorded by D. Naumov; not re-checked against the full text"
+    },
+    {
+      "id": "C7",
+      "topic": "kinetic regimes",
+      "statement": "Abstract: 'we capture two distinct kinetic regimes, including fast initial kinetics in the first seconds-minutes of the reaction that account for significant product formation.' The authors expect such fast initial kinetics to be common in syntheses of battery electrodes, solid electrolytes and ion-conductive membranes.",
+      "location": "abstract",
+      "status": "stated"
+    },
+    {
+      "id": "C8",
+      "topic": "Avrami analysis (authors)",
+      "statement": "Abstract: 'We use an Avrami model to compare the reaction at high temperatures (700-750 °C), which results in the rapid formation of Li4Ti5O12 within minutes, and lower temperatures (482 °C) ... Our analysis reveals characteristic Avrami slopes (i.e., dimensionalities) for each step in the chemical transformation.'",
+      "location": "abstract",
+      "status": "stated",
+      "reveals_holdout": [
+        "chapman2023_fig2_750C"
+      ]
+    },
+    {
+      "id": "C9",
+      "topic": "Avrami analysis (authors)",
+      "statement": "Avrami slopes of about 1.4 and 0.5 for the Li2TiO3 step, an Avrami regime change from 1.4 to 0.5. Which temperature(s) the slopes were fitted at is not recorded in our notes.",
+      "location": "main text, as recorded in SPEC.md 7e",
+      "status": "recorded by D. Naumov; not re-checked against the full text",
+      "reveals_holdout": [
+        "chapman2023_fig2_750C"
+      ]
+    },
+    {
+      "id": "C10",
+      "topic": "Avrami analysis (authors)",
+      "statement": "At 482 C the fast initial regime of Li2TiO3 formation is about 4 times the later rate. Our extraction of Fig. 3 gives a slope ratio of 4.1 (0.25-0.75 min versus 1-2 min, arbitrary units).",
+      "location": "main text on Fig. 3, as recorded in meta.json (checks_done)",
+      "status": "recorded by D. Naumov; not re-checked against the full text",
+      "reveals_holdout": [
+        "chapman2023_fig2_750C"
+      ]
+    },
+    {
+      "id": "S1",
+      "topic": "mechanism (other study)",
+      "statement": "[Shen et al. 2014, not Hu et al. 2023] In situ high-temperature PXRD and TG-DTA show that forming Li4Ti5O12 from anatase TiO2 and Li2CO3 is a two-stage process: TiO2 and Li2CO3 first react to monoclinic Li2TiO3, which then reacts at higher temperature with the remaining TiO2 to give Li4Ti5O12.",
+      "location": "source_citation: Shen Y., Sondergaard M., Christensen M., Birgisson S., Iversen B. B., Solid state formation mechanism of Li4Ti5O12 from an anatase TiO2 source, Chem. Mater. 26 (2014) 3679-3686, doi 10.1021/cm500934z; abstract (OpenAlex W1972178036)",
+      "status": "stated"
+    },
+    {
+      "id": "S2",
+      "topic": "impurity phases (other study)",
+      "statement": "[Shen et al. 2014, not Hu et al. 2023] Solid-state synthesis of Li4Ti5O12 typically gives products containing rutile TiO2 and Li2TiO3 impurities, and the high calcination temperatures that follow cause particle growth that lowers capacity and rate ability; the in situ data are said to show the origin of the impurity phases (not detailed in the abstract).",
+      "location": "source_citation: Shen et al., Chem. Mater. 26 (2014) 3679-3686, doi 10.1021/cm500934z; abstract (OpenAlex W1972178036)",
+      "status": "stated"
+    },
+    {
+      "id": "S3",
+      "topic": "precursor crystallite size (other study)",
+      "statement": "[Shen et al. 2014, not Hu et al. 2023] Four anatase powders (about 50, 30 and 20 nm crystallites, and amorphous) were compared: smaller crystallites lower the initial reaction temperature, and about 20 nm anatase gave phase-pure Li4Ti5O12 at the lowest temperature, 800 C. Heating rates, hold times and the Li:Ti ratio are not given in the abstract.",
+      "location": "source_citation: Shen et al., Chem. Mater. 26 (2014) 3679-3686, doi 10.1021/cm500934z; abstract (OpenAlex W1972178036)",
+      "status": "stated"
+    }
+  ]
+}

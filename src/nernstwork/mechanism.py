@@ -14,6 +14,7 @@ from scipy.integrate import solve_ivp
 
 F = 96485.33212  # C/mol
 R = 8.314462618  # J/(mol K)
+T_EPS_MIN = 1e-6  # Avrami factor n (k t)^(n-1) is singular at t = 0 for n < 1 (integrable); evaluated at t >= T_EPS_MIN
 
 
 def load_json(path):
@@ -26,15 +27,29 @@ def validate_mechanism(m: dict) -> list[str]:
     problems = []
     ids = {s["id"] for s in m["species"]}
     ox = {s["id"]: s.get("N_oxidation_state") for s in m["species"]}
+    # element balance (synthesis) replaces the N-equivalent rule when the mechanism declares it
+    elements = (m.get("conservation") or {}).get("elements")
+    comp = {s["id"]: s.get("composition") for s in m["species"]}
+    if elements:
+        for s in m["species"]:
+            if s.get("composition") is None:
+                problems.append(f"{s['id']}: needs a composition (atoms per formula unit; the mechanism declares an element balance)")
     for rxn in m["reactions"]:
         rid = rxn["id"]
         for term in rxn["reactants"] + rxn["products"]:
             if term["species"] not in ids:
                 problems.append(f"{rid}: unknown species {term['species']}")
-        n_in = sum(t["coeff"] for t in rxn["reactants"])
-        n_out = sum(t["coeff"] for t in rxn["products"])
-        if not math.isclose(n_in, n_out, rel_tol=1e-9):
-            problems.append(f"{rid}: N-equivalents not conserved ({n_in} in, {n_out} out)")
+        if elements:
+            for el in elements:
+                a = sum(t["coeff"] * (comp.get(t["species"]) or {}).get(el, 0.0) for t in rxn["reactants"])
+                b = sum(t["coeff"] * (comp.get(t["species"]) or {}).get(el, 0.0) for t in rxn["products"])
+                if not math.isclose(a, b, rel_tol=1e-9, abs_tol=1e-9):
+                    problems.append(f"{rid}: {el} not conserved ({a:g} in, {b:g} out)")
+        else:
+            n_in = sum(t["coeff"] for t in rxn["reactants"])
+            n_out = sum(t["coeff"] for t in rxn["products"])
+            if not math.isclose(n_in, n_out, rel_tol=1e-9):
+                problems.append(f"{rid}: N-equivalents not conserved ({n_in} in, {n_out} out)")
         e = rxn.get("electrons")
         states = [ox.get(t["species"]) for t in rxn["reactants"] + rxn["products"]]
         if e is not None and all(s is not None for s in states):
@@ -68,17 +83,23 @@ def effective_k(rxn: dict, E_V: float, pH: float, T_C: float = 25.0) -> float:
     phd = rl.get("ph_dependence")
     if phd:
         k *= 10 ** (-phd["order"]["value"] * (pH - phd["pH_ref"]))
+    td = rl.get("temperature_dependence")
+    if td:
+        k *= math.exp(-td["Ea_kJ_mol"]["value"] * 1e3 / R * (1.0 / T - 1.0 / (td["T_ref_C"] + 273.15)))
     kmt = rl["params"].get("k_mt")
     if kmt:
         k = 1.0 / (1.0 / k + 1.0 / kmt["value"])
     return k
 
 
-def time_factor(rxn: dict, t_min: float) -> float:
-    """Catalyst-state modulation g(t); 1.0 when the reaction has none."""
+def time_factor(rxn: dict, t_min: float, k: float | None = None) -> float:
+    """Time modulation g(t); 1.0 when the reaction has none. avrami needs the step's effective k."""
     tm = rxn["rate_law"].get("time_modulation")
     if not tm:
         return 1.0
+    if tm["kind"] == "avrami":
+        n = tm["n"]["value"]
+        return n * (k * max(t_min, T_EPS_MIN)) ** (n - 1.0)
     tau = tm["tau_min"]["value"]
     if tm["kind"] == "activation":
         return 1.0 - math.exp(-t_min / tau)
@@ -116,7 +137,7 @@ def simulate(m: dict, c0: dict, t_min, E_V: float, pH: float = 7.0, T_C: float =
         c = {n: y[idx[n]] for n in names}
         dy = np.zeros_like(y)
         for rxn, k in zip(m["reactions"], ks):
-            r = rate(rxn, c, k) * time_factor(rxn, _t)
+            r = rate(rxn, c, k) * time_factor(rxn, _t, k)
             for t in rxn["reactants"]:
                 dy[idx[t["species"]]] -= t["coeff"] * r
             for t in rxn["products"]:

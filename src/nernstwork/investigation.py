@@ -18,13 +18,17 @@ import numpy as np
 
 from . import plots
 from .data import (
+    basis_of,
     describe_dataset,
+    initial_amounts,
+    joint_observation_set,
     load_dataset,
     observation_set,
+    parts_of,
     sha256_file,
     sha256_json,
 )
-from .enumerate import enumerate_space
+from .enumerate import enumerate_space, synthesis_structures, validate_synthesis_space
 from .evaluate import (
     annotate,
     code_identity,
@@ -39,7 +43,7 @@ from .evaluate import (
     translate_fit,
     validate_submission,
 )
-from .model import FITTED, INVALID_SUBMISSION, compile_mechanism
+from .model import FITTED, INVALID_SUBMISSION, Conditions, compile_mechanism
 from .review import validate_response, validate_review
 from .store import (
     ROOT_DEFAULT,
@@ -52,7 +56,7 @@ from .store import (
 
 REPO = Path(__file__).resolve().parents[2]
 AGENT_SOURCES = {"agent", "reviewer_revision"}
-ARMS = {"enumeration", "propose_only", "critique_revise", "manual"}
+ARMS = {"enumeration", "propose_only", "critique_revise", "propose_space", "manual"}
 
 
 class InvestigationError(Exception):
@@ -92,7 +96,7 @@ def build_manifest(cfg: dict, protocol: dict, protocol_path: Path) -> dict:
                 "dataset_id": ds["id"], "path": p, "sha256": sha, "role": role,
                 "source_type": ds["provenance"]["source_type"], "measurement": _measurement(ds["provenance"]["source_type"]),
                 "observation_kind": "concentration time trajectories", "transformations": transformations,
-                "channels": [{"channel": s["species"], "unit": "mM-N", "reported_unit": s.get("reported_unit"),
+                "channels": [{"channel": s["species"], "unit": basis_of(ds["conditions"]), "reported_unit": s.get("reported_unit"),
                               "conversion": s.get("conversion")} for s in ds["series"]],
                 "derived_fields": derived, "conditions": ds["conditions"],
                 "provenance": {k: ds["provenance"].get(k) for k in ("citation", "doi", "figure", "file", "sheet",
@@ -126,8 +130,8 @@ def init_run(config_path, arm: str, run_id: str | None = None, root=ROOT_DEFAULT
     cfg = json.loads(config_path.read_text())
     protocol_path = REPO / cfg["protocol"]
     protocol = json.loads(protocol_path.read_text())
-    if len(cfg["datasets"]["development"]) != 1:
-        raise InvestigationError("exactly one development dataset per run is supported")
+    if not cfg["datasets"]["development"]:
+        raise InvestigationError("at least one development dataset is required (several are fitted jointly)")
     run_id = run_id or f"{cfg['investigation_id']}-{arm}-{time.strftime('%Y%m%dT%H%M%S', time.gmtime())}"
     run = Run(root, run_id)
     if run.exists():
@@ -150,18 +154,19 @@ def init_run(config_path, arm: str, run_id: str | None = None, root=ROOT_DEFAULT
     return run
 
 
-def _dev_dataset(run: Run):
-    m = run.manifest()
-    dev = next(d for d in m["datasets"] if d["role"] == "development")
-    ds, sha = load_dataset(REPO / dev["path"])
-    if sha != dev["sha256"]:
-        raise InvestigationError(f"{dev['path']} changed since the run was created (sha256 mismatch); start a new run")
-    return ds, sha
+def _dev_entries(run: Run) -> list[tuple[dict, str, Path]]:
+    """Every development dataset (several are fitted jointly), checked against the manifest hashes."""
+    out = []
+    for dev in [d for d in run.manifest()["datasets"] if d["role"] == "development"]:
+        ds, sha = load_dataset(REPO / dev["path"])
+        if sha != dev["sha256"]:
+            raise InvestigationError(f"{dev['path']} changed since the run was created (sha256 mismatch); start a new run")
+        out.append((ds, sha, REPO / dev["path"]))
+    return out
 
 
 def _dev_obs(run: Run):
-    ds, sha = _dev_dataset(run)
-    return observation_set(ds, sha, run.protocol().get("exclude_t0", True))
+    return joint_observation_set([(ds, sha) for ds, sha, _ in _dev_entries(run)], run.protocol().get("exclude_t0", True))
 
 
 def build_evidence(run: Run, cfg: dict, manifest: dict):
@@ -198,7 +203,8 @@ def build_evidence(run: Run, cfg: dict, manifest: dict):
         shutil.copyfile(REPO / "LITERATURE.md", ev / "LITERATURE_index.md")
     summary = {"investigation_id": manifest["investigation_id"], "question": manifest["question"],
                "system_boundary": manifest["system_boundary"], "datasets": descs, "literature_claims": claims,
-               "conventions": CONVENTIONS, "protocol": run.protocol(), "partition_policy": manifest["partition_policy"]}
+               "conventions": cfg.get("evidence", {}).get("conventions") or CONVENTIONS, "protocol": run.protocol(),
+               "partition_policy": manifest["partition_policy"]}
     atomic_write_json(ev / "evidence_summary.json", summary)
     (ev / "evidence_summary.md").write_text(render_evidence_md(summary))
     (ev / "README.md").write_text(EVIDENCE_README)
@@ -261,14 +267,22 @@ def render_evidence_md(s: dict) -> str:
     for d in s["datasets"]:
         L += [f"## Dataset {d['dataset_id']} ({d['source_type']}, {d['kind']})", f"sha256 `{d['sha256']}`", ""]
         c = d["conditions"]
-        L.append(f"- Conditions: catalyst {c.get('catalyst')}, electrolyte {c.get('electrolyte')}, potential "
-                 f"{c.get('potential_as_reported')} (RHE {c.get('potential_V_vs_RHE')}), pH {c.get('pH')}, "
-                 f"T {c.get('temperature_C')}, volume {c.get('volume_mL')} mL, initial {c.get('c0_mM_N')} mM-N")
+        unit = d.get("basis", "mM-N")
+        if unit == "mM-N":
+            L.append(f"- Conditions: catalyst {c.get('catalyst')}, electrolyte {c.get('electrolyte')}, potential "
+                     f"{c.get('potential_as_reported')} (RHE {c.get('potential_V_vs_RHE')}), pH {c.get('pH')}, "
+                     f"T {c.get('temperature_C')}, volume {c.get('volume_mL')} mL, initial {c.get('c0_mM_N')} mM-N")
+        else:
+            L.append(f"- Conditions: T {c.get('temperature_C')} C, precursors {c.get('precursors')}, atmosphere "
+                     f"{c.get('atmosphere', 'not stated')}, initial amounts {c.get('c0')} ({unit})")
         if c.get("notes"):
             L.append(f"- Condition notes: {c['notes']}")
         for se in d["series"]:
+            rng = se.get("y_range_mM_N", se.get("y_range"))
             L.append(f"- Channel {se['channel']}: {se['n_points']} points, t {se['t_min_range']} min, "
-                     f"{se['y_range_mM_N']} mM-N; reported as {se['reported_unit']}; {se['conversion']}")
+                     f"{rng} {unit}; reported as {se['reported_unit']}; {se['conversion']}")
+        if d.get("basis_note"):
+            L.append(f"- Basis note: {d['basis_note']}")
         if "n_closure" in d:
             cl = d["n_closure"]
             L.append("- N closure (derived: sum of measured channels / initial N): " +
@@ -298,8 +312,8 @@ def render_evidence_md(s: dict) -> str:
 def submit(run: Run, subs: list[dict], origin: dict) -> list[dict]:
     if run.state().get("phase") != "development":
         raise InvestigationError(f"run is {run.state().get('phase')}; no new candidates after freeze")
-    if origin.get("source") not in {"agent", "reviewer_revision", "enumerator", "human", "library"}:
-        raise InvestigationError("origin.source must be agent | reviewer_revision | enumerator | human | library")
+    if origin.get("source") not in {"agent", "reviewer_revision", "agent_space", "enumerator", "human", "library"}:
+        raise InvestigationError("origin.source must be agent | reviewer_revision | agent_space | enumerator | human | library")
     obs = _dev_obs(run)
     protocol = run.protocol()
     budget = run.config()["budget"].get("candidate_budget")
@@ -369,9 +383,50 @@ def submit(run: Run, subs: list[dict], origin: dict) -> list[dict]:
     return out
 
 
+def submit_space(run: Run, space: dict, origin: dict) -> dict:
+    """The investigator's parts list: candidate steps, rate-law forms and species with their support. Code enumerates
+    every allowed combination and submits each member as an ordinary candidate (source agent_space), so the same
+    evaluator, ranking and freeze rule apply; the proposer does not choose among the members."""
+    if run.state().get("phase") != "development":
+        raise InvestigationError(f"run is {run.state().get('phase')}; no new spaces after freeze")
+    arm = run.config().get("arm_config", {})
+    max_spaces, cap = arm.get("space_budget", 2), arm.get("max_space_members", 200)
+    sdir = run.dir / "spaces"
+    used = len(_numbered(sdir, "space"))
+    if used >= max_spaces:
+        return {"accepted": False, "errors": [f"space budget used ({used} of {max_spaces})"]}
+    space = dict(space, kind="synthesis")
+    space["max_members"] = min(int(space.get("max_members", cap)), cap)
+    errs = validate_synthesis_space(space)
+    subs = []
+    if not errs:
+        try:
+            subs = enumerate_space(space)
+        except ValueError as e:
+            errs = [str(e)]
+    if not errs and not subs:
+        errs = ["the space has no member: no subset of steps satisfies require/min_steps/max_steps without a dead step"]
+    if errs:
+        run.event("space_rejected", space_id=space.get("space_id"), n_errors=len(errs))
+        return {"accepted": False, "errors": errs}
+    n = _next_free(sdir, "space-{}.json", lambda k: {"created_at": now(), "origin": origin, "space": space,
+                                                     "n_members": len(subs)})
+    res = submit(run, subs, dict(origin, source="agent_space", space_id=space["space_id"], space_number=n))
+    status = {}
+    for r in res:
+        status[r["status"]] = status.get(r["status"], 0) + 1
+    bad = [r for r in res if r["status"] not in ("valid",)]
+    run.event("space_submitted", space_id=space["space_id"], space_number=n, n_members=len(subs))
+    return {"accepted": True, "space_number": n, "space_id": space["space_id"], "n_structures": len(synthesis_structures(space)),
+            "n_members": len(subs), "n_new_candidates": sum(1 for r in res if r.get("candidate_id") and not r.get("duplicate_of")),
+            "n_duplicates": sum(1 for r in res if r.get("duplicate_of")), "status_counts": status,
+            "problems": [{"name": r["name"], "status": r["status"], "errors": r["errors"][:2]} for r in bad[:5]],
+            "spaces_left": max_spaces - n}
+
+
 # ====================================================================== evaluation
 def _fit_worker(args):
-    root, run_id, label, fkey, dataset_path, protocol, sub = args
+    root, run_id, label, fkey, dataset_paths, protocol, sub = args
     os.environ.setdefault("OMP_NUM_THREADS", "1")
     cache = Run(Path(root), run_id).cache
     if cache.result(fkey):
@@ -381,10 +436,9 @@ def _fit_worker(args):
         time.sleep(0.5)
         if cache.result(fkey):
             return {"candidate_id": label, "fit_key": fkey, "outcome": "reused_concurrent"}
-    ds, sha = load_dataset(dataset_path)
-    obs = observation_set(ds, sha, protocol.get("exclude_t0", True))
+    obs = joint_observation_set([load_dataset(p) for p in dataset_paths], protocol.get("exclude_t0", True))
     v = validate_submission(sub, obs, protocol)
-    aid = cache.begin_attempt(fkey, {"run_id": run_id, "candidate": label, "dataset_sha256": sha})
+    aid = cache.begin_attempt(fkey, {"run_id": run_id, "candidate": label, "dataset_sha256": obs.sha256})
     try:
         res = run_fit(sub, v, obs, protocol)
     except Exception as e:  # noqa: BLE001 - an evaluator bug, not evidence about the chemistry; never committed
@@ -400,15 +454,15 @@ def _fit_worker(args):
 
 
 def evaluate(run: Run, cids: list[str] | None = None, workers: int | None = None) -> dict:
-    ds, sha = _dev_dataset(run)
-    obs = observation_set(ds, sha, run.protocol().get("exclude_t0", True))
-    dev_path = REPO / next(d for d in run.manifest()["datasets"] if d["role"] == "development")["path"]
-    return _evaluate_on(run, cids or [c["candidate_id"] for c in run.candidates()], obs, dev_path, workers,
+    entries = _dev_entries(run)
+    obs = _dev_obs(run)
+    return _evaluate_on(run, cids or [c["candidate_id"] for c in run.candidates()], obs, [p for *_, p in entries], workers,
                         record_dir=None)
 
 
-def _evaluate_on(run: Run, cids, obs, dataset_path, workers, record_dir: Path | None, subs: dict | None = None) -> dict:
-    """Evaluate candidates on one dataset. record_dir None means the run's development evaluations."""
+def _evaluate_on(run: Run, cids, obs, dataset_paths, workers, record_dir: Path | None, subs: dict | None = None) -> dict:
+    """Evaluate candidates on one dataset, or several fitted jointly. record_dir None means the run's development
+    evaluations."""
     protocol = run.protocol()
     code = code_identity()
     t_start = time.perf_counter()
@@ -426,7 +480,7 @@ def _evaluate_on(run: Run, cids, obs, dataset_path, workers, record_dir: Path | 
     outcomes = {}
     if jobs:
         cand_of = (lambda c: subs[c]) if subs else run.candidate
-        args = [(str(run.root), run.id, cid, fk, str(dataset_path), protocol, cand_of(cid)["submission"])
+        args = [(str(run.root), run.id, cid, fk, [str(p) for p in dataset_paths], protocol, cand_of(cid)["submission"])
                 for fk, cid in jobs.items()]
         n = workers or min(len(args), max(1, (os.cpu_count() or 2) - 2))
         if n == 1 or len(args) == 1:
@@ -607,9 +661,9 @@ def profile(run: Run, cids: list[str]) -> dict:
 def discriminate(run: Run, cids: list[str], designs: list[dict]) -> dict:
     """Point predictions of fitted candidates under alternative designs, and where they disagree.
 
-    A design is {"name", "c0_mM_N": {...}, "t_end_min", optional "observe": [species ids to measure]}. Predictions use
-    each candidate's development MLE; parameter uncertainty is not propagated, so large disagreement is a lead for an
-    experiment, not a quantified expected information gain.
+    A design is {"name", "c0" (or "c0_mM_N"): {...}, "t_end_min", optional "temperature_C", optional "observe": [species
+    ids to measure]}. Predictions use each candidate's development MLE; parameter uncertainty is not propagated, so large
+    disagreement is a lead for an experiment, not a quantified expected information gain (see plan_experiments).
     """
     obs = _dev_obs(run)
     protocol = run.protocol()
@@ -627,15 +681,19 @@ def discriminate(run: Run, cids: list[str], designs: list[dict]) -> dict:
     out = {"note": discriminate.__doc__.split("\n\n")[1].strip(), "designs": []}
     for d in designs:
         t = np.linspace(0, float(d.get("t_end_min", obs.t_union.max())), 200)
+        c0, cond = _design_inputs(obs, d)
         preds = {}
         for cid, c, fr in fitted:
-            comp = compile_mechanism(c["submission"]["mechanism"], obs.conditions, protocol.get("bounds"))
-            Y = comp.simulate(np.array(fr["theta"]), t, d["c0_mM_N"])
+            mech = c["submission"]["mechanism"]
+            comp = compile_mechanism(mech, obs.conditions, protocol.get("bounds"))
+            Y = comp.simulate(np.array(fr["theta"]), t, c0, conditions=cond)
             om = c["validation"]["observation_map"]
             chans = {ch: Y[[comp.species.index(s) for s in sps]].sum(0) for ch, sps in om.items()}
             mapped = {x for v in om.values() for x in v}
+            el, w = _basis_weights(mech)
             un = [s for s in comp.species if s not in mapped]
-            chans["unmeasured_N_total"] = Y[[comp.species.index(s) for s in un]].sum(0) if un else np.zeros_like(t)
+            chans[f"unmeasured_{el}_total"] = (np.sum([w[s] * Y[comp.species.index(s)] for s in un], axis=0) if un
+                                              else np.zeros_like(t))
             for s in d.get("observe", []):
                 if s in comp.species:
                     chans[f"species:{s}"] = Y[comp.species.index(s)]
@@ -647,23 +705,42 @@ def discriminate(run: Run, cids: list[str], designs: list[dict]) -> dict:
             spread = arr.max(0) - arr.min(0)
             i = int(spread.argmax())
             s_ch = (sig or {}).get(k)
-            rows.append({"quantity": k, "max_spread_mM_N": float(spread[i]), "at_t_min": float(t[i]),
+            rows.append({"quantity": k, "max_spread": float(spread[i]), "at_t_min": float(t[i]),
                          "spread_in_dev_sigma": float(spread[i] / s_ch) if s_ch else None,
                          "values_at_t": {cid: float(preds[cid][k][i]) for cid in preds}})
-        rows.sort(key=lambda r: -r["max_spread_mM_N"])
+        rows.sort(key=lambda r: -r["max_spread"])
         out["designs"].append({"design": d, "comparisons": rows})
     n = _next_free(run.dir / "analyses", "discrimination-{}.json", lambda k: dict(out, candidate_ids=cids, created_at=now()))
     run.event("discrimination_computed", candidates=cids, designs=[d.get("name") for d in designs], n=n)
     return out
 
 
+def _basis_weights(mech: dict) -> tuple[str, dict]:
+    """Name and per-species weight of the conserved quantity: N-equivalents, or atoms of the first conserved element."""
+    elements = (mech.get("conservation") or {}).get("elements")
+    if not elements:
+        return "N", {s["id"]: 1.0 for s in mech["species"]}
+    return elements[0], {s["id"]: float((s.get("composition") or {}).get(elements[0], 0.0)) for s in mech["species"]}
+
+
+def _design_inputs(obs, d: dict):
+    """Initial amounts and simulation conditions for a design (None keeps the development conditions)."""
+    c0 = d.get("c0", d.get("c0_mM_N"))
+    if c0 is None:
+        raise InvestigationError(f"design {d.get('name')}: give the initial amounts as c0 (or c0_mM_N)")
+    base = parts_of(obs)[0].conditions
+    T = d.get("temperature_C")
+    if T is None:
+        return c0, (base if hasattr(obs, "parts") else None)
+    return c0, Conditions(E_V=base.E_V, pH=base.pH, T_C=float(T))
+
+
 # ====================================================================== reviews and conclusions
 def review_bundle(run: Run, cids: list[str] | None = None) -> dict:
     cids = cids or [c["candidate_id"] for c in run.candidates()]
     obs = _dev_obs(run)
-    ds, sha = _dev_dataset(run)
     recs = current_records(run)
-    arts = {"protocol": run.protocol(), f"dataset:{obs.dataset_id}": describe_dataset(ds, sha),
+    arts = {"protocol": run.protocol(), **{f"dataset:{ds['id']}": describe_dataset(ds, sha) for ds, sha, _ in _dev_entries(run)},
             "evidence:literature": read_json(run.dir / "evidence" / "evidence_summary.json")["literature_claims"],
             "comparison": compare(run)}
     for cid in cids:
@@ -816,6 +893,98 @@ def freeze(run: Run) -> dict:
     return read_json(fz)
 
 
+def _final_subs(run: Run, frozen: dict) -> dict:
+    """Reference set (every member of the declared spaces, the same for every arm) plus the run's frozen candidates."""
+    space_subs = {}
+    for sp in run.manifest()["enumeration_spaces"]:
+        for sub in enumerate_space(json.loads((REPO / sp["path"]).read_text())):
+            space_subs[f"S:{sub['name']}"] = {"submission": sub}
+    return dict(space_subs, **{f"F:{cid}": {"submission": s} for cid, s in frozen["candidates"].items()})
+
+
+def _predict_holdout(run: Run, frozen: dict, hold: list[dict], workers: int | None) -> list[dict]:
+    """Parameter transfer: fit every candidate on the development data, simulate the held-out runs with those parameters
+    (no refitting) and score the prediction by its Gaussian log-likelihood under the development noise estimate."""
+    protocol = run.protocol()
+    dev_obs = _dev_obs(run)
+    allsubs = _final_subs(run, frozen)
+    fdir = run.dir / "final" / "development_fits"
+    res = _evaluate_on(run, list(allsubs), dev_obs, [p for *_, p in _dev_entries(run)], workers,
+                       record_dir=fdir / "evaluations", subs=allsubs)
+    code = code_identity()["sha256"]
+    fits = {}
+    for cid in allsubs:
+        sub = allsubs[cid]["submission"]
+        v = validate_submission(sub, dev_obs, protocol)
+        if v["status"] != "valid":
+            continue
+        body = run.cache.result(fit_key(v["dynamics_hash"], dev_obs.sha256, protocol, code))
+        if body and body["result"].get("status") == FITTED:
+            fits[cid] = (sub, v, _translate(sub, v, dev_obs, protocol, body["result"]))
+    out = []
+    for h in hold:
+        ds, sha = load_dataset(REPO / h["path"])
+        if sha != h["sha256"]:
+            raise InvestigationError(f"{h['path']} changed since the run was created")
+        obs = observation_set(ds, sha, protocol.get("exclude_t0", True))
+        scores = {}
+        for cid, (sub, v, fr) in fits.items():
+            comp = compile_mechanism(sub["mechanism"], dev_obs.conditions, protocol.get("bounds"))
+            try:
+                Y = comp.simulate(np.array(fr["theta"]), obs.t_union, obs.c0, conditions=obs.conditions)
+            except Exception as e:  # noqa: BLE001 - a failed prediction is recorded, not hidden
+                scores[cid] = {"status": "prediction_failed", "error": f"{type(e).__name__}: {e}"}
+                continue
+            pos = {float(t): i for i, t in enumerate(obs.t_union)}
+            nll, rmse, n = 0.0, {}, 0
+            for ch in obs.channels:
+                idx = [comp.species.index(s) for s in v["observation_map"][ch.name]]
+                pred = Y[idx][:, [pos[float(t)] for t in ch.t]].sum(0)
+                r = pred - ch.y
+                s = fr["sigma"][ch.name]
+                nll += len(r) * 0.5 * math.log(2 * math.pi * s * s) + float(r @ r) / (2 * s * s)
+                rmse[ch.name] = float(np.sqrt(np.mean(r ** 2)))
+                n += len(r)
+            scores[cid] = {"status": FITTED, "predictive_nll": nll, "rmse": rmse, "n_obs": n,
+                           "rmse_all": float(np.sqrt(np.mean([x ** 2 for x in rmse.values()]))),
+                           "development_aicc": fr["aicc"]}
+        ok = {c: s for c, s in scores.items() if s["status"] == FITTED}
+        space_ok = {c: s for c, s in ok.items() if c.startswith("S:")}
+        best = min((s["predictive_nll"] for s in ok.values()), default=math.nan)
+        rows = []
+        for cid in frozen["candidates"]:
+            s = scores.get(f"F:{cid}")
+            row = {"candidate_id": cid, "status": s["status"] if s else "not_fitted_on_development",
+                   "selected_by_rule": cid in frozen["selected_by_rule"],
+                   "agent_concluded_plausible": cid in frozen["agent_concluded_plausible"]}
+            if s and s["status"] == FITTED:
+                row.update(predictive_nll=s["predictive_nll"], delta_to_best_overall=s["predictive_nll"] - best,
+                           rank_among_space=1 + sum(1 for x in space_ok.values()
+                                                    if x["predictive_nll"] < s["predictive_nll"] - 1e-9),
+                           n_space=len(space_ok), rmse=s["rmse"], rmse_all=s["rmse_all"],
+                           development_aicc=s["development_aicc"])
+            rows.append(row)
+        top = sorted(space_ok.items(), key=lambda kv: kv[1]["predictive_nll"])[:5]
+        dev_best = sorted(space_ok.items(), key=lambda kv: kv[1]["development_aicc"])[:1]
+        fdir_h = run.dir / "final" / ds["id"]
+        fdir_h.mkdir(parents=True, exist_ok=True)
+        atomic_write_json(fdir_h / "predictions.json", {"dataset_id": ds["id"], "scores": scores})
+        out.append({"dataset_id": ds["id"], "sha256": sha, "mode": "predict", "frozen_candidates": rows,
+                    "best_in_spaces": [{"candidate_id": c, "predictive_nll": s["predictive_nll"], "rmse": s["rmse"],
+                                        "structure": allsubs[c]["submission"].get("rationale")} for c, s in top],
+                    "development_aicc_best_in_spaces": [{"candidate_id": c, "predictive_nll": s["predictive_nll"],
+                                                         "rank_among_space": 1 + sum(1 for x in space_ok.values() if
+                                                                                     x["predictive_nll"] < s["predictive_nll"] - 1e-9)}
+                                                        for c, s in dev_best],
+                    "n_space_fitted": len(space_ok), "n_fits_run": res["n_fits_run"],
+                    "interpretation": "Parameter transfer: every candidate is fitted once on the development runs, then "
+                                      "the held-out run is simulated with those parameters (no refitting) and scored by "
+                                      "its Gaussian log-likelihood under the development noise estimate (lower "
+                                      "predictive_nll is better). Rank is among all members of the declared enumeration "
+                                      "spaces scored the same way."})
+    return out
+
+
 def final_evaluate(run: Run, workers: int | None = None) -> dict:
     if run.state().get("phase") not in ("frozen", "final_evaluated"):
         raise InvestigationError("final evaluation requires a frozen run")
@@ -827,6 +996,10 @@ def final_evaluate(run: Run, workers: int | None = None) -> dict:
         raise InvestigationError("no held-out dataset configured")
     code = code_identity()["sha256"]
     out = {"created_at": now(), "frozen_at": frozen["frozen_at"], "code_sha256": code, "datasets": []}
+    mode = run.config()["config_snapshot"].get("final_evaluation", {}).get("mode", "transfer_refit")
+    if mode == "predict":
+        out["datasets"] = _predict_holdout(run, frozen, hold, workers)
+        hold = []
     for h in hold:
         ds, sha = load_dataset(REPO / h["path"])
         if sha != h["sha256"]:
@@ -835,13 +1008,8 @@ def final_evaluate(run: Run, workers: int | None = None) -> dict:
         fdir = run.dir / "final" / ds["id"]
         fdir.mkdir(parents=True, exist_ok=True)
         # reference: every member of the declared spaces, fitted on the held-out run (shared cache across arms)
-        space_subs = {}
-        for sp in m["enumeration_spaces"]:
-            for sub in enumerate_space(json.loads((REPO / sp["path"]).read_text())):
-                space_subs[f"S:{sub['name']}"] = {"submission": sub}
-        frozen_subs = {f"F:{cid}": {"submission": s} for cid, s in frozen["candidates"].items()}
-        allsubs = dict(space_subs, **frozen_subs)
-        res = _evaluate_on(run, list(allsubs), obs, REPO / h["path"], workers, record_dir=fdir / "evaluations",
+        allsubs = _final_subs(run, frozen)
+        res = _evaluate_on(run, list(allsubs), obs, [REPO / h["path"]], workers, record_dir=fdir / "evaluations",
                            subs=allsubs)
         ss = [s for s in res["summaries"] if s["status"] == FITTED]
         ss.sort(key=lambda s: s["aicc"])

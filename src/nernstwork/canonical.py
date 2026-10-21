@@ -47,6 +47,7 @@ def _reaction_sig(rxn: dict, label, bounds_table, with_chem: bool):
         "out": sorted([label(t["species"]), float(t["coeff"])] for t in rxn["products"]),
         "fam": rl["family"],
         "pot_Eref": _f(rl["potential_dependence"]["E_ref_V"]) if rl.get("potential_dependence") else None,
+        **({"T_ref": _f(rl["temperature_dependence"]["T_ref_C"])} if rl.get("temperature_dependence") else {}),
         "ph_ref": _f(rl["ph_dependence"]["pH_ref"]) if rl.get("ph_dependence") else None,
         "tmod": rl["time_modulation"]["kind"] if rl.get("time_modulation") else None,
         "rev": bool(rxn.get("reversible", False)),
@@ -80,6 +81,8 @@ def _serialize(mech: dict, obs_map: dict, label, bounds_table, with_chem: bool):
         d = {"id": label(s["id"]), "observable": bool(s.get("observable", True))}
         if with_chem:
             d["ox"] = _f(s.get("N_oxidation_state"))
+            if s.get("composition") is not None:
+                d["comp"] = {e: float(v) for e, v in sorted(s["composition"].items())}
         species.append(d)
     species.sort(key=lambda d: d["id"])
     om = {ch: sorted(label(x) for x in v) for ch, v in sorted(obs_map.items())}

@@ -173,6 +173,9 @@ def translate_fit(fit_res: dict, validation: dict, compiled) -> dict:
     mine = validation["canonical_map"]["labels"]
     tr = fit_res["trajectory"]
     out["trajectory"] = {"t_min": tr["t_min"], "species": {sp: tr["species"][label_to_stored[lab]] for sp, lab in mine.items()}}
+    if "trajectories" in fit_res:
+        out["trajectories"] = {ds: dict(t, species={sp: t["species"][label_to_stored[lab]] for sp, lab in mine.items()})
+                               for ds, t in fit_res["trajectories"].items()}
     out["canonical_species"] = dict(mine)
     return out
 
@@ -207,11 +210,16 @@ def annotate(sub: dict, validation: dict, fit_res: dict, obs: ObservationSet, pr
     tr = fit_res["trajectory"]
     t = np.array(tr["t_min"])
     Y = {s: np.array(v) for s, v in tr["species"].items()}
-    total0 = sum(obs.c0.values())
+    # amounts are weighted by the conserved quantity: N-equivalents (weight 1), or atoms of the first conserved element
+    elements = (mech.get("conservation") or {}).get("elements")
+    w = {s["id"]: ((s.get("composition") or {}).get(elements[0], 0.0) if elements else 1.0) for s in mech["species"]}
+    total0 = sum(w.get(s, 1.0) * v for s, v in obs.c0.items())
     out = {"unobserved_species": unobs, "hidden_intermediates": hidden, "unobserved_terminal": terminal}
+    if elements:
+        out["basis_element"] = elements[0]
     flags = []
     if hidden:
-        h = sum(Y[s] for s in hidden)
+        h = sum(w[s] * Y[s] for s in hidden)
         i = int(np.argmax(h))
         frac = float(h[i] / total0)
         out["peak_hidden_fraction_of_total_N"] = frac
@@ -220,10 +228,10 @@ def annotate(sub: dict, validation: dict, fit_res: dict, obs: ObservationSet, pr
         if cap is not None and frac > cap:
             flags.append(f"hidden pool peaks at {frac:.2f} of total N (> {cap}; {protocol['plausibility'].get('max_hidden_fraction_source', '')})")
     if unobs:
-        u = sum(Y[s] for s in unobs)
+        u = sum(w[s] * Y[s] for s in unobs)
         out["unobserved_N_end_mM"] = float(u[-1])
         out["unobserved_N_max_mM"] = float(u.max())
-    pred_closure = sum(Y[s] for s in observed) / total0
+    pred_closure = sum(w[s] * Y[s] for s in observed) / total0
     out["predicted_observed_closure_end"] = float(pred_closure[-1])
     for p in fit_res["uncertainty"]["params"]:
         if p["at_bound"]:

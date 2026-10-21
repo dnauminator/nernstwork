@@ -51,6 +51,8 @@ def main(argv=None) -> int:
     sp.add_argument("--run-id")
     cmd("evidence")
     cmd("submit")
+    cmd("submit-space")
+    cmd("plan")
     sp = cmd("evaluate")
     sp.add_argument("--ids", nargs="*")
     sp.add_argument("--workers", type=int)
@@ -117,6 +119,14 @@ def dispatch(a):
     if c == "submit":
         d = _stdin()
         return inv.submit(r, d.get("candidates", []), d.get("origin", {}))
+    if c == "submit-space":
+        d = _stdin()
+        return inv.submit_space(r, d.get("space", {}), d.get("origin", {}))
+    if c == "plan":
+        from .planner import plan
+
+        d = _stdin()
+        return plan(r, d.get("designs") or None, d.get("candidate_ids") or None, int(d.get("max_models", 6)))
     if c == "evaluate":
         return inv.evaluate(r, a.ids or None, a.workers)
     if c == "summaries":

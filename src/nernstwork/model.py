@@ -14,7 +14,7 @@ from dataclasses import dataclass, field
 import numpy as np
 from scipy.integrate import solve_ivp
 
-from .mechanism import F, R, validate_mechanism
+from .mechanism import F, R, T_EPS_MIN, validate_mechanism
 
 # Outcome statuses shared by the evaluator, the store and the agent tools.
 INVALID_SUBMISSION = "invalid_submission"  # schema or structural error in what was submitted
@@ -38,6 +38,8 @@ DEFAULT_BOUNDS = {
     "alpha": [-1.0, 3.0],
     "order": [0.0, 3.0],
     "ph_order": [-2.0, 2.0],
+    "Ea": [0.0, 600.0],  # kJ/mol (Arrhenius temperature dependence)
+    "n_avrami": [0.3, 4.0],  # Avrami exponent
 }
 
 
@@ -59,7 +61,7 @@ class _RHSBudget(Exception):
 @dataclass
 class FreeParam:
     name: str  # e.g. "R1.k", or "tie:tau_cat" for a tie group
-    kind: str  # k, K, k_mt, tau_min, alpha, order, ph_order
+    kind: str  # k, K, k_mt, tau_min, alpha, order, ph_order, Ea, n_avrami
     bounds_key: str  # key into the protocol bounds table
     lo: float
     hi: float
@@ -87,6 +89,7 @@ class Conditions:
     T_C: float
     n_potentials: int = 1
     n_pH: int = 1
+    n_temperatures: int = 1
 
 
 @dataclass
@@ -130,8 +133,8 @@ class Compiled:
                     vals[j][slot] = v
         return vals
 
-    def _rate_arrays(self, theta):
-        cond = self.conditions
+    def _rate_arrays(self, theta, cond: Conditions | None = None):
+        cond = cond or self.conditions
         vals = self._resolved(theta)
         nr = len(vals)
         k = np.empty(nr)
@@ -142,13 +145,15 @@ class Compiled:
                 kk *= math.exp(v["alpha"] * F * (v["E_ref_V"] - cond.E_V) / (R * T))
             if "ph_order" in v:
                 kk *= 10 ** (-v["ph_order"] * (cond.pH - v["pH_ref"]))
+            if "Ea" in v:
+                kk *= math.exp(-v["Ea"] * 1e3 / R * (1.0 / (cond.T_C + 273.15) - 1.0 / v["T_ref_K"]))
             if "k_mt" in v:
                 kk = 1.0 / (1.0 / kk + 1.0 / v["k_mt"])
             k[j] = kk
         return vals, k
 
-    def make_rhs(self, theta):
-        vals, kvec = self._rate_arrays(theta)
+    def make_rhs(self, theta, cond: Conditions | None = None):
+        vals, kvec = self._rate_arrays(theta, cond)
         S = self.S
         uni_j, uni_s, lang_j, lang_s, lang_K, gen = [], [], [], [], [], []
         for j, (fam, terms) in enumerate(zip(self.families, self.reactant_terms)):
@@ -174,7 +179,10 @@ class Compiled:
         deact = np.array([j for j, m in enumerate(self.tmod) if m == "deactivation"], int)
         tau_act = np.array([vals[j]["tau_min"] for j in act], float)
         tau_deact = np.array([vals[j]["tau_min"] for j in deact], float)
-        has_t = len(act) + len(deact) > 0
+        avr = np.array([j for j, m in enumerate(self.tmod) if m == "avrami"], int)
+        n_avr = np.array([vals[j]["n_avrami"] for j in avr], float)
+        k_avr = kvec[avr] if len(avr) else np.zeros(0)
+        has_t = len(act) + len(deact) + len(avr) > 0
 
         def rhs(t, y):
             c = np.maximum(y, 0.0)
@@ -191,19 +199,24 @@ class Compiled:
                     r[act] *= 1.0 - np.exp(-t / tau_act)
                 if len(deact):
                     r[deact] *= np.exp(-t / tau_deact)
+                if len(avr):
+                    # JMAK: g = n (k t)^(n-1), with the step's effective k; common time origin t = 0
+                    r[avr] *= n_avr * (k_avr * max(t, T_EPS_MIN)) ** (n_avr - 1.0)
             return S @ r
 
         return rhs
 
-    def simulate(self, theta, t_eval, c0: dict, rtol=1e-8, atol=1e-10, method="LSODA", max_rhs: int | None = None) -> np.ndarray:
-        """Concentrations (n_species, len(t_eval)) in mM-N. Raises SolverFailure.
+    def simulate(self, theta, t_eval, c0: dict, rtol=1e-8, atol=1e-10, method="LSODA", max_rhs: int | None = None,
+                 conditions: Conditions | None = None) -> np.ndarray:
+        """Amounts (n_species, len(t_eval)) on the dataset basis (mM-N for electrochemistry). Raises SolverFailure.
 
         max_rhs caps right-hand-side evaluations per solve (a deterministic compute budget): parameter sets that make the
-        system pathologically stiff fail like any other solver failure instead of running for hours.
+        system pathologically stiff fail like any other solver failure instead of running for hours. `conditions`
+        overrides the compiled conditions (one experiment of a multi-temperature fit, or a planned design).
         """
         t_eval = np.asarray(t_eval, float)
         y0 = np.array([float(c0.get(s, 0.0)) for s in self.species])
-        rhs = self.make_rhs(theta)
+        rhs = self.make_rhs(theta, conditions)
         if max_rhs:
             inner, calls = rhs, [0]
 
@@ -253,8 +266,14 @@ def _param_entries(rxn: dict):
         yield "alpha", None, rl["potential_dependence"]["alpha"], "alpha"
     if rl.get("ph_dependence"):
         yield "ph_order", None, rl["ph_dependence"]["order"], "ph_order"
-    if rl.get("time_modulation"):
-        yield "tau_min", None, rl["time_modulation"]["tau_min"], "tau_min"
+    if rl.get("temperature_dependence"):
+        yield "Ea", None, rl["temperature_dependence"]["Ea_kJ_mol"], "Ea"
+    tm = rl.get("time_modulation")
+    if tm:
+        if tm["kind"] == "avrami":
+            yield "n_avrami", None, tm["n"], "n_avrami"
+        else:
+            yield "tau_min", None, tm["tau_min"], "tau_min"
     if rl["family"] == "power_law":
         for sp, o in rl.get("orders", {}).items():
             yield "order", sp, o, "order"
@@ -306,8 +325,12 @@ def compile_mechanism(mech: dict, conditions: Conditions, protocol_bounds: dict 
                 insufficient.append(f"{rxn['id']}: ph_dependence needs a pH; the dataset reports none")
             elif not phd["order"].get("fixed") and conditions.n_pH < 2:
                 insufficient.append(f"{rxn['id']}: free pH order cannot be estimated from data at a single pH")
+        td = rl.get("temperature_dependence")
+        if td and not td["Ea_kJ_mol"].get("fixed") and conditions.n_temperatures < 2:
+            insufficient.append(f"{rxn['id']}: free Ea cannot be estimated from data at a single temperature (it is "
+                                "confounded with k); fit several temperatures jointly, fix Ea, or drop the term")
         e = rxn.get("electrons")
-        if rl.get("time_modulation") and e == 0:
+        if rl.get("time_modulation") and rl["time_modulation"]["kind"] != "avrami" and e == 0:
             warnings.append(f"{rxn['id']}: catalyst-state time modulation on a non-electrochemical step (electrons = 0), "
                             "e.g. crossover or volatilization would not deactivate with the catalyst")
         states = [ox.get(t["species"]) for t in rxn["reactants"] + rxn["products"]]
@@ -359,6 +382,8 @@ def compile_mechanism(mech: dict, conditions: Conditions, protocol_bounds: dict 
             slot_vals["E_ref_V"] = rl["potential_dependence"]["E_ref_V"]
         if rl.get("ph_dependence"):
             slot_vals["pH_ref"] = rl["ph_dependence"]["pH_ref"]
+        if rl.get("temperature_dependence"):
+            slot_vals["T_ref_K"] = rl["temperature_dependence"]["T_ref_C"] + 273.15
         for slot, sp, prm, kind in _param_entries(rxn):
             bkey = _bounds_key(kind, rxn)
             plo, phi = bounds_table[bkey]

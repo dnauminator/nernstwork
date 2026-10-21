@@ -9,7 +9,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-COLORS = {"NO3": "#1f77b4", "NO2": "#ff7f0e", "NH3": "#2ca02c", "N2": "#9467bd", "N2O": "#d62728"}
+from .data import basis_of, initial_amounts
+
+COLORS = {"NO3": "#1f77b4", "NO2": "#ff7f0e", "NH3": "#2ca02c", "N2": "#9467bd", "N2O": "#d62728",
+          "anatase": "#d62728", "rutile": "#ff7f0e", "Li2TiO3": "#2ca02c", "Li4Ti5O12": "#1f77b4"}
 
 
 def _xscale(ax, tmax):
@@ -18,7 +21,9 @@ def _xscale(ax, tmax):
 
 
 def plot_dataset(ds: dict, path: Path):
-    c0 = sum(ds["conditions"]["c0_mM_N"].values())
+    if basis_of(ds["conditions"]) != "mM-N":
+        return _plot_dataset_basis(ds, path)
+    c0 = sum(initial_amounts(ds["conditions"]).values())
     fig, axs = plt.subplots(1, 2, figsize=(11, 4))
     tmax = 0
     for s in ds["series"]:
@@ -50,8 +55,60 @@ def plot_dataset(ds: dict, path: Path):
     plt.close(fig)
 
 
+def _plot_dataset_basis(ds: dict, path: Path):
+    """Non-electrochemical basis (e.g. mol per mol Ti): measured series on linear and logarithmic time axes."""
+    unit = basis_of(ds["conditions"])
+    fig, axs = plt.subplots(1, 2, figsize=(11, 4))
+    for s in ds["series"]:
+        t = [a for a, b in zip(s["t_min"], s["y"]) if b is not None]
+        y = [b for b in s["y"] if b is not None]
+        for ax in axs:
+            ax.plot(t, y, "o-", ms=4, color=COLORS.get(s["species"]), label=s["species"])
+    T = ds["conditions"].get("temperature_C")
+    axs[0].set_title(f"{ds['id']} ({T} C): measured series")
+    axs[1].set_title("same, logarithmic time")
+    axs[1].set_xscale("log")
+    for ax in axs:
+        ax.set_xlabel("time / min")
+        ax.set_ylabel(unit)
+        ax.legend(fontsize=8)
+    fig.tight_layout()
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=90)
+    plt.close(fig)
+
+
+def _plot_fits_joint(obs, fits: list[tuple[str, dict]], path: Path, title: str = ""):
+    """Joint fit: one row per experiment (e.g. temperature), one column per measured channel."""
+    chans = obs.channel_names()
+    fig, axs = plt.subplots(len(obs.parts), len(chans), figsize=(3.4 * len(chans), 2.9 * len(obs.parts)), squeeze=False)
+    styles = ["-", "--", ":", "-."]
+    for r, part in enumerate(obs.parts):
+        by = {c.name: c for c in part.channels}
+        for k, ch in enumerate(chans):
+            ax = axs[r][k]
+            if ch in by:
+                ax.plot(by[ch].t, by[ch].y, "ko", ms=3, label="data", zorder=5)
+            for i, (name, fr) in enumerate(fits):
+                tr = (fr.get("trajectories") or {}).get(part.dataset_id)
+                if not tr:
+                    continue
+                y = np.sum([tr["species"][s] for s in fr["_mapping"][ch]], axis=0)
+                ax.plot(tr["t_min"], y, styles[i % 4], color=f"C{i}", label=name)
+            ax.set_title(f"{ch} at {part.conditions.T_C:g} C", fontsize=9)
+            ax.set_xlabel("time / min")
+    axs[0][0].legend(fontsize=7)
+    fig.suptitle(title)
+    fig.tight_layout()
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=90)
+    plt.close(fig)
+
+
 def plot_fits(obs, fits: list[tuple[str, dict]], path: Path, title: str = ""):
     """Overlay fitted trajectories of several candidates on the data, one panel per channel plus unobserved N."""
+    if hasattr(obs, "parts"):
+        return _plot_fits_joint(obs, fits, path, title)
     chans = obs.channel_names()
     fig, axs = plt.subplots(2, max(2, -(-(len(chans) + 2) // 2)), figsize=(13, 7))
     axs = axs.flat
@@ -99,8 +156,12 @@ def plot_fits(obs, fits: list[tuple[str, dict]], path: Path, title: str = ""):
 
 def plot_residuals(fit_res: dict, path: Path, title: str = ""):
     ch = fit_res["residuals"]["channels"]
-    fig, axs = plt.subplots(1, len(ch), figsize=(4 * len(ch), 3.2))
-    axs = np.atleast_1d(axs)
+    ncol = min(len(ch), 4) if len(ch) > 5 else len(ch)
+    nrow = -(-len(ch) // ncol)
+    fig, axs = plt.subplots(nrow, ncol, figsize=(4 * ncol, 3.2 * nrow))
+    axs = np.atleast_1d(axs).ravel()
+    for ax in axs[len(ch):]:
+        ax.axis("off")
     for ax, (name, d) in zip(axs, ch.items()):
         ax.axhline(0, color="grey", lw=0.5)
         ax.plot(d["t_min"], d["standardized"], "o-", ms=4)

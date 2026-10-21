@@ -1,0 +1,15 @@
+{
+  "protocol_id": "synthesis-mle-v1",
+  "description": "Maximum likelihood for phase-fraction time courses (amounts in mol per mol of the conserved element). Several temperatures are fitted jointly with one parameter vector; independent Gaussian errors with one profiled sigma per measured phase, shared across temperatures (floored); deterministic Latin-hypercube multistart; AICc ranking within identical observation sets. Wider rate-constant bounds than the electrochemical protocol because solid-state steps here run in seconds to minutes.",
+  "exclude_t0": true,
+  "noise": {"model": "profiled_gaussian", "abs_floor_mM": 0.002, "rel_floor": 0.01},
+  "ode": {"method": "LSODA", "rtol": 1e-7, "atol": 1e-9, "max_rhs_evals": 20000},
+  "optimizer": {"seed": "nernstwork-synthesis-v1", "n_starts": 8, "max_nfev": 300, "max_outer": 8,
+                "ftol": 1e-9, "xtol": 1e-9, "gtol": 1e-9, "replicate_tol_nll": 0.01, "max_ode_solves_per_fit": 200000},
+  "bounds": {"k_order1": [0.001, 1000.0], "k_order2": [0.001, 10000.0], "k_other": [0.001, 10000.0], "K": [0.01, 100000.0],
+             "k_mt": [1e-6, 100.0], "tau_min": [0.01, 100000.0], "alpha": [-1.0, 3.0], "order": [0.0, 3.0],
+             "ph_order": [-2.0, 2.0], "Ea": [0.0, 600.0], "n_avrami": [0.3, 4.0]},
+  "profile": {"first_step_log10": 0.02, "first_step_linear_frac": 0.005, "growth": 1.6, "max_steps": 16},
+  "plausibility": {},
+  "ranking": {"criterion": "aicc", "indistinguishable_delta": 2.0, "considerable_delta": 4.0}
+}

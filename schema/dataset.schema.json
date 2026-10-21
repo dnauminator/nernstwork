@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "nernstwork/dataset.schema.json",
   "title": "Dataset",
-  "description": "One electrolysis run: conditions plus time-resolved species concentrations. Used for real (Source Data, digitized) and simulated data alike.",
+  "description": "One experiment: conditions plus time-resolved amounts. Electrochemical runs give amounts in mM of nitrogen (conditions.c0_mM_N); other domains, such as solid-state synthesis, declare conditions.basis and give initial amounts in conditions.c0 on that basis. Used for real (Source Data, digitized) and simulated data alike.",
   "type": "object",
   "required": ["id", "provenance", "conditions", "series"],
   "additionalProperties": false,
@@ -26,7 +26,10 @@
     },
     "conditions": {
       "type": "object",
-      "required": ["potential_V_vs_RHE", "pH", "c0_mM_N"],
+      "anyOf": [
+        { "required": ["potential_V_vs_RHE", "pH", "c0_mM_N"] },
+        { "required": ["basis", "c0", "temperature_C"] }
+      ],
       "additionalProperties": false,
       "properties": {
         "catalyst": { "type": "string" },
@@ -44,6 +47,14 @@
           "additionalProperties": { "type": "number", "minimum": 0 },
           "description": "Initial concentrations keyed by species id, in mM of nitrogen. Unlisted species start at 0."
         },
+        "basis": { "type": "string", "description": "Unit of every amount when it is not mM-N, e.g. 'mol per mol Ti' (formula units per mole of the conserved element). Electrochemical datasets omit it." },
+        "c0": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0 },
+          "description": "Initial amounts keyed by species id, on conditions.basis. Unlisted species start at 0."
+        },
+        "precursors": { "type": "string", "description": "Precursor mixture as prepared, e.g. '5:2 TiO2 (anatase):Li2CO3 molar, pelletized'." },
+        "atmosphere": { "type": "string" },
         "notes": { "type": "string" }
       }
     },
@@ -87,9 +98,10 @@
           }
         },
         "n_basis_note": { "type": "string", "description": "How the N basis of each species (per molecule vs per N atom) was established." },
+        "basis_note": { "type": "string", "description": "How amounts on conditions.basis were derived from the reported quantities (e.g. weight fractions to mol per mol Ti), and what that basis cannot show." },
         "flags": {
           "type": "array",
-          "items": { "type": "string", "enum": ["unobserved_sink_suspected", "noisy", "sparse", "single_species_only", "units_unverified", "potential_unverified"] }
+          "items": { "type": "string", "enum": ["unobserved_sink_suspected", "noisy", "sparse", "single_species_only", "units_unverified", "potential_unverified", "normalised_fractions", "extraction_unverified", "time_origin_uncertain"] }
         }
       }
     }

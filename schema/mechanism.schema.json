@@ -24,6 +24,16 @@
       "minItems": 1,
       "items": { "$ref": "#/$defs/reaction" }
     },
+    "conservation": {
+      "type": "object",
+      "required": ["basis", "elements"],
+      "additionalProperties": false,
+      "description": "Element balance instead of N-equivalents (non-electrochemical domains). Amounts are formula units on the dataset basis, every species declares its composition, and every reaction conserves sum(coeff * composition[e]) for each listed element.",
+      "properties": {
+        "basis": { "const": "elements" },
+        "elements": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[A-Z][a-z]?$" } }
+      }
+    },
     "sinks_to_unobserved": {
       "type": "array",
       "items": { "type": "string" },
@@ -43,7 +53,13 @@
         "observable": { "type": "boolean", "default": true, "description": "False means the species exists in the model but is never measured." },
         "phase": { "type": "string", "enum": ["aq", "gas", "surface", "solid"], "default": "aq" },
         "n_N_per_molecule": { "type": "integer", "minimum": 1, "default": 1, "description": "N atoms per molecule, used only to convert reported units to mM-N (e.g. N2 -> 2)." },
-        "N_oxidation_state": { "type": ["number", "null"], "description": "Mean oxidation state of N. NO3- +5, NO2- +3, NO +2, N2O +1, N2 0, NH2OH -1, NH3/NH4+ -3. Null if unknown (hidden intermediates)." }
+        "N_oxidation_state": { "type": ["number", "null"], "description": "Mean oxidation state of N. NO3- +5, NO2- +3, NO +2, N2O +1, N2 0, NH2OH -1, NH3/NH4+ -3. Null if unknown (hidden intermediates)." },
+        "composition": {
+          "type": "object",
+          "propertyNames": { "pattern": "^[A-Z][a-z]?$" },
+          "additionalProperties": { "type": "number", "minimum": 0 },
+          "description": "Atoms per formula unit of the conserved elements (mechanism.conservation), e.g. {\"Ti\": 5, \"Li\": 4} for Li4Ti5O12. Non-integer values express non-stoichiometry, e.g. Li-deficient Li2-xTiO3."
+        }
       }
     },
     "reaction": {
@@ -126,12 +142,27 @@
         },
         "time_modulation": {
           "type": "object",
-          "required": ["kind", "tau_min"],
+          "required": ["kind"],
           "additionalProperties": false,
-          "description": "Catalyst-state factor g(t) multiplying k. activation: g = 1 - exp(-t/tau) (induction period). deactivation: g = exp(-t/tau) (fouling, pH drift, surface reconstruction). Added after real-data calibration: Liao 2025 Supp. Fig. 49 needs activation (tau about 70 min) and Supp. Fig. 50 needs deactivation (tau about 300-500 min). Also the hook for a catalyst-phase vector that evolves in time.",
+          "description": "Catalyst-state factor g(t) multiplying k. activation: g = 1 - exp(-t/tau) (induction period). deactivation: g = exp(-t/tau) (fouling, pH drift, surface reconstruction). Added after real-data calibration: Liao 2025 Supp. Fig. 49 needs activation (tau about 70 min) and Supp. Fig. 50 needs deactivation (tau about 300-500 min). Also the hook for a catalyst-phase vector that evolves in time. avrami: nucleation-and-growth (JMAK) form using the step's own k and an Avrami exponent n, g = n * (k t)^(n-1), so a lone first-order step A -> B follows alpha = 1 - exp(-(k t)^n) from t = 0, the common time origin (e.g. insertion into the hot zone). n = 1 is plain first order, n < 1 decelerating (diffusion-limited), n > 1 sigmoidal.",
           "properties": {
-            "kind": { "type": "string", "enum": ["activation", "deactivation"] },
-            "tau_min": { "$ref": "#/$defs/parameter" }
+            "kind": { "type": "string", "enum": ["activation", "deactivation", "avrami"] },
+            "tau_min": { "$ref": "#/$defs/parameter" },
+            "n": { "$ref": "#/$defs/parameter", "description": "Avrami exponent (kind avrami only)." }
+          },
+          "allOf": [
+            { "if": { "properties": { "kind": { "enum": ["activation", "deactivation"] } } }, "then": { "required": ["tau_min"], "not": { "required": ["n"] } } },
+            { "if": { "properties": { "kind": { "const": "avrami" } } }, "then": { "required": ["n"], "not": { "required": ["tau_min"] } } }
+          ]
+        },
+        "temperature_dependence": {
+          "type": "object",
+          "required": ["Ea_kJ_mol", "T_ref_C"],
+          "additionalProperties": false,
+          "description": "Arrhenius: k(T) = k * exp(-Ea/R * (1/T - 1/T_ref)), so k is quoted at T_ref. A free Ea needs data at two or more temperatures.",
+          "properties": {
+            "Ea_kJ_mol": { "$ref": "#/$defs/parameter" },
+            "T_ref_C": { "type": "number" }
           }
         },
         "ph_dependence": {

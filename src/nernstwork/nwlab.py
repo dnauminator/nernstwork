@@ -6,7 +6,7 @@ EXPLORATORY: fewer starts and looser tolerances than the official protocol, no c
 numbers come only from the nw_evaluate tool. The toolkit sees the development evidence and nothing else.
 
     import nwlab
-    ds, obs = nwlab.dataset()                 # the development dataset in the evidence pack
+    ds, obs = nwlab.dataset()                 # the development dataset(s) in the evidence pack (several: fitted jointly)
     nwlab.check(candidate)                    # schema, N/electron bookkeeping, unsupported features
     y = nwlab.simulate(candidate)             # trajectories at the candidate's own parameter values
     r = nwlab.quick_fit(candidate)            # exploratory maximum-likelihood fit
@@ -21,7 +21,7 @@ from pathlib import Path
 
 import numpy as np
 
-from nernstwork.data import load_dataset, observation_set
+from nernstwork.data import joint_observation_set, load_dataset
 from nernstwork.evaluate import run_fit, translate_fit, validate_submission
 from nernstwork.model import FITTED, compile_mechanism
 
@@ -45,13 +45,12 @@ def protocol(exploratory: bool = True) -> dict:
 
 
 def dataset(path: str | None = None):
-    if path is None:
-        files = sorted((_evidence() / "datasets").glob("*.json"))
-        if len(files) != 1:
-            raise ValueError(f"expected one development dataset, found {[f.name for f in files]}")
-        path = files[0]
-    ds, sha = load_dataset(path)
-    return ds, observation_set(ds, sha)
+    """(dataset dict, observation set). With several development datasets (e.g. temperatures) the first value is the
+    list of dataset dicts and the observation set is the joint one the official evaluator fits."""
+    files = [Path(path)] if path else sorted((_evidence() / "datasets").glob("*.json"))
+    items = [load_dataset(f) for f in files]
+    obs = joint_observation_set(items)
+    return (items[0][0] if len(items) == 1 else [ds for ds, _ in items]), obs
 
 
 def _as_candidate(c: dict) -> dict:
@@ -67,7 +66,8 @@ def check(candidate: dict) -> dict:
 
 
 def simulate(candidate: dict, params: dict | None = None, t=None, c0: dict | None = None) -> dict:
-    """Trajectories (mM-N) at the candidate's stated parameter values, optionally overridden by {free-parameter name: value}."""
+    """Trajectories at the candidate's stated parameter values, optionally overridden by {free-parameter name: value}.
+    With several development datasets the result is {dataset id: trajectories}, one per experiment's conditions."""
     cand = _as_candidate(candidate)
     _, obs = dataset()
     comp = compile_mechanism(cand["mechanism"], obs.conditions, protocol(False).get("bounds"))
@@ -79,12 +79,18 @@ def simulate(candidate: dict, params: dict | None = None, t=None, c0: dict | Non
                "tau_min": (rl.get("time_modulation") or {}).get("tau_min"),
                "alpha": (rl.get("potential_dependence") or {}).get("alpha"),
                "ph_order": (rl.get("ph_dependence") or {}).get("order"),
-               "order": (rl.get("orders") or {}).get(sp)}[slot]
+               "order": (rl.get("orders") or {}).get(sp),
+               "Ea": (rl.get("temperature_dependence") or {}).get("Ea_kJ_mol"),
+               "n_avrami": (rl.get("time_modulation") or {}).get("n")}[slot]
         v = (params or {}).get(p.name, prm["value"])
         vals.append(p.to_t(float(v)))
     tt = np.asarray(t if t is not None else np.linspace(0, float(obs.t_union.max()), 200), float)
-    Y = comp.simulate(np.array(vals), tt, c0 or obs.c0)
-    return {"t_min": tt, **{s: Y[i] for i, s in enumerate(comp.species)}}
+    out = {}
+    parts = getattr(obs, "parts", [obs])
+    for part in parts:
+        Y = comp.simulate(np.array(vals), tt, c0 or part.c0, conditions=part.conditions)
+        out[part.dataset_id] = {"t_min": tt, **{s: Y[i] for i, s in enumerate(comp.species)}}
+    return out[parts[0].dataset_id] if len(parts) == 1 else out
 
 
 def quick_fit(candidate: dict, n_starts: int = 4) -> dict:
@@ -108,6 +114,8 @@ def quick_fit(candidate: dict, n_starts: int = 4) -> dict:
         "params": {q["name"]: q["value"] for q in r["uncertainty"]["params"]},
         "trajectory": r["trajectory"], "observation_map": v["observation_map"],
     })
+    if "trajectories" in r:
+        out["trajectories"] = r["trajectories"]
     return out
 
 

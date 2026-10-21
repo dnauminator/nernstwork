@@ -8,6 +8,9 @@ Noise models (protocol["noise"]["model"]):
   legacy_scaled      residuals divided by each channel's maximum, one shared sigma. This is the objective of
                      scripts/calibrate_liao.py; kept only to reproduce the earlier calibration inside this evaluator.
 
+A joint fit (several experiments, e.g. temperatures, one parameter vector) simulates each experiment under its own
+conditions; profiled_gaussian then has one sigma per measured species, shared across experiments.
+
 All three treat points as independent. With 7-18 points per channel from one trajectory, residuals of a misspecified
 model are serially correlated, so information-criterion differences overstate the evidence; adequacy diagnostics
 (runs test, lag-1 autocorrelation) are reported next to every fit for that reason.
@@ -21,6 +24,7 @@ import numpy as np
 from scipy.optimize import least_squares
 from scipy.stats import norm, qmc
 
+from .data import parts_of
 from .model import FITTED, NONCONVERGENCE, SOLVER_FAILURE, Compiled, SolverFailure
 
 PENALTY = 1e4
@@ -42,18 +46,34 @@ class Problem:
         self.max_rhs = int(ode.get("max_rhs_evals", DEFAULT_MAX_RHS_EVALS))
         self.max_solves = int(protocol.get("optimizer", {}).get("max_ode_solves_per_fit", DEFAULT_MAX_ODE_SOLVES))
         self.enforce_budget = False
-        self.t = obs.t_union
-        pos = {float(v): i for i, v in enumerate(self.t)}
+        self.parts = parts_of(obs)
+        self.joint = len(self.parts) > 1
         sp_idx = {s: i for i, s in enumerate(compiled.species)}
-        self.chan = []
-        for ch in obs.channels:
-            self.chan.append((ch, np.array([pos[float(v)] for v in ch.t], int), np.array([sp_idx[s] for s in mapping[ch.name]], int)))
+        self.chan = []  # (channel, positions in its experiment's time grid, species indices)
+        self.chan_part, self.chan_label, self.part_t = [], [], []
+        for pi, part in enumerate(self.parts):
+            pos = {float(v): i for i, v in enumerate(part.t_union)}
+            self.part_t.append(part.t_union)
+            for ch in part.channels:
+                self.chan.append((ch, np.array([pos[float(v)] for v in ch.t], int),
+                                  np.array([sp_idx[s] for s in mapping[ch.name]], int)))
+                self.chan_part.append(pi)
+                self.chan_label.append(f"{part.dataset_id}:{ch.name}" if self.joint else ch.name)
+        self.t = self.part_t[0]
+        # noise groups: one per measured species (shared by the experiments of a joint fit; one per channel otherwise)
+        self.groups = []
+        for ch, _, _ in self.chan:
+            if ch.name not in self.groups:
+                self.groups.append(ch.name)
+        self.chan_group = [self.groups.index(ch.name) for ch, _, _ in self.chan]
         self.n = obs.n_obs
         self.n_ch = len(self.chan)
         noise = protocol.get("noise", {})
         self.noise_model = noise.get("model", "profiled_gaussian")
-        self.floor = np.array([max(noise.get("abs_floor_mM", 0.05), noise.get("rel_floor", 0.01) * ch.scale)
-                               for ch, _, _ in self.chan])
+        floor_ch = [max(noise.get("abs_floor_mM", 0.05), noise.get("rel_floor", 0.01) * ch.scale) for ch, _, _ in self.chan]
+        self.floor = np.array([max(f for f, g in zip(floor_ch, self.chan_group) if g == k) for k in range(len(self.groups))])
+        self.group_scale = [max(ch.scale for (ch, _, _), g in zip(self.chan, self.chan_group) if g == k)
+                            for k in range(len(self.groups))]
         if self.noise_model == "fixed_gaussian":
             spec = noise.get("channels", {})
             self.fixed_sigma = []
@@ -67,27 +87,28 @@ class Problem:
 
     @property
     def n_sigma_params(self) -> int:
-        return {"profiled_gaussian": self.n_ch, "legacy_scaled": 1, "fixed_gaussian": 0}[self.noise_model]
+        return {"profiled_gaussian": len(self.groups), "legacy_scaled": 1, "fixed_gaussian": 0}[self.noise_model]
 
     # ------------------------------------------------------------------ predictions
-    def trajectories(self, theta, t=None):
+    def trajectories(self, theta, t=None, part: int = 0):
         if self.enforce_budget and self.n_ode >= self.max_solves:
             raise FitBudgetExceeded()
         self.n_ode += 1
+        p = self.parts[part]
         try:
-            return self.c.simulate(theta, self.t if t is None else t, self.obs.c0, self.rtol, self.atol, self.method,
-                                   max_rhs=self.max_rhs)
+            return self.c.simulate(theta, self.part_t[part] if t is None else t, p.c0, self.rtol, self.atol, self.method,
+                                   max_rhs=self.max_rhs, conditions=p.conditions if self.joint else None)
         except SolverFailure:
             self.n_ode_fail += 1
             raise
 
     def raw_residuals(self, theta):
-        Y = self.trajectories(theta)
-        return [Y[sidx][:, tpos].sum(axis=0) - ch.y for ch, tpos, sidx in self.chan]
+        Ys = [self.trajectories(theta, part=i) for i in range(len(self.parts))]
+        return [Ys[pi][sidx][:, tpos].sum(axis=0) - ch.y for (ch, tpos, sidx), pi in zip(self.chan, self.chan_part)]
 
     def weights(self, sig):
         if self.noise_model == "profiled_gaussian":
-            return [np.full(len(ch.y), s) for (ch, _, _), s in zip(self.chan, sig)]
+            return [np.full(len(ch.y), sig[g]) for (ch, _, _), g in zip(self.chan, self.chan_group)]
         if self.noise_model == "fixed_gaussian":
             return self.fixed_sigma
         return [np.full(len(ch.y), ch.scale * sig[0]) for ch, _, _ in self.chan]
@@ -101,7 +122,8 @@ class Problem:
     def nll(self, raw, sig) -> float:
         if self.noise_model == "profiled_gaussian":
             tot = 0.0
-            for r, s in zip(raw, sig):
+            for r, g in zip(raw, self.chan_group):
+                s = sig[g]
                 tot += len(r) * 0.5 * math.log(2 * math.pi * s * s) + float(r @ r) / (2 * s * s)
             return tot
         if self.noise_model == "fixed_gaussian":
@@ -115,7 +137,11 @@ class Problem:
 
     def sigma_hat(self, raw):
         if self.noise_model == "profiled_gaussian":
-            return np.array([max(math.sqrt(float(r @ r) / len(r)), f) for r, f in zip(raw, self.floor)])
+            ss, nn = np.zeros(len(self.groups)), np.zeros(len(self.groups))
+            for r, g in zip(raw, self.chan_group):
+                ss[g] += float(r @ r)
+                nn[g] += len(r)
+            return np.array([max(math.sqrt(s / n), f) for s, n, f in zip(ss, nn, self.floor)])
         if self.noise_model == "fixed_gaussian":
             return np.array([])
         rw = np.concatenate([r / ch.scale for r, (ch, _, _) in zip(raw, self.chan)])
@@ -123,7 +149,7 @@ class Problem:
 
     def initial_sigma(self):
         if self.noise_model == "profiled_gaussian":
-            return np.array([max(f, 0.05 * ch.scale) for (ch, _, _), f in zip(self.chan, self.floor)])
+            return np.array([max(f, 0.05 * sc) for sc, f in zip(self.group_scale, self.floor)])
         return np.array([0.05]) if self.noise_model == "legacy_scaled" else np.array([])
 
 
@@ -333,17 +359,17 @@ def residual_diagnostics(prob: Problem, x, sig) -> dict:
     raw = prob.raw_residuals(x)
     wts = prob.weights(sig)
     out, reasons = {}, []
-    for (ch, _, _), r, w in zip(prob.chan, raw, wts):
+    for (ch, _, _), label, r, w in zip(prob.chan, prob.chan_label, raw, wts):
         z = r / w
         lag1 = float(np.corrcoef(z[:-1], z[1:])[0, 1]) if len(z) > 3 and np.std(z[:-1]) > 0 and np.std(z[1:]) > 0 else None
         p = _runs_test(r)
-        out[ch.name] = {"t_min": ch.t.tolist(), "observed": ch.y.tolist(), "predicted": (ch.y + r).tolist(),
+        out[label] = {"t_min": ch.t.tolist(), "observed": ch.y.tolist(), "predicted": (ch.y + r).tolist(),
                         "residual": r.tolist(), "standardized": z.tolist(), "rmse": float(np.sqrt(np.mean(r ** 2))),
                         "max_abs_standardized": float(np.max(np.abs(z))), "runs_test_p": p, "lag1_autocorr": lag1}
         if p is not None and p < 0.05:
-            reasons.append(f"{ch.name}: residual signs cluster (runs test p={p:.3f})")
+            reasons.append(f"{label}: residual signs cluster (runs test p={p:.3f})")
         if lag1 is not None and len(z) >= 8 and lag1 > 0.5:
-            reasons.append(f"{ch.name}: residuals are serially correlated (lag-1 r={lag1:.2f})")
+            reasons.append(f"{label}: residuals are serially correlated (lag-1 r={lag1:.2f})")
     return {"channels": out, "adequacy": "poor" if reasons else "no_systematic_misfit_detected", "adequacy_reasons": reasons,
             "adequacy_rule": "poor if any channel has runs-test p < 0.05, or lag-1 autocorrelation > 0.5 with >= 8 points "
                              "(heuristics with low power at 7-18 points per channel; with a profiled sigma, standardized "
@@ -444,17 +470,23 @@ def fit(prob: Problem, protocol: dict, seed: int) -> dict:
         "theta": x.tolist(), "nll": nll, "n_obs": n, "k_kinetic": prob.c.n_free, "k_noise": prob.n_sigma_params, "k_total": k,
         "aic": 2 * k + 2 * nll, "aicc": aicc, "bic": k * math.log(n) + 2 * nll,
         "noise_model": prob.noise_model,
-        "sigma": ({ch.name: float(s) for (ch, _, _), s in zip(prob.chan, sig)} if prob.noise_model == "profiled_gaussian"
+        "sigma": ({g: float(s) for g, s in zip(prob.groups, sig)} if prob.noise_model == "profiled_gaussian"
                   else ({"shared_scaled": float(sig[0])} if prob.noise_model == "legacy_scaled" else {})),
-        "sigma_at_floor": ([ch.name for (ch, _, _), s, f in zip(prob.chan, sig, prob.floor) if s <= f * (1 + 1e-9)]
+        "sigma_at_floor": ([g for g, s, f in zip(prob.groups, sig, prob.floor) if s <= f * (1 + 1e-9)]
                            if prob.noise_model == "profiled_gaussian" else []),
     })
     out["uncertainty"] = local_uncertainty(prob, x, sig)
     out["residuals"] = residual_diagnostics(prob, x, sig)
-    tmax = float(prob.t.max())
-    tg = dense_grid(tmax, prob.t)
-    Y = prob.trajectories(x, tg)
-    out["trajectory"] = {"t_min": tg.tolist(), "species": {s: Y[i].tolist() for i, s in enumerate(prob.c.species)}}
+    trajs = {}
+    for pi, part in enumerate(prob.parts):
+        tg = dense_grid(float(prob.part_t[pi].max()), prob.part_t[pi])
+        Y = prob.trajectories(x, tg, part=pi)
+        trajs[part.dataset_id] = {"t_min": tg.tolist(), "species": {s: Y[i].tolist() for i, s in enumerate(prob.c.species)},
+                                  "T_C": part.conditions.T_C}
+    first = trajs[prob.parts[0].dataset_id]
+    out["trajectory"] = {"t_min": first["t_min"], "species": first["species"]}
+    if prob.joint:
+        out["trajectories"] = trajs
     out["timing"] = {"cpu_s": time.process_time() - t0, "wall_s": time.perf_counter() - c0,
                      "n_ode_solves": prob.n_ode, "n_ode_failures": prob.n_ode_fail}
     return out

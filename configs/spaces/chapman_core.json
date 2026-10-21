@@ -1,0 +1,33 @@
+{
+  "space_id": "chapman-core-v1",
+  "kind": "synthesis",
+  "description": "Code-authored baseline for TiO2 (anatase) + Li2CO3 -> Li2TiO3 -> Li4Ti5O12: titanium-only balance with lithium implicit (Li2CO3 never limits), textbook formulas, every step first order in each reactant phase with its own Arrhenius Ea, and an optional Avrami (JMAK) factor on the main steps. It is the fixed reference set every arm is ranked against.",
+  "conservation": {"basis": "elements", "elements": ["Ti"]},
+  "species": [
+    {"id": "anatase", "label": "TiO2 (anatase)", "role": "reactant", "phase": "solid", "composition": {"Ti": 1}},
+    {"id": "Li2CO3", "label": "Li2CO3", "role": "reactant", "phase": "solid", "observable": false, "composition": {"Li": 2}},
+    {"id": "rutile", "label": "TiO2 (rutile)", "role": "intermediate", "phase": "solid", "composition": {"Ti": 1}},
+    {"id": "Li2TiO3", "label": "Li2TiO3", "role": "intermediate", "phase": "solid", "composition": {"Ti": 1, "Li": 2}},
+    {"id": "Li4Ti5O12", "label": "Li4Ti5O12 (spinel)", "role": "product", "phase": "solid", "composition": {"Ti": 5, "Li": 4}}
+  ],
+  "initial": ["anatase", "Li2CO3"],
+  "steps": [
+    {"id": "A1", "reactants": {"anatase": 1}, "products": {"Li2TiO3": 1}, "rate_laws": ["first_order", "avrami"],
+     "support": [{"basis": "speculative", "note": "baseline: lithiation of anatase to Li2TiO3, Li source implicit"}]},
+    {"id": "A2", "reactants": {"Li2TiO3": 2, "anatase": 3}, "products": {"Li4Ti5O12": 1}, "rate_laws": ["first_order", "avrami"],
+     "support": [{"basis": "speculative", "note": "baseline: Li2TiO3 + anatase to spinel"}]},
+    {"id": "A3", "reactants": {"anatase": 1}, "products": {"rutile": 1}, "rate_laws": ["first_order", "avrami"],
+     "support": [{"basis": "speculative", "note": "baseline: anatase to rutile transformation"}]},
+    {"id": "A4", "reactants": {"Li2TiO3": 2, "rutile": 3}, "products": {"Li4Ti5O12": 1}, "rate_laws": ["first_order", "avrami"],
+     "support": [{"basis": "speculative", "note": "baseline: Li2TiO3 + rutile to spinel"}]},
+    {"id": "A5", "reactants": {"rutile": 1}, "products": {"Li2TiO3": 1}, "rate_laws": ["first_order"],
+     "support": [{"basis": "speculative", "note": "baseline: lithiation of rutile"}]},
+    {"id": "A6", "reactants": {"anatase": 5}, "products": {"Li4Ti5O12": 1}, "rate_laws": ["first_order"],
+     "support": [{"basis": "speculative", "note": "baseline: direct spinel formation from anatase"}]}
+  ],
+  "require": {"produced": ["Li2TiO3", "rutile", "Li4Ti5O12"]},
+  "max_steps": 5,
+  "temperature_dependence": {"Ea": "per_step", "T_ref_C": 712.5},
+  "avrami_exponent": "per_step",
+  "max_members": 600
+}

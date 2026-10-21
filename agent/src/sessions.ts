@@ -48,6 +48,10 @@ export async function makeRuntime(): Promise<ModelRuntime> {
 	} else if (rt.hasConfiguredAuth("anthropic")) {
 		credentialSource = { anthropic: rt.isUsingOAuth("anthropic") ? "stored OAuth (Pi auth.json)" : "stored API key (Pi auth.json)" };
 	}
+	// Other providers (e.g. openrouter for the cross-model arm) use the stored Pi credential as-is.
+	for (const p of ["openrouter", "google"]) {
+		if (rt.hasConfiguredAuth(p)) credentialSource[p] = rt.isUsingOAuth(p) ? "stored OAuth (Pi auth.json)" : "stored API key (Pi auth.json)";
+	}
 	return rt;
 }
 

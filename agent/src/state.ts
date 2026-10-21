@@ -15,6 +15,7 @@ export interface HostData {
 	analysisOpen: boolean;
 	roundCap: number | null;
 	roundSubmitted: number;
+	spacesSubmitted?: number; // propose_space arm: hypothesis spaces accepted so far
 	stepsDone: string[];
 	sessionFile?: string;
 	reviewerSessions: string[];
