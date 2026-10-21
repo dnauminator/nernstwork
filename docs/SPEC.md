@@ -163,7 +163,7 @@ W5 now carries these values: R1 NO3 -> NO2 k = 0.0294 min^-1, alpha 0 (not repor
 3. Plausibility rules: element balance; non-negative driving force from Materials Project thermochemistry (as ARROWS3 uses); at most two reactants per step (pairwise-first, per Miura); a cap on the fraction of material that cannot be assigned to an observed phase.
 4. A converter from `Exp.json` (verified entries only) to the dataset schema, with a flag for phase-label noise.
 
-**What is not new.** Pairwise-reaction reasoning and learning from failed syntheses are ARROWS3's contribution. What we can add is uncertainty and identifiability reporting, an explicit statement of what is not observable, an LLM proposer that cites literature, and next-experiment planning with an information-gain criterion. State this plainly in the pitch. A web search and an OpenAlex forward-citation pass (Oct 21; `scripts/openalex_citation_pass.py`, NEXT_STEPS section 2e) found no paper combining a kinetic reaction network, in situ XRD phase tracking and Bayesian inference for thermal solid-state synthesis from precursors. The closest is a 2026 J. Phys. Chem. C paper that applies Bayesian model selection to time-resolved synchrotron XRD of a solid-gas oxidation (SrCrO2.75 to SrCrO3), so the claim must be limited to precursor synthesis and to the sources searched. Do not state it more strongly than that.
+**What is not new.** Pairwise-reaction reasoning and learning from failed syntheses are ARROWS3's contribution. What we can add is uncertainty and identifiability reporting, an explicit statement of what is not observable, an LLM proposer that cites literature, and next-experiment planning with an information-gain criterion. State this plainly in the pitch. A web search and an OpenAlex forward-citation pass (Oct 21; `scripts/openalex_citation_pass.py`, PROGRESS.md section 2e) found no paper combining a kinetic reaction network, in situ XRD phase tracking and Bayesian inference for thermal solid-state synthesis from precursors. The closest is a 2026 J. Phys. Chem. C paper that applies Bayesian model selection to time-resolved synchrotron XRD of a solid-gas oxidation (SrCrO2.75 to SrCrO3), so the claim must be limited to precursor synthesis and to the sources searched. Do not state it more strongly than that.
 
 ## 8. Real-data inventory and validation protocol
 
@@ -222,9 +222,11 @@ The interface is the four schemas. Neither side should need to change the other'
 
 ## 11. Timeline to Oct 21-22
 
+This section is the plan as written on Oct 20. The event has started; the current task list, owners and cut list are in `docs/NEXT_STEPS.md`.
+
 Decision (Daniel, Oct 20): no fitter work before the event. Starting the fitter is the project's start, so it begins at kickoff on Oct 21. The domain is now synthesis pathways (section 1b); the NO3RR worlds stay as the test bed.
 
-- Before the event: data and reading only. Inspect the NTMO and LTOPO `Exp.json` files, resolve the 188-versus-149 count, read ARROWS3 and Miura (the reading list is in NEXT_STEPS), keep the NO3RR datasets and worlds as they are.
+- Before the event: data and reading only. Inspect the NTMO and LTOPO `Exp.json` files, resolve the 188-versus-149 count, read ARROWS3 and Miura (the reading list is in PROGRESS.md section 2), keep the NO3RR datasets and worlds as they are.
 - Day 1 (Oct 21): look at the curated datasets at kickoff (decision rule in section 11b); extend the schema to phases and elements (7e); converter for the YBCO table; fitter (MLE + AIC/BIC) and enumeration baseline, first on W1-W3 and W5 as regression tests of the engine, then on YBCO; Jarrod's proposer/critic once the fitter returns results; start the marimo app.
 - Day 2 (Oct 22): identifiability output, next-experiment planning, headline figure, video and one-pager by midday, buffer before the submission deadline (stated as 5 pm PT; confirm on the event page). The synthesis-to-catalyst coupling is shown as a labelled illustration only. Cut it first if time runs short.
 

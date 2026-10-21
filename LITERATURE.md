@@ -51,7 +51,7 @@ Local layout: `literature/01_method_prior_art/`, `literature/02_kinetics_benchma
 
 ## 5. Solid-state synthesis (Oct 20 pivot)
 
-Read Oct 20; see `docs/SPEC.md` section 7e and `docs/NEXT_STEPS.md` section 2b.
+Read Oct 20; see `docs/SPEC.md` section 7e and `docs/PROGRESS.md` section 2b.
 
 | Paper | Link | Use | Local file |
 |---|---|---|---|

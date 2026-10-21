@@ -2,7 +2,7 @@
 
 Infer branched reaction networks (mechanism, rate laws, uncertainty, identifiability, next experiment) from multi-species data. Direction as of Oct 20: solid-state synthesis pathways (precursor set and temperature to phases), with the electrochemical nitrate reduction work kept as the test bed and a labelled downstream illustration. See `docs/SPEC.md` section 1b. Built for the Open Scientific Intelligence Hackathon, Oct 21-22 2026. Name is a placeholder.
 
-Read `docs/SPEC.md` first, then `docs/NEXT_STEPS.md`. To add a digitized figure see `docs/DIGITIZING.md`.
+Read `docs/SPEC.md` first, then `docs/NEXT_STEPS.md` (what to do now); `docs/PROGRESS.md` is the dated record of findings and decisions. To add a digitized figure see `docs/DIGITIZING.md`.
 
 ## Layout
 
