@@ -49,6 +49,24 @@ Local layout: `literature/01_method_prior_art/`, `literature/02_kinetics_benchma
 | Bagger & Wuttke, Atomistic catalytic reaction networks: case study on electrochemical reduction of CO, NO & combinations, PCCP 27, 25433 (2025) | doi:10.1039/d5cp03701h | Isomer-generator enumeration of surface intermediates; atomistic, background only | d5cp03701h.pdf |
 | Horno, Garcia-Hernandez, Gonzalez-Fernandez, Digital simulation of electrochemical processes by the network approach, J. Electroanal. Chem. 352, 83 (1993) | DOI not printed in the extracted text; file name suggests the ScienceDirect id 002207289380256H | Diffusion-reaction simulation; out of scope | 1-s2.0-002207289380256H-main.pdf |
 
+## 5. Solid-state synthesis (Oct 20 pivot)
+
+Read Oct 20; see `docs/SPEC.md` section 7e and `docs/NEXT_STEPS.md` section 2b.
+
+| Paper | Link | Use | Local file |
+|---|---|---|---|
+| Szymanski, Nevatia, Bartel, Zeng, Ceder, Autonomous and dynamic precursor selection for solid-state materials synthesis (ARROWS3), Nat. Commun. (2023) | doi:10.1038/s41467-023-42329-9 | Data source (YBCO, NTMO, LTOPO via the ARROWS3 repository) and closest prior method. Source Data xlsx holds graph data only | s41467-023-42329-9.pdf, 41467_2023_42329_MOESM1_ESM.pdf, 41467_2023_42329_MOESM4_ESM.xlsx |
+| Szymanski et al., An autonomous laboratory for the accelerated synthesis of novel materials (A-Lab), Nature 624, 86 (2023) | doi:10.1038/s41586-023-06734-w | 36 of 57 targets (published abstract). SI zip holds a recipes CSV and refinement results | s41586-023-06734-w.pdf, 41586_2023_6734_MOESM1_ESM.pdf, 41586_2023_6734_MOESM3_ESM.zip |
+| Miura, Bartel, ..., Ceder, Sun, Observing and modeling the sequential pairwise reactions that drive solid-state ceramic synthesis | arXiv:2009.10896 | Pairwise-reaction model; in situ XRD of YBCO (BaCO3 vs BaO2) | 2009.10896v3.pdf |
+| Walters, McDermott, Rendy, Fei, Persson, Ceder, The Precursor Genome: a pairwise reaction dataset for solid-state synthesis | arXiv:2607.09903; github.com/lauren-walters/precursor-genome; doi:10.5281/zenodo.21285546 (CC BY 4.0, links from the paper, not yet opened) | 1,035 pairwise reactions, one 1 h dwell at one temperature each; prior for proposer and critic | 2607.09903v1.pdf |
+| Fei, McDermott, Rom, Wang, Ceder, Dara: automated multiple-hypothesis phase identification and refinement from powder XRD | arXiv:2510.19667; github.com/idocx/dara | Source of Precursor Genome labels; alternative hypotheses as label noise | 2510.19667v2.pdf |
+| Leeman, Liu, Stiles, Lee, Bhatt, Schoop, Palgrave, Challenges in high-throughput inorganic materials prediction and autonomous synthesis, PRX Energy 3, 011002 (2024) | doi:10.1103/PRXEnergy.3.011002 | Critique of A-Lab phase assignments; label-noise limitation | PRXEnergy.3.011002.pdf |
+| Hong, Jang, Bae, et al., Retro-Forge: a multi-step pairwise retrosynthesis framework for solid-state materials synthesis (ICML 2026) | no link found | Possible proposer; target-to-precursor task | 78_Retro_Forge_A_Multi_Step_Pa.pdf |
+| Hu, Beauvais, Kamm, Mullens, Sanchez Monserrate, Vornholt, Chupas, Chapman, Resolving fast relative kinetics in inorganic solid-state synthesis, J. Am. Chem. Soc. 145, 26545 (2023) | doi:10.1021/jacs.3c10916 | Time-resolved TiO2 + Li2CO3 -> Li4Ti5O12 at four temperatures, Avrami fits; digitize Figs. 2-3 | ja3c10916.pdf, ja3c10916_si_001.pdf |
+| Macchietti, Carta, Delogu, Grepioni, Emmerling, Casali, Scaling up mechanochemical reactions: linking crystalline phase evolution studied via in situ PXRD with kinetics from MCR-ALS, Chem. Sci. 17, 12047 (2026) | doi:10.1039/d6sc01158f | MCR-ALS with kinetic constraints; mechanochemical, low relevance | d6sc01158f.pdf, d6sc01158f1_suppl.pdf |
+| Rosser, Farris, Leonard, Predictive machine learning models trained on experimental datasets for electrochemical nitrogen reduction, Digital Discovery 3, 667 (2024) | doi:10.1039/d3dd00151b | ML on 520 N2-reduction conditions; not nitrate or kinetic | d3dd00151b.pdf, d3dd00151b1_suppl.pdf |
+| Gao et al., Breaking adsorption-energy scaling limitations of electrocatalytic nitrate reduction on intermetallic CuPd nanocubes by machine-learned insights, Nat. Commun. (2022) | doi:10.1038/s41467-022-29926-w | Ordered B2 versus random alloy as a synthesis-controlled catalyst state for NO3RR; endpoint FE only | s41467-022-29926-w.pdf, 41467_2022_29926_MOESM1_ESM.pdf |
+
 ## Context
 
 - Review: Recent advances in mechanistic studies and catalyst development for electrochemical nitrate reduction to ammonia, Commun. Chem. (2025), https://www.nature.com/articles/s42004-025-01864-w
