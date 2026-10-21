@@ -1,0 +1,17 @@
+{
+  "space_id": "liao-core-v1",
+  "description": "First-order 1:1 steps among NO3-, NO2-, NH4+ (lumped as NH3) and one unmeasured terminal N product (SINK, N oxidation state 0, i.e. N2/N2O-like), reduction direction only, crossed with three catalyst-state options (none; one deactivation time constant shared by all steps; one activation time constant shared by all steps). This is the model class of scripts/calibrate_liao.py and worlds/W2, made exhaustive.",
+  "species": [
+    {"id": "NO3", "label": "NO3-", "role": "reactant", "observable": true, "N_oxidation_state": 5},
+    {"id": "NO2", "label": "NO2-", "role": "intermediate", "observable": true, "N_oxidation_state": 3},
+    {"id": "NH3", "label": "NH3/NH4+ (lumped)", "role": "product", "observable": true, "N_oxidation_state": -3},
+    {"id": "SINK", "label": "unmeasured N product (N2/N2O-like)", "role": "sink", "observable": false, "N_oxidation_state": 0}
+  ],
+  "initial": ["NO3"],
+  "terminal": ["NH3", "SINK"],
+  "pool": "all_reductions",
+  "require": {"consumed": ["NO3"], "produced": ["NO2", "NH3"]},
+  "rate_laws": ["mass_action"],
+  "catalyst_state": ["none", "shared_deactivation", "shared_activation"],
+  "max_reactions": 5
+}

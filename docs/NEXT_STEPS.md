@@ -63,6 +63,12 @@ Scouted Oct 20 from search results and abstract pages only; none read in full. P
 - Screening the Liu 2024, Wang 2025 and Wu 2025 Source Data for NO3RR time courses. Worth doing only if the NO3RR side gets more weight again. The checklist is in git history (commit fabf802).
 - Katsounaros W4 trap as the headline figure. It stays as a sanity case; the headline should now come from the synthesis data (SPEC section 11b).
 
+## Jarrod: investigator pipeline (Oct 20)
+
+Built and tested: shared evaluator (MLE, profiled noise, AICc, Fisher and profile-likelihood identifiability, adequacy),
+enumeration baseline over declared spaces, file-based investigation store with recovery, and a Pi-hosted investigator and
+fresh-context reviewer. Design, commands, results and open questions for Daniel: `docs/INVESTIGATOR.md`.
+
 ## Jarrod (what to ask him for)
 
 The LLM side: given a dataset or world observation, propose candidate mechanisms as schema objects, critique them for plausibility, and emit a result file. With the pivot, "mechanism" means a set of pairwise reactions among phases, and the schemas have to be extended to phases and elements first (SPEC section 7e); until then his stub can keep working on the NO3RR worlds W2 and W3. A stub that returns the library mechanisms unchanged is enough to start, so his work never blocks on the fitter. Ask him to confirm the split before you commit to it. If he has time after the stub works, a second step is retrieving published pathways through Valency's Bond and attaching a citation to each candidate (SPEC section 11b); optional.

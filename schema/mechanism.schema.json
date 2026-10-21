@@ -85,7 +85,8 @@
           }
         },
         "fixed": { "type": "boolean", "default": false },
-        "source": { "type": "string", "description": "Where the value came from, e.g. 'Katsounaros 2012 Table 1'." }
+        "source": { "type": "string", "description": "Where the value came from, e.g. 'Katsounaros 2012 Table 1'." },
+        "tie": { "type": "string", "pattern": "^[A-Za-z0-9_]+$", "description": "Optional tie group. Parameters with the same tie name in one mechanism are one free parameter (same kind, bounds and fixed status), e.g. a catalyst-state time constant shared by several steps. Counts once in model comparison." }
       }
     },
     "rate_law": {

@@ -1,0 +1,584 @@
+{
+ "rows": [
+  {
+   "run_id": "liao50-enumeration-v3",
+   "arm": "enumeration",
+   "candidates": 654,
+   "status_counts": {
+    "fitted": 654
+   },
+   "best_candidate": "C6d5e25b6d8",
+   "best_name": "enum-2ed1b3b4a8",
+   "best_aicc": 204.95233516966857,
+   "best_delta_to_overall": 53.40857066797065,
+   "best_in_declared_space": true,
+   "best_in_space_aicc": 204.95233516966857,
+   "best_outside_space_aicc": null,
+   "dev_fits_numerically_unreliable": 3,
+   "sensitivity_best": {
+    "candidate_id": "C6d5e25b6d8",
+    "aicc": 204.95233590243902
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 654,
+    "fits_reused": 0,
+    "fit_cpu_s": 21607.248891919975,
+    "profile_wall_s": 12.367304701998364,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   },
+   "llm": null,
+   "frozen_top1": "C6d5e25b6d8",
+   "frozen_selected": [
+    "C6d5e25b6d8",
+    "C29ca4c5b0b",
+    "C160a84797b"
+   ],
+   "agent_plausible": [],
+   "heldout_top1": {
+    "candidate_id": "C6d5e25b6d8",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": false,
+    "aicc": 179.17388109950247,
+    "delta_aicc_to_best_overall": 0.0,
+    "rank_among_space": 13,
+    "n_space": 706,
+    "rmse": {
+     "NO3": 2.0829880675210073,
+     "NO2": 0.7500841957708364,
+     "NH3": 0.9123188181678554
+    },
+    "adequacy": "poor",
+    "adequacy_reasons": [
+     "NO3: residual signs cluster (runs test p=0.007)",
+     "NO3: residuals are serially correlated (lag-1 r=0.53)",
+     "NO2: residual signs cluster (runs test p=0.007)",
+     "NO2: residuals are serially correlated (lag-1 r=0.78)",
+     "NH3: residuals are serially correlated (lag-1 r=0.52)"
+    ],
+    "dataset_id": "liao2025_wmos2_suppfig50a",
+    "numerically_unreliable": false,
+    "replicates": 11,
+    "best_space_aicc_protocol": 153.66997582901152,
+    "sensitivity_aicc": 179.173881902439,
+    "sensitivity_rank": 16,
+    "sensitivity_best_space": 153.66997676923077,
+    "n_space_fitted": 706
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C6d5e25b6d8",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": false,
+     "aicc": 179.17388109950247,
+     "delta_aicc_to_best_overall": 0.0,
+     "rank_among_space": 13,
+     "n_space": 706,
+     "rmse": {
+      "NO3": 2.0829880675210073,
+      "NO2": 0.7500841957708364,
+      "NH3": 0.9123188181678554
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.53)",
+      "NO2: residual signs cluster (runs test p=0.007)",
+      "NO2: residuals are serially correlated (lag-1 r=0.78)",
+      "NH3: residuals are serially correlated (lag-1 r=0.52)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 11,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 179.173881902439,
+     "sensitivity_rank": 16,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 706
+    },
+    {
+     "candidate_id": "C29ca4c5b0b",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": false,
+     "aicc": 179.29503893171744,
+     "delta_aicc_to_best_overall": 0.12115783221497622,
+     "rank_among_space": 14,
+     "n_space": 706,
+     "rmse": {
+      "NO3": 2.08307992730983,
+      "NO2": 0.7501654239591976,
+      "NH3": 0.9154361246646043
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.53)",
+      "NO2: residual signs cluster (runs test p=0.007)",
+      "NO2: residuals are serially correlated (lag-1 r=0.79)",
+      "NH3: residuals are serially correlated (lag-1 r=0.52)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 12,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 179.29503990243904,
+     "sensitivity_rank": 17,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 706
+    },
+    {
+     "candidate_id": "C160a84797b",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": false,
+     "aicc": 179.41397865202322,
+     "delta_aicc_to_best_overall": 0.24009755252075138,
+     "rank_among_space": 15,
+     "n_space": 706,
+     "rmse": {
+      "NO3": 2.083580591870355,
+      "NO2": 0.750507931107146,
+      "NH3": 0.9180042563222085
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.53)",
+      "NO2: residual signs cluster (runs test p=0.007)",
+      "NO2: residuals are serially correlated (lag-1 r=0.79)",
+      "NH3: residuals are serially correlated (lag-1 r=0.53)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 11,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 179.413977902439,
+     "sensitivity_rank": 18,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 706
+    }
+   ]
+  },
+  {
+   "run_id": "liao50-posthoc-enumeration",
+   "arm": "enumeration",
+   "candidates": 90,
+   "status_counts": {
+    "fitted": 90
+   },
+   "best_candidate": "C7a268d59de",
+   "best_name": "enum-fff2762723",
+   "best_aicc": 151.54376450169792,
+   "best_delta_to_overall": 0.0,
+   "best_in_declared_space": true,
+   "best_in_space_aicc": 151.54376450169792,
+   "best_outside_space_aicc": null,
+   "dev_fits_numerically_unreliable": 0,
+   "sensitivity_best": {
+    "candidate_id": "C7a268d59de",
+    "aicc": 151.5437647692308
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 78,
+    "fits_reused": 12,
+    "fit_cpu_s": 2371.3309683999996,
+    "profile_wall_s": 135.6674242419831,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   },
+   "llm": null,
+   "frozen_top1": "C7a268d59de",
+   "frozen_selected": [
+    "C7a268d59de"
+   ],
+   "agent_plausible": [],
+   "heldout_top1": {
+    "candidate_id": "C7a268d59de",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": false,
+    "aicc": 153.66997582901152,
+    "delta_aicc_to_best_overall": 0.0,
+    "rank_among_space": 1,
+    "n_space": 706,
+    "rmse": {
+     "NO3": 2.0095753203494664,
+     "NO2": 0.3223337467468061,
+     "NH3": 0.8615519689542559
+    },
+    "adequacy": "poor",
+    "adequacy_reasons": [
+     "NO3: residual signs cluster (runs test p=0.007)",
+     "NO3: residuals are serially correlated (lag-1 r=0.57)"
+    ],
+    "dataset_id": "liao2025_wmos2_suppfig50a",
+    "numerically_unreliable": false,
+    "replicates": 8,
+    "best_space_aicc_protocol": 153.66997582901152,
+    "sensitivity_aicc": 153.66997676923077,
+    "sensitivity_rank": 1,
+    "sensitivity_best_space": 153.66997676923077,
+    "n_space_fitted": 706
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C7a268d59de",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": false,
+     "aicc": 153.66997582901152,
+     "delta_aicc_to_best_overall": 0.0,
+     "rank_among_space": 1,
+     "n_space": 706,
+     "rmse": {
+      "NO3": 2.0095753203494664,
+      "NO2": 0.3223337467468061,
+      "NH3": 0.8615519689542559
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.57)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 8,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 153.66997676923077,
+     "sensitivity_rank": 1,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 706
+    }
+   ]
+  },
+  {
+   "run_id": "liao50-propose_only-live2",
+   "arm": "propose_only",
+   "candidates": 10,
+   "status_counts": {
+    "fitted": 10
+   },
+   "best_candidate": "C99c623cc3e",
+   "best_name": "powerlaw_direct_NH3escape_deact",
+   "best_aicc": 166.24875298712504,
+   "best_delta_to_overall": 14.704988485427123,
+   "best_in_declared_space": false,
+   "best_in_space_aicc": 274.7572597380157,
+   "best_outside_space_aicc": 166.24875298712504,
+   "dev_fits_numerically_unreliable": 0,
+   "sensitivity_best": {
+    "candidate_id": "C99c623cc3e",
+    "aicc": 166.24875390243903
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 7,
+    "fits_reused": 3,
+    "fit_cpu_s": 462.402059616,
+    "profile_wall_s": 187.6181833659648,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   },
+   "llm": {
+    "models": [
+     "anthropic/claude-opus-5-5"
+    ],
+    "sessions": {
+     "investigator": 1
+    },
+    "input_tokens": 68,
+    "output_tokens": 50595,
+    "cache_read_tokens": 1479505,
+    "cache_write_tokens": 235065,
+    "cost_usd": 2.483398,
+    "wall_s": 3438.5050000000006,
+    "tool_calls": 25,
+    "cost_note": "list prices from the Pi model table"
+   },
+   "frozen_top1": "C99c623cc3e",
+   "frozen_selected": [
+    "C99c623cc3e"
+   ],
+   "agent_plausible": [],
+   "heldout_top1": {
+    "candidate_id": "C99c623cc3e",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": false,
+    "aicc": 207.69639088762847,
+    "delta_aicc_to_best_overall": 28.522509788126,
+    "rank_among_space": 95,
+    "n_space": 706,
+    "rmse": {
+     "NO3": 2.0867270918200838,
+     "NO2": 0.7813882801799589,
+     "NH3": 2.0227367784590324
+    },
+    "adequacy": "poor",
+    "adequacy_reasons": [
+     "NO3: residual signs cluster (runs test p=0.038)",
+     "NO3: residuals are serially correlated (lag-1 r=0.66)",
+     "NO2: residual signs cluster (runs test p=0.009)",
+     "NO2: residuals are serially correlated (lag-1 r=0.82)",
+     "NH3: residual signs cluster (runs test p=0.001)",
+     "NH3: residuals are serially correlated (lag-1 r=0.68)"
+    ],
+    "dataset_id": "liao2025_wmos2_suppfig50a",
+    "numerically_unreliable": false,
+    "replicates": 1,
+    "best_space_aicc_protocol": 153.66997582901152,
+    "sensitivity_aicc": 207.69638990243902,
+    "sensitivity_rank": 109,
+    "sensitivity_best_space": 153.66997676923077,
+    "n_space_fitted": 706
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C99c623cc3e",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": false,
+     "aicc": 207.69639088762847,
+     "delta_aicc_to_best_overall": 28.522509788126,
+     "rank_among_space": 95,
+     "n_space": 706,
+     "rmse": {
+      "NO3": 2.0867270918200838,
+      "NO2": 0.7813882801799589,
+      "NH3": 2.0227367784590324
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.038)",
+      "NO3: residuals are serially correlated (lag-1 r=0.66)",
+      "NO2: residual signs cluster (runs test p=0.009)",
+      "NO2: residuals are serially correlated (lag-1 r=0.82)",
+      "NH3: residual signs cluster (runs test p=0.001)",
+      "NH3: residuals are serially correlated (lag-1 r=0.68)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 1,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 207.69638990243902,
+     "sensitivity_rank": 109,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 706
+    }
+   ]
+  },
+  {
+   "run_id": "liao50-critique_revise-live2",
+   "arm": "critique_revise",
+   "candidates": 10,
+   "status_counts": {
+    "fitted": 10
+   },
+   "best_candidate": "Cb899debfb5",
+   "best_name": "comprop_N2_pHshutoff_powerlaw",
+   "best_aicc": 168.73878035864584,
+   "best_delta_to_overall": 17.19501585694792,
+   "best_in_declared_space": false,
+   "best_in_space_aicc": null,
+   "best_outside_space_aicc": 168.73878035864584,
+   "dev_fits_numerically_unreliable": 0,
+   "sensitivity_best": {
+    "candidate_id": "Cb899debfb5",
+    "aicc": 168.73877990243903
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 4,
+    "fits_reused": 6,
+    "fit_cpu_s": 67.218092208,
+    "profile_wall_s": 98.20142508897698,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   },
+   "llm": {
+    "models": [
+     "anthropic/claude-opus-5-5"
+    ],
+    "sessions": {
+     "investigator": 1,
+     "reviewer": 2
+    },
+    "input_tokens": 184,
+    "output_tokens": 125647,
+    "cache_read_tokens": 6396397,
+    "cache_write_tokens": 538692,
+    "cost_usd": 6.486415399999999,
+    "wall_s": 3238.129,
+    "tool_calls": 73,
+    "cost_note": "list prices from the Pi model table"
+   },
+   "frozen_top1": "Cb899debfb5",
+   "frozen_selected": [
+    "Cb899debfb5"
+   ],
+   "agent_plausible": [
+    "Cb899debfb5",
+    "C28308d8958",
+    "Cb716706e37",
+    "C4c5ed52b1e"
+   ],
+   "heldout_top1": {
+    "candidate_id": "Cb899debfb5",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": true,
+    "aicc": 357.7061397201359,
+    "delta_aicc_to_best_overall": 178.53225862063346,
+    "rank_among_space": 701,
+    "n_space": 706,
+    "rmse": {
+     "NO3": 22.09612648573416,
+     "NO2": 1.2583871191121556,
+     "NH3": 9.778474326190503
+    },
+    "adequacy": "poor",
+    "adequacy_reasons": [
+     "NO3: residual signs cluster (runs test p=0.001)",
+     "NO3: residuals are serially correlated (lag-1 r=0.83)",
+     "NO2: residual signs cluster (runs test p=0.006)",
+     "NO2: residuals are serially correlated (lag-1 r=0.85)",
+     "NH3: residual signs cluster (runs test p=0.001)",
+     "NH3: residuals are serially correlated (lag-1 r=0.79)"
+    ],
+    "dataset_id": "liao2025_wmos2_suppfig50a",
+    "numerically_unreliable": true,
+    "replicates": 1,
+    "best_space_aicc_protocol": 153.66997582901152,
+    "sensitivity_aicc": 193.88305590243903,
+    "sensitivity_rank": 53,
+    "sensitivity_best_space": 153.66997676923077,
+    "n_space_fitted": 706
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C4c5ed52b1e",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "aicc": 305.25854892593134,
+     "delta_aicc_to_best_overall": 126.08466782642887,
+     "rank_among_space": 662,
+     "n_space": 706,
+     "rmse": {
+      "NO3": 22.593626873985716,
+      "NO2": 2.6168846017431338,
+      "NH3": 0.9833285662169714
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.000)",
+      "NO3: residuals are serially correlated (lag-1 r=0.99)",
+      "NO2: residual signs cluster (runs test p=0.000)",
+      "NO2: residuals are serially correlated (lag-1 r=0.89)",
+      "NH3: residuals are serially correlated (lag-1 r=0.55)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": true,
+     "replicates": 1,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 165.61432590243902,
+     "sensitivity_rank": 7,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 706
+    },
+    {
+     "candidate_id": "C28308d8958",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "aicc": 188.75538579500216,
+     "delta_aicc_to_best_overall": 9.581504695499689,
+     "rank_among_space": 47,
+     "n_space": 706,
+     "rmse": {
+      "NO3": 2.358170915865494,
+      "NO2": 0.48173643453702086,
+      "NH3": 1.663208647565679
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.038)",
+      "NO3: residuals are serially correlated (lag-1 r=0.71)",
+      "NO2: residuals are serially correlated (lag-1 r=0.57)",
+      "NH3: residual signs cluster (runs test p=0.006)",
+      "NH3: residuals are serially correlated (lag-1 r=0.68)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 4,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 188.74325990243904,
+     "sensitivity_rank": 50,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 706
+    },
+    {
+     "candidate_id": "Cb716706e37",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "aicc": 192.00292287171663,
+     "delta_aicc_to_best_overall": 12.829041772214168,
+     "rank_among_space": 48,
+     "n_space": 706,
+     "rmse": {
+      "NO3": 4.69406893459843,
+      "NO2": 0.3452384316192666,
+      "NH3": 1.2827584739157114
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.001)",
+      "NO3: residuals are serially correlated (lag-1 r=0.86)",
+      "NH3: residuals are serially correlated (lag-1 r=0.59)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 8,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 192.00292190243903,
+     "sensitivity_rank": 51,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 706
+    },
+    {
+     "candidate_id": "Cb899debfb5",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "aicc": 357.7061397201359,
+     "delta_aicc_to_best_overall": 178.53225862063346,
+     "rank_among_space": 701,
+     "n_space": 706,
+     "rmse": {
+      "NO3": 22.09612648573416,
+      "NO2": 1.2583871191121556,
+      "NH3": 9.778474326190503
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.001)",
+      "NO3: residuals are serially correlated (lag-1 r=0.83)",
+      "NO2: residual signs cluster (runs test p=0.006)",
+      "NO2: residuals are serially correlated (lag-1 r=0.85)",
+      "NH3: residual signs cluster (runs test p=0.001)",
+      "NH3: residuals are serially correlated (lag-1 r=0.79)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": true,
+     "replicates": 1,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 193.88305590243903,
+     "sensitivity_rank": 53,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 706
+    }
+   ]
+  }
+ ],
+ "best_overall_aicc": 151.54376450169792,
+ "sensitivity_best_overall_aicc": 151.5437647692308,
+ "note": "All arms share the protocol, development data, validator and fitter (same deterministic multistart). Candidates outside the declared enumeration spaces enlarge the model space; compare best_in_space_aicc with the enumeration arm to separate discovery within the space from expansion of the space. 'Sensitivity' scores every fit by the lowest NLL any start reached, applied identically to all arms and all space members; it exposes fits where unconverged starts replicated a better optimum than the one the protocol reports."
+}
