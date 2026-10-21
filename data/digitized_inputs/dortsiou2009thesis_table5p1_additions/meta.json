@@ -1,0 +1,69 @@
+{
+ "id": "dortsiou2009thesis_table5p1_additions",
+ "kind": "inputs_only_thesis_table",
+ "note": "Inputs only. Despite sitting in the Bi chapter, these are chemical (current-free) tests: the text calls them 'the following non-electrochemical experiments'. Whether a Bi electrode was in the vessel is not stated.",
+ "files": {
+  "extracted.csv": "one row per experiment"
+ },
+ "csv_columns": {
+  "experiment": "row number as printed",
+  "reagents_translated": "reagents column, translated",
+  "additive": "species added to the nitrate solution",
+  "additive_mM": "added concentration (NO2- for row 2)",
+  "NH2OH_mM": "hydroxylamine (row 2)",
+  "NO_flow_mL_per_min": "NO gas flow (row 3)",
+  "NO3_initial_mM": "initial nitrate",
+  "solution_volume_mL": "text, printed p. 90",
+  "duration_h": "'after three hours' (column header)",
+  "applied_potential": "none",
+  "NO3_decrease_pct": "% decrease of the nitrate concentration after three hours",
+  "value_as_printed": "as printed",
+  "flag": "",
+  "note": ""
+ },
+ "provenance": {
+  "citation": "Dortsiou M., Electrochemical removal of nitrate and ammonia from aqueous solutions and environmental samples, PhD thesis (in Greek), Aristotle University of Thessaloniki, Dept. of Chemical Engineering (2009)",
+  "doi": "10.12681/eadd/27551",
+  "table": "Table 5.1",
+  "printed_page": 91,
+  "reader_page": 127,
+  "page_offset_note": "printed page = online-reader page - 36",
+  "caption_translated": "Table 5.1. Reduction of nitrate ions in the presence of nitric oxide, hydroxylamine and Angeli's salt. Columns: reagents | % decrease of the nitrate concentration after three hours.",
+  "source_file": "page text layer from the archive's online reader (scratch only, not committed)",
+  "licence": "National Archive of PhD Theses terms: research use with no direct or indirect financial benefit; author must be cited; items protected by copyright"
+ },
+ "conditions": {
+  "solution": "10 mL carbonate buffer (0.4 M Na2CO3 / 0.4 M NaHCO3) containing 15 mM nitrate (printed p. 90)",
+  "initial_pH": "about 9.65 (initial pH of this buffer in the ch. 5 electrolyses, printed p. 83); not restated here",
+  "NO_purification": "NO passed through two bottles of 4 M KOH to remove NO2 (described for the electrolytic NO run, printed p. 87; row 3 refers back to it)",
+  "temperature": "not stated"
+ },
+ "text_translated": "Printed pp. 90-91: Angeli's salt decomposes to HNO + NO2- (5.24); stable above pH 11, half-life about 30 min at pH 9 (Dutton et al.). Row 1: no change of nitrate, so the HNO route was considered not to participate. Row 2: NO2- plays the catalyst role in the hydroxylamine reaction (5.19); nitrate fell only 5 %, so (5.19) can have only a small part. Row 3: with NO (NO2-free) passed through, nitrate fell 29 %, so nitrate reacts directly with NO by the Abel-Schmid reaction (5.18), although its known kinetics predict a very low rate at this pH. Text cross-references slip: it cites (5.23) for the Angeli decomposition and says '(5.24) has no participation' where (5.21) is meant.",
+ "checks": {
+  "rows_found_on_page": [
+   {
+    "printed_sequence": "1. - 0 15mM NO και 15mM άλας Angeli",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "2. - - 5 15mM NO , 15mM NO και 15 mM υδροξυλαμίνη",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "3. - -1 29 15mM NO και NO με ροή 10 mL·min",
+    "found_on_page": true
+   }
+  ],
+  "text_quotes": {
+   "row 1": "no change (0)",
+   "row 2": "5 %",
+   "row 3": "29 %"
+  }
+ },
+ "flags": [
+  "non_electrochemical",
+  "endpoint_only",
+  "NO_dose_not_quantified_as_concentration"
+ ],
+ "transcription_method": "thesis text layer: per-page text layer of the National Archive of PhD Theses online reader (EKT freader), read and typed in by an agent on 2026-10-20; table layout reconstructed by hand from the flattened text; every row's printed number sequence was checked by script to occur verbatim on the cited page (literature/extraction_scripts/thesis_tables/build_tables.py). Page images of these pages were not viewed. Not yet re-checked by a person."
+}

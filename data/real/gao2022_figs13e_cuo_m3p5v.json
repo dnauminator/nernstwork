@@ -1,0 +1,171 @@
+{
+  "id": "gao2022_figs13e_cuo_m3p5v",
+  "provenance": {
+    "citation": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Electrocatalytic Upcycling of Nitrate Wastewater into an Ammonia Fertilizer via an Electrified Membrane, Environ. Sci. Technol. 56 (2022) 11602-11613",
+    "doi": "10.1021/acs.est.1c08442",
+    "figure": "Fig. S13e (SI p. S15, PDF page 15; stacked bars, N species vs time at -3.5 V vs SCE)",
+    "file": "literature/uploads/gao2022_si/es1c08442_si_001.pdf (ACS SI, downloaded from acs.figshare.com article 20349409, CC BY-NC 4.0; not committed)",
+    "notes": "Two-compartment system. The cathode loop (feed tank <-> cathode chamber, 50 mL/min) holds NO3-, NO2- and TAN ('TAN in feed tank' / 'TAN in reaction chamber' -> species NH3). Gaseous NH3 crosses the hydrophobic PTFE membrane into the trap chamber, whose 0.5 M Na2SO4 is recirculated (50 mL/min) through the trap chamber, the anode chamber (acidified by O2 evolution; Nafion 117 PEM between cathode and anode chambers) and the trap tank, where NH3 is held as NH4+ ('TAN in trap tank/chamber' -> species NH3_trap, kept separate, never added to NH3). Fig. 1a and Fig. S2a also show an air pump on the wastewater tank and a 'gaseous NH3' line from the wastewater tank to the trap tank, so NH3 may also reach the trap by headspace stripping; the text does not quantify that route. N2 was not measured: the authors computed it as initial N minus (NO3- + NO2- + TAN in both tanks) (SI Part S2) and plotted it as the top bar segment; it is stored as quality.reported_n_loss, not as a species, and our n_closure is 1 minus that gap. NO and N2O were assumed negligible by the authors (SI Part S2), not measured. METHOD: Raster digitization of the embedded Fig. S13 JPEG (SI PDF page 15, 1430x864 px, 220 ppi) (the figures are embedded raster images; there are no vector paths). Image extracted at native resolution with pdfimages; y axis calibrated by a linear fit to tick-mark pixel centroids located automatically (darkness profile beside the axis line) and assigned to the printed tick labels (all labelled and minor ticks, >=4 per panel, max tick residual <0.15 of one minor step); bars located at the x tick centroids. For each bar two side strips (avoiding the centred error bars and the outline) were classified pixel-wise by nearest colour prototype, the two orange TAN classes split by hue; segment boundaries come from a monotone dynamic-programming segmentation that enforces the legend's stacking order. Resolution 0.085 mM per pixel; boundary uncertainty about +/-1-2 px. Segments not visible are recorded as 0.0 (below ~1 px); values below ~0.2 mM (<=2-3 px) cannot be distinguished from outline/anti-aliasing artefacts. Error bars in the figure were not extracted. Extracted by agent team 2026-10-20; overlay of the extracted boundaries on the figure crop checked by eye (scratch, not committed).  Segment 'TAN in reaction chamber' -> NH3 (cathode loop), 'TAN in trap chamber' -> NH3_trap. Text: TAN selectivity 78.7-85.1% across -1.5 to -3.5 V; our end-of-run TAN/input: see the converter closure. reported_n_loss is the authors' by-difference N2 (initial N minus the measured species), so besides any real N2 it carries any reading bias of the stacked-bar tops (about 0.11 mM in Fig. 2e) and absorbs any NH3 stripped from the feed tank through the air line that does not end up in the trap. DC-on window presumed: Fig. S13 has no DC on/off shading or label (see conditions.notes), so the whole plotted period is taken as powered; this is an assumption, not a statement of the paper. Licence: the SI is CC BY-NC 4.0 (ACS figshare article 20349409, doi 10.1021/acs.est.1c08442.s001; the local SI file has the same MD5 as the figshare file, checked Oct 20 2026). Whether NernstWork's use counts as NonCommercial is the repository owner's decision.",
+    "verified_against_figure": false,
+    "source_type": "digitized",
+    "extraction": "Raster digitization of the embedded Fig. S13 JPEG (SI PDF page 15, 1430x864 px, 220 ppi) (the figures are embedded raster images; there are no vector paths). Image extracted at native resolution with pdfimages; y axis calibrated by a linear fit to tick-mark pixel centroids located automatically (darkness profile beside the axis line) and assigned to the printed tick labels (all labelled and minor ticks, >=4 per panel, max tick residual <0.15 of one minor step); bars located at the x tick centroids. For each bar two side strips (avoiding the centred error bars and the outline) were classified pixel-wise by nearest colour prototype, the two orange TAN classes split by hue; segment boundaries come from a monotone dynamic-programming segmentation that enforces the legend's stacking order. Resolution 0.085 mM per pixel; boundary uncertainty about +/-1-2 px. Segments not visible are recorded as 0.0 (below ~1 px); values below ~0.2 mM (<=2-3 px) cannot be distinguished from outline/anti-aliasing artefacts. Error bars in the figure were not extracted. Extracted by agent team 2026-10-20; overlay of the extracted boundaries on the figure crop checked by eye (scratch, not committed).  Converted with scripts/digitized_to_dataset.py."
+  },
+  "conditions": {
+    "catalyst": "CuO-coated Cu foam (mixed-valence Cu2+/Cu1+ oxide layer) clipped to a PTFE/PP membrane (0.45 um), 4 cm2, as the electrified membrane cathode",
+    "electrolyte": "synthetic wastewater: 25 mM NO3- (as N; KNO3) + 10 mM Cl- + 0.5 M Na2SO4, initial pH 7.0",
+    "cell": "flow_cell",
+    "potential_V_vs_RHE": null,
+    "potential_as_reported": "-3.5 V vs SCE (no ohmic compensation; SCE +0.241 V vs SHE)",
+    "potential_mode": "potentiostatic",
+    "pH": 7.0,
+    "temperature_C": null,
+    "volume_mL": 50.0,
+    "stirring": "recirculation by peristaltic pumps at 50 mL/min (cathode loop: feed tank <-> cathode chamber; trap loop: trap tank -> trap chamber -> anode chamber -> trap tank)",
+    "c0_mM_N": {
+      "NO3": 25.0
+    },
+    "notes": "Three-chamber flow cell: trap | CuO@Cu-foam/PTFE cathode membrane | cathode chamber | Nafion 117 PEM | anode chamber (Pt mesh 3.5x3.5 cm); SCE reference in the cathode chamber; CHI 1100C potentiostat. volume_mL is the feed tank: 50 mL is stated in the text only for the Fig. 2e run (25 mM, pH 7, -2 V) and is assumed here, since the feed volume is not restated for this run; chamber and trap-tank volumes not stated. pH is the initial feed pH; in-run pH is not reported for this run. The text's in-run values, a strongly alkaline cathode loop (12.65 +/- 0.13, attributed to 'the trap chamber' in the text but in context the cathode side) and a final trap-tank pH of 1.53 +/- 0.10 after 120 min, are stated only for the 25 mM, pH 7, -2 V run of Fig. 2e. Current is not reported for this potential: the text's ~50 mA cm-2 (0.204 +/- 0.011 A, the mean over 0-120 min) is stated only for the -2 V Fig. 2e run, and Fig. 3a gives only normalized efficiency indicators, so no current can be derived for this run. RHE conversion not done: large uncompensated iR, and the in-run pH is not reported. Sampling 0-60 min, every 10 min. Fig. S13 does not mark DC on/off periods; the -2 V panel (S13b) shows only the 0-120 min DC-on part of the Fig. 2e run, so these panels are presumably all DC-on, but that is not stated."
+  },
+  "series": [
+    {
+      "species": "NO3",
+      "t_min": [
+        0.0,
+        10.0,
+        20.0,
+        30.0,
+        40.0,
+        50.0,
+        60.0
+      ],
+      "y": [
+        25.0,
+        14.2,
+        9.842,
+        7.108,
+        2.493,
+        0.784,
+        0.0
+      ],
+      "reported_unit": "mM as N (plotted 'N concentration (mM)' / 'N species (mM)')",
+      "conversion": "mM-N = digitized y * 1.0"
+    },
+    {
+      "species": "NO2",
+      "t_min": [
+        0.0,
+        10.0,
+        20.0,
+        30.0,
+        40.0,
+        50.0,
+        60.0
+      ],
+      "y": [
+        0.0,
+        1.111,
+        1.111,
+        0.769,
+        0.513,
+        0.256,
+        0.256
+      ],
+      "reported_unit": "mM as N (plotted 'N concentration (mM)' / 'N species (mM)')",
+      "conversion": "mM-N = digitized y * 1.0"
+    },
+    {
+      "species": "NH3",
+      "t_min": [
+        0.0,
+        10.0,
+        20.0,
+        30.0,
+        40.0,
+        50.0,
+        60.0
+      ],
+      "y": [
+        0.0,
+        6.409,
+        8.801,
+        9.912,
+        13.33,
+        13.415,
+        12.747
+      ],
+      "reported_unit": "mM as N (plotted 'N concentration (mM)' / 'N species (mM)')",
+      "conversion": "mM-N = digitized y * 1.0"
+    },
+    {
+      "species": "NH3_trap",
+      "t_min": [
+        0.0,
+        10.0,
+        20.0,
+        30.0,
+        40.0,
+        50.0,
+        60.0
+      ],
+      "y": [
+        0.0,
+        1.367,
+        2.478,
+        4.358,
+        5.298,
+        7.092,
+        8.545
+      ],
+      "reported_unit": "mM as N (plotted 'N concentration (mM)' / 'N species (mM)')",
+      "conversion": "mM-N = digitized y * 1.0"
+    }
+  ],
+  "quality": {
+    "n_closure": {
+      "t_min": [
+        0.0,
+        10.0,
+        20.0,
+        30.0,
+        40.0,
+        50.0,
+        60.0
+      ],
+      "fraction": [
+        1.0,
+        0.9235,
+        0.8893,
+        0.8859,
+        0.8654,
+        0.8619,
+        0.8619
+      ]
+    },
+    "flags": [
+      "potential_unverified",
+      "unobserved_sink_suspected",
+      "units_unverified"
+    ],
+    "reported_n_loss": {
+      "t_min": [
+        0.0,
+        10.0,
+        20.0,
+        30.0,
+        40.0,
+        50.0,
+        60.0
+      ],
+      "y": [
+        0.0,
+        1.88,
+        2.734,
+        2.82,
+        3.333,
+        3.418,
+        3.418
+      ]
+    },
+    "n_basis_note": "All segments, including trap TAN, are plotted on one 'N concentration (mM)' axis and stack to the initial N, and the paper's TAN recovery (Eq. S8) divides the trap-tank TAN concentration by the input nitrate concentration. That only conserves N if the trap tank volume equals the feed tank volume (feed tank 50 mL is stated; the trap tank volume is not stated) or if the authors normalized trap TAN to the feed volume. NH3_trap is therefore taken as trap-loop N per feed volume, mM-N equivalent; treat its absolute basis as unverified. NO3-, NO2-, TAN are plotted as N (axis 'N concentration'/'N species'; nitrate given as NO3--N in the text), so no N-atom conversion. Cross-check from the Fig. 2e run (same cell and protocol): the text's 'total molar amount of the generated NH3 was only 1.05 mmol' at 120 min (p. 11608) equals the plotted Fig. 2e TAN at 120 min, feed + trap = (7.72 + 13.54) mM x 50 mL = 1.06 mmol, so the authors express trap TAN per 50 mL of feed. That supports the mM-N-per-feed-volume reading but cannot tell equal tank volumes from normalization."
+  }
+}

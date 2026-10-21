@@ -1,0 +1,45 @@
+{
+  "dataset": "gao2022_fig2d_chloride_pem_textvalues",
+  "figure": "Fig. 2d values stated in the text (Section 3.3.4, main p. 11608)",
+  "source": "main paper 10451706.pdf (Environ. Sci. Technol. 2022, 56, 11602)",
+  "verdict": "accept",
+  "verdict_basis": "Text transcription is exact and the without-PEM -> with-PEM reading at 50 mM Cl- matches the sentence context and the figure qualitatively. No figure digitization involved, so no pixel deviation applies.",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "independence": "Verifier extracted the embedded raster itself (pymupdf, native resolution), located the ticks with its own code and re-read every value with its own scripts; extractor scripts and readings were not used.",
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "No change; the verifier listed no issues.",
+      "files": []
+    }
+  ],
+  "meta_edited": false,
+  "max_deviation": {
+    "note": "not applicable: values transcribed from text; exact match (0 deviation) to the printed numbers"
+  },
+  "checks": [
+    {
+      "name": "transcription",
+      "result": "pass",
+      "detail": "Text: 'the TAN selectivity, FE for TAN, and jNH3 increased from 7.1%, 3.6%, and 1.7 mA cm-2 to 82.6%, 52.1%, and 27.4 mA cm-2, respectively, when Cl- was 50 mM' following 'By contrast, when the PEM was inserted between the cathode and anode...'. CSV rows match exactly."
+    },
+    {
+      "name": "assignment",
+      "result": "pass",
+      "detail": "Reading as 50 mM Cl- without PEM -> with PEM is consistent with the preceding sentence (without PEM, all three decreased as Cl- rose from 10 to 50 mM) and with Fig. 2d, where the front row (50 mM Cl-, without PEM) has near-zero cone/cylinder/box and the 50 mM with-PEM row has cone ~80, cylinder ~50, box ~25-30."
+    },
+    {
+      "name": "conditions",
+      "result": "pass",
+      "detail": "25 mM NO3-, 0.5 M Na2SO4, -2 V vs SCE, Cl- 10 or 50 mM (Sections 2.4, 3.3.4)."
+    },
+    {
+      "name": "overlay",
+      "result": "not_applicable",
+      "detail": "3D perspective chart not digitized; an annotated crop with the stored text values is in scratch for the qualitative check."
+    }
+  ],
+  "issues": [],
+  "overlay": "verify_overlay.png (session scratch, not retained; contains publisher figure images)"
+}

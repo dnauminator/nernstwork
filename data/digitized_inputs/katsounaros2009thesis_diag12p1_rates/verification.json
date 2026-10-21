@@ -1,0 +1,524 @@
+{
+  "dataset": "katsounaros2009thesis_diag12p1_rates",
+  "source": "Katsounaros I., PhD thesis, Aristotle University of Thessaloniki (2009), doi 10.12681/eadd/19491; page images at 300 dpi from the archive reader (local scratch copy, reader page = printed page + 30); Diag 12.1, printed p. 186 (reader p216.jpg); text pp. 185-187",
+  "verdict": "accept_with_flags",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "summary": "Shared x axis and both panel y axes recalibrated independently (within 0.4 px of the extractor's). All 56 stored rates agree with independent reads within 0.0039 mM/min in the top panel (0.56 px, 0.07 % of span) and 0.0028 mM/min in the bottom panel (1.5 px on a crudely located occluded star; 0.0013 mM/min, 0.7 px, otherwise). The N2-as-filled-circle legend mismatch is real, the text facts reproduce, and the trapezoid integration reproduces the 2012 Fig. 1 dataset with N2/N2O x2 (N2 309.1 vs 309.3 mM-N at 180 min). Flags: legend mismatch, rates' derivation not stated, same-run inference, occluded markers. One undocumented occlusion (N2O at 30 min) added to the notes. No values changed.",
+  "method": "Verifier scripts in literature/extraction_scripts/katsounaros_verify/ (axes_find.py, ticks_find.py, blob.py, ring.py, segfit.py, v64*.py, v67*.py, v106*.py, v121*.py, reread_tables.py), written independently; the extractor's scripts in literature/extraction_scripts/katsounaros_new/ were not run or read. Axes were calibrated from tick marks located on the page image by dark-pixel profiles and fitted by least squares; markers were re-read by connected-component centroids after morphological opening (filled markers) or hole filling (open markers), ring fits for open circles, and, for occluded markers, from visible features (apex, base) or by extrapolating the connecting line segments. Stored points were mapped back onto the page with the verifier's calibration and the overlay was inspected by eye.",
+  "calibration_verifier": {
+    "x": "major ticks 30-180 min at px 849.56, 1059.55, 1269.00, 1478.96, 1688.32, 1897.96 (0 min under the y axis at px 639-641); fit 6.9888 px/min, x(0) = 640.06, max residual 0.24 px",
+    "y_top": "ticks 4 ... -2 mM/min at px 351.1, 495.01, 638.51, 782.51, 926.1, 1069.91, 1213.91; fit 143.779 px per mM/min, y(0) = 926.22, max residual 0.15 px",
+    "y_bottom": "ticks 0.8 ... -0.8 mM/min every 0.2 at px 1280.0 ... 2142.51; fit 539.128 px per mM/min, y(0) = 1711.14, max residual 0.39 px",
+    "vs_extractor": "extractor 640/1898 px, 351/1214 px, 1280/2142.5 px; agrees within 0.4 px"
+  },
+  "overlay": "verify_overlay.png, verify_overlay_top.png and verify_overlay_bottom.png (session scratch, not retained; contains thesis page images); every stored point lands on its marker",
+  "max_abs_deviation_mM_per_min": {
+    "top_panel": 0.0039,
+    "bottom_panel": 0.0028,
+    "bottom_panel_excluding_crude_occluded_read": 0.0013
+  },
+  "max_abs_deviation_fraction_of_axis": {
+    "top_panel_span_6": 0.0007,
+    "bottom_panel_span_1.6": 0.0018
+  },
+  "worst_points": [
+    {
+      "species": "NO2",
+      "panel": "top",
+      "t_min": 119.96,
+      "stored": -1.4691,
+      "verifier": -1.473,
+      "dev": 0.0039,
+      "dev_px": 0.56,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NO2",
+      "panel": "top",
+      "t_min": 29.94,
+      "stored": 2.2025,
+      "verifier": 2.2063,
+      "dev": -0.0038,
+      "dev_px": -0.55,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 89.98,
+      "stored": 1.601,
+      "verifier": 1.5977,
+      "dev": 0.0033,
+      "dev_px": 0.47,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NO2",
+      "panel": "top",
+      "t_min": 0.03,
+      "stored": 3.5794,
+      "verifier": 3.5765,
+      "dev": 0.0029,
+      "dev_px": 0.42,
+      "method": "half-visible square: mid of top/bottom edges"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 14.98,
+      "stored": 0.3284,
+      "verifier": 0.3313,
+      "dev": -0.0029,
+      "dev_px": -0.42,
+      "method": "filled/filled-hole blob centroid"
+    }
+  ],
+  "checks": [
+    {
+      "name": "marker_mapping_and_legend_mismatch",
+      "result": "pass_with_flag",
+      "detail": "Caption (image): open square NO2-, open circle H2N2O2, filled star NH2OH, filled up-triangle NH3, filled down-triangle N2, open star N2O. The figure contains no down-triangle anywhere; the top panel has only open squares and filled circles, the bottom panel open circles, filled stars, filled up-triangles and open stars. Filled circles = N2 by elimination, by the text (N2 maximum at 90 min; filled-circle maximum 1.601 at 90 min) and by the integration check."
+    },
+    {
+      "name": "units",
+      "result": "pass",
+      "detail": "Both y axes 'Ρυθμός Παραγωγής/Κατανάλωσης, mM min-1'; positive = production, negative = consumption."
+    },
+    {
+      "name": "time_grid",
+      "result": "pass",
+      "detail": "NO2-, H2N2O2, NH2OH, NH3 every 30 min (0-180); N2 and N2O at 0, 4.0, then every 15 min (verifier x reads within 0.1 min)."
+    },
+    {
+      "name": "text_facts",
+      "result": "pass",
+      "detail": "pp. 185-187: N2O maximum at 75 min (0.365 vs 0.335 at 90 and 0.328 at 60); N2 maximum at 90 min (1.601); NO2- and NH2OH maximum consumption at 90 min (-1.560, -0.412); H2N2O2 maximum at 60 min (0.222 vs 0.214 at 90; verifier ring fits 0.2223 vs 0.2140 confirm the order); NH3 maximum at 90 min (0.213); NH2OH rate ~0 at 60 min (-0.034). Conditions: 0.5 M NaNO3 + 1 M NaOH, -2.2 V vs Ag/AgCl."
+    },
+    {
+      "name": "integration_vs_2012_fig1",
+      "result": "pass",
+      "detail": "Verifier trapezoid integration of the stored rates (read times; nominal-grid times give the same within 0.2): N2 x2 = 19.9, 76.3, 164.8, 246.4, 290.4, 309.1 mM-N at 30-180 min vs 18.3, 74.8, 165.1, 248.8, 292.0, 309.3 in data/real/katsounaros2012_fig1_sn_naoh.json; N2O x2 = 5.3, 20.3, 41.2, 55.0, 60.0, 62.1 vs 4.3, 19.6, 41.5, 56.1, 60.1, 62.8; NH3 = 3.6, 8.5, 14.6, 20.1, 23.9, 27.0 vs 5.0, 7.6, 13.6, 19.6, 23.6, 27.6; NO2- = 86.5, 117.4, 91.9, 46.5, 16.3, 6.0 vs 107.3, 131.9, 98.7, 38.9, 10.3, 6.3. Without x2, N2 at 180 min would be 154.5. The 2012 values must be N-equivalents: 309 mM read per molecule would be 618 mM-N, more than the 500 mM-N supplied. So the thesis rates are per molecule. (The meta's '247' at 120 min is the trapezoid value at the 120.04 min sample, 246.5.)"
+    },
+    {
+      "name": "conditions",
+      "result": "pass",
+      "detail": "Cell, area, volume and He flow taken from the chapter 5 standard setup and labelled as assumed in the meta; c0 500 mM-N from 0.5 M NaNO3."
+    }
+  ],
+  "claims_tested": [
+    {
+      "claim": "integrating rates reproduces katsounaros2012_fig1_sn_naoh with N2/N2O x2 (N2 309.1 vs 309.3 mM-N at 180 min)",
+      "result": "confirmed (309.1 with read times, 309.0 on the nominal grid)"
+    },
+    {
+      "claim": "N2 drawn as filled circles despite the caption's triangle",
+      "result": "confirmed"
+    }
+  ],
+  "issues": [
+    "Legend mismatch in the source (N2 drawn as filled circles, caption says filled down-triangle); assignment well supported (flagged).",
+    "The thesis does not say how the rates were obtained from the concentration data; integrating them reproduces the 2012 concentrations to within ~2 mM-N for N2/N2O/NH3 but NO2- only to within ~21 mM (30 min spacing is coarse for a peaked rate).",
+    "Same-run identity with the 2012 paper is an inference from the integration match (flagged).",
+    "Occluded markers: N2O at 30 min (lower part under NH3), N2O at 120 min (upper part under NH3), H2N2O2 at 90 min (behind NH3), the 180 min cluster; verifier reads agree within 0.003 mM/min. The ring fit for H2N2O2 at 90 min, reseeded 4 px away, returns the stored centre within 0.1 px, so its position is better than the 0.37 score suggests.",
+    "Minor wording: 'Sn foil' is not stated in the thesis text read (see Diag 6.4 verification)."
+  ],
+  "fixes_applied": [
+    "extracted.csv, N2O at 29.87 min: note added 'lower part hidden under the NH3 triangle' (the image shows the star's lower tips under the filled triangle; the row had no note).",
+    "meta.json extraction_method: added that N2O at 30 min (lower part under the NH3 triangle) was matched with the full template (score 0.65)."
+  ],
+  "verifier_reread_mM_per_min": [
+    {
+      "species": "NO2",
+      "panel": "top",
+      "t_min": 0.03,
+      "verifier": 3.5765,
+      "method": "half-visible square: mid of top/bottom edges"
+    },
+    {
+      "species": "NO2",
+      "panel": "top",
+      "t_min": 29.94,
+      "verifier": 2.2063,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NO2",
+      "panel": "top",
+      "t_min": 59.99,
+      "verifier": -0.1411,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NO2",
+      "panel": "top",
+      "t_min": 89.91,
+      "verifier": -1.5599,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NO2",
+      "panel": "top",
+      "t_min": 119.96,
+      "verifier": -1.473,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NO2",
+      "panel": "top",
+      "t_min": 150.02,
+      "verifier": -0.5441,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NO2",
+      "panel": "top",
+      "t_min": 179.93,
+      "verifier": -0.1411,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 0.0,
+      "verifier": 0.0433,
+      "method": "half-visible circle: mid of top/bottom"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 3.96,
+      "verifier": 0.1263,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 14.98,
+      "verifier": 0.3313,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 30.01,
+      "verifier": 0.6214,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 45.04,
+      "verifier": 0.9402,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 59.92,
+      "verifier": 1.2506,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 74.95,
+      "verifier": 1.5217,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 89.98,
+      "verifier": 1.5977,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 105.01,
+      "verifier": 1.392,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 120.04,
+      "verifier": 1.0523,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 135.06,
+      "verifier": 0.7119,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 149.95,
+      "verifier": 0.4524,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 164.98,
+      "verifier": 0.2863,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2",
+      "panel": "top",
+      "t_min": 180.01,
+      "verifier": 0.2261,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "H2N2O2",
+      "panel": "bottom",
+      "t_min": 0.0,
+      "verifier": 0.0596,
+      "method": "ring fit on the visible arc"
+    },
+    {
+      "species": "H2N2O2",
+      "panel": "bottom",
+      "t_min": 29.93,
+      "verifier": 0.1033,
+      "method": "ring fit seeded 4 px off"
+    },
+    {
+      "species": "H2N2O2",
+      "panel": "bottom",
+      "t_min": 59.96,
+      "verifier": 0.2223,
+      "method": "ring fit seeded 4 px off"
+    },
+    {
+      "species": "H2N2O2",
+      "panel": "bottom",
+      "t_min": 89.93,
+      "verifier": 0.214,
+      "method": "ring fit seeded 4 px off"
+    },
+    {
+      "species": "H2N2O2",
+      "panel": "bottom",
+      "t_min": 120.0,
+      "verifier": 0.0912,
+      "method": "ring fit seeded 4 px off"
+    },
+    {
+      "species": "H2N2O2",
+      "panel": "bottom",
+      "t_min": 150.0,
+      "verifier": 0.0173,
+      "method": "ring fit seeded 4 px off"
+    },
+    {
+      "species": "H2N2O2",
+      "panel": "bottom",
+      "t_min": 179.96,
+      "verifier": -0.0157,
+      "method": "ring fit seeded 4 px off"
+    },
+    {
+      "species": "NH2OH",
+      "panel": "bottom",
+      "t_min": 0.0,
+      "verifier": 0.2577,
+      "method": "half-visible star: extents corrected for star geometry"
+    },
+    {
+      "species": "NH2OH",
+      "panel": "bottom",
+      "t_min": 30.01,
+      "verifier": 0.4491,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH2OH",
+      "panel": "bottom",
+      "t_min": 60.07,
+      "verifier": -0.0346,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH2OH",
+      "panel": "bottom",
+      "t_min": 89.98,
+      "verifier": -0.4124,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH2OH",
+      "panel": "bottom",
+      "t_min": 120.04,
+      "verifier": -0.0951,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH2OH",
+      "panel": "bottom",
+      "t_min": 149.95,
+      "verifier": -0.0367,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH2OH",
+      "panel": "bottom",
+      "t_min": 180.01,
+      "verifier": -0.0007,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH3",
+      "panel": "bottom",
+      "t_min": 0.0,
+      "verifier": 0.1099,
+      "method": "half-visible triangle: base - h/3 with apex corrected for the hidden half"
+    },
+    {
+      "species": "NH3",
+      "panel": "bottom",
+      "t_min": 29.87,
+      "verifier": 0.1322,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH3",
+      "panel": "bottom",
+      "t_min": 59.92,
+      "verifier": 0.1937,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH3",
+      "panel": "bottom",
+      "t_min": 89.98,
+      "verifier": 0.2126,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH3",
+      "panel": "bottom",
+      "t_min": 120.04,
+      "verifier": 0.1503,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH3",
+      "panel": "bottom",
+      "t_min": 149.95,
+      "verifier": 0.1062,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "NH3",
+      "panel": "bottom",
+      "t_min": 179.86,
+      "verifier": 0.1048,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 0.0,
+      "verifier": 0.0131,
+      "method": "half-visible star: extents corrected for star geometry"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 3.96,
+      "verifier": 0.034,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 14.98,
+      "verifier": 0.0883,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 29.87,
+      "verifier": 0.166,
+      "method": "apex + mean apex-to-centre offset of clean N2O stars (lower part under NH3)"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 45.04,
+      "verifier": 0.2526,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 60.07,
+      "verifier": 0.3269,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 74.95,
+      "verifier": 0.3658,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 89.98,
+      "verifier": 0.3352,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 105.01,
+      "verifier": 0.2313,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 120.04,
+      "verifier": 0.1229,
+      "method": "lowest tips - mean centre-to-bottom offset (upper part under NH3); crude"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 134.92,
+      "verifier": 0.0778,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 149.95,
+      "verifier": 0.0524,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 164.98,
+      "verifier": 0.0311,
+      "method": "filled/filled-hole blob centroid"
+    },
+    {
+      "species": "N2O",
+      "panel": "bottom",
+      "t_min": 180.01,
+      "verifier": 0.0232,
+      "method": "apex + mean apex-to-centre offset (lower part overlaps NH2OH)"
+    }
+  ]
+}

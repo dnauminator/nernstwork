@@ -1,0 +1,65 @@
+{
+  "id": "katsounaros2009thesis_diag12p1_rates",
+  "kind": "production_consumption_rate_vs_time",
+  "extractor": "agent team 2026-10-20",
+  "units": {
+    "t_min_read": "electrolysis time, min, as read from the marker position",
+    "rate_mM_per_min": "rate of production (+) or consumption (-) in mM of the species per min as plotted; N2 and N2O per molecule (see n_basis_note)",
+    "match_score": "normalized cross-correlation (template_match) or ring-darkness score (ring_fit); low values mark overlapped markers"
+  },
+  "structure": "56 rows. Top panel (y -2 to 4 mM/min): NO2- (7 points, every 30 min) and N2 (14 points: 0, about 4 min, then every 15 min). Bottom panel (y -0.8 to 0.8 mM/min): H2N2O2, NH2OH, NH3 (7 points each, every 30 min) and N2O (14 points: 0, about 4 min, then every 15 min). The 15 min spacing of N2 and N2O matches the on-line GC sampling; the liquid species are sampled every 30 min.",
+  "extraction_method": "Raster digitization of the thesis page image (reader page 216, 300 dpi) by an agent script (OpenCV). Shared x axis calibrated on the seven labelled major ticks (0 min at px 640 to 180 min at px 1898, residuals below 0.07 min); each panel's y axis calibrated separately on its own ticks (top: 4 at px 351 to -2 at px 1214, 143.8 px per mM/min; bottom: 0.8 at px 1280 to -0.8 at px 2142.5, 539 px per mM/min; residuals below 0.002 mM/min). Open squares (NO2-), filled circles (N2), filled up-triangles (NH3), open stars (N2O) and filled stars (NH2OH) located by normalized cross-correlation with templates cut from clean markers in the same figure, anchored at the geometric centre (box centre for square and circle, centroid for the triangle, circumcentre for the stars). Open circles (H2N2O2) located by a ring fit (radius 11-12 px). Markers at t = 0 are half hidden by the y axis and were matched with the right part of the template (or the right-hand arc for the circle). N2O at 120 min (upper half under the NH3 triangle) was matched with the lower half of the template. N2O at 30 min (lower part under the NH3 triangle) was matched with the full template (score 0.65). H2N2O2 at 90 min coincides with the NH3 triangle (ring-fit score 0.37, low confidence); H2N2O2, NH2OH and N2O at 180 min overlap each other. Overlay of the inverse-calibrated points on the page crop checked by eye (scratch, not committed). The thesis does not say how the rates were computed from the concentration data.",
+  "n_basis_note": "Integrating the digitized rates over time (trapezoid) reproduces the concentrations of the repo dataset katsounaros2012_fig1_sn_naoh (Katsounaros et al., Electrochim. Acta 71 (2012) 270, Fig. 1, same conditions: 0.5 M NaNO3 + 1 M NaOH, -2.2 V) when N2 and N2O are counted as 2 N: cumulative N2 x 2 at 30/60/90/120/150/180 min = 20, 76, 165, 247, 290, 309 mM-N against 18, 75, 165, 249, 292, 309 in that dataset; N2O x 2 = 5, 20, 41, 55, 60, 62 against 4, 20, 42, 56, 60, 63; NH3 (x 1) = 3.6, 8.5, 14.6, 20.1, 23.9, 27.0 against 5.0, 7.6, 13.6, 19.6, 23.6, 27.6; NO2- (x 1) = 87, 117, 92, 47, 16, 6 against 107, 132, 99, 39, 10, 6. So the plotted N2 and N2O rates are per molecule, and this diagram is very probably derived from the same run as the 2012 paper's Fig. 1 (which, by the same comparison, plots N2 and N2O as N-equivalents, as that dataset's meta assumes).",
+  "checks": {
+    "text_facts": [
+      "Maximum N2O production rate at 75 min: read 0.365 mM/min at 75 min (largest N2O value)",
+      "Maximum N2 production rate at 90 min: read 1.601 mM/min at 90 min",
+      "Maximum consumption of NO2- and NH2OH at 90 min: read -1.560 and -0.412 mM/min at 90 min",
+      "Maximum H2N2O2 production at 60 min: read 0.222 mM/min at 60 min",
+      "Maximum NH3 production at 90 min: read 0.213 mM/min at 90 min",
+      "NH2OH concentration maximum (rate crosses zero) at 60 min: read -0.034 mM/min at 60 min"
+    ],
+    "legend_mismatch": "The caption assigns a filled down-triangle to N2, but the figure has no such marker; the only unassigned series is the filled circles in the top panel. They are taken as N2 because their maximum is at 90 min (text: N2 maximum at 90 min) and their time integral reproduces the N2 concentrations of the 2012 paper (n_basis_note)."
+  },
+  "conditions": {
+    "catalyst": "Sn foil (2 cm2 geometric)",
+    "electrolyte": "0.5 M NaNO3 + 1 M NaOH",
+    "cell": "divided_batch (Teflon cell, Nafion 117 H+ form, 10 mL per compartment, platinized Pt anode, Luggin capillary), assumed from thesis ch. 5 standard setup",
+    "potential_as_reported": "-2.2 V vs Ag/AgCl (3 M KCl)",
+    "potential_V_vs_RHE": null,
+    "potential_mode": "potentiostatic",
+    "volume_mL": 10,
+    "temperature_C": null,
+    "stirring": "He sparge 12 mL/min",
+    "c0_mM_N": {
+      "NO3": 500.0
+    },
+    "notes": "Ambient temperature (not given numerically). Rates, not concentrations; signs as plotted (positive = production, negative = consumption)."
+  },
+  "provenance": {
+    "citation": "Katsounaros I., Electrochemical reduction of nitrate on tin cathode: removal of nitrate from the ion exchange regenerant solution, PhD thesis (in Greek), Aristotle University of Thessaloniki (2009)",
+    "doi": "10.12681/eadd/19491",
+    "figure": "Diag 12.1, printed p. 186",
+    "file": "thesis page image via the archive's online reader, 300 dpi; not committed",
+    "notes": "Terms: National Archive of PhD Theses (didaktorika.gr, run by EKT). Its terms of use allow deposited theses to be used online for educational, scientific, statistical and research purposes when there is no direct or indirect financial benefit, require any publication based on a thesis to cite its author, and allow linking to the site's content but not reproducing it; the item page states that all items in the archive are protected by copyright. The page image was viewed through the archive's online reader without an account and is not stored in the repo. Whether NernstWork's use meets the no-financial-benefit condition is the repository owner's decision. Caption: rate of production or consumption of (open square) NO2-, (open circle) H2N2O2, (filled star) NH2OH, (filled up-triangle) NH3, (filled down-triangle) N2 and (open star) N2O during electrolysis of 0.5 M NaNO3 + 1 M NaOH at -2.2 V vs Ag/AgCl. Text facts from printed pp. 185-187.",
+    "verified_against_figure": false
+  },
+  "flags": [
+    "rates_not_concentrations",
+    "legend_mismatch_N2_marker",
+    "same_run_as_katsounaros2012_fig1_probable",
+    "occluded_markers_lower_confidence",
+    "potential_vs_ag_agcl_not_rhe"
+  ],
+  "rows": 56,
+  "columns": [
+    "species",
+    "marker",
+    "panel",
+    "t_min_read",
+    "rate_mM_per_min",
+    "method",
+    "match_score",
+    "note"
+  ]
+}

@@ -1,0 +1,615 @@
+{
+ "id": "willoughby2026_figS6_ms_calibration",
+ "kind": "ms_calibration_time_series",
+ "note": "Gas-phase EC-MS signals digitized from SI figures. Inputs only: not a batch concentration trajectory; do not convert with scripts/digitized_to_dataset.py and do not copy to data/real.",
+ "files": {
+  "extracted.csv": "tidy long format, one row per trace per pixel column"
+ },
+ "csv_columns": {
+  "time_min": "time axis of the figure (minutes, figure's own origin)",
+  "species": "assigned species, or the authors' label for a raw m/z channel; empty for current/potential",
+  "channel": "plotted channel (m/z, deconvoluted channel, current density, potential)",
+  "value": "column-median value of the plotted stroke",
+  "value_lo/value_hi": "vertical extent of the stroke centre-line in that pixel column (wide on steep or noisy segments)",
+  "unit": "unit as plotted",
+  "signal_type": "gas_flux_per_area | ms_ion_current | applied_current_density | electrode_potential",
+  "condition": "run identifier",
+  "isotope": "14N or 15N nitrate",
+  "figure_panel": "SI panel",
+  "trace": "internal trace id",
+  "px_col": "pixel column in the native embedded image",
+  "flags": "per-point: multi_row_column (stroke spans > stroke+2 px: use lo/hi), clipped_at_panel_top (true value >= value_hi), touches_panel_bottom, split_stroke (JPEG gap in a steep segment); per-trace flags explained in quality_flags"
+ },
+ "units": {
+  "all": "A (ion current)"
+ },
+ "conditions": {
+  "calibration_1000ppm_N2O_in_He": {
+   "gas": "1000 ppm N2O in He",
+   "electrolyte": "0.1 M HNO3 + 0.3 M KNO3 (gas flowed through electrolyte, per caption)"
+  },
+  "calibration_1000ppm_N2_in_He": {
+   "gas": "1000 ppm N2 in He",
+   "electrolyte": "0.1 M HNO3 + 0.3 M KNO3"
+  }
+ },
+ "points_per_trace": {
+  "S6b:m16": 337,
+  "S6b:m30": 346,
+  "S6b:m44": 496,
+  "S6c:m14": 299,
+  "S6c:m28": 487
+ },
+ "flag_counts": {
+  "multi_row_column": 670,
+  "near_zero_low_resolution": 299,
+  "split_stroke": 5
+ },
+ "provenance": {
+  "citation": "Willoughby W. L., Hannagan R. T., Guo J., Benedek P., Yap K. M. K., Burke Stevens M., Nielander A. C., Tarpeh W. A., Jaramillo T. F., Dynamic Quantification of Nitrogen Species in Acidic Titanium-Catalyzed Nitrate Reduction toward Ammonia, ACS Electrochem. 2 (2026) 353. Supporting Information.",
+  "doi": "10.1021/acselectrochem.5c00405",
+  "figure": "Fig. S6b (N2O), Fig. S6c (N2)",
+  "page": "PDF p. 12 (SI p. S12)",
+  "si_version": {
+   "file_used": "ec5c00405_si_001.pdf (16 pp, md5 1c5b26ae4c8534372aaf332815fc63aa, Word-generated, created 2026-01-06)",
+   "other_version": "ec5c00405_si_001__1_.pdf (md5 0fb0d1662e45f89665c7abdf4c25c792): identical text and byte-identical embedded figure images; differs only by an ACS 'Downloaded from pubs.acs.org ... by guest on 20 October 2026' margin stamp on every page (x 588-593 pt, outside all figure areas) and PDF producer/ModDate metadata. The unstamped file was used.",
+   "main_text": "not available (paywalled); only the SI was read"
+  },
+  "extraction_method": "Raster digitization. Every SI figure is a single embedded raster (no vector paths, no text layer over the figure), so page.get_drawings() did not apply. Native embedded image extracted with pymupdf at ~200 dpi. Axes: linear least-squares fit of tick-mark pixel positions (located by scanning for dark tick runs off each axis line) to tick labels read visually from zoomed crops; label centres were used only where a tick is hidden (flagged). Trace: per pixel column, pixels within an RGB distance of the trace colour and above a saturation floor, legend line samples masked; value = calibrated median row of the stroke pixels; value_lo/value_hi = top/bottom of the stroke shrunk by half the stroke width (the vertical extent the plotted line covers in that column). One row per pixel column; no smoothing, interpolation or filling. Columns where the trace is hidden under another trace or off-scale are absent. Checked by redrawing the extracted values onto the original crop through the inverse calibration (overlay kept in scratch, not in the repo).",
+  "calibration": {
+   "s6b": {
+    "x_ticks_px_to_min": [
+     [
+      838.5,
+      25
+     ],
+     [
+      917.5,
+      30
+     ],
+     [
+      996.5,
+      35
+     ],
+     [
+      1075.5,
+      40
+     ],
+     [
+      1154.5,
+      45
+     ],
+     [
+      1234,
+      50
+     ]
+    ],
+    "min_per_px": 0.06323,
+    "x_tick_residual_px_max": 0.24,
+    "traces": {
+     "m44": {
+      "y_ticks_px_to_value": [
+       [
+        62.5,
+        1.875e-11
+       ],
+       [
+        86.5,
+        1.75e-11
+       ],
+       [
+        111.5,
+        1.625e-11
+       ],
+       [
+        135.5,
+        1.5e-11
+       ],
+       [
+        160,
+        1.375e-11
+       ],
+       [
+        184.5,
+        1.25e-11
+       ],
+       [
+        208.5,
+        1.125e-11
+       ],
+       [
+        232.5,
+        1e-11
+       ],
+       [
+        257.5,
+        8.75e-12
+       ],
+       [
+        281.5,
+        7.5e-12
+       ],
+       [
+        306.5,
+        6.25e-12
+       ],
+       [
+        330.5,
+        5e-12
+       ],
+       [
+        354.5,
+        3.75e-12
+       ],
+       [
+        379.5,
+        2.5e-12
+       ],
+       [
+        403.5,
+        1.25e-12
+       ],
+       [
+        427.5,
+        0
+       ]
+      ],
+      "value_per_px": 5.13e-14,
+      "y_tick_residual_px_max": 0.48,
+      "panel_interior_px": [
+       792,
+       41,
+       1296,
+       445
+      ],
+      "trace_rgb": [
+       248,
+       184,
+       24
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [
+       [
+        1167,
+        63,
+        1221,
+        122
+       ]
+      ],
+      "columns_with_trace": 496,
+      "columns_without_trace": 9
+     },
+     "m30": {
+      "y_ticks_px_to_value": [
+       [
+        62.5,
+        1.875e-11
+       ],
+       [
+        86.5,
+        1.75e-11
+       ],
+       [
+        111.5,
+        1.625e-11
+       ],
+       [
+        135.5,
+        1.5e-11
+       ],
+       [
+        160,
+        1.375e-11
+       ],
+       [
+        184.5,
+        1.25e-11
+       ],
+       [
+        208.5,
+        1.125e-11
+       ],
+       [
+        232.5,
+        1e-11
+       ],
+       [
+        257.5,
+        8.75e-12
+       ],
+       [
+        281.5,
+        7.5e-12
+       ],
+       [
+        306.5,
+        6.25e-12
+       ],
+       [
+        330.5,
+        5e-12
+       ],
+       [
+        354.5,
+        3.75e-12
+       ],
+       [
+        379.5,
+        2.5e-12
+       ],
+       [
+        403.5,
+        1.25e-12
+       ],
+       [
+        427.5,
+        0
+       ]
+      ],
+      "value_per_px": 5.13e-14,
+      "y_tick_residual_px_max": 0.48,
+      "panel_interior_px": [
+       792,
+       41,
+       1296,
+       445
+      ],
+      "trace_rgb": [
+       104,
+       200,
+       184
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [
+       [
+        1167,
+        63,
+        1221,
+        122
+       ]
+      ],
+      "columns_with_trace": 346,
+      "columns_without_trace": 159
+     },
+     "m16": {
+      "y_ticks_px_to_value": [
+       [
+        62.5,
+        1.875e-11
+       ],
+       [
+        86.5,
+        1.75e-11
+       ],
+       [
+        111.5,
+        1.625e-11
+       ],
+       [
+        135.5,
+        1.5e-11
+       ],
+       [
+        160,
+        1.375e-11
+       ],
+       [
+        184.5,
+        1.25e-11
+       ],
+       [
+        208.5,
+        1.125e-11
+       ],
+       [
+        232.5,
+        1e-11
+       ],
+       [
+        257.5,
+        8.75e-12
+       ],
+       [
+        281.5,
+        7.5e-12
+       ],
+       [
+        306.5,
+        6.25e-12
+       ],
+       [
+        330.5,
+        5e-12
+       ],
+       [
+        354.5,
+        3.75e-12
+       ],
+       [
+        379.5,
+        2.5e-12
+       ],
+       [
+        403.5,
+        1.25e-12
+       ],
+       [
+        427.5,
+        0
+       ]
+      ],
+      "value_per_px": 5.13e-14,
+      "y_tick_residual_px_max": 0.48,
+      "panel_interior_px": [
+       792,
+       41,
+       1296,
+       445
+      ],
+      "trace_rgb": [
+       88,
+       72,
+       168
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 2,
+      "legend_mask_boxes_px": [
+       [
+        1167,
+        63,
+        1221,
+        122
+       ]
+      ],
+      "columns_with_trace": 337,
+      "columns_without_trace": 168
+     }
+    }
+   },
+   "s6c": {
+    "x_ticks_px_to_min": [
+     [
+      174.5,
+      25
+     ],
+     [
+      252.5,
+      30
+     ],
+     [
+      330.5,
+      35
+     ],
+     [
+      408.5,
+      40
+     ],
+     [
+      485.5,
+      45
+     ],
+     [
+      563.5,
+      50
+     ]
+    ],
+    "min_per_px": 0.06429,
+    "x_tick_residual_px_max": 0.45,
+    "traces": {
+     "m28": {
+      "y_ticks_px_to_value": [
+       [
+        593.5,
+        4e-09
+       ],
+       [
+        682.5,
+        3e-09
+       ],
+       [
+        771.5,
+        2e-09
+       ],
+       [
+        860.5,
+        1e-09
+       ],
+       [
+        949.5,
+        0
+       ]
+      ],
+      "value_per_px": 1.12e-11,
+      "y_tick_residual_px_max": 0.0,
+      "panel_interior_px": [
+       130,
+       552,
+       624,
+       956
+      ],
+      "trace_rgb": [
+       184,
+       40,
+       104
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 2,
+      "legend_mask_boxes_px": [
+       [
+        490,
+        576,
+        545,
+        609
+       ]
+      ],
+      "columns_with_trace": 487,
+      "columns_without_trace": 8
+     },
+     "m14": {
+      "y_ticks_px_to_value": [
+       [
+        593.5,
+        4e-09
+       ],
+       [
+        682.5,
+        3e-09
+       ],
+       [
+        771.5,
+        2e-09
+       ],
+       [
+        860.5,
+        1e-09
+       ],
+       [
+        949.5,
+        0
+       ]
+      ],
+      "value_per_px": 1.12e-11,
+      "y_tick_residual_px_max": 0.0,
+      "panel_interior_px": [
+       130,
+       552,
+       624,
+       956
+      ],
+      "trace_rgb": [
+       200,
+       216,
+       40
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [
+       [
+        490,
+        576,
+        545,
+        609
+       ]
+      ],
+      "columns_with_trace": 299,
+      "columns_without_trace": 196
+     }
+    }
+   }
+  },
+  "extractor": "agent team 2026-10-20",
+  "scripts": "scratch only (team/willoughby/digitize.py, build.py, overlay_final.py); not in repo",
+  "verified_against_figure": true,
+  "verification": "inverse-calibration overlay of every extracted point on the native figure crop, inspected visually per panel; tick-fit residuals listed under calibration"
+ },
+ "licence": "Licence: the SI is CC BY-NC 4.0 per ACS figshare article 31048851 (doi 10.1021/acselectrochem.5c00405.s001). The unstamped SI file used here has the same MD5 as the figshare file (checked Oct 20 2026); the second, stamped copy came from pubs.acs.org, whose own SI terms were not checked. Whether NernstWork's use counts as NonCommercial is the repository owner's decision.",
+ "quality_flags": {
+  "raster_digitized": "no vector data in the SI; precision limited to ~0.25 px after calibration",
+  "gas_phase_rate_not_concentration": "EC-MS gas-outlet signals; not liquid-phase concentrations; not for scripts/digitized_to_dataset.py",
+  "zero_floor_likely_clipped": "off-period traces sit exactly on zero for long stretches (e.g. S1c H2 0-6 min); the authors' baseline-subtracted data appear floored at 0, so near-zero values are not informative",
+  "slightly_negative_at_zero": "values within ~1 px of zero can be slightly negative from stroke width; left unclamped",
+  "three_plateaus_differ": "the three nominally identical 1000 ppm exposures give different plateaus (N2 m/z 28: about 3.8, 2.9, 2.2 nA); the caption does not say what changed",
+  "near_zero_low_resolution (m/z 14)": "m/z 14 sits 2-4 px above zero (1 px = 1.1e-11 A); ratio m/z 14/28 good to roughly +/-30%",
+  "hidden_under_other_trace": "m/z 30, m/z 16 and m/z 14 absent where drawn under another trace near zero",
+  "H2_O2_panels_not_extracted": "Fig. S6a (H2) and S6d (O2) not needed for N kinetics"
+ },
+ "derived_checks": {
+  "plateau_ratios": {
+   "S6b_m30_over_m44": [
+    {
+     "window_min": [
+      28,
+      30.5
+     ],
+     "m30": 4.14e-12,
+     "m44": 1.41e-11,
+     "ratio": 0.2943
+    },
+    {
+     "window_min": [
+      36,
+      40
+     ],
+     "m30": 4.56e-12,
+     "m44": 1.44e-11,
+     "ratio": 0.3158
+    },
+    {
+     "window_min": [
+      47,
+      50.5
+     ],
+     "m30": 4.58e-12,
+     "m44": 1.4e-11,
+     "ratio": 0.3274
+    }
+   ],
+   "S6b_m16_over_m44": [
+    {
+     "window_min": [
+      28,
+      30.5
+     ],
+     "m16": 3.07e-12,
+     "m44": 1.41e-11,
+     "ratio": 0.2185
+    },
+    {
+     "window_min": [
+      36,
+      40
+     ],
+     "m16": 2.35e-12,
+     "m44": 1.44e-11,
+     "ratio": 0.1629
+    },
+    {
+     "window_min": [
+      47,
+      50.5
+     ],
+     "m16": 1.81e-12,
+     "m44": 1.4e-11,
+     "ratio": 0.1295
+    }
+   ],
+   "S6c_m14_over_m28": [
+    {
+     "window_min": [
+      28,
+      30.5
+     ],
+     "m14": 3.93e-11,
+     "m28": 3.82e-09,
+     "ratio": 0.0103
+    },
+    {
+     "window_min": [
+      36,
+      40
+     ],
+     "m14": 3.37e-11,
+     "m28": 2.91e-09,
+     "ratio": 0.0116
+    },
+    {
+     "window_min": [
+      47,
+      50.5
+     ],
+     "m14": 2.25e-11,
+     "m28": 2.22e-09,
+     "ratio": 0.0101
+    }
+   ]
+  },
+  "note": "DERIVED: plateau medians. N2O m/z 30/44 = 0.29-0.33; N2 m/z 14/28 = 0.010-0.012 on this instrument."
+ }
+}

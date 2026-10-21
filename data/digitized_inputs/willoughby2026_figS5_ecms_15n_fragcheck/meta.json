@@ -1,0 +1,1034 @@
+{
+ "id": "willoughby2026_figS5_ecms_15n_fragcheck",
+ "kind": "ecms_ion_current_time_series",
+ "note": "Gas-phase EC-MS signals digitized from SI figures. Inputs only: not a batch concentration trajectory; do not convert with scripts/digitized_to_dataset.py and do not copy to data/real.",
+ "files": {
+  "extracted.csv": "tidy long format, one row per trace per pixel column"
+ },
+ "csv_columns": {
+  "time_min": "time axis of the figure (minutes, figure's own origin)",
+  "species": "assigned species, or the authors' label for a raw m/z channel; empty for current/potential",
+  "channel": "plotted channel (m/z, deconvoluted channel, current density, potential)",
+  "value": "column-median value of the plotted stroke",
+  "value_lo/value_hi": "vertical extent of the stroke centre-line in that pixel column (wide on steep or noisy segments)",
+  "unit": "unit as plotted",
+  "signal_type": "gas_flux_per_area | ms_ion_current | applied_current_density | electrode_potential",
+  "condition": "run identifier",
+  "isotope": "14N or 15N nitrate",
+  "figure_panel": "SI panel",
+  "trace": "internal trace id",
+  "px_col": "pixel column in the native embedded image",
+  "flags": "per-point: multi_row_column (stroke spans > stroke+2 px: use lo/hi), clipped_at_panel_top (true value >= value_hi), touches_panel_bottom, split_stroke (JPEG gap in a steep segment); per-trace flags explained in quality_flags"
+ },
+ "units": {
+  "m/z channels": "pA",
+  "j": "mA cm-2",
+  "E": "V vs RHE"
+ },
+ "conditions": {
+  "15N_galvanostatic_pulses_-0.1mA_cm2": {
+   "catalyst": "Ti (titanium disk electrode; SI gives disk area 0.196 cm2)",
+   "electrolyte": "0.1 M H15NO3 + 0.3 M K15NO3 (as stated in the caption; isotopic purity not given)",
+   "nitrate_total_mM": 400.0,
+   "pH": null,
+   "pH_note": "not stated in SI; 0.1 M HNO3 implies roughly pH 1 (inference)",
+   "cell": "EC-MS (ixdat analysis, He carrier); geometry and volume not given in SI",
+   "temperature_C": null,
+   "potential_scale": "V vs RHE as plotted (no conversion done)",
+   "mode": "galvanostatic pulses",
+   "current_density_mA_cm2": -0.1,
+   "pulse_schedule_min": [
+    [
+     6.03,
+     11.0
+    ],
+    [
+     16.05,
+     21.02
+    ],
+    [
+     25.98,
+     31.03
+    ],
+    [
+     36.0,
+     41.05
+    ],
+    [
+     46.01,
+     51.07
+    ]
+   ]
+  },
+  "15N_galvanostatic_pulses_-0.2mA_cm2": {
+   "catalyst": "Ti (titanium disk electrode; SI gives disk area 0.196 cm2)",
+   "electrolyte": "0.1 M H15NO3 + 0.3 M K15NO3 (as stated in the caption; isotopic purity not given)",
+   "nitrate_total_mM": 400.0,
+   "pH": null,
+   "pH_note": "not stated in SI; 0.1 M HNO3 implies roughly pH 1 (inference)",
+   "cell": "EC-MS (ixdat analysis, He carrier); geometry and volume not given in SI",
+   "temperature_C": null,
+   "potential_scale": "V vs RHE as plotted (no conversion done)",
+   "mode": "galvanostatic pulses",
+   "current_density_mA_cm2": -0.2,
+   "pulse_schedule_min": [
+    [
+     6.22,
+     11.22
+    ],
+    [
+     16.22,
+     21.22
+    ],
+    [
+     26.22,
+     31.22
+    ]
+   ]
+  }
+ },
+ "points_per_trace": {
+  "S5a:E": 338,
+  "S5a:j": 338,
+  "S5a:m15_residual": 338,
+  "S5a:m15_total": 278,
+  "S5a:m31_n2o_frag": 292,
+  "S5a:m31_total": 338,
+  "S5b:E": 338,
+  "S5b:j": 338,
+  "S5b:m15_residual": 337,
+  "S5b:m15_total": 276,
+  "S5b:m31_n2o_frag": 278,
+  "S5b:m31_total": 338
+ },
+ "flag_counts": {
+  "multi_row_column": 773,
+  "axis_zero_from_label_centre": 338,
+  "axis_from_label_centres_only": 338,
+  "split_stroke": 8,
+  "clipped_at_panel_top": 5
+ },
+ "provenance": {
+  "citation": "Willoughby W. L., Hannagan R. T., Guo J., Benedek P., Yap K. M. K., Burke Stevens M., Nielander A. C., Tarpeh W. A., Jaramillo T. F., Dynamic Quantification of Nitrogen Species in Acidic Titanium-Catalyzed Nitrate Reduction toward Ammonia, ACS Electrochem. 2 (2026) 353. Supporting Information.",
+  "doi": "10.1021/acselectrochem.5c00405",
+  "figure": "Fig. S5a, S5b",
+  "page": "PDF p. 10 (SI p. S10)",
+  "si_version": {
+   "file_used": "ec5c00405_si_001.pdf (16 pp, md5 1c5b26ae4c8534372aaf332815fc63aa, Word-generated, created 2026-01-06)",
+   "other_version": "ec5c00405_si_001__1_.pdf (md5 0fb0d1662e45f89665c7abdf4c25c792): identical text and byte-identical embedded figure images; differs only by an ACS 'Downloaded from pubs.acs.org ... by guest on 20 October 2026' margin stamp on every page (x 588-593 pt, outside all figure areas) and PDF producer/ModDate metadata. The unstamped file was used.",
+   "main_text": "not available (paywalled); only the SI was read"
+  },
+  "extraction_method": "Raster digitization. Every SI figure is a single embedded raster (no vector paths, no text layer over the figure), so page.get_drawings() did not apply. Native embedded image extracted with pymupdf at ~200 dpi. Axes: linear least-squares fit of tick-mark pixel positions (located by scanning for dark tick runs off each axis line) to tick labels read visually from zoomed crops; label centres were used only where a tick is hidden (flagged). Trace: per pixel column, pixels within an RGB distance of the trace colour and above a saturation floor, legend line samples masked; value = calibrated median row of the stroke pixels; value_lo/value_hi = top/bottom of the stroke shrunk by half the stroke width (the vertical extent the plotted line covers in that column). One row per pixel column; no smoothing, interpolation or filling. Columns where the trace is hidden under another trace or off-scale are absent. Checked by redrawing the extracted values onto the original crop through the inverse calibration (overlay kept in scratch, not in the repo).",
+  "calibration": {
+   "s5a": {
+    "x_ticks_px_to_min": [
+     [
+      74,
+      5
+     ],
+     [
+      133,
+      15
+     ],
+     [
+      163,
+      20
+     ],
+     [
+      193,
+      25
+     ],
+     [
+      222,
+      30
+     ],
+     [
+      252,
+      35
+     ],
+     [
+      282,
+      40
+     ],
+     [
+      341,
+      50
+     ],
+     [
+      371,
+      55
+     ]
+    ],
+    "min_per_px": 0.16834,
+    "x_tick_residual_px_max": 0.37,
+    "traces": {
+     "m15_total": {
+      "y_ticks_px_to_value": [
+       [
+        47,
+        7
+       ],
+       [
+        58,
+        6
+       ],
+       [
+        69,
+        5
+       ],
+       [
+        92,
+        3
+       ],
+       [
+        103,
+        2
+       ],
+       [
+        114,
+        1
+       ]
+      ],
+      "value_per_px": 0.0892,
+      "y_tick_residual_px_max": 0.29,
+      "panel_interior_px": [
+       45,
+       37,
+       382,
+       131
+      ],
+      "trace_rgb": [
+       248,
+       200,
+       40
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [
+       [
+        52,
+        41,
+        86,
+        58
+       ]
+      ],
+      "columns_with_trace": 278,
+      "columns_without_trace": 60
+     },
+     "m15_residual": {
+      "y_ticks_px_to_value": [
+       [
+        47,
+        7
+       ],
+       [
+        58,
+        6
+       ],
+       [
+        69,
+        5
+       ],
+       [
+        92,
+        3
+       ],
+       [
+        103,
+        2
+       ],
+       [
+        114,
+        1
+       ]
+      ],
+      "value_per_px": 0.0892,
+      "y_tick_residual_px_max": 0.29,
+      "panel_interior_px": [
+       45,
+       37,
+       382,
+       131
+      ],
+      "trace_rgb": [
+       184,
+       56,
+       136
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [
+       [
+        52,
+        41,
+        86,
+        58
+       ]
+      ],
+      "columns_with_trace": 338,
+      "columns_without_trace": 0
+     },
+     "m31_total": {
+      "y_ticks_px_to_value": [
+       [
+        142,
+        80
+       ],
+       [
+        152,
+        70
+       ],
+       [
+        162,
+        60
+       ],
+       [
+        172,
+        50
+       ],
+       [
+        182,
+        40
+       ],
+       [
+        192,
+        30
+       ],
+       [
+        202,
+        20
+       ],
+       [
+        212,
+        10
+       ]
+      ],
+      "value_per_px": 1.0,
+      "y_tick_residual_px_max": 0.0,
+      "panel_interior_px": [
+       45,
+       133,
+       382,
+       228
+      ],
+      "trace_rgb": [
+       232,
+       120,
+       88
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 2,
+      "legend_mask_boxes_px": [
+       [
+        53,
+        137,
+        84,
+        153
+       ]
+      ],
+      "columns_with_trace": 338,
+      "columns_without_trace": 0
+     },
+     "m31_n2o_frag": {
+      "y_ticks_px_to_value": [
+       [
+        142,
+        80
+       ],
+       [
+        152,
+        70
+       ],
+       [
+        162,
+        60
+       ],
+       [
+        172,
+        50
+       ],
+       [
+        182,
+        40
+       ],
+       [
+        192,
+        30
+       ],
+       [
+        202,
+        20
+       ],
+       [
+        212,
+        10
+       ]
+      ],
+      "value_per_px": 1.0,
+      "y_tick_residual_px_max": 0.0,
+      "panel_interior_px": [
+       45,
+       133,
+       382,
+       228
+      ],
+      "trace_rgb": [
+       152,
+       40,
+       152
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 2,
+      "legend_mask_boxes_px": [
+       [
+        53,
+        137,
+        84,
+        153
+       ]
+      ],
+      "columns_with_trace": 292,
+      "columns_without_trace": 46
+     },
+     "j": {
+      "y_ticks_px_to_value": [
+       [
+        318,
+        -0.1
+       ],
+       [
+        238.5,
+        0.0
+       ]
+      ],
+      "value_per_px": 0.00126,
+      "y_tick_residual_px_max": 0.0,
+      "panel_interior_px": [
+       45,
+       230,
+       382,
+       325
+      ],
+      "trace_rgb": [
+       136,
+       88,
+       168
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [],
+      "columns_with_trace": 338,
+      "columns_without_trace": 0
+     },
+     "E": {
+      "y_ticks_px_to_value": [
+       [
+        330,
+        0.3
+       ],
+       [
+        342,
+        0.15
+       ],
+       [
+        353,
+        0.0
+       ],
+       [
+        365,
+        -0.15
+       ],
+       [
+        376,
+        -0.3
+       ],
+       [
+        388,
+        -0.45
+       ],
+       [
+        400,
+        -0.6
+       ],
+       [
+        411,
+        -0.75
+       ]
+      ],
+      "value_per_px": 0.0129,
+      "y_tick_residual_px_max": 0.42,
+      "panel_interior_px": [
+       45,
+       327,
+       382,
+       422
+      ],
+      "trace_rgb": [
+       72,
+       88,
+       168
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [],
+      "columns_with_trace": 338,
+      "columns_without_trace": 0
+     }
+    }
+   },
+   "s5b": {
+    "x_ticks_px_to_min": [
+     [
+      532,
+      5
+     ],
+     [
+      579,
+      10
+     ],
+     [
+      626,
+      15
+     ],
+     [
+      673,
+      20
+     ],
+     [
+      720,
+      25
+     ],
+     [
+      767,
+      30
+     ],
+     [
+      814,
+      35
+     ]
+    ],
+    "min_per_px": 0.10638,
+    "x_tick_residual_px_max": 0.0,
+    "traces": {
+     "m15_total": {
+      "y_ticks_px_to_value": [
+       [
+        41,
+        16
+       ],
+       [
+        46,
+        15
+       ],
+       [
+        52,
+        14
+       ],
+       [
+        57,
+        13
+       ],
+       [
+        63,
+        12
+       ],
+       [
+        68,
+        11
+       ],
+       [
+        74,
+        10
+       ],
+       [
+        79,
+        9
+       ],
+       [
+        85,
+        8
+       ],
+       [
+        90,
+        7
+       ],
+       [
+        96,
+        6
+       ],
+       [
+        101,
+        5
+       ],
+       [
+        107,
+        4
+       ],
+       [
+        118,
+        2
+       ],
+       [
+        129,
+        0
+       ]
+      ],
+      "value_per_px": 0.181,
+      "y_tick_residual_px_max": 0.34,
+      "panel_interior_px": [
+       486,
+       37,
+       823,
+       131
+      ],
+      "trace_rgb": [
+       184,
+       200,
+       168
+      ],
+      "rgb_tolerance": 40,
+      "min_saturation": 18,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [
+       [
+        490,
+        39,
+        525,
+        58
+       ]
+      ],
+      "columns_with_trace": 276,
+      "columns_without_trace": 62
+     },
+     "m15_residual": {
+      "y_ticks_px_to_value": [
+       [
+        41,
+        16
+       ],
+       [
+        46,
+        15
+       ],
+       [
+        52,
+        14
+       ],
+       [
+        57,
+        13
+       ],
+       [
+        63,
+        12
+       ],
+       [
+        68,
+        11
+       ],
+       [
+        74,
+        10
+       ],
+       [
+        79,
+        9
+       ],
+       [
+        85,
+        8
+       ],
+       [
+        90,
+        7
+       ],
+       [
+        96,
+        6
+       ],
+       [
+        101,
+        5
+       ],
+       [
+        107,
+        4
+       ],
+       [
+        118,
+        2
+       ],
+       [
+        129,
+        0
+       ]
+      ],
+      "value_per_px": 0.181,
+      "y_tick_residual_px_max": 0.34,
+      "panel_interior_px": [
+       486,
+       37,
+       823,
+       131
+      ],
+      "trace_rgb": [
+       56,
+       184,
+       200
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 2,
+      "legend_mask_boxes_px": [
+       [
+        490,
+        39,
+        525,
+        58
+       ]
+      ],
+      "columns_with_trace": 337,
+      "columns_without_trace": 1
+     },
+     "m31_total": {
+      "y_ticks_px_to_value": [
+       [
+        143,
+        160
+       ],
+       [
+        148,
+        150
+       ],
+       [
+        153,
+        140
+       ],
+       [
+        158,
+        130
+       ],
+       [
+        163,
+        120
+       ],
+       [
+        174,
+        100
+       ],
+       [
+        179,
+        90
+       ],
+       [
+        184,
+        80
+       ],
+       [
+        189,
+        70
+       ],
+       [
+        195,
+        60
+       ],
+       [
+        200,
+        50
+       ],
+       [
+        205,
+        40
+       ],
+       [
+        210,
+        30
+       ],
+       [
+        215,
+        20
+       ]
+      ],
+      "value_per_px": 1.93,
+      "y_tick_residual_px_max": 0.48,
+      "panel_interior_px": [
+       486,
+       133,
+       823,
+       228
+      ],
+      "trace_rgb": [
+       56,
+       184,
+       120
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 2,
+      "legend_mask_boxes_px": [
+       [
+        495,
+        134,
+        529,
+        153
+       ]
+      ],
+      "columns_with_trace": 338,
+      "columns_without_trace": 0
+     },
+     "m31_n2o_frag": {
+      "y_ticks_px_to_value": [
+       [
+        143,
+        160
+       ],
+       [
+        148,
+        150
+       ],
+       [
+        153,
+        140
+       ],
+       [
+        158,
+        130
+       ],
+       [
+        163,
+        120
+       ],
+       [
+        174,
+        100
+       ],
+       [
+        179,
+        90
+       ],
+       [
+        184,
+        80
+       ],
+       [
+        189,
+        70
+       ],
+       [
+        195,
+        60
+       ],
+       [
+        200,
+        50
+       ],
+       [
+        205,
+        40
+       ],
+       [
+        210,
+        30
+       ],
+       [
+        215,
+        20
+       ]
+      ],
+      "value_per_px": 1.93,
+      "y_tick_residual_px_max": 0.48,
+      "panel_interior_px": [
+       486,
+       133,
+       823,
+       228
+      ],
+      "trace_rgb": [
+       24,
+       152,
+       200
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [
+       [
+        495,
+        134,
+        529,
+        153
+       ]
+      ],
+      "columns_with_trace": 278,
+      "columns_without_trace": 60
+     },
+     "j": {
+      "y_ticks_px_to_value": [
+       [
+        317,
+        -0.2
+       ],
+       [
+        234.5,
+        0.0
+       ]
+      ],
+      "value_per_px": 0.00242,
+      "y_tick_residual_px_max": 0.0,
+      "panel_interior_px": [
+       486,
+       230,
+       823,
+       325
+      ],
+      "trace_rgb": [
+       120,
+       88,
+       168
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 35,
+      "stroke_px": 2,
+      "legend_mask_boxes_px": [],
+      "columns_with_trace": 338,
+      "columns_without_trace": 0
+     },
+     "E": {
+      "y_ticks_px_to_value": [
+       [
+        334,
+        0.5
+       ],
+       [
+        343,
+        0.4
+       ],
+       [
+        352,
+        0.3
+       ],
+       [
+        361,
+        0.2
+       ],
+       [
+        370,
+        0.1
+       ],
+       [
+        396,
+        -0.2
+       ],
+       [
+        405,
+        -0.3
+       ],
+       [
+        414,
+        -0.4
+       ]
+      ],
+      "value_per_px": 0.0113,
+      "y_tick_residual_px_max": 0.34,
+      "panel_interior_px": [
+       486,
+       327,
+       823,
+       422
+      ],
+      "trace_rgb": [
+       24,
+       40,
+       88
+      ],
+      "rgb_tolerance": 50,
+      "min_saturation": 25,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [],
+      "columns_with_trace": 338,
+      "columns_without_trace": 0
+     }
+    }
+   }
+  },
+  "extractor": "agent team 2026-10-20",
+  "scripts": "scratch only (team/willoughby/digitize.py, build.py, overlay_final.py); not in repo",
+  "verified_against_figure": true,
+  "verification": "inverse-calibration overlay of every extracted point on the native figure crop, inspected visually per panel; tick-fit residuals listed under calibration"
+ },
+ "licence": "Licence: the SI is CC BY-NC 4.0 per ACS figshare article 31048851 (doi 10.1021/acselectrochem.5c00405.s001). The unstamped SI file used here has the same MD5 as the figshare file (checked Oct 20 2026); the second, stamped copy came from pubs.acs.org, whose own SI terms were not checked. Whether NernstWork's use counts as NonCommercial is the repository owner's decision.",
+ "quality_flags": {
+  "raster_digitized": "no vector data in the SI; precision limited to ~0.25 px after calibration",
+  "gas_phase_rate_not_concentration": "EC-MS gas-outlet signals; not liquid-phase concentrations; not for scripts/digitized_to_dataset.py",
+  "zero_floor_likely_clipped": "off-period traces sit exactly on zero for long stretches (e.g. S1c H2 0-6 min); the authors' baseline-subtracted data appear floored at 0, so near-zero values are not informative",
+  "slightly_negative_at_zero": "values within ~1 px of zero can be slightly negative from stroke width; left unclamped",
+  "authors_derived_traces": "'m/z 15 residual' and 'm/z 31 15N2O fragment' are the authors' computed traces, not measurements",
+  "hidden_under_other_trace": "m/z 15 total and m/z 31 fragment are absent in columns where the other trace in the same panel is drawn over them (off-periods near zero)",
+  "S5c_not_extracted": "S5c is the same questionable 15N CA run as S4c",
+  "same_runs_as_S4": "m/z 31 total and j/E duplicate the S4a/S4b runs (consistent within digitization error)",
+  "axis_from_label_centres_only (S5b j)": "the 0.0 j tick is hidden and the -0.2 tick is faint (row ~317.5, found only at a low darkness threshold); both j calibration points are label centres, and the -0.2 label centre lies within 0.5 px of the faint tick",
+  "zero_label_offset (S5b m/z 15)": "the '0' label is drawn ~7 px above its tick; ticks used"
+ },
+ "derived_checks": {
+  "m15_residual_over_total_at_pulse_ends": {
+   "S5a_m15res_over_m15tot": [
+    {
+     "pulse_end_min": 11.0,
+     "m15_residual": -0.01,
+     "m15_total": 5.03,
+     "ratio": -0.002
+    },
+    {
+     "pulse_end_min": 21.02,
+     "m15_residual": 0.12,
+     "m15_total": 5.83,
+     "ratio": 0.021
+    },
+    {
+     "pulse_end_min": 31.03,
+     "m15_residual": 0.03,
+     "m15_total": 5.78,
+     "ratio": 0.006
+    },
+    {
+     "pulse_end_min": 41.05,
+     "m15_residual": 0.03,
+     "m15_total": 5.52,
+     "ratio": 0.006
+    },
+    {
+     "pulse_end_min": 51.07,
+     "m15_residual": -0.01,
+     "m15_total": 5.96,
+     "ratio": -0.002
+    }
+   ],
+   "S5b_m15res_over_m15tot": [
+    {
+     "pulse_end_min": 11.22,
+     "m15_residual": 0.62,
+     "m15_total": 14.09,
+     "ratio": 0.044
+    },
+    {
+     "pulse_end_min": 21.22,
+     "m15_residual": 0.84,
+     "m15_total": 14.72,
+     "ratio": 0.057
+    },
+    {
+     "pulse_end_min": 31.22,
+     "m15_residual": 0.84,
+     "m15_total": 15.13,
+     "ratio": 0.056
+    }
+   ]
+  }
+ }
+}

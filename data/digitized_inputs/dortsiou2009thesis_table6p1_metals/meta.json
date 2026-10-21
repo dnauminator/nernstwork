@@ -1,0 +1,93 @@
+{
+ "id": "dortsiou2009thesis_table6p1_metals",
+ "kind": "inputs_only_thesis_table",
+ "note": "Inputs only: first-order nitrate rate constants on six metals at a fixed distance (2.01 V) negative of each pzc.",
+ "files": {
+  "extracted.csv": "one row per metal (tidy: three measured/stated variables per metal)"
+ },
+ "csv_columns": {
+  "table_row": "row order",
+  "metal": "cathode",
+  "pzc_V": "potential of zero charge as printed (reference scale not stated; literature value, ref. [15])",
+  "E_applied_V": "applied potential as printed (thesis potentials are vs Ag/AgCl; not restated in the table)",
+  "E_minus_pzc_V": "computed here",
+  "k_per_min": "rate constant, min-1 (first-order nitrate decay)",
+  "pzc_as_printed": "",
+  "E_as_printed": "",
+  "k_as_printed": "",
+  "flag": "",
+  "note": "caption cross-reference"
+ },
+ "provenance": {
+  "citation": "Dortsiou M., Electrochemical removal of nitrate and ammonia from aqueous solutions and environmental samples, PhD thesis (in Greek), Aristotle University of Thessaloniki, Dept. of Chemical Engineering (2009)",
+  "doi": "10.12681/eadd/27551",
+  "table": "Table 6.1",
+  "printed_page": 111,
+  "reader_page": 147,
+  "page_offset_note": "printed page = online-reader page - 36",
+  "caption_translated": "Table 6.1. The rate constant, the pzc and the potential values at constant distance from the pzc, for Bi, Sn, Al, Pb, Zn and In. Columns: metal | pzc / V | E / V | rate constant k / min-1.",
+  "source_file": "page text layer from the archive's online reader (scratch only, not committed)",
+  "licence": "National Archive of PhD Theses terms: research use with no direct or indirect financial benefit; author must be cited; items protected by copyright"
+ },
+ "conditions": {
+  "electrolyte": "0.4 M NaHCO3 / 0.4 M Na2CO3 / 0.05 M NaNO3 (ionic strength 1.6 M; Diags 6.1-6.5)",
+  "initial_pH": "9.65 for this electrolyte (stated in ch. 5, printed p. 83)",
+  "cell": "Teflon divided cell, Nafion 117 (H+), 12 mL compartments with 2 mL dead space, cathode 2 cm2, platinized Pt anode 6 cm2 at 2 cm",
+  "duration": "Diag 6.5 (the runs at fixed distance from pzc) spans 0-90 min",
+  "c0_mM_N": {
+   "NO3": 50.0
+  }
+ },
+ "text_translated": "Printed p. 110: 'to compare the reduction rate at potentials equidistant from the potential of zero charge, potentials always 2.01 V more negative than the pzc of each metal were applied, as shown in Table 6.1. The rate constant had similar values on the metals studied although they have significantly different properties.' Printed p. 107 lists the pzc order Bi (-0.39 V) > Sn (-0.43 V) > Al (-0.52 V) > Pb (-0.62 V) [15]. Printed p. 109: at a fixed -2.4 V nitrate decay was first order on every metal. Printed p. 111: Cu gave a rate similar to the other metals under these conditions.",
+ "checks": {
+  "row_sequences_on_page": [
+   {
+    "printed_sequence": "Bi -0,39 -2,40 0,0307",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "Sn -0,43 -2,44 0,0205",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "Al -0,52 -2,53 0,02033",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "Pb -0,62 -2,63 0,01437",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "Zn -0,63 -2,64 0,0374",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "In -0,65 -2,66 0,02367",
+    "found_on_page": true
+   }
+  ],
+  "pzc_values_quoted_in_text_printed_p107": [
+   {
+    "printed_sequence": "Bi (-0,39 V) > Sn (-0,43 V) > Al (-0,52 V) > Pb (-0,62 V)",
+    "found_on_page": true
+   }
+  ],
+  "E_minus_pzc_V": {
+   "Bi": -2.01,
+   "Sn": -2.01,
+   "Al": -2.01,
+   "Pb": -2.01,
+   "Zn": -2.01,
+   "In": -2.01
+  },
+  "caption_conflict": "Diag 6.6 (Zn, printed p. 113) is captioned -2.24 V vs Ag/AgCl, Diag 9.4 (Zn) '2.24 V' and Diag 9.3 (Al) '2.13 V'; Table 6.1 gives -2.64 V (Zn) and -2.53 V (Al). Both differ by exactly 0.40 V. Whether those diagrams are the Table 6.1 runs is not stated.",
+  "reference_scale": "pzc values are literature values whose scale is not stated (they are typical of the SHE scale), while applied potentials in this thesis are vs Ag/AgCl. Because the same 2.01 V is subtracted for every metal, any scale offset is common to all rows and does not affect the comparison."
+ },
+ "flags": [
+  "fit_constants_not_raw_data",
+  "pzc_reference_scale_not_stated",
+  "caption_potentials_differ_by_0p40_V",
+  "potential_vs_ag_agcl_not_rhe"
+ ],
+ "transcription_method": "thesis text layer: per-page text layer of the National Archive of PhD Theses online reader (EKT freader), read and typed in by an agent on 2026-10-20; table layout reconstructed by hand from the flattened text; every row's printed number sequence was checked by script to occur verbatim on the cited page (literature/extraction_scripts/thesis_tables/build_tables.py). Page images of these pages were not viewed. Not yet re-checked by a person."
+}

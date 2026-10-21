@@ -1,0 +1,110 @@
+{
+  "dataset": "gao2022_fig3e_stability_cycles",
+  "figure": "Fig. 3e (main PDF p.7)",
+  "source": "main paper 10451706.pdf (Environ. Sci. Technol. 2022, 56, 11602)",
+  "verdict": "accept_with_flags",
+  "verdict_basis": "All 40 values within 0.4 px (removal) / 0.8 px (Cu). Flag: the cycle-15 removal point is genuinely below the minimum stated in the text.",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "independence": "Verifier extracted the embedded raster itself (pymupdf, native resolution), located the ticks with its own code and re-read every value with its own scripts; extractor scripts and readings were not used.",
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "No change. The verifier's issue (cycle 15 plotted below the text's 96.6 % minimum; cite the figure value) is already noted in meta.json 'checks'.",
+      "files": []
+    }
+  ],
+  "meta_edited": false,
+  "max_deviation": {
+    "nitrate_removal_pct": {
+      "max_abs": 0.114,
+      "csv_row_index_0based": 14,
+      "px": 0.36,
+      "fraction_of_axis_range": 0.0011
+    },
+    "Cu_mg_L": {
+      "max_abs": 0.007,
+      "csv_row_index_0based": 4,
+      "px": 0.75,
+      "fraction_of_axis_range": 0.0023
+    },
+    "units": "left 0-100 % (0.314 per px); right 0-3 mg/L (0.0093 per px)"
+  },
+  "checks": [
+    {
+      "name": "axis_calibration",
+      "result": "pass",
+      "detail": "Left (red) axis majors at rows 590.0,654.0,717.5,781.0,844.93,908.0 (100..0 %), residual 0.09 %; right (blue) axis majors at 574.5,682.0,789.94,897.06 (3..0 mg/L; its zero sits ~11 px above the frame bottom, as the extractor noted), residual 0.003; cycle axis majors at x 1518,1641,1764,1887,2010 (0..20). Top axis: 0-1000 mL with 250 at cycle 5, i.e. 50 mL per cycle."
+    },
+    {
+      "name": "markers",
+      "result": "pass",
+      "detail": "Red circles and blue triangles segmented by colour with a 5x5 opening; 20 of each found at cycles 1.00-20.01. Centroid and bounding-box centre agree within 0.07 % / 0.006 mg/L. Cu values at or below 0 (-0.007..-0.004) are zero."
+    },
+    {
+      "name": "out_of_range_cycle15",
+      "result": "genuine_difference",
+      "detail": "Text: NO3- removal 96.6-99.9 % over 20 cycles. Cycle 15 marker centroid is at row 602.8, 1.8 px below the cycle 9 and 11 markers (601.0, 601.1), which read 96.60 and 96.58 = the text minimum. Verifier reads cycle 15 as 96.05 % (bbox 95.98), stored 96.164. The figure plots this point ~0.5 % below the text minimum; not a digitization error. Value kept."
+    },
+    {
+      "name": "text_cross_check",
+      "result": "pass",
+      "detail": "Cu < 0.1 mg/L from cycle 14 on (stored max 0.097 at cycle 16); high Cu in the first four cycles (1.3-2.4 mg/L) as described. Caption: 25 mM NO3-, pH ~7, 10 mM Cl-, -2 V vs SCE, 2.0 h per cycle, matching meta."
+    },
+    {
+      "name": "overlay",
+      "result": "pass",
+      "detail": "Stored values drawn as crosses on every marker, with the text minimum 96.6 % drawn as a line."
+    }
+  ],
+  "issues": [
+    "Cycle 15 (96.2 %) lies below the text range 96.6-99.9 % because the figure shows it there; downstream users should cite the figure value and note the text/figure mismatch."
+  ],
+  "verifier_readings": {
+    "nitrate_removal_pct": [
+      98.87,
+      99.27,
+      99.28,
+      99.07,
+      99.18,
+      99.38,
+      99.74,
+      99.82,
+      96.6,
+      97.93,
+      96.58,
+      98.79,
+      99.16,
+      99.67,
+      96.05,
+      99.39,
+      97.99,
+      96.88,
+      99.13,
+      98.78
+    ],
+    "Cu_mg_L": [
+      1.796,
+      2.199,
+      2.4,
+      1.295,
+      0.991,
+      0.292,
+      0.0,
+      0.0,
+      0.033,
+      0.191,
+      0.011,
+      0.765,
+      0.572,
+      0.0,
+      0.0,
+      0.094,
+      0.043,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "overlay": "verify_overlay.png (session scratch, not retained; contains publisher figure images)"
+}

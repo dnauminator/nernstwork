@@ -1,0 +1,13 @@
+table_row,supporting_electrolyte,KNO3_M,pH_initial,buffered,cathode,E_V_vs_AgAgCl,duration_min,quantity,species,value_pct,value_as_printed,selectivity_basis,flag,note
+1,0.1 M K2SO4,0.05,7.0,False,Sn85Cu15,-2.0,120,removal,NO3,98.1,"98,1",,,
+1,0.1 M K2SO4,0.05,7.0,False,Sn85Cu15,-2.0,120,selectivity,NO2,17.5,"17,5","N-atom basis (N2 x 2), per definition on printed p. 84",,
+1,0.1 M K2SO4,0.05,7.0,False,Sn85Cu15,-2.0,120,selectivity,NH3,41.0,"41,0","N-atom basis (N2 x 2), per definition on printed p. 84",,
+1,0.1 M K2SO4,0.05,7.0,False,Sn85Cu15,-2.0,120,selectivity,N2,33.6,"33,6","N-atom basis (N2 x 2), per definition on printed p. 84",,
+2,0.2 M K2CO3 + 0.2 M KHCO3,0.05,9.4,True,Sn85Cu15,-2.0,120,removal,NO3,97.2,"97,2",,,
+2,0.2 M K2CO3 + 0.2 M KHCO3,0.05,9.4,True,Sn85Cu15,-2.0,120,selectivity,NO2,18.3,"18,3","N-atom basis (N2 x 2), per definition on printed p. 84",,
+2,0.2 M K2CO3 + 0.2 M KHCO3,0.05,9.4,True,Sn85Cu15,-2.0,120,selectivity,NH3,42.2,"42,2","N-atom basis (N2 x 2), per definition on printed p. 84",,
+2,0.2 M K2CO3 + 0.2 M KHCO3,0.05,9.4,True,Sn85Cu15,-2.0,120,selectivity,N2,32.5,"32,5","N-atom basis (N2 x 2), per definition on printed p. 84",,
+3,0.5 M K2HPO4 + 0.5 M KH2PO4,0.05,7.0,True,Sn85Cu15,-2.0,120,removal,NO3,92.6,"92,6",,,
+3,0.5 M K2HPO4 + 0.5 M KH2PO4,0.05,7.0,True,Sn85Cu15,-2.0,120,selectivity,NO2,16.3,"16,3","N-atom basis (N2 x 2), per definition on printed p. 84",,
+3,0.5 M K2HPO4 + 0.5 M KH2PO4,0.05,7.0,True,Sn85Cu15,-2.0,120,selectivity,NH3,46.2,"46,2","N-atom basis (N2 x 2), per definition on printed p. 84",,
+3,0.5 M K2HPO4 + 0.5 M KH2PO4,0.05,7.0,True,Sn85Cu15,-2.0,120,selectivity,N2,30.1,"30,1","N-atom basis (N2 x 2), per definition on printed p. 84",,

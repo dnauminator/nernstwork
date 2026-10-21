@@ -1,0 +1,78 @@
+{
+ "id": "polatides2007thesis_table5p14_electrolyte",
+ "kind": "inputs_only_thesis_table",
+ "note": "Inputs only: endpoint table (120 min). The K2SO4 row is the endpoint of the run plotted as Diag 5.8 (see data/digitized_inputs/polatides2007thesis_diag5p8_xcheck).",
+ "files": {
+  "extracted.csv": "tidy long: one row per electrolyte x quantity"
+ },
+ "csv_columns": {
+  "table_row": "row order in the printed table",
+  "supporting_electrolyte": "supporting electrolyte as printed (each solution also contained 0.05 M KNO3, printed p. 108)",
+  "KNO3_M": "nitrate source concentration (text, printed p. 108)",
+  "pH_initial": "pH column of the table (initial pH)",
+  "buffered": "printed '(Buffer)'",
+  "cathode": "Sn85Cu15 (section 5.3, Sn85Cu15 cathode; not repeated in the caption)",
+  "E_V_vs_AgAgCl": "applied potential (caption)",
+  "duration_min": "electrolysis duration (caption)",
+  "quantity": "removal or selectivity",
+  "species": "NO3 (removal), NO2, NH3, N2",
+  "value_pct": "value in %",
+  "value_as_printed": "cell exactly as printed",
+  "selectivity_basis": "N-atom basis per the thesis definition",
+  "flag": "",
+  "note": ""
+ },
+ "provenance": {
+  "citation": "Polatides C., Electrochemical removal of nitrate from aqueous solutions and environmental samples using constant and pulsed potential, PhD thesis (in Greek), Aristotle University of Thessaloniki, Dept. of Chemical Engineering (2007); supervisor G. Kyriacou",
+  "doi": "10.12681/eadd/15209",
+  "table": "Table 5.14",
+  "printed_page": 108,
+  "reader_page": 129,
+  "page_offset_note": "printed page = online-reader page - 21",
+  "caption_translated": "Table 5.14. Degree of nitrate removal (%RE) and product selectivities (%S) in various supporting electrolytes. Electrolysis duration 120 min, at potential -2.0 V. Columns: supporting electrolyte | pH | %RE NO3- | %S NO2- | %S NH3 | %S N2.",
+  "source_file": "page text layer from the archive's online reader (scratch only, not committed)",
+  "licence": "National Archive of PhD Theses terms: research use with no direct or indirect financial benefit; author must be cited; items protected by copyright"
+ },
+ "conditions": {
+  "cathode": "Sn85Cu15 (section 5.3)",
+  "potential_as_reported": "-2.0 V vs Ag/AgCl (saturated KCl)",
+  "duration_min": 120,
+  "c0_mM_N": {
+   "NO3": 50.0
+  },
+  "pH_change_unbuffered": "K2SO4 run: initial pH 7, final pH 10.3 after 120 min at -2.0 V (printed p. 108)",
+  "cell": "divided Teflon cell, Nafion 117 (ch. 4); 20 mL catholyte",
+  "temperature": "ambient (ch. 4)",
+  "gas_analysis": "N2 by on-line GC-TCD, instantaneous concentration integrated over the He flow (ch. 4)"
+ },
+ "text_translated": "Printed p. 108: 'the differences in the rate of nitrate reduction and in the selectivity of the products when buffers of pH 7 and pH 9.4 were used, relative to the unbuffered 0.1 M K2SO4, lie within the experimental error'; the rate is independent of pH in the range 7-9, in agreement with anion-reduction theory (pH dependence only for pH 0-4).",
+ "checks": {
+  "row_sequences_on_page": [
+   {
+    "printed_sequence": "7 98,1 17,5 41,0 33,6",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "9,4 (Buffer) 97,2 18,3 42,2 32,5",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "7 (Buffer) 92,6 16,3 46,2 30,1",
+    "found_on_page": true
+   }
+  ],
+  "selectivity_sums_pct": {
+   "0.1 M K2SO4": 92.1,
+   "0.2 M K2CO3 + 0.2 M KHCO3": 93.0,
+   "0.5 M K2HPO4 + 0.5 M KH2PO4": 92.6
+  },
+  "cross_check_diag5p8": "data/digitized_inputs/polatides2007thesis_diag5p8_xcheck reads the 120 min points of the K2SO4 run as RE 97.8 %, NO2 17.1 %, NH3 40.6 %, N2 32.7 % (N2 x 2), against 98.1/17.5/41.0/33.6 here.",
+  "nh3_to_n2_ratio_text_p96": "Printed p. 96 gives an NH3:N2 selectivity ratio of 2.44 for 120 min electrolysis of 0.1 M K2SO4 + 0.05 M KNO3 at -2.0 V. From this table 41.0/33.6 = 1.22 on the N-atom basis; 41.0/(33.6/2) = 2.44 only if N2 is counted per molecule."
+ },
+ "flags": [
+  "endpoint_only",
+  "selectivities_do_not_close_92_to_93_pct",
+  "potential_vs_ag_agcl_not_rhe"
+ ],
+ "transcription_method": "thesis text layer: per-page text layer of the National Archive of PhD Theses online reader (EKT freader), read and typed in by an agent on 2026-10-20; table layout reconstructed by hand from the flattened text; every row's printed number sequence was checked by script to occur verbatim on the cited page (literature/extraction_scripts/thesis_tables/build_tables.py). Page images of these pages were not viewed. Not yet re-checked by a person."
+}

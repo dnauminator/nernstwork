@@ -1,0 +1,958 @@
+{
+ "source": {
+  "citation": "Willoughby et al., ACS Electrochem. 2 (2026) 353, Supporting Information",
+  "doi": "10.1021/acselectrochem.5c00405",
+  "file": "ec5c00405_si_001.pdf",
+  "figures": "embedded rasters, ~200 dpi; S4 is JPEG"
+ },
+ "date": "2026-10-20",
+ "verifier": "agent team",
+ "method": "Independent re-extraction of the six embedded figure images with pymupdf; own tick detection and label reading; own linear calibrations; stored points mapped back through my calibration and overlaid on the native image (verify_overlay.png per dataset, viewed); per-column comparison against my own colour-mask stroke medians, plus >=10 feature spot checks per trace (baselines, peaks, plateaus, decays, steps). Deviation = |stored - mine| in px / panel height in px. Columns where the stroke is vertical (extent > 8 px) are reported separately because a column median is ill-defined there.",
+ "summary": {
+  "verdicts": {
+   "willoughby2026_figS1c_ecms_14n": "accept_with_flags",
+   "willoughby2026_figS2c_ecms_14n": "accept_with_flags",
+   "willoughby2026_figS3c_ecms_14n": "accept_with_flags",
+   "willoughby2026_figS4_ecms_15n": "accept_with_flags",
+   "willoughby2026_figS5_ecms_15n_fragcheck": "accept_with_flags",
+   "willoughby2026_figS6_ms_calibration": "accept_with_flags"
+  }
+ },
+ "datasets": [
+  {
+   "id": "willoughby2026_figS1c_ecms_14n",
+   "verdict": "accept_with_flags",
+   "max_deviation": {
+    "fraction_of_axis_range": 0.0113,
+    "where": "S1c N2O sharp peak at 39.85 min: 1.0 px between column medians of a multi-row spike column (flagged multi_row_column; value_lo/hi bracket it). All other spot checks <=0.0088 (j off-level, 0.8 px from the hidden-zero reference); gas traces at non-spike features <=0.0012.",
+    "x_max_abs_dt_min": 0.0061
+   },
+   "per_trace": {
+    "S1c:H2": {
+     "n_stored": 527,
+     "n_spot": 20,
+     "spot_max_frac": 0.0012,
+     "spot_max_frac_excl_vertical_stroke": 0.0012,
+     "spot_max_dpx": 0.11,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.11,
+     "max_dt_min": 0.0061
+    },
+    "S1c:NO": {
+     "n_stored": 527,
+     "n_spot": 20,
+     "spot_max_frac": 0.0004,
+     "spot_max_frac_excl_vertical_stroke": 0.0004,
+     "spot_max_dpx": 0.03,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.03,
+     "max_dt_min": 0.0061
+    },
+    "S1c:N2O": {
+     "n_stored": 527,
+     "n_spot": 20,
+     "spot_max_frac": 0.0113,
+     "spot_max_frac_excl_vertical_stroke": 0.0002,
+     "spot_max_dpx": 1.02,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.02,
+     "max_dt_min": 0.0061
+    },
+    "S1c:j": {
+     "n_stored": 527,
+     "n_spot": 15,
+     "spot_max_frac": 0.0088,
+     "spot_max_frac_excl_vertical_stroke": 0.0088,
+     "spot_max_dpx": 0.79,
+     "spot_max_outside_stroke_px": 0.29,
+     "all_columns_abs_dpx_p95": 0.79,
+     "max_dt_min": 0.0061
+    },
+    "S1c:E": {
+     "n_stored": 527,
+     "n_spot": 15,
+     "spot_max_frac": 0.0017,
+     "spot_max_frac_excl_vertical_stroke": 0.0017,
+     "spot_max_dpx": 0.16,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.21,
+     "max_dt_min": 0.0061
+    }
+   },
+   "checks": [
+    {
+     "name": "own_calibration",
+     "result": "pass",
+     "detail": "Own calibration: frame lines and tick marks located by scanning dark pixel runs perpendicular to each axis (scripts in team/willoughby_verify/), labels read from zoomed crops; linear least-squares fits; hidden zero ticks taken from label centres only for j/E (label-tick offsets elsewhere <=1.5 px). Own colour masks per trace; legend lines located and masked independently. x: 11 major ticks 5-55 min at px 777.0...1243.38 (resid 0.28 px). y ticks agree with the extractor's within 0.5 px; H2 zero tick found at row 517.47 (extractor's fit extrapolates to 517.3)."
+    },
+    {
+     "name": "overlay_inspected",
+     "result": "pass",
+     "detail": "verify_overlay.png (session scratch, not retained; contains publisher figure images) plus 3x zoom crops viewed; every stored point lies on its stroke."
+    },
+    {
+     "name": "spot_checks",
+     "result": "pass",
+     "detail": "20 features per gas trace (pre-pulse baseline, my own peak, pre-off plateau, mid-off decay for each of 5 pulses), 15 per j/E trace; all stored values inside my detected stroke (max outside-stroke distance 0.29 px, j)."
+    },
+    {
+     "name": "trace_species_units",
+     "result": "pass",
+     "detail": "Legends H2 (m/z 2) yellow, NO (m/z 30 deconv.) orange, N2O (m/z 44) purple each in its own sub-panel; axis 'Product Concentration (mol/s*cm2)' read as mol s-1 cm-2; j mA/cm2; E V vs RHE; time minutes. Caption: 0.1 M H14NO3 + 0.3 M K14NO3, shaded = -0.1 mA/cm2."
+    },
+    {
+     "name": "pulse_schedule",
+     "result": "pass",
+     "detail": "My step centres from the j stroke: on 6.02/16.05/26.02/35.99/46.01, off 11.01/21.03/31.00/40.98/51.00 min; matches meta within 0.01 min; 5 min on/5 min off."
+    },
+    {
+     "name": "FE_recomputation",
+     "result": "pass",
+     "detail": "Reproduced from stored CSV (see fe_recomputation_S1c): NO 41.1/38.1/33.6/32.1 %, N2O 14.0/13.2/15.8/15.9 %, H2 1.7/4.0/3.5/4.6 %, sum 56.8/55.3/52.9/52.6 % for cycles 1-4; matches meta.derived_checks within 0.2 points."
+    }
+   ],
+   "issues": [
+    "H2 FE is not robust: after cycle 1 the H2 flux stays near 1e-11 mol s-1 cm-2 during the zero-current off periods, so per-cycle H2 FE (1.7-4.6 %) is mostly off-period background; subtracting the pre-pulse level drops it to about 0-3.5 %. README quotes 2-5 % without this caveat (cycle 1 is 1.7 %).",
+    "Off-period zero floor and j zero from label centre are already flagged in meta."
+   ]
+  },
+  {
+   "id": "willoughby2026_figS2c_ecms_14n",
+   "verdict": "accept_with_flags",
+   "max_deviation": {
+    "fraction_of_axis_range": 0.005,
+    "where": "S2c j off-level, 0.48 px, from the hidden-zero reference (label centre). Gas traces <=0.0042 (H2, 0.41 px).",
+    "x_max_abs_dt_min": 0.0006
+   },
+   "per_trace": {
+    "S2c:H2": {
+     "n_stored": 526,
+     "n_spot": 12,
+     "spot_max_frac": 0.0042,
+     "spot_max_frac_excl_vertical_stroke": 0.0042,
+     "spot_max_dpx": 0.41,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.42,
+     "max_dt_min": 0.0006
+    },
+    "S2c:NO": {
+     "n_stored": 526,
+     "n_spot": 12,
+     "spot_max_frac": 0.0,
+     "spot_max_frac_excl_vertical_stroke": 0.0,
+     "spot_max_dpx": 0.0,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.0,
+     "max_dt_min": 0.0006
+    },
+    "S2c:N2O": {
+     "n_stored": 526,
+     "n_spot": 12,
+     "spot_max_frac": 0.002,
+     "spot_max_frac_excl_vertical_stroke": 0.002,
+     "spot_max_dpx": 0.2,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.2,
+     "max_dt_min": 0.0006
+    },
+    "S2c:j": {
+     "n_stored": 526,
+     "n_spot": 9,
+     "spot_max_frac": 0.005,
+     "spot_max_frac_excl_vertical_stroke": 0.005,
+     "spot_max_dpx": 0.48,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.48,
+     "max_dt_min": 0.0006
+    },
+    "S2c:E": {
+     "n_stored": 526,
+     "n_spot": 9,
+     "spot_max_frac": 0.0,
+     "spot_max_frac_excl_vertical_stroke": 0.0,
+     "spot_max_dpx": 0.0,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.0,
+     "max_dt_min": 0.0006
+    }
+   },
+   "checks": [
+    {
+     "name": "own_calibration",
+     "result": "pass",
+     "detail": "Own calibration: frame lines and tick marks located by scanning dark pixel runs perpendicular to each axis (scripts in team/willoughby_verify/), labels read from zoomed crops; linear least-squares fits; hidden zero ticks taken from label centres only for j/E (label-tick offsets elsewhere <=1.5 px). Own colour masks per trace; legend lines located and masked independently. x ticks 5-35 min at px 808...1251 (resid 0.29 px). Zero levels confirmed by flat baseline runs at rows 496 (H2), 592 (NO), 694 (N2O)."
+    },
+    {
+     "name": "overlay_inspected",
+     "result": "pass",
+     "detail": "verify_overlay.png (session scratch, not retained; contains publisher figure images) viewed; points on strokes."
+    },
+    {
+     "name": "spot_checks",
+     "result": "pass",
+     "detail": "12 features per gas trace, 9 per j/E; stored values inside my stroke everywhere (outside distance 0)."
+    },
+    {
+     "name": "trace_species_units",
+     "result": "pass",
+     "detail": "H2 yellow, NO (m/z 30 deconv.) green, N2O (m/z 44) blue; units as S1c; caption -0.2 mA/cm2, 14N."
+    },
+    {
+     "name": "pulse_schedule",
+     "result": "pass",
+     "detail": "Steps on 6.01/16.00/26.03, off 10.99/21.02/31.01 min (mine), matching meta."
+    },
+    {
+     "name": "derived_FE_S2c",
+     "result": "pass",
+     "detail": "Recomputed NO 24.7/9.1/6.2 %, N2O 20.1/11.8/8.9 %, H2 2.1/6.4/9.2 %, sum 46.9/27.3/24.3 %; README ranges correct."
+    },
+    {
+     "name": "E_claims",
+     "result": "pass",
+     "detail": "E during pulses: median -1.45 V, 10th-90th pct -1.59 to -1.10 V, value_hi reaches -0.64 V (README: median -1.45 V, excursions to -0.6 V)."
+    }
+   ],
+   "issues": [
+    "E column medians inside the dense spike trains are mid-spike values (flagged multi_row_column); use value_lo/value_hi there."
+   ]
+  },
+  {
+   "id": "willoughby2026_figS3c_ecms_14n",
+   "verdict": "accept_with_flags",
+   "max_deviation": {
+    "fraction_of_axis_range": 0.0057,
+    "where": "N2O initial-transient maximum at 7.10 min (0.52 px) and noisy H2 column medians (0.48 px).",
+    "x_max_abs_dt_min": 0.0007
+   },
+   "per_trace": {
+    "S3c:H2": {
+     "n_stored": 516,
+     "n_spot": 19,
+     "spot_max_frac": 0.0053,
+     "spot_max_frac_excl_vertical_stroke": null,
+     "spot_max_dpx": 0.48,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.48,
+     "max_dt_min": 0.0007
+    },
+    "S3c:NO": {
+     "n_stored": 526,
+     "n_spot": 19,
+     "spot_max_frac": 0.0001,
+     "spot_max_frac_excl_vertical_stroke": 0.0001,
+     "spot_max_dpx": 0.01,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.01,
+     "max_dt_min": 0.0007
+    },
+    "S3c:N2O": {
+     "n_stored": 521,
+     "n_spot": 19,
+     "spot_max_frac": 0.0057,
+     "spot_max_frac_excl_vertical_stroke": 0.0057,
+     "spot_max_dpx": 0.52,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.07,
+     "max_dt_min": 0.0007
+    },
+    "S3c:E": {
+     "n_stored": 528,
+     "n_spot": 16,
+     "spot_max_frac": 0.0003,
+     "spot_max_frac_excl_vertical_stroke": 0.0003,
+     "spot_max_dpx": 0.03,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.03,
+     "max_dt_min": 0.0007
+    }
+   },
+   "checks": [
+    {
+     "name": "own_calibration",
+     "result": "pass",
+     "detail": "Own calibration: frame lines and tick marks located by scanning dark pixel runs perpendicular to each axis (scripts in team/willoughby_verify/), labels read from zoomed crops; linear least-squares fits; hidden zero ticks taken from label centres only for j/E (label-tick offsets elsewhere <=1.5 px). Own colour masks per trace; legend lines located and masked independently. x ticks 10-65 min at px 776...1247 (resid 0.18 px). N2O tick labels sit ~3 px below their major ticks; assignment by majors (2.0e-10 at 589 ... 0.5e-10 at 644.4) is unambiguous. H2 and N2O zeros fall on the bottom frame, as flagged."
+    },
+    {
+     "name": "overlay_inspected",
+     "result": "pass",
+     "detail": "verify_overlay.png (session scratch, not retained; contains publisher figure images) viewed."
+    },
+    {
+     "name": "spot_checks",
+     "result": "pass",
+     "detail": "19 features per gas trace (every 5 min 8-65 min plus extrema), 16 for E; stored values inside my stroke everywhere."
+    },
+    {
+     "name": "trace_species_units",
+     "result": "pass",
+     "detail": "H2 red, NO pale yellow, N2O teal; caption: -1.0 V vs RHE for one hour, 14N electrolyte. Hold from E steps 6.05-66.05 min (mine 6.05/66.05)."
+    },
+    {
+     "name": "current_not_extracted",
+     "result": "pass",
+     "detail": "Confirmed: upper j segment carries only a '0.0' label (row 680) and an unlabelled tick (row 700); the trace sits near row 700. Steady current cannot be calibrated, so the omission is correct."
+    },
+    {
+     "name": "derived_checks",
+     "result": "pass",
+     "detail": "Median 15-60 min: NO 1.21e-10, N2O 8.87e-11, H2 1.20e-10 mol s-1 cm-2 -> 0.035/0.069/0.023 mA cm-2 (z 3/8/2). NO(65)/NO(10)=0.41, N2O 0.32. Matches README."
+    }
+   ],
+   "issues": [
+    "H2 is a noisy band whose lower envelope is on the panel frame; column medians are a summary of noise, not a resolved signal."
+   ]
+  },
+  {
+   "id": "willoughby2026_figS4_ecms_15n",
+   "verdict": "accept_with_flags",
+   "max_deviation": {
+    "fraction_of_axis_range_S4a_S4b": 0.0128,
+    "fraction_of_axis_range_S4c_excluding_vertical_strokes": 0.0115,
+    "fraction_of_axis_range_S4c_vertical_strokes": 0.2069,
+    "where": "S4a/S4b: 1.1 px at the S4b m/z 31 and m/z 46 pulse-end peaks (JPEG). S4c: up to 0.21 of the axis range in the first column of the initial transient (5.77 min) and in the 12 min glitch, where the stroke is vertical and a column median is ill-defined; stored values lie inside the stroke and are flagged multi_row_column with value_lo/value_hi spanning it.",
+    "x_max_abs_dt_min": 0.0199
+   },
+   "per_trace": {
+    "S4a:m30": {
+     "n_stored": 337,
+     "n_spot": 16,
+     "spot_max_frac": 0.001,
+     "spot_max_frac_excl_vertical_stroke": 0.001,
+     "spot_max_dpx": 0.09,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.57,
+     "max_dt_min": 0.0022
+    },
+    "S4a:m31": {
+     "n_stored": 337,
+     "n_spot": 16,
+     "spot_max_frac": 0.0069,
+     "spot_max_frac_excl_vertical_stroke": 0.0069,
+     "spot_max_dpx": 0.6,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.54,
+     "max_dt_min": 0.0022
+    },
+    "S4a:m46": {
+     "n_stored": 337,
+     "n_spot": 16,
+     "spot_max_frac": 0.0057,
+     "spot_max_frac_excl_vertical_stroke": 0.0057,
+     "spot_max_dpx": 0.5,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.5,
+     "max_dt_min": 0.0022
+    },
+    "S4a:j": {
+     "n_stored": 337,
+     "n_spot": 12,
+     "spot_max_frac": 0.0058,
+     "spot_max_frac_excl_vertical_stroke": 0.0058,
+     "spot_max_dpx": 0.51,
+     "spot_max_outside_stroke_px": 0.01,
+     "all_columns_abs_dpx_p95": 1.01,
+     "max_dt_min": 0.0022
+    },
+    "S4a:E": {
+     "n_stored": 337,
+     "n_spot": 12,
+     "spot_max_frac": 0.0057,
+     "spot_max_frac_excl_vertical_stroke": 0.0057,
+     "spot_max_dpx": 0.5,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.5,
+     "max_dt_min": 0.0022
+    },
+    "S4b:m30": {
+     "n_stored": 337,
+     "n_spot": 12,
+     "spot_max_frac": 0.0076,
+     "spot_max_frac_excl_vertical_stroke": 0.0076,
+     "spot_max_dpx": 0.67,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.71,
+     "max_dt_min": 0.0199
+    },
+    "S4b:m31": {
+     "n_stored": 336,
+     "n_spot": 12,
+     "spot_max_frac": 0.0128,
+     "spot_max_frac_excl_vertical_stroke": 0.0128,
+     "spot_max_dpx": 1.12,
+     "spot_max_outside_stroke_px": 0.12,
+     "all_columns_abs_dpx_p95": 0.61,
+     "max_dt_min": 0.0199
+    },
+    "S4b:m46": {
+     "n_stored": 337,
+     "n_spot": 12,
+     "spot_max_frac": 0.0125,
+     "spot_max_frac_excl_vertical_stroke": 0.0125,
+     "spot_max_dpx": 1.1,
+     "spot_max_outside_stroke_px": 0.4,
+     "all_columns_abs_dpx_p95": 0.58,
+     "max_dt_min": 0.0199
+    },
+    "S4b:j": {
+     "n_stored": 337,
+     "n_spot": 9,
+     "spot_max_frac": 0.0115,
+     "spot_max_frac_excl_vertical_stroke": 0.0115,
+     "spot_max_dpx": 1.01,
+     "spot_max_outside_stroke_px": 0.51,
+     "all_columns_abs_dpx_p95": 1.01,
+     "max_dt_min": 0.0199
+    },
+    "S4b:E": {
+     "n_stored": 332,
+     "n_spot": 9,
+     "spot_max_frac": 0.0062,
+     "spot_max_frac_excl_vertical_stroke": 0.0062,
+     "spot_max_dpx": 0.54,
+     "spot_max_outside_stroke_px": 0.04,
+     "all_columns_abs_dpx_p95": 0.54,
+     "max_dt_min": 0.0197
+    },
+    "S4c:m31": {
+     "n_stored": 335,
+     "n_spot": 18,
+     "spot_max_frac": 0.1188,
+     "spot_max_frac_excl_vertical_stroke": 0.0061,
+     "spot_max_dpx": 10.46,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.67,
+     "max_dt_min": 0.0101
+    },
+    "S4c:m46": {
+     "n_stored": 335,
+     "n_spot": 18,
+     "spot_max_frac": 0.2069,
+     "spot_max_frac_excl_vertical_stroke": 0.0115,
+     "spot_max_dpx": 18.0,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.5,
+     "max_dt_min": 0.0101
+    },
+    "S4c:j_upper": {
+     "n_stored": 337,
+     "n_spot": 13,
+     "spot_max_frac": 0.0195,
+     "spot_max_frac_excl_vertical_stroke": 0.0097,
+     "spot_max_dpx": 0.99,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.49,
+     "max_dt_min": 0.0102
+    },
+    "S4c:j_lower": {
+     "n_stored": 4,
+     "n_spot": 4,
+     "spot_max_frac": 0.1897,
+     "spot_max_frac_excl_vertical_stroke": null,
+     "spot_max_dpx": 5.5,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 4.75,
+     "max_dt_min": 0.0093
+    },
+    "S4c:E": {
+     "n_stored": 337,
+     "n_spot": 13,
+     "spot_max_frac": 0.0082,
+     "spot_max_frac_excl_vertical_stroke": 0.0057,
+     "spot_max_dpx": 0.71,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.5,
+     "max_dt_min": 0.0102
+    }
+   },
+   "checks": [
+    {
+     "name": "own_calibration",
+     "result": "pass",
+     "detail": "Own calibration: frame lines and tick marks located by scanning dark pixel runs perpendicular to each axis (scripts in team/willoughby_verify/), labels read from zoomed crops; linear least-squares fits; hidden zero ticks taken from label centres only for j/E (label-tick offsets elsewhere <=1.5 px). Own colour masks per trace; legend lines located and masked independently. Ticks for S4a/S4b/S4c located separately (S4c j: upper segment -0.25/-0.5/-0.75 at rows 682/692.5/703.5, lower -5.25/-5.5 at 727/738.5; S4c E zero tick found at row 756.75, extractor used label centre 756.0, <1 px). Baseline rows of the m/z traces fall on the inferred zero ticks."
+    },
+    {
+     "name": "overlay_inspected",
+     "result": "pass",
+     "detail": "verify_overlay.png (session scratch, not retained; contains publisher figure images) and per-run 3x crops viewed."
+    },
+    {
+     "name": "spot_checks",
+     "result": "pass",
+     "detail": "16 features per m/z trace (S4a), 12 (S4b), 18 (S4c); 9-13 per j/E; 4 for S4c j_lower (all points). Stored values inside my stroke (max outside distance 0.51 px)."
+    },
+    {
+     "name": "trace_species_units",
+     "result": "pass",
+     "detail": "Legends: '15N2 & 15N2O frag. (m/z 30)', '15NO & 15N2O frag. (m/z 31)', '15N2O (m/z 46)'; CSV species carry the authors' labels. Units pA, mA/cm2, V vs RHE. Caption: 0.1 M H15NO3 + 0.3 M K15NO3; (a) -0.1, (b) -0.2 mA/cm2, (c) -1.0 V vs RHE 1 h."
+    },
+    {
+     "name": "pulse_schedule",
+     "result": "pass",
+     "detail": "Mine: S4a on 5.99/16.05/26.02/36.00/46.06, off 11.02/20.99/31.05/41.03/51.00; S4b on 6.20/16.26/26.21, off 11.23/21.23/31.23 (+0.2 min offset confirmed). S4c E steps 5.94 and 66.02 min, glitch 12.15-12.5 min."
+    },
+    {
+     "name": "m30_ratio_claims",
+     "result": "pass",
+     "detail": "Recomputed (last 0.9 min of each pulse): m30/m31 0.28-0.34 (S4a), 0.36-0.37 (S4b); m30/m46 2.7-4.5 (S4a), 3.4-4.0 (S4b); 0.1 x m46 = 0.5-0.6 pA (S4a) and 1.5 pA (S4b) vs m30 16-23 and 51-58 pA."
+    },
+    {
+     "name": "S4c_claims",
+     "result": "pass",
+     "detail": "O2 (m/z 32) square waves reach ~1800-1900 pA and m/z 34 ~8 pA at the same times; E glitch toward 0 V at 12.15-12.5 min with j spike to -5.3 mA/cm2; stored j_upper median 15-60 min -0.043 mA/cm2 (10-90 pct -0.054 to -0.031)."
+    }
+   ],
+   "issues": [
+    "S4c is a questionable run (artefacts above); its traces are flagged run_with_ms_artifacts and should not be used quantitatively.",
+    "JPEG source: stroke edges are soft; expect ~1 px scatter at peaks."
+   ]
+  },
+  {
+   "id": "willoughby2026_figS5_ecms_15n_fragcheck",
+   "verdict": "accept_with_flags",
+   "max_deviation": {
+    "fraction_of_axis_range": 0.0075,
+    "where": "S5a E on-level, 0.71 px. m/z traces <=0.0053 (0.5 px).",
+    "x_max_abs_dt_min": 0.0229
+   },
+   "per_trace": {
+    "S5a:m15_total": {
+     "n_stored": 278,
+     "n_spot": 20,
+     "spot_max_frac": 0.0053,
+     "spot_max_frac_excl_vertical_stroke": 0.0053,
+     "spot_max_dpx": 0.5,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.5,
+     "max_dt_min": 0.0196
+    },
+    "S5a:m15_residual": {
+     "n_stored": 338,
+     "n_spot": 20,
+     "spot_max_frac": 0.0053,
+     "spot_max_frac_excl_vertical_stroke": 0.0053,
+     "spot_max_dpx": 0.5,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.1,
+     "max_dt_min": 0.0229
+    },
+    "S5a:m31_total": {
+     "n_stored": 338,
+     "n_spot": 20,
+     "spot_max_frac": 0.0,
+     "spot_max_frac_excl_vertical_stroke": 0.0,
+     "spot_max_dpx": 0.0,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.5,
+     "max_dt_min": 0.0229
+    },
+    "S5a:m31_n2o_frag": {
+     "n_stored": 292,
+     "n_spot": 20,
+     "spot_max_frac": 0.0,
+     "spot_max_frac_excl_vertical_stroke": 0.0,
+     "spot_max_dpx": 0.0,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.22,
+     "max_dt_min": 0.0196
+    },
+    "S5a:j": {
+     "n_stored": 338,
+     "n_spot": 15,
+     "spot_max_frac": 0.0054,
+     "spot_max_frac_excl_vertical_stroke": 0.0054,
+     "spot_max_dpx": 0.51,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.51,
+     "max_dt_min": 0.0229
+    },
+    "S5a:E": {
+     "n_stored": 338,
+     "n_spot": 15,
+     "spot_max_frac": 0.0075,
+     "spot_max_frac_excl_vertical_stroke": 0.0075,
+     "spot_max_dpx": 0.71,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.71,
+     "max_dt_min": 0.0229
+    },
+    "S5b:m15_total": {
+     "n_stored": 276,
+     "n_spot": 12,
+     "spot_max_frac": 0.0053,
+     "spot_max_frac_excl_vertical_stroke": 0.0053,
+     "spot_max_dpx": 0.51,
+     "spot_max_outside_stroke_px": 0.47,
+     "all_columns_abs_dpx_p95": 0.53,
+     "max_dt_min": 0.0
+    },
+    "S5b:m15_residual": {
+     "n_stored": 337,
+     "n_spot": 12,
+     "spot_max_frac": 0.0053,
+     "spot_max_frac_excl_vertical_stroke": 0.0053,
+     "spot_max_dpx": 0.5,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.5,
+     "max_dt_min": 0.0
+    },
+    "S5b:m31_total": {
+     "n_stored": 338,
+     "n_spot": 12,
+     "spot_max_frac": 0.0,
+     "spot_max_frac_excl_vertical_stroke": 0.0,
+     "spot_max_dpx": 0.0,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.5,
+     "max_dt_min": 0.0
+    },
+    "S5b:m31_n2o_frag": {
+     "n_stored": 278,
+     "n_spot": 12,
+     "spot_max_frac": 0.0053,
+     "spot_max_frac_excl_vertical_stroke": 0.0053,
+     "spot_max_dpx": 0.5,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.0,
+     "max_dt_min": 0.0
+    },
+    "S5b:j": {
+     "n_stored": 338,
+     "n_spot": 9,
+     "spot_max_frac": 0.0057,
+     "spot_max_frac_excl_vertical_stroke": 0.0057,
+     "spot_max_dpx": 0.54,
+     "spot_max_outside_stroke_px": 0.04,
+     "all_columns_abs_dpx_p95": 0.54,
+     "max_dt_min": 0.0
+    },
+    "S5b:E": {
+     "n_stored": 338,
+     "n_spot": 9,
+     "spot_max_frac": 0.0008,
+     "spot_max_frac_excl_vertical_stroke": 0.0008,
+     "spot_max_dpx": 0.07,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.07,
+     "max_dt_min": 0.0
+    }
+   },
+   "checks": [
+    {
+     "name": "own_calibration",
+     "result": "pass",
+     "detail": "Own calibration: frame lines and tick marks located by scanning dark pixel runs perpendicular to each axis (scripts in team/willoughby_verify/), labels read from zoomed crops; linear least-squares fits; hidden zero ticks taken from label centres only for j/E (label-tick offsets elsewhere <=1.5 px). Own colour masks per trace; legend lines located and masked independently. S5b m/z 15 '0' label is drawn ~6 px above its tick (row 129); ticks used, consistent with the flat baseline. S5b j: faint -0.2 tick found at row 317.54 (label centre 317.0)."
+    },
+    {
+     "name": "overlay_inspected",
+     "result": "pass",
+     "detail": "verify_overlay.png (session scratch, not retained; contains publisher figure images) viewed."
+    },
+    {
+     "name": "spot_checks",
+     "result": "pass",
+     "detail": "20 features per m/z trace (S5a), 12 (S5b), 9-15 per j/E; stored values inside my stroke (max outside 0.47 px)."
+    },
+    {
+     "name": "trace_species_units",
+     "result": "pass",
+     "detail": "S5a: m/z 15 total yellow, m/z 15 'no 15N2O & 15NO frags.' magenta, m/z 31 total orange, m/z 31 (15N2O frag.) purple; S5b: pale green, cyan, green, blue. Units pA. CSV labels the residual and fragment traces as the authors' computations, which is correct."
+    },
+    {
+     "name": "pulse_schedule",
+     "result": "pass",
+     "detail": "Mine: S5a on 6.01/16.04/26.06/36.00/46.02, off 10.98/21.01/31.03/41.05/51.07; S5b on 6.22/16.22/26.28, off 11.22/21.22/31.28; consistent with meta and with S4a/S4b (same runs)."
+    },
+    {
+     "name": "m15_claims",
+     "result": "pass",
+     "detail": "Recomputed m/z 15 residual at pulse ends: -0.01 to 0.12 pA (S5a), 0.62-0.89 pA (S5b); README 0-0.1 and 0.6-0.8 pA (S5b pulses 2-3 are 0.89)."
+    }
+   ],
+   "issues": [
+    "S5a m/z 31 15N2O-fragment trace is only 1-2 px above zero (1 px = 1 pA); stored values are quantised to 0.5 pA steps and uncertain by ~+/-50 %. Not flagged in meta.",
+    "m/z 15 total and m/z 31 fragment are missing where drawn under the other trace (flagged)."
+   ]
+  },
+  {
+   "id": "willoughby2026_figS6_ms_calibration",
+   "verdict": "accept_with_flags",
+   "max_deviation": {
+    "fraction_of_axis_range": 0.0013,
+    "where": "0.5 px everywhere (S6b, S6c).",
+    "x_max_abs_dt_min": 0.0106
+   },
+   "per_trace": {
+    "S6b:m44": {
+     "n_stored": 496,
+     "n_spot": 21,
+     "spot_max_frac": 0.0013,
+     "spot_max_frac_excl_vertical_stroke": 0.0013,
+     "spot_max_dpx": 0.53,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.52,
+     "max_dt_min": 0.0106
+    },
+    "S6b:m30": {
+     "n_stored": 346,
+     "n_spot": 21,
+     "spot_max_frac": 0.0013,
+     "spot_max_frac_excl_vertical_stroke": 0.0013,
+     "spot_max_dpx": 0.51,
+     "spot_max_outside_stroke_px": 0.01,
+     "all_columns_abs_dpx_p95": 0.51,
+     "max_dt_min": 0.0103
+    },
+    "S6b:m16": {
+     "n_stored": 337,
+     "n_spot": 21,
+     "spot_max_frac": 0.0013,
+     "spot_max_frac_excl_vertical_stroke": 0.0013,
+     "spot_max_dpx": 0.51,
+     "spot_max_outside_stroke_px": 0.01,
+     "all_columns_abs_dpx_p95": 0.51,
+     "max_dt_min": 0.0104
+    },
+    "S6c:m28": {
+     "n_stored": 487,
+     "n_spot": 21,
+     "spot_max_frac": 0.0013,
+     "spot_max_frac_excl_vertical_stroke": 0.0013,
+     "spot_max_dpx": 0.53,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.52,
+     "max_dt_min": 0.0023
+    },
+    "S6c:m14": {
+     "n_stored": 299,
+     "n_spot": 21,
+     "spot_max_frac": 0.0012,
+     "spot_max_frac_excl_vertical_stroke": 0.0012,
+     "spot_max_dpx": 0.5,
+     "spot_max_outside_stroke_px": 0.0,
+     "all_columns_abs_dpx_p95": 0.5,
+     "max_dt_min": 0.0023
+    }
+   },
+   "checks": [
+    {
+     "name": "own_calibration",
+     "result": "pass",
+     "detail": "Own calibration: frame lines and tick marks located by scanning dark pixel runs perpendicular to each axis (scripts in team/willoughby_verify/), labels read from zoomed crops; linear least-squares fits; hidden zero ticks taken from label centres only for j/E (label-tick offsets elsewhere <=1.5 px). Own colour masks per trace; legend lines located and masked independently. S6b: 16 right-axis ticks every 1.25e-12 A (majors 1.5e-11/1e-11/5e-12/0 at rows 135.55/232.61/330.49/427.58); x majors 25-50 at 838.39...1233.63. S6c: majors 4e-9...0 at 593.54...949.51; x 174.6...563.55."
+    },
+    {
+     "name": "overlay_inspected",
+     "result": "pass",
+     "detail": "verify_overlay.png (session scratch, not retained; contains publisher figure images) viewed."
+    },
+    {
+     "name": "spot_checks",
+     "result": "pass",
+     "detail": "21 features per trace (plateaus, baselines, extrema of 3 exposures); stored values inside my stroke."
+    },
+    {
+     "name": "trace_species_units",
+     "result": "pass",
+     "detail": "Panel titles N2O (m/z 44, 30, 16) and N2 (m/z 28, 14); 'Intensity (A)'; caption 1000 ppm in He flowed through 0.1 M HNO3 + 0.3 M KNO3."
+    },
+    {
+     "name": "ratio_claims",
+     "result": "pass",
+     "detail": "Recomputed plateau ratios: m30/m44 0.29-0.33, m16/m44 0.13-0.22, m14/m28 0.0101-0.0116; m/z 14 sits only 2.0-3.5 px above zero, so the m14/m28 ratio is uncertain by roughly +/-30 % or more."
+    }
+   ],
+   "issues": [
+    "Observation (verifier interpretation, not established): the N2 (S6c) and O2 (S6d, not extracted) calibration traces have identical time profiles and step times, and m/z 32 / m/z 28 = 0.24 in all three exposures while both fall by ~42 %. That is close to the O2/N2 ratio of air, and N2 m/z 28 (3.8e-9 A) is ~270x the N2O m/z 44 signal (1.4e-11 A) at nominally equal 1000 ppm despite similar RSFs (1 vs 1.13) and higher N2O solubility. The absolute N2 (and O2) sensitivities from S6 may be contaminated by air or a shared exposure; the m/z 14/28 fragment ratio is an N2 ionisation property and is less affected, but it is resolution-limited (above)."
+   ]
+  }
+ ],
+ "fe_recomputation_S1c": {
+  "dataset": "willoughby2026_figS1c_ecms_14n (stored CSV values, not re-digitized)",
+  "assumptions": [
+   "Plotted flux is mol s-1 cm-2 of geometric area (axis 'mol/s*cm2'); the same area normalises j, so FE = z F * integral(flux dt) / integral(|j| dt) and the 0.196 cm2 area cancels.",
+   "NO: NO3- + 4H+ + 3e- -> NO + 2H2O, z = 3.",
+   "N2O: 2NO3- + 10H+ + 8e- -> N2O + 5H2O, z = 8 per N2O molecule (4 per N). The flux is per N2O molecule (quantified against 1000 ppm N2O calibration gas), so z = 8 applies; z = 4 per molecule would halve FE_N2O (6.6-8.0 %).",
+   "H2: z = 2.",
+   "Charge per cycle = 0.1 mA cm-2 x plotted pulse length (4.98-4.99 min) = 0.0299 C cm-2 (integrating the stored j trace gives 0.0301-0.0307, +0.4-2.5 %, because of the step columns).",
+   "Window = pulse start to next pulse start (cycle 5 to end of record, 56.68 min); trapezoid over stored column medians, no baseline subtraction (authors already baseline-subtracted; off-period values are floored at 0).",
+   "F = 96485 C/mol."
+  ],
+  "per_cycle": [
+   {
+    "cycle": 1,
+    "window_min": [
+     6.02,
+     16.05
+    ],
+    "Q_nominal_C_cm2": 0.02994,
+    "Q_from_j_trace_C_cm2": 0.0307,
+    "n_NO": 4.25e-08,
+    "FE_NO_pct": 41.1,
+    "n_N2O": 5.43e-09,
+    "FE_N2O_pct": 14.0,
+    "FE_N2O_pct_if_z4": 7.0,
+    "n_H2": 2.64e-09,
+    "FE_H2_pct": 1.7,
+    "FE_H2_pct_preonbaseline_subtracted": 1.7,
+    "FE_sum_pct": 56.8
+   },
+   {
+    "cycle": 2,
+    "window_min": [
+     16.05,
+     26.02
+    ],
+    "Q_nominal_C_cm2": 0.02988,
+    "Q_from_j_trace_C_cm2": 0.03038,
+    "n_NO": 3.94e-08,
+    "FE_NO_pct": 38.1,
+    "n_N2O": 5.1e-09,
+    "FE_N2O_pct": 13.2,
+    "FE_N2O_pct_if_z4": 6.6,
+    "n_H2": 6.25e-09,
+    "FE_H2_pct": 4.0,
+    "FE_H2_pct_preonbaseline_subtracted": 0.1,
+    "FE_sum_pct": 55.3
+   },
+   {
+    "cycle": 3,
+    "window_min": [
+     26.02,
+     35.99
+    ],
+    "Q_nominal_C_cm2": 0.02988,
+    "Q_from_j_trace_C_cm2": 0.03038,
+    "n_NO": 3.46e-08,
+    "FE_NO_pct": 33.6,
+    "n_N2O": 6.1e-09,
+    "FE_N2O_pct": 15.8,
+    "FE_N2O_pct_if_z4": 7.9,
+    "n_H2": 5.45e-09,
+    "FE_H2_pct": 3.5,
+    "FE_H2_pct_preonbaseline_subtracted": 3.5,
+    "FE_sum_pct": 52.9
+   },
+   {
+    "cycle": 4,
+    "window_min": [
+     35.99,
+     46.01
+    ],
+    "Q_nominal_C_cm2": 0.02994,
+    "Q_from_j_trace_C_cm2": 0.03006,
+    "n_NO": 3.32e-08,
+    "FE_NO_pct": 32.1,
+    "n_N2O": 6.18e-09,
+    "FE_N2O_pct": 15.9,
+    "FE_N2O_pct_if_z4": 8.0,
+    "n_H2": 7.09e-09,
+    "FE_H2_pct": 4.6,
+    "FE_H2_pct_preonbaseline_subtracted": 0.8,
+    "FE_sum_pct": 52.6
+   },
+   {
+    "cycle": 5,
+    "window_min": [
+     46.01,
+     56.68
+    ],
+    "Q_nominal_C_cm2": 0.02994,
+    "Q_from_j_trace_C_cm2": 0.03024,
+    "n_NO": 1.9e-08,
+    "FE_NO_pct": 18.3,
+    "n_N2O": 6.22e-09,
+    "FE_N2O_pct": 16.0,
+    "FE_N2O_pct_if_z4": 8.0,
+    "n_H2": 1.17e-08,
+    "FE_H2_pct": 7.6,
+    "FE_H2_pct_preonbaseline_subtracted": 3.5,
+    "FE_sum_pct": 41.9
+   }
+  ],
+  "result": "Cycles 1-4: NO 32.1-41.1 %, N2O 13.2-15.9 %, H2 1.7-4.6 %, sum 52.6-56.8 %. Matches the README (32-41 / 13-16 / 2-5 / 53-57) and meta within 0.2 points; cycle 5 (window truncated) 18.3 / 16.0 / 7.6 / 41.9 %.",
+  "units_discrimination": "Reading the axis as mol s-1 (not per cm2) would raise all FEs by 1/0.196 = 5.1x (NO ~210 %), which is impossible, so the per-area reading is the only consistent one.",
+  "caveats": [
+   "H2 FE is dominated by flux that persists through zero-current off periods after cycle 1; subtracting the pre-pulse level gives 0.1-3.5 % (cycles 2-4).",
+   "A single pre-pulse baseline also moves FE_NO by up to -7 points (cycle 3) because the NO tail from the previous pulse has not decayed; the README numbers are for the unsubtracted integral, which is the right convention for the units check."
+  ]
+ },
+ "readme_review": {
+  "interpretive_claims": [
+   {
+    "claim": "m/z 30 in 15N runs is not explained by 15N2O fragmentation; candidates 15N2 or 14NO from unlabelled nitrate",
+    "supported": true,
+    "stated_as_interpretation": true,
+    "detail": "Ratios recomputed and correct. Candidates are labelled 'interpretation, not established'; the 14NO option is explicitly set against the caption's H15NO3. The 0.1 x m46 fragment estimate relies on NIST N2O m/z 28/44 and is flagged as not reported in the SI. No overreach."
+   },
+   {
+    "claim": "'N2 not detected' is not settled",
+    "supported": true,
+    "stated_as_interpretation": true,
+    "detail": "Supported by the m/z 30 excess and the weak m/z 15 test. Missing counterpoint (not an error): the 14N run's m/z 28 (S1a) shows no pulse-shaped rise, but its lower axis segment carries only a '0' label, so it cannot bound a 14N2 signal of roughly 8 pA (0.33 x the ~25 pA NO m/z 30 signal, assuming the same N2:NO ratio and sensitivity as the 15N2 hypothesis implies). The weak-test argument also depends on the S6c m/z 14/28 = 0.010-0.012, which is resolution-limited (2-4 px) and may come from an air-contaminated exposure (see S6 issues); with a larger N+/N2+ fraction the m/z 15 test would argue against 15N2."
+   },
+   {
+    "claim": "14N and 15N runs are not replicates of one electrode state",
+    "supported": true,
+    "stated_as_interpretation": true,
+    "detail": "Potentials recomputed: -0.1 mA/cm2: 14N median -0.77 V (10-90 pct -0.92 to -0.56) vs 15N flat -0.79 V; -0.2 mA/cm2: 14N -1.45 V vs 15N -0.41 V. The inference is reasonable; a differing reference/iR treatment between runs is an alternative cause of the potential offset that the README does not mention."
+   },
+   {
+    "claim": "S4c (15N -1.0 V run) is questionable",
+    "supported": true,
+    "stated_as_interpretation": true,
+    "detail": "README says 'questionable', not 'faulty'; artefacts, 12.2 min glitch and -0.04 mA/cm2 hold current all confirmed from the image and stored data."
+   },
+   {
+    "claim": "S3c current unreadable",
+    "supported": true,
+    "stated_as_interpretation": false,
+    "detail": "Confirmed (single label on the upper j segment)."
+   },
+   {
+    "claim": "Rise/decay constants are upper bounds on the chemistry",
+    "supported": true,
+    "stated_as_interpretation": true,
+    "detail": "Reasonable given unknown EC-MS transport response; acceptable wording."
+   }
+  ],
+  "factual_checks": [
+   "Table S2 Henry constants, Table S4 RSFs, figure/page map, conditions, and the two-SI-file statement (images byte-identical; text identical apart from the ACS download stamp) all verified against the PDFs.",
+   "'Every figure is an embedded raster with no vector paths or text layer' verified (0 drawings and 0 words over every figure rectangle).",
+   "'Axes were fitted ... residuals under 0.55 px' verified (max 0.54 px in meta)."
+  ]
+ },
+ "fixes_made": [
+  {
+   "file": "data/digitized_inputs/willoughby2026_si_README.md",
+   "change": "Extraction table, S4 row: points per trace '332-337' -> '332-337 (4 for the S4c lower j axis segment)'; S4c:j_lower has 4 rows."
+  },
+  {
+   "file": "data/digitized_inputs/willoughby2026_si_README.md",
+   "change": "Doubt 4: time resolution '0.07-0.18 min' -> '0.06-0.18 min' (S6b/S6c are 0.063-0.064 min per column)."
+  },
+  {
+   "file": "data/digitized_inputs/willoughby2026_si_README.md",
+   "change": "'With 0.4 M nitrate and sub-mA/cm2 currents, depletion is negligible' rewritten to limit the claim to the 0.1-0.2 mA/cm2 pulsed runs and state that the -1.0 V hold current and cell volume are not given (the S3c current is unreadable and its initial transient reaches -7.5 mA/cm2)."
+  },
+  {
+   "file": "data/digitized_inputs/willoughby2026_si_README.md",
+   "change": "XPS sentence: added the authors' own caveat (SI p. S15) that Ti2+/Ti3+ may partly come from post-reaction air exposure."
+  },
+  {
+   "file": "data/digitized_inputs/willoughby2026_si_README.md",
+   "change": "SI contents table, Fig. S5 row: m/z 31 second trace is the 15N2O fragment contribution, not m/z 31 with fragments removed; row reworded."
+  },
+  {
+   "file": "data/digitized_inputs/willoughby2026_figS5_ecms_15n_fragcheck/meta.json",
+   "change": "quality_flags['axis_from_label_centres_only (S5b j)']: 'no j ticks visible' corrected to note a faint -0.2 tick at row ~317.5 that agrees with the label centre within 0.5 px. Text only; no data or calibration values changed."
+  }
+ ],
+ "open_issues": [
+  "S1c/S2c H2 FE is background-dominated after the first pulse; treat H2 FE as order-of-magnitude only.",
+  "S5a m/z 31 15N2O-fragment trace is resolved only to ~1 pA (+/-50 %); not flagged in meta.",
+  "S6 N2/O2 calibration signals look air-like (m/z 32/28 = 0.24 constant, identical time program, ~270x larger than N2O at nominally equal ppm); absolute N2 sensitivity from S6 should not be used without the main text or raw data.",
+  "README doubt 1 could note that S1a m/z 28 cannot bound a 14N2 signal (single-label lower axis segment) and that the weak-m/z-15 argument depends on a resolution-limited, possibly air-derived m/z 14/28 ratio.",
+  "The 14N/15N 'not replicates' inference could also reflect different reference/iR handling; worth one clause if the README is revised.",
+  "Main text remains unread (whether it has IC/GC concentration time courses is unverified; the abstract only says GC, IC and EC-MS were combined; 15N enrichment also unread); the other uploads in the folder are Gao 2022 (ES&T) and a CV raw-data zip unrelated to Willoughby."
+ ]
+}

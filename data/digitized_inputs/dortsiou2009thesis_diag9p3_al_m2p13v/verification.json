@@ -1,0 +1,503 @@
+{
+  "dataset": "dortsiou2009thesis_diag9p3_al_m2p13v",
+  "also_covers": "data/real/dortsiou2009thesis_diag9p3_al_m2p13v.json",
+  "source": "Dortsiou M., PhD thesis (in Greek), Aristotle University of Thessaloniki (2009), doi 10.12681/eadd/27551; page images at 300 dpi from the archive reader (local scratch copy, reader page = printed page + 36); Diag 9.3, printed p. 166 (reader p202.jpg)",
+  "verdict": "accept_with_flags",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "summary": "Independent re-read agrees with all 36 stored points (t = 15-90 min) within 0.032 mM (0.06 % of the 55 mM axis, under 1 px); alternate reads of the same markers stay within 0.061 mM (the weakest, an upper-half disc fit of NO3- at 60 min). The by-difference claim is confirmed: the verifier's own reads of the six plotted series sum to 49.97-50.08 mM at every time, the thesis says nitramide could not be quantified (printed p. 117) and that it accounts for the mass-balance loss (p. 163). NH2NO2 was therefore moved from a species to derived_series -> quality.reported_n_loss and data_real regenerated (5 species, closure 0.88-0.94 at 15-90 min). The low-confidence NH2NO2 point at 15 min is better constrained than stated (3.15-3.16 from two visible features). Flags: caption potential '2,13 V' (sign and reference inferred) vs Table 6.1, inferred volume and pH.",
+  "method": "Verifier scripts in literature/extraction_scripts/dortsiou_verify/ (axes_probe.py, ticks.py, calib.py, overlay.py, zoomgrid.py and the per-figure readers), written independently; the extractor's scripts and calibration files in literature/extraction_scripts/dortsiou/ were not run or read. Axes were calibrated from tick marks located by dark-pixel profiles beside the axis lines and fitted by least squares. Stored points were mapped back onto the page with the verifier's calibration and the overlays were inspected by eye. Al readers: al_caps.py (error-bar caps per time), al_geom.py and al_more.py (filled-marker centroids, disc fits), al_open.py and al_open2.py (square edges, open-circle ring fits with occluders masked, open-triangle base rows), al15_rows.py and al15_caps.py (row-width profile and ink map of the 15 min cluster against isolated N2 triangles), al_startips.py and al_star90.py (star tip geometry), kin.py (model simulation and printed-curve check). Error-bar caps are drawn at +-10 % of each value on top of the symbols, so a cap pair's midpoint is an independent reading of the value.",
+  "calibration_verifier": {
+    "x": "19 ticks 0-90 min every 5 min at px 685.01 ... 1936.10; fit 13.9043 px/min, x(0) = 684.94, max residual 0.055 min",
+    "y": "12 ticks 0-55 mM every 5 mM at px 1865.00 ... 873.49; fit 18.0360 px/mM (1 px = 0.0554 mM), y(0) = 1865.29, max residual 0.026 mM",
+    "vs_extractor": "extractor 13.90 px/min and 18.03 px/mM; same to the stated precision"
+  },
+  "overlay": "verify_overlay.png and verify_overlay_bottom.png (session scratch, not retained; contains thesis page images); every stored point lands on the centre of its marker",
+  "max_abs_deviation_mM": 0.032,
+  "max_abs_deviation_fraction_of_axis": 0.0006,
+  "axis_span_used_mM": 55.0,
+  "max_abs_deviation_including_alternate_reads_mM": 0.061,
+  "worst_points": [
+    {
+      "series": "NH2NO2",
+      "t_min": 90,
+      "stored": 3.832,
+      "verifier": 3.8,
+      "dev": 0.032,
+      "note": "star coincides with the NO3- disc; tips give 3.78-3.81"
+    },
+    {
+      "series": "N2",
+      "t_min": 45,
+      "stored": 14.171,
+      "verifier": 14.141,
+      "dev": 0.03,
+      "note": "blob centroid; lower cap gives 14.187"
+    },
+    {
+      "series": "N2O",
+      "t_min": 75,
+      "stored": 9.415,
+      "verifier": 9.442,
+      "dev": -0.027,
+      "note": "cap midpoint"
+    },
+    {
+      "series": "NH2NO2",
+      "t_min": 75,
+      "stored": 3.831,
+      "verifier": 3.825,
+      "dev": 0.006,
+      "note": "caps; star area centroid gives 3.885 (dev -0.054), the largest alternate"
+    }
+  ],
+  "per_point": [
+    {
+      "series": "NO3",
+      "t_min": 15,
+      "stored": 36.437,
+      "verifier": 36.443,
+      "dev": -0.006,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        36.462
+      ]
+    },
+    {
+      "series": "NO3",
+      "t_min": 30,
+      "stored": 23.562,
+      "verifier": 23.553,
+      "dev": 0.009,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        23.563
+      ]
+    },
+    {
+      "series": "NO3",
+      "t_min": 45,
+      "stored": 15.5,
+      "verifier": 15.51,
+      "dev": -0.01,
+      "method": "blob centroid after opening (caps hidden)"
+    },
+    {
+      "series": "NO3",
+      "t_min": 60,
+      "stored": 9.064,
+      "verifier": 9.067,
+      "dev": -0.003,
+      "method": "midpoint of the two +-10 % error-bar caps (lower half of the disc under the N2O triangle)",
+      "alternate_reads": [
+        9.125
+      ]
+    },
+    {
+      "series": "NO3",
+      "t_min": 75,
+      "stored": 6.008,
+      "verifier": 6.003,
+      "dev": 0.005,
+      "method": "blob centroid after opening",
+      "alternate_reads": [
+        5.975
+      ]
+    },
+    {
+      "series": "NO3",
+      "t_min": 90,
+      "stored": 3.853,
+      "verifier": 3.83,
+      "dev": 0.023,
+      "method": "disc fit restricted to the sectors between the protruding star tips"
+    },
+    {
+      "series": "NO2",
+      "t_min": 15,
+      "stored": 3.627,
+      "verifier": 3.614,
+      "dev": 0.013,
+      "method": "square top edge (offset from isolated squares)"
+    },
+    {
+      "series": "NO2",
+      "t_min": 30,
+      "stored": 4.245,
+      "verifier": 4.248,
+      "dev": -0.003,
+      "method": "upper cap / 1.1"
+    },
+    {
+      "series": "NO2",
+      "t_min": 45,
+      "stored": 3.922,
+      "verifier": 3.922,
+      "dev": 0.0,
+      "method": "upper cap / 1.1",
+      "alternate_reads": [
+        3.945
+      ]
+    },
+    {
+      "series": "NO2",
+      "t_min": 60,
+      "stored": 3.076,
+      "verifier": 3.079,
+      "dev": -0.003,
+      "method": "blob centroid after opening"
+    },
+    {
+      "series": "NO2",
+      "t_min": 75,
+      "stored": 2.074,
+      "verifier": 2.075,
+      "dev": -0.001,
+      "method": "blob centroid after opening"
+    },
+    {
+      "series": "NO2",
+      "t_min": 90,
+      "stored": 1.499,
+      "verifier": 1.511,
+      "dev": -0.012,
+      "method": "blob centroid after opening"
+    },
+    {
+      "series": "NH3",
+      "t_min": 15,
+      "stored": 2.069,
+      "verifier": 2.072,
+      "dev": -0.003,
+      "method": "ring fit with the N2 and N2O triangles masked"
+    },
+    {
+      "series": "NH3",
+      "t_min": 30,
+      "stored": 3.027,
+      "verifier": 3.038,
+      "dev": -0.011,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        3.03
+      ]
+    },
+    {
+      "series": "NH3",
+      "t_min": 45,
+      "stored": 4.479,
+      "verifier": 4.493,
+      "dev": -0.014,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        4.45
+      ]
+    },
+    {
+      "series": "NH3",
+      "t_min": 60,
+      "stored": 6.682,
+      "verifier": 6.685,
+      "dev": -0.003,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        6.695
+      ]
+    },
+    {
+      "series": "NH3",
+      "t_min": 75,
+      "stored": 7.983,
+      "verifier": 7.972,
+      "dev": 0.011,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        7.97
+      ]
+    },
+    {
+      "series": "NH3",
+      "t_min": 90,
+      "stored": 9.083,
+      "verifier": 9.081,
+      "dev": 0.002,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        9.075
+      ]
+    },
+    {
+      "series": "N2",
+      "t_min": 15,
+      "stored": 2.975,
+      "verifier": 2.97,
+      "dev": 0.005,
+      "method": "lower cap end protrusions (2.67 mM) / 0.9; row-width profile of the cluster matches isolated N2 triangles at 2.975"
+    },
+    {
+      "series": "N2",
+      "t_min": 30,
+      "stored": 8.59,
+      "verifier": 8.583,
+      "dev": 0.007,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        8.577
+      ]
+    },
+    {
+      "series": "N2",
+      "t_min": 45,
+      "stored": 14.171,
+      "verifier": 14.141,
+      "dev": 0.03,
+      "method": "blob centroid after opening",
+      "alternate_reads": [
+        14.187
+      ]
+    },
+    {
+      "series": "N2",
+      "t_min": 60,
+      "stored": 18.278,
+      "verifier": 18.258,
+      "dev": 0.02,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        18.257
+      ]
+    },
+    {
+      "series": "N2",
+      "t_min": 75,
+      "stored": 20.758,
+      "verifier": 20.752,
+      "dev": 0.006,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        20.733
+      ]
+    },
+    {
+      "series": "N2",
+      "t_min": 90,
+      "stored": 21.897,
+      "verifier": 21.889,
+      "dev": 0.008,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        21.891
+      ]
+    },
+    {
+      "series": "N2O",
+      "t_min": 15,
+      "stored": 1.812,
+      "verifier": 1.818,
+      "dev": -0.006,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        1.846
+      ]
+    },
+    {
+      "series": "N2O",
+      "t_min": 30,
+      "stored": 4.528,
+      "verifier": 4.551,
+      "dev": -0.023,
+      "method": "upper cap / 1.1",
+      "alternate_reads": [
+        4.549
+      ]
+    },
+    {
+      "series": "N2O",
+      "t_min": 45,
+      "stored": 6.857,
+      "verifier": 6.863,
+      "dev": -0.006,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        6.866
+      ]
+    },
+    {
+      "series": "N2O",
+      "t_min": 60,
+      "stored": 8.47,
+      "verifier": 8.458,
+      "dev": 0.012,
+      "method": "lower cap / 0.9"
+    },
+    {
+      "series": "N2O",
+      "t_min": 75,
+      "stored": 9.415,
+      "verifier": 9.442,
+      "dev": -0.027,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        9.437
+      ]
+    },
+    {
+      "series": "N2O",
+      "t_min": 90,
+      "stored": 9.893,
+      "verifier": 9.885,
+      "dev": 0.008,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        9.902
+      ]
+    },
+    {
+      "series": "NH2NO2",
+      "t_min": 15,
+      "stored": 3.159,
+      "verifier": 3.155,
+      "dev": 0.004,
+      "method": "lower cap ends (2.833 mM, -> 3.147) and lower star tips protruding beside the N2 triangle (-> 3.163)",
+      "alternate_reads": [
+        3.147,
+        3.163
+      ]
+    },
+    {
+      "series": "NH2NO2",
+      "t_min": 30,
+      "stored": 6.079,
+      "verifier": 6.063,
+      "dev": 0.016,
+      "method": "upper cap / 1.1",
+      "alternate_reads": [
+        6.112
+      ]
+    },
+    {
+      "series": "NH2NO2",
+      "t_min": 45,
+      "stored": 5.101,
+      "verifier": 5.117,
+      "dev": -0.016,
+      "method": "midpoint of the two +-10 % error-bar caps"
+    },
+    {
+      "series": "NH2NO2",
+      "t_min": 60,
+      "stored": 4.433,
+      "verifier": 4.424,
+      "dev": 0.009,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        4.45
+      ]
+    },
+    {
+      "series": "NH2NO2",
+      "t_min": 75,
+      "stored": 3.831,
+      "verifier": 3.825,
+      "dev": 0.006,
+      "method": "midpoint of the two +-10 % error-bar caps",
+      "alternate_reads": [
+        3.885
+      ]
+    },
+    {
+      "series": "NH2NO2",
+      "t_min": 90,
+      "stored": 3.832,
+      "verifier": 3.8,
+      "dev": 0.032,
+      "method": "star tips protruding from the NO3- disc (top 3.80, sides 3.81, lower 3.78)",
+      "alternate_reads": [
+        3.78,
+        3.81
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "marker_mapping",
+      "result": "pass",
+      "detail": "Caption: filled circle NO3-, filled square NO2-, open circle NH3, filled down-triangle N2, open down-triangle N2O, star NH2NO2. The stored series sit on those markers in the overlay; the observed z-order (caption order, opaque open symbols, caps on top) explains every occlusion."
+    },
+    {
+      "name": "nh2no2_by_difference",
+      "result": "confirmed",
+      "detail": "Verifier reads (independent of stored values) of the six series sum to 50.075, 50.036, 50.046, 49.971, 50.069, 49.996 mM at 15-90 min (stored: 50.079, 50.031, 50.030, 50.003, 50.069, 50.057), i.e. within 0.16 % of c0, while the five measured species close at only 0.88-0.94 and the thesis quotes ~10 % error. Plotted NH2NO2 minus (50 - five stored species) = +0.079, +0.031, +0.030, +0.003, +0.069, +0.057 mM. Text: printed p. 117 'the quantitative assessment of nitramide was not feasible' (no commercial standard, complex preparation); p. 163 nitramide 'was detected ... and its presence accounts for the loss in the mass balance', its shape being that of the loss in Diag 9.2. Conclusion: the NH2NO2 series is the authors' mass-balance deficit, labelled as nitramide."
+    },
+    {
+      "name": "hidden_points",
+      "result": "pass",
+      "detail": "NH2NO2 at 15 min (stored 3.159, extractor 'low confidence, up to 3.7 weakly excluded'): the 15 min cluster's row widths match isolated N2 triangles at 2.975 except at two heights: a +-9 px horizontal feature at 2.83 mM (the NH2NO2 lower cap, 0.9 v -> v = 3.147) and dark pixels at |dx| 6-8 px at 2.57-2.62 mM, outside both the N2 triangle and the NH3 circle arcs, which match the lower star tips (isolated stars: tips 9.5-10 px below the anchor -> v = 3.163). A value of 3.7 would hide both features inside the square and triangle. NH2NO2 at 90 min: located from the star tips protruding from the NO3- disc (3.78-3.81). NO3- at 60 min: lower half covered by the N2O triangle; caps give 9.067. NO2- at 45 min: top hidden by the NH3 circle; upper cap 3.922, bottom edge 3.945. NH3 at 15 min: ring fit with the N2 and N2O triangles masked, 2.065-2.080."
+    },
+    {
+      "name": "error_bars",
+      "result": "pass",
+      "detail": "Cap pairs where both are visible span +-10 % about their midpoint (ratios 1.218-1.224 vs 1.222). Uniform nominal percentage, correctly not carried as sigma."
+    },
+    {
+      "name": "units_and_n_basis",
+      "result": "pass",
+      "detail": "y axis 'Συγκέντρωση, mM'. N-equivalent basis forced by the closure above and by eqs 9.19-9.24, which move NO2- to NH2NO2 to N2O/N2 1:1 in the plotted units."
+    },
+    {
+      "name": "model_curves",
+      "result": "pass",
+      "detail": "Simulating eqs 9.19-9.24 with the Al k values (0.0252, 0.1278, 0.0296, 0.0299, 0.0639 min-1) from 50 mM and sampling the printed curves at marker-free times (5-82.5 min) puts the printed curves within 0.0-0.27 mM of the simulation (median 0.03-0.16 mM per series). RMSE of the simulation against the stored points 1.02 mM; misfits NO2- 15 min 3.63 vs 5.63, NO3- 90 min 3.85 vs 5.18, NH2NO2 90 min 3.83 vs 1.83, as the provenance notes state. NO3- log-linear k 0.0292 min-1 (recomputed)."
+    },
+    {
+      "name": "closure",
+      "result": "pass",
+      "detail": "After the fix, quality.n_closure from data_real is 1.0, 0.9384, 0.879, 0.8986, 0.9114, 0.9248, 0.9245 (five measured species); flag unobserved_sink_suspected appropriate."
+    },
+    {
+      "name": "conditions",
+      "result": "pass_with_notes",
+      "detail": "Same cell and methods as the Zn dataset (printed pp. 59-65): 0.4 M NaHCO3 / 0.4 M Na2CO3 / 0.05 M NaNO3 (caption); Al Sigma-Aldrich 99.9 % sheet, #1200 polish; cathode 2 cm2; 12 mL compartments with 2 mL dead space (10 mL inferred from the Katsounaros thesis, p. 64 there); pH 9.65 from ch. 5 (initial, same electrolyte); He 11-12 mL/min."
+    },
+    {
+      "name": "potential",
+      "result": "pass_with_flag",
+      "detail": "Caption (image, text layer and list of figures) prints 'σε δυναμικό 2,13 V' with no sign or reference; Table 6.1 gives Al pzc -0.52 V, E -2.53 V vs Ag/AgCl, k 0.02033 min-1, i.e. 0.40 V more negative than the caption, the same offset as Zn (-2.24 vs -2.64). Reading as -2.13 V vs Ag/AgCl is an inference; flag potential_unverified kept."
+    },
+    {
+      "name": "schema_validation",
+      "result": "pass",
+      "detail": "nernstwork.schemas.errors('dataset', data/real/dortsiou2009thesis_diag9p3_al_m2p13v.json) returned [] after regeneration."
+    }
+  ],
+  "claims_tested": [
+    "N-equivalent basis (to_mM_N 1): confirmed.",
+    "Plotted series sum to 50.00-50.08 mM at every time: confirmed for 15-90 min (stored and verifier reads); at t = 0 the raw reads sum to 50.14 before pinning.",
+    "Nitramide 'could not be quantified' (printed p. 117): confirmed; NH2NO2 is the authors' by-difference value. Storage changed accordingly.",
+    "Authors' Al k values reproduce the printed model curves: confirmed (within 0.27 mM, median <= 0.16 mM).",
+    "Volume 10 mL inferred; pH 9.65 from ch. 5; caption potential 0.40 V less negative than Table 6.1: confirmed as documented."
+  ],
+  "issues": [
+    "Caption potential '2,13 V' has no sign or reference electrode and is 0.40 V less negative than Table 6.1 (-2.53 V); sign and reference are inferred. Kept as flagged.",
+    "Catholyte volume (10 mL) and pH (9.65) are inferred, not stated for this run.",
+    "The NH2NO2 series is the authors' mass-balance deficit, not a measurement; it is now stored as quality.reported_n_loss. Its t = 0 value is the raw read (0.045 mM) because the converter does not pin derived series; harmless.",
+    "The authors' ch. 9 rate constants were fitted with NH2NO2 as an observed intermediate; any reuse of k2, k4, k5 inherits that the 'nitramide' channel is a deficit.",
+    "provenance.verified_against_figure is still false in meta and data_real; left unchanged (verification recorded here, same convention as the other verifier files)."
+  ],
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "meta.json: NH2NO2 removed from species and added as derived_series {'NH2NO2': 'reported_n_loss'}; reported_unit no longer lists NH2NO2; n_basis_note rewritten to say the authors attribute the loss to nitramide but the plotted values are c0 minus the measured species; extraction_method t = 0 sentence updated (derived series not pinned).",
+      "files": [
+        "data/digitized_inputs/dortsiou2009thesis_diag9p3_al_m2p13v/meta.json"
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "change": "Regenerated with scripts/digitized_to_dataset.py: 5 species (values unchanged), NH2NO2 now under quality.reported_n_loss (0.045, 3.159, 6.079, 5.101, 4.433, 3.831, 3.832), n_closure 1.0/0.938/0.879/0.899/0.911/0.925/0.925 instead of ~1.00.",
+      "files": [
+        "data/real/dortsiou2009thesis_diag9p3_al_m2p13v.json"
+      ]
+    }
+  ]
+}

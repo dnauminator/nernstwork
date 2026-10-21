@@ -19,3 +19,64 @@ Caveats: pH not reported (unbuffered 0.5 M K2SO4, expect drift). NH4+ is lumped 
 | polatides2005_fig3_sn85cu15_50mM.json | Polatides & Kyriacou 2005, Fig. 3, digitized from `data/digitized_inputs/polatides2005_fig3/` | 8 points over 120 min, four species at -2.0 V vs Ag/AgCl, 50 mM nitrate, Sn85Cu15. N2 converted x2 from closure; closure 0.93-1.12 (flags `noisy`, `units_unverified`) |
 
 Negative digitized values are clamped to 0 by the converter.
+
+These three were cross-checked against the copies of the same figures in the authors' PhD theses (Oct 20 2026). They hold up. In the 2012 file NO3 at 180 min carries occlusion bias, and NH3 at 60 and 120 min (7.6 and 19.6) differ from the thesis copy (4.8 and about 26) but agree with the thesis's own Diag. 12.1 rate data (8.0 and 20.8). Those two are unresolved until the journal figure is pixel-checked; keep them and treat them as source-dependent (+-3 and +-6 mM). The N2 plateau in the 2008 file reads 6.9 mM-N low. Details in `docs/DATASETS.md`. The files themselves are unchanged.
+
+## Digitized by the agent team (Oct 20 2026)
+
+Raster digitization of page or figure images by agent scripts, not WebPlotDigitizer, written in the WebPlotDigitizer CSV layout and converted with `scripts/digitized_to_dataset.py`. `provenance.extraction` describes each method. Each input folder has a `verification.json` from an independent re-read. The verdict and largest deviation from that re-read are quoted below. `verified_against_figure` is false for all of them. Units are mM-N, time in minutes. Background and open questions: `docs/DATASETS.md`.
+
+| File | Source | Points | Notes |
+|---|---|---|---|
+| katsounaros2009thesis_diag6p4_sn_m2p4v.json | Katsounaros 2009 PhD thesis, Diag. 6.4 (doi 10.12681/eadd/19491) | 7 over 90 min, five species | Sn, 2 M NaCl + 0.05 M NaNO3, -2.4 V vs Ag/AgCl, 50 mM nitrate. N2 and N2O x2 (per molecule; confirmed by the text's 90-min selectivities). Closure 0.99-1.10; the text quotes about 10 % error. NO2- at 15 min follows the figure (0.60 mM); the text says 1.15 mM. pH not stated. accept_with_flags, max deviation 0.06 mM. Flag `noisy` |
+| dortsiou2009thesis_diag6p6_zn_m2p24v.json | Dortsiou 2009 PhD thesis, Diag. 6.6 (doi 10.12681/eadd/27551) | 7 over 90 min, five species | Zn, 0.4 M NaHCO3 + 0.4 M Na2CO3 + 0.05 M NaNO3, 50 mM nitrate. Plotted per N. `reported_n_loss` is the authors' plotted mass-balance loss (peak 14.6 mM-N at 45 min); closure 0.71-0.98. Caption potential -2.24 V vs Ag/AgCl is 0.40 V less negative than thesis Table 6.1; the Zn captions of Diags. 9.2 and 9.4 repeat 2.24 V, and both Dortsiou captions sit 1.61 V negative of the metal's pzc where Table 6.1 sits 2.01 V negative, so the offset looks systematic. Volume 10 mL and pH 9.65 inferred. accept_with_flags, 0.06 mM. Flags `potential_unverified`, `unobserved_sink_suspected` |
+| dortsiou2009thesis_diag9p3_al_m2p13v.json | Dortsiou 2009, Diag. 9.3 | 7 over 90 min, five species | Al, same electrolyte. Caption "2,13 V" has no sign or reference; read as -2.13 V vs Ag/AgCl, again 0.40 V less negative than Table 6.1. The authors' "NH2NO2" (nitramide) series equals c0 minus the measured species, so it is stored as `reported_n_loss`, not as a species; closure 0.88-0.94. Volume and pH inferred. accept_with_flags, 0.03 mM. Same flags |
+| gao2022_fig2e_cuo_m2v.json | Gao et al. 2022, ES&T, Fig. 2e (doi 10.1021/acs.est.1c08442) | 7 over 120 min; NO3, NO2, NH3, NH3_trap | CuO-coated Cu foam membrane cathode in a recirculating flow cell, 25 mM NO3-N, 10 mM Cl-, 0.5 M Na2SO4, pH 7, -2.0 V vs SCE without iR compensation, 50 mL feed. N2 was not measured: the authors' by-difference value is `reported_n_loss`. NH3_trap is trap-tank TAN per feed volume, consistent with the text's 1.05 mmol NH3 at 120 min; that check cannot tell equal tank volumes from normalization to the feed volume, hence `units_unverified`. `reported_n_loss` also carries the bar-top reading bias (about 0.11 mM) and any NH3 lost through the feed-tank air line. DC-on window only; the 0-300 min series is kept in the input folder. Closure 0.85-0.94. accept_with_flags, 0.16 mM. Flags `potential_unverified`, `unobserved_sink_suspected`, `units_unverified` (trap basis) |
+| gao2022_figs13a_cuo_m1p5v.json | Gao 2022 SI, Fig. S13a | 11 over 300 min, four species | As Fig. 2e at -1.5 V vs SCE. DC-on presumed for the whole run: Fig. S13 has no on/off shading (same for S13c-e). No current reported for this potential. accept_with_flags, 0.26 mM (NO2-/N2 boundary late in the run). Same flags as Fig. 2e |
+| gao2022_figs13c_cuo_m2p5v.json | Gao 2022 SI, Fig. S13c | 7 over 90 min, four species | -2.5 V vs SCE. accept_with_flags, 0.21 mM. Same flags |
+| gao2022_figs13d_cuo_m3v.json | Gao 2022 SI, Fig. S13d | 7 over 60 min, four species | -3.0 V vs SCE. accept_with_flags, 0.17 mM. Same flags |
+| gao2022_figs13e_cuo_m3p5v.json | Gao 2022 SI, Fig. S13e | 7 over 60 min, four species | -3.5 V vs SCE. accept_with_flags, 0.17 mM. Same flags |
+| gao2022_figs14a_cuo_ph3.json | Gao 2022 SI, Fig. S14a | 7 over 120 min, four species | Initial pH 3, -2.0 V vs SCE. Total current about 51 mA cm-2, derived from Fig. 3b (jNH3 / FE_TAN). DC-on window only. accept_with_flags, 0.11 mM. Same flags |
+| gao2022_figs14b_cuo_ph5.json | Gao 2022 SI, Fig. S14b | 7 over 120 min, four species | Initial pH 5; about 55 mA cm-2 (derived). DC-on window only. accept_with_flags, 0.11 mM. Same flags |
+| gao2022_figs14d_cuo_ph10.json | Gao 2022 SI, Fig. S14d | 7 over 120 min, four species | Initial pH 10; about 60 mA cm-2 (derived). DC-on window only. accept_with_flags, 0.12 mM. Same flags |
+| gao2022_figs15b_cuo_75mM.json | Gao 2022 SI, Fig. S15b | 8 over 210 min, four species | 75 mM NO3-N; about 70 mA cm-2 (derived). DC-on window only. accept_with_flags, 0.31 mM. Same flags |
+| gao2022_figs15c_cuo_150mM.json | Gao 2022 SI, Fig. S15c | 11 over 300 min, four species | 150 mM NO3-N; about 89 mA cm-2 (derived). Coarse axis (0.31 mM per px), so segments under about 1 mM are at the resolution limit. DC-on window only. accept_with_flags, 0.63 mM after manual inspection. Same flags |
+| gao2022_fig3d_cuo_realww.json | Gao 2022, Fig. 3d | 4 over 180 min, four species | Real industrial wastewater, 31.1 mM NO3-N, initial pH 2.1, -2.0 V vs SCE. Feed volume and current not reported. DC-on window only, which leaves 3 times after t0. accept_with_flags, 0.10 mM. Same flags plus `sparse` |
+| gao2022_fig2a_cufoam_ptfe_m2v.json | Gao 2022, Fig. 2a | 7 over 120 min, NO3 only | Pristine Cu foam on the PTFE membrane, otherwise Fig. 2e conditions. Only nitrate was plotted, so `n_closure` is just NO3/c0, the nitrate fraction, not a nitrogen closure. accept_with_flags, 0.08 mM. Flags `single_species_only`, `potential_unverified` |
+| gao2022_fig2a_cuofoam_nomembrane_m2v.json | Gao 2022, Fig. 2a | 7 over 120 min, NO3 only | CuO-coated Cu foam with the membrane replaced by a non-permeable panel. accept_with_flags, 0.05 mM. Same flags as the row above |
+
+The Gao Fig. 2e run is replotted in Figs. S13b, S14c and S15a. All four were digitized and agree within 0.15 mM, so the replots are not separate datasets.
+
+## Inputs only (no `data/real` file)
+
+These folders under `data/digitized_inputs/` hold data that are not concentration trajectories in a batch volume, or that only check other files. Do not run the converter on them.
+
+| Folder | Content |
+|---|---|
+| `barrera2023_fig3_cv/`, `_fig4_cv/`, `_fig5_cv/` | Barrera et al. 2023 (ACS Catal., Cu, pH 8/10/14): CVs in NaNO3 and NaNO2, trial means and sd, blanks alongside. Copied from the authors' Zenodo workbooks, not digitized |
+| `barrera2023_fig6_ca/` | Barrera 2023: 40 min chronoamperometry, trial-mean current density and sd |
+| `barrera2023_fig7_fe/` | Barrera 2023: endpoint FE to NH3 and NO2-, nitrate consumed (measured vs estimated), per-trial FE breakdown |
+| `barrera2023_fig8_energy_rate/` | Barrera 2023: energy intensity and NH3 rate per condition |
+| `barrera2023_fig9_rct/`, `_fig10_cdl_charge/` | Barrera 2023: per-trial charge-transfer resistance, effective capacitance and charge passed (18 runs) |
+| `willoughby2026_figS1c_ecms_14n/`, `_figS2c_`, `_figS3c_` | Willoughby et al. 2026 SI (Ti, acidic nitrate): EC-MS fluxes of H2, NO, N2O with current and potential; pulsed -0.1 and -0.2 mA cm-2, and a -1.0 V vs RHE hold |
+| `willoughby2026_figS4_ecms_15n/`, `_figS5_ecms_15n_fragcheck/` | Willoughby 2026 SI: 15N runs, raw ion currents (m/z 15, 30, 31, 46) |
+| `willoughby2026_figS6_ms_calibration/` | Willoughby 2026 SI: N2O and N2 calibration-gas signals |
+| `gao2022_fig2c_fe_cell_potential/` | Gao 2022: FE (nitrate reduction vs HER) and electrode potentials for two H2-transfer cases |
+| `gao2022_fig2d_chloride_pem_textvalues/` | Gao 2022: chloride and PEM effect, values transcribed from the text (the 3D bar chart was not digitized) |
+| `gao2022_fig3b_eff_vs_condition/`, `_fig3c_rates_vs_condition/` | Gao 2022: FE, partial current, recovery, removal and energy per pH and concentration condition |
+| `gao2022_fig3e_stability_cycles/`, `_figs12_trap_reuse_cycles/` | Gao 2022: 20-cycle nitrate removal and Cu leaching; trap TAN over three reuse cycles |
+| `katsounaros2009thesis_diag6p7_endpoint_vs_e/` | Katsounaros thesis Diag. 6.7: 1 h endpoint concentrations vs potential (-1.8 to -2.8 V vs Ag/AgCl), 2 M NaCl |
+| `katsounaros2009thesis_diag10p6_selectivity_vs_ph/` | Katsounaros thesis Diag. 10.6: product selectivity vs initial pH at -1.8 V |
+| `katsounaros2009thesis_diag12p1_rates/` | Katsounaros thesis Diag. 12.1: production and consumption rates vs time, probably the same run as Katsounaros 2012 Fig. 1 |
+| `katsounaros2009thesis_diag12p1_intermediates/` | The Diag. 12.1 rates turned into concentrations, including NH2OH and hyponitrite (2 N), and compared with the N deficit of `katsounaros2012_fig1_sn_naoh.json`. The measured intermediates cover 10-52 % of the deficit; model B's X peaks later (77.8 min) than the unmeasured remainder (30-60 min) |
+| `katsounaros2009thesis_diag12p3_errorbars/` | Katsounaros thesis Diag. 12.3 (thesis copy of 2012 Fig. 1): every measurable error bar is +-10.0 % of the plotted value, type unstated |
+| `polatides2007thesis_table5p1_cathodes/`, `_table5p14_electrolyte/`, `_table5p21_cell/`, `_table7p24_rateconstants/` | Polatides thesis Tables 5.1, 5.14, 5.21, 7.24: endpoint removal and selectivities across cathodes, electrolytes and cell types; pulsed-potential model constants. Transcribed from the text layer, not digitized |
+| `katsounaros2009thesis_table6p11_ce_vs_e/`, `_table7p7_k_vs_nacl/`, `_table8p5_sn_dissolution/` | Katsounaros thesis Tables 6.11, 7.7, 8.5: partial current efficiencies vs potential, nitrate rate constant vs NaCl, dissolved tin vs NaCl. Transcribed |
+| `dortsiou2009thesis_table6p1_metals/`, `_table5p1_additions/` | Dortsiou thesis Tables 6.1 and 5.1: nitrate rate constants on six metals at a fixed distance from each pzc; current-free nitrate loss with NO, NH2OH or Angeli's salt. Transcribed |
+| `katsounaros2009thesis_diag9p6_xcheck/`, `_diag12p3_xcheck/`, `polatides2007thesis_diag5p8_xcheck/` | Thesis copies of Katsounaros 2008 Fig. 2, Katsounaros 2012 Fig. 1 and Polatides 2005 Fig. 3, re-digitized to check Daniel's files; `comparison_vs_daniel.json` in each |
+
+The nine transcribed tables were checked cell by cell against the text layer by an independent verifier (787 cells, 0 mismatches; `data/digitized_inputs/thesis_tables_verification.json`). Sourced statements from the three theses (cells, analytics, N basis, intermediates, models and the theses' internal inconsistencies) are in `data/evidence/tin_series_thesis_notes.json`: 67 claims, 22 with a discrepancy.
+
+Barrera's workbooks are CC BY-NC-ND 4.0. The reshaped CSVs count as adapted material, so they stay uncommitted (git-ignored) until the repository owner decides (see `data/digitized_inputs/barrera2023_README.md`).
+
+Licences of the other new sources: the Gao and Willoughby SIs are CC BY-NC 4.0 (ACS figshare); the Gao main-text figures come from the publisher's article (ACS copyright) via the NSF public-access record; the theses fall under the National Archive of PhD Theses terms (research use with no direct or indirect financial benefit, cite the author, link but do not reproduce). Each meta carries its source's line. Whether NernstWork's use meets these terms is the repository owner's decision; see `docs/DATASETS.md`, section 7.

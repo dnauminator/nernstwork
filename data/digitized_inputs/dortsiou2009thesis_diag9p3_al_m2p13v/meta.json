@@ -1,0 +1,58 @@
+{
+  "id": "dortsiou2009thesis_diag9p3_al_m2p13v",
+  "species": [
+    "NO3",
+    "NO2",
+    "NH3",
+    "N2",
+    "N2O"
+  ],
+  "derived_series": {
+    "NH2NO2": "reported_n_loss"
+  },
+  "to_mM_N": {
+    "default": 1.0
+  },
+  "reported_unit": "mM (N-equivalent; N2 and N2O per N atom)",
+  "extraction_method": "Raster digitization of the thesis page image (online-reader page 202 = printed p. 166, 300 dpi, 2481x3509 px) by agent scripts (OpenCV/NumPy/SciPy), not WebPlotDigitizer; wpd_datasets.csv is written in the WebPlotDigitizer unified layout. Axes calibrated by least squares on intensity-weighted tick centroids: x from 19 ticks (0-90 min every 5 min; 13.90 px/min; max tick residual 0.025 min), y from 12 ticks (0-55 mM every 5 mM; 18.03 px/mM, so 1 px = 0.055 mM; max residual 0.021 mM). Every marker was located by a z-ordered composite fit per sampling time: rendered templates for the filled circle (NO3-), filled square (NO2-), open circle (NH3), filled down-triangle (N2), open down-triangle (N2O) and filled star (NH2NO2), sizes fitted to isolated markers of this figure, drawn in caption order with opaque open symbols, plus the error bars drawn on top of all symbols (caps 18 px wide at +-10 % of each value; the bar line is clipped at the symbol circumradius, as observed in the figure). Only the y of each marker was free (x fixed at the sampling time); coordinate descent then Nelder-Mead on a capped pixel residual. Triangles are anchored at their centroid. Independent check: where both caps of a marker are visible, their midpoint agrees with the fitted value within 0.05 mM (NO3- at 15, 30, 75 min; N2 at 30, 60 min; NH3 at 75 min; N2O at 75, 90 min), and every such cap pair spans +-9.8 to 10.1 % of its value. Low-confidence point: NH2NO2 at 15 min (3.16 mM; the star is hidden inside the union of the NO2- square and the N2 triangle, and values up to about 3.7 mM are only weakly excluded). NH2NO2 at 90 min coincides with NO3- (both 3.85 mM) and was located from the star tips protruding from the disk. At t = 0 the products fit within 0.05 mM of 0 and NO3- at 50.00; the converter pins the five species to the initial conditions (the derived NH2NO2 deficit series keeps its read value). The authors' model curves were not digitized; instead eqs 9.19-9.24 with the stated Al k values were simulated and overlaid, and they coincide with the printed curves (median offset 0.03-0.18 mM). The +-10 % error bars are a uniform nominal percentage (the thesis quotes about 10 % fit error), not measured standard deviations, and are not carried as sigma. Inverse-calibration overlay checked by eye on the page crop (scratch, not committed).",
+  "n_basis_note": "N-equivalent basis for every series. The six plotted series sum to 50.00-50.08 mM at every sampling time from 15 to 90 min (closure 1.000-1.002 of the 50 mM NO3- start; an independent verifier re-read gives 49.97-50.08), and the authors' eqs 9.19-9.24 conserve N only with 1:1 N-equivalent stoichiometry (NO2- to NH2NO2 to N2O or N2); simulating them with the stated k values reproduces the printed model curves. The series the authors plot as NH2NO2 (stars) is not a measurement: the thesis states that nitramide could not be quantified (no commercial standard, complex synthesis; printed p. 117) and that its presence accounts for the mass-balance loss (printed p. 163). The authors attribute this loss to nitramide, but the plotted values are c0 (50 mM) minus the five measured species at every time (the analogue of the plotted loss in the Zn Diag 6.6 dataset), so the dataset 'NH2NO2' in the export is stored as quality.reported_n_loss, not as a species or fitting target. The measured species alone close at 0.94, 0.88, 0.90, 0.91, 0.92 and 0.92 (15-90 min). The t = 0 value of the deficit series (0.045 mM) is the raw read; the converter does not pin derived series.",
+  "t_grid_min": [
+    0,
+    15,
+    30,
+    45,
+    60,
+    75,
+    90
+  ],
+  "snap_tol_min": 5,
+  "pin_t0_to_c0": true,
+  "flags": [
+    "potential_unverified",
+    "unobserved_sink_suspected"
+  ],
+  "provenance": {
+    "citation": "Dortsiou M., Electrochemical removal of nitrate and ammonia from aqueous solutions and environmental samples, PhD thesis (in Greek), Aristotle University of Thessaloniki (2009)",
+    "doi": "10.12681/eadd/27551",
+    "figure": "Diag 9.3, printed p. 166",
+    "file": "thesis page image via the archive's online reader, 300 dpi; not committed",
+    "notes": "Terms: National Archive of PhD Theses (didaktorika.gr, run by EKT). Its terms of use allow deposited theses to be used online for educational, scientific, statistical and research purposes when there is no direct or indirect financial benefit, require any publication based on a thesis to cite its author, and allow linking to the site's content but not reproducing it; the item page states that all items in the archive are protected by copyright. The page image was viewed through the archive's online reader without an account and is not stored in the repo. Whether NernstWork's use meets the no-financial-benefit condition is the repository owner's decision. Caption: time course of NO3- (filled circle), NO2- (filled square), NH3 (open circle), N2 (filled down-triangle), N2O (open down-triangle) and NH2NO2 (star) during electrolysis of 0.4 M NaHCO3 / 0.4 M Na2CO3 / 0.05 M NaNO3 on Al 'at potential 2.13 V', with the nonlinear-regression curves of eqs 9.19-9.24. Text (printed pp. 165-166): simplified scheme NO3- -k1-> NO2-, NO2- -k2-> NH2NO2, NO2- -k3-> NH3, NH2NO2 -k4-> N2O, NH2NO2 -k5-> N2; Al fit k1 0.0252, k2 0.1278, k3 0.0296, k4 0.0299, k5 0.0639 min-1, error about 10 % (the text cites the equations as 9.23-9.28, a numbering slip). Simulated from 50 mM with these k the scheme gives RMSE 1.0 mM against these points (largest misfits NO2- at 15 min 3.63 vs 5.63, NO3- at 90 min 3.85 vs 5.18, NH2NO2 at 90 min 3.83 vs 1.83), the same misfits visible between markers and curves in the figure. Error bars on all series are +-10 % of each value.",
+    "verified_against_figure": false
+  },
+  "conditions": {
+    "catalyst": "Al sheet (99.9 %, Sigma-Aldrich), 2 cm2 geometric, polished with #1200 emery paper and rinsed",
+    "electrolyte": "0.4 M NaHCO3 + 0.4 M Na2CO3 + 0.05 M NaNO3 (ionic strength 1.6 M)",
+    "cell": "divided_batch",
+    "potential_V_vs_RHE": null,
+    "potential_as_reported": "2.13 V as printed in the caption (no sign, no reference; read as -2.13 V vs Ag/AgCl; Table 6.1 lists -2.53 V for Al)",
+    "potential_mode": "potentiostatic",
+    "pH": 9.65,
+    "temperature_C": null,
+    "volume_mL": 10,
+    "stirring": "He sparge 11-12 mL/min through the catholyte; no stirrer stated",
+    "c0_mM_N": {
+      "NO3": 50.0
+    },
+    "notes": "Potential discrepancy: the caption prints '2,13 V' without sign or reference; section 6.3.1 and Table 6.1 state that the metal-comparison runs were made 2.01 V negative of each pzc, i.e. -2.53 V for Al (-2.64 V for Zn), exactly 0.40 V more negative than both the Al and the Zn captions. No text passage states the potential of this run. Kinetics do not settle it: this run's NO3- decay (log-linear 0.0292 min-1; ch. 9 fit k1 0.0252) is faster than the Table 6.1 Al value (0.0203 min-1) although -2.13 V would be the less negative potential. Caption value kept with the sign and reference inferred; not converted to RHE. Teflon divided cell, Nafion 117 (H+) separator; compartments 12 mL each with a 2 mL dead space above the liquid, so the catholyte is taken as 10 mL (inferred: the same lab's Katsounaros 2009 thesis states a 10 mL fill in the 12 mL compartments of this cell); platinised Pt anode 6 cm2 facing the 2 cm2 cathode at 2 cm; reference Ag/AgCl in saturated (stated 3 M) KCl via a Luggin capillary <1 mm from the cathode; He 11-12 mL/min through the catholyte (deaeration 30 min, then carrier to the on-line GC); 0.1 mL liquid samples. pH: 9.65 is the initial pH of this electrolyte stated in ch. 5 (Bi runs, final 11.3 there); not reported for this run. Temperature not stated. The thesis's other Zn captions, Diags. 9.2 and 9.4, repeat 2.24 V (9.4 without a sign). Against the Table 6.1 pzc values (Zn -0.63 V, Al -0.52 V vs Ag/AgCl), the Zn and Al captions (Diags. 6.6 and 9.3) both sit 1.61 V negative of the metal's pzc, while Table 6.1 and the text (section 6.3.1) put the runs 2.01 V negative of it. The 0.40 V offset is the same for both metals, so it looks systematic rather than a one-off misprint; which set is right is still open."
+  }
+}

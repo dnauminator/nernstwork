@@ -1,0 +1,90 @@
+{
+ "id": "polatides2007thesis_table5p21_cell",
+ "kind": "inputs_only_thesis_table",
+ "note": "Inputs only: endpoint table, divided vs undivided cell, 12 h.",
+ "files": {
+  "extracted.csv": "tidy long: one row per electrode x potential x cell x quantity"
+ },
+ "csv_columns": {
+  "table_row": "row order in the printed table",
+  "electrode": "cathode as printed",
+  "E_V_vs_AgAgCl": "applied potential",
+  "cell": "divided (Nafion 117) or undivided ('cell without diaphragm')",
+  "duration_h": "caption",
+  "quantity": "removal or selectivity",
+  "species": "NO3 (removal), NO2, NH3, gaseous_products",
+  "value_pct": "value in %",
+  "value_as_printed": "cell exactly as printed",
+  "flag": "'uncertain' where inconsistent with Table 5.1",
+  "note": "cell-level note"
+ },
+ "provenance": {
+  "citation": "Polatides C., Electrochemical removal of nitrate from aqueous solutions and environmental samples using constant and pulsed potential, PhD thesis (in Greek), Aristotle University of Thessaloniki, Dept. of Chemical Engineering (2007); supervisor G. Kyriacou",
+  "doi": "10.12681/eadd/15209",
+  "table": "Table 5.21",
+  "printed_page": 117,
+  "reader_page": 138,
+  "page_offset_note": "printed page = online-reader page - 21",
+  "caption_translated": "Table 5.21. Degree of nitrate removal (%RE) and selectivity of the produced products (%S), on various electrodes and potentials, using a cell with and without diaphragm. Electrolysis duration 12 h. Columns: electrode | E/V vs. Ag/AgCl | cell with diaphragm: %RE NO3-, %S NO2-, %S NH3, %S gaseous | cell without diaphragm: %RE NO3-, %S NO2-, %S NH3, %S gaseous.",
+  "source_file": "page text layer from the archive's online reader (scratch only, not committed)",
+  "licence": "National Archive of PhD Theses terms: research use with no direct or indirect financial benefit; author must be cited; items protected by copyright"
+ },
+ "conditions": {
+  "electrolyte": "not restated; the thesis electrolysis solution is 0.1 M K2SO4 + 0.05 M KNO3 (sections 5.1, 5.3)",
+  "duration_h": 12,
+  "cell_divided": "Teflon cell, Nafion 117 (H+ form), 20 mL catholyte and 20 mL anolyte (ch. 4, printed p. 67)",
+  "cell_undivided": "one compartment removed, 20 mL total (ch. 4, printed p. 67)",
+  "anode": "not restated here (ch. 4 describes the auxiliary electrode)",
+  "electrode_area_cm2": "12.56 unless stated otherwise (ch. 4)",
+  "c0_mM_N": {
+   "NO3": 50.0
+  }
+ },
+ "text_translated": "Printed p. 116: the gaseous selectivity in the undivided cell came from subtracting the NO2- and NH3 selectivities from 100 %. RE is lower in every undivided-cell case and the NO2-/NH3 selectivities fall, so the gaseous selectivity rises. Printed p. 117: selectivities did not change significantly when electrolysis was extended to 24 h; the NH3 decrease in the undivided cell was attributed to anodic oxidation to gaseous products and nitrate, and the lower RE to nitrate formed at the anode. Anodic oxidation of 0.1 M K2SO4 + 0.05 M (NH4)2SO4 on Pt at 2.3 and 2.5 V vs Ag/AgCl removed 12 and 15 % of the ammonia with 85 and 92 % selectivity to nitrate; no nitrite detected.",
+ "checks": {
+  "row_sequences_on_page": [
+   {
+    "printed_sequence": "Cu60Zn40 -1,5 99,1 9,6 75,2 3,0 91,5 3,1 34,6 62,3",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "Sn85Cu15 -2,0 97,4 17,4 41,1 35,3 93,4 1,9 18,5 79,6",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "Sn85Cu15 -1,9 98,8 22,6 28,5 34,6 92,1 4,7 12,8 82,5",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "Al -1,8 88,6 2,3 53,3 43,0 82,1 0,6 35,3 64,1",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "Pb -2,0 93,3 0,1 68,5 17,2 86,4 1,1 45,3 53,6",
+    "found_on_page": true
+   }
+  ],
+  "selectivity_sums_pct": {
+   "Cu60Zn40 -1,5 V divided": 87.8,
+   "Cu60Zn40 -1,5 V undivided": 100.0,
+   "Sn85Cu15 -2,0 V divided": 93.8,
+   "Sn85Cu15 -2,0 V undivided": 100.0,
+   "Sn85Cu15 -1,9 V divided": 85.7,
+   "Sn85Cu15 -1,9 V undivided": 100.0,
+   "Al -1,8 V divided": 98.6,
+   "Al -1,8 V undivided": 100.0,
+   "Pb -2,0 V divided": 85.8,
+   "Pb -2,0 V undivided": 100.0
+  },
+  "undivided_cell_closure": "all undivided-cell rows sum to 100.0 %, as expected for gases by difference",
+  "divided_cell_closure": "divided-cell rows sum to 85.7-98.6 %, so their gaseous column is not by difference"
+ },
+ "flags": [
+  "endpoint_only",
+  "divided_cell_gas_basis_not_stated",
+  "inconsistent_with_table_5p1",
+  "sn85cu15_m2p0_row_may_be_120min",
+  "potential_vs_ag_agcl_not_rhe"
+ ],
+ "transcription_method": "thesis text layer: per-page text layer of the National Archive of PhD Theses online reader (EKT freader), read and typed in by an agent on 2026-10-20; table layout reconstructed by hand from the flattened text; every row's printed number sequence was checked by script to occur verbatim on the cited page (literature/extraction_scripts/thesis_tables/build_tables.py). Page images of these pages were not viewed. Not yet re-checked by a person."
+}

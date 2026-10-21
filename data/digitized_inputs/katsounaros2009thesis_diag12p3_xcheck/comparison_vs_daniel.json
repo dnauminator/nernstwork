@@ -1,0 +1,545 @@
+{
+ "thesis_slug": "katsounaros2009thesis_diag12p3_xcheck",
+ "daniel_dataset": "data/real/katsounaros2012_fig1_sn_naoh.json",
+ "daniel_inputs": "data/digitized_inputs/katsounaros2012_fig1",
+ "basis": "Compared in mM-N, 1:1 for all species (thesis N2 and N2O are N-equivalents, as Daniel assumed for the paper figure; confirmed below by the model curves).",
+ "axis_range_as_plotted": 500.0,
+ "thesis_px_resolution_as_plotted": 0.598,
+ "t0_excluded": "t = 0 skipped: Daniel pins t0 to c0 and the thesis product markers pile up at the origin",
+ "per_species": {
+  "NO3": {
+   "n": 6,
+   "mean_diff_mM_N": -0.868,
+   "rms_mM_N": 1.386,
+   "max_abs_mM_N": 2.606,
+   "t_of_max": 180,
+   "rms_pct_axis": 0.277,
+   "max_pct_axis": 0.521
+  },
+  "NO2": {
+   "n": 6,
+   "mean_diff_mM_N": 0.191,
+   "rms_mM_N": 0.292,
+   "max_abs_mM_N": 0.507,
+   "t_of_max": 150,
+   "rms_pct_axis": 0.058,
+   "max_pct_axis": 0.101
+  },
+  "N2": {
+   "n": 6,
+   "mean_diff_mM_N": 0.419,
+   "rms_mM_N": 0.583,
+   "max_abs_mM_N": 1.037,
+   "t_of_max": 90,
+   "rms_pct_axis": 0.117,
+   "max_pct_axis": 0.207
+  },
+  "NH3": {
+   "n": 6,
+   "mean_diff_mM_N": 0.835,
+   "rms_mM_N": 3.028,
+   "max_abs_mM_N": 6.629,
+   "t_of_max": 120,
+   "rms_pct_axis": 0.606,
+   "max_pct_axis": 1.326
+  },
+  "N2O": {
+   "n": 6,
+   "mean_diff_mM_N": 0.408,
+   "rms_mM_N": 0.525,
+   "max_abs_mM_N": 0.727,
+   "t_of_max": 30,
+   "rms_pct_axis": 0.105,
+   "max_pct_axis": 0.145
+  }
+ },
+ "overall": {
+  "n": 30,
+  "rms_as_plotted": 1.535,
+  "rms_pct_axis": 0.307,
+  "max_abs_as_plotted": 6.629,
+  "mean_diff_as_plotted": 0.197,
+  "linear_fit_daniel_vs_thesis_as_plotted": {
+   "slope": 1.0,
+   "intercept": -0.182
+  }
+ },
+ "species_swap_check": {
+  "rms_mM_N_daniel_series_vs_thesis_series": {
+   "NO3": {
+    "NO3": 1.386,
+    "NO2": 59.539,
+    "N2": 210.949,
+    "NH3": 115.515,
+    "N2O": 113.261
+   },
+   "NO2": {
+    "NO3": 59.673,
+    "NO2": 0.292,
+    "N2": 196.421,
+    "NH3": 75.893,
+    "N2O": 73.207
+   },
+   "N2": {
+    "NO3": 211.295,
+    "NO2": 196.072,
+    "N2": 0.583,
+    "NH3": 195.081,
+    "N2O": 168.179
+   },
+   "N2O": {
+    "NO3": 113.481,
+    "NO2": 73.653,
+    "N2": 168.781,
+    "NH3": 26.945,
+    "N2O": 0.525
+   },
+   "NH3": {
+    "NO3": 114.672,
+    "NO2": 75.598,
+    "N2": 196.847,
+    "NH3": 3.028,
+    "N2O": 28.64
+   }
+  },
+  "every_series_best_matches_same_species": true
+ },
+ "time_check": {
+  "note": "Thesis marker x positions within 0.15 min of the 30-min grid. Daniel's WPD X values within 0.5 min (t0 at 0.1-0.5); no time shift."
+ },
+ "points": [
+  {
+   "species": "NO3",
+   "t_min": 30,
+   "thesis_mM_N": 250.899,
+   "daniel_mM_N": 250.831,
+   "diff_mM_N": 0.068,
+   "diff_as_plotted": 0.068,
+   "diff_pct_axis": 0.014,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO3",
+   "t_min": 60,
+   "thesis_mM_N": 122.018,
+   "daniel_mM_N": 123.92,
+   "diff_mM_N": -1.902,
+   "diff_as_plotted": -1.902,
+   "diff_pct_axis": -0.38,
+   "thesis_unc_mM_N": 0.897,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_NO2_circle"
+  },
+  {
+   "species": "NO3",
+   "t_min": 90,
+   "thesis_mM_N": 84.483,
+   "daniel_mM_N": 85.382,
+   "diff_mM_N": -0.899,
+   "diff_as_plotted": -0.899,
+   "diff_pct_axis": -0.18,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "touches_NO2_circle"
+  },
+  {
+   "species": "NO3",
+   "t_min": 120,
+   "thesis_mM_N": 29.915,
+   "daniel_mM_N": 30.233,
+   "diff_mM_N": -0.318,
+   "diff_as_plotted": -0.318,
+   "diff_pct_axis": -0.064,
+   "thesis_unc_mM_N": 1.495,
+   "thesis_method": "square_bounded_by_visible_extent",
+   "thesis_flags": "occluded_top_and_bottom;bounded_estimate"
+  },
+  {
+   "species": "NO3",
+   "t_min": 150,
+   "thesis_mM_N": 28.023,
+   "daniel_mM_N": 27.575,
+   "diff_mM_N": 0.448,
+   "diff_as_plotted": 0.448,
+   "diff_pct_axis": 0.09,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "square_top_edge",
+   "thesis_flags": "lower_part_hidden_under_NH3_triangle"
+  },
+  {
+   "species": "NO3",
+   "t_min": 180,
+   "thesis_mM_N": 13.673,
+   "daniel_mM_N": 16.279,
+   "diff_mM_N": -2.606,
+   "diff_as_plotted": -2.606,
+   "diff_pct_axis": -0.521,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "square_top_edge",
+   "thesis_flags": "lower_part_hidden_under_NO2_circle"
+  },
+  {
+   "species": "NO2",
+   "t_min": 30,
+   "thesis_mM_N": 107.438,
+   "daniel_mM_N": 107.309,
+   "diff_mM_N": 0.129,
+   "diff_as_plotted": 0.129,
+   "diff_pct_axis": 0.026,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO2",
+   "t_min": 60,
+   "thesis_mM_N": 132.214,
+   "daniel_mM_N": 131.894,
+   "diff_mM_N": 0.32,
+   "diff_as_plotted": 0.32,
+   "diff_pct_axis": 0.064,
+   "thesis_unc_mM_N": 1.495,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_NO3_square"
+  },
+  {
+   "species": "NO2",
+   "t_min": 90,
+   "thesis_mM_N": 99.013,
+   "daniel_mM_N": 98.671,
+   "diff_mM_N": 0.342,
+   "diff_as_plotted": 0.342,
+   "diff_pct_axis": 0.068,
+   "thesis_unc_mM_N": 0.897,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO2",
+   "t_min": 120,
+   "thesis_mM_N": 38.738,
+   "daniel_mM_N": 38.87,
+   "diff_mM_N": -0.132,
+   "diff_as_plotted": -0.132,
+   "diff_pct_axis": -0.026,
+   "thesis_unc_mM_N": 1.495,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_NH3_triangle"
+  },
+  {
+   "species": "NO2",
+   "t_min": 150,
+   "thesis_mM_N": 10.806,
+   "daniel_mM_N": 10.299,
+   "diff_mM_N": 0.507,
+   "diff_as_plotted": 0.507,
+   "diff_pct_axis": 0.101,
+   "thesis_unc_mM_N": 1.495,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO2",
+   "t_min": 180,
+   "thesis_mM_N": 6.29,
+   "daniel_mM_N": 6.312,
+   "diff_mM_N": -0.022,
+   "diff_as_plotted": -0.022,
+   "diff_pct_axis": -0.004,
+   "thesis_unc_mM_N": 1.196,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "near_axis"
+  },
+  {
+   "species": "N2",
+   "t_min": 30,
+   "thesis_mM_N": 18.615,
+   "daniel_mM_N": 18.272,
+   "diff_mM_N": 0.343,
+   "diff_as_plotted": 0.343,
+   "diff_pct_axis": 0.069,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_N2O_NH3"
+  },
+  {
+   "species": "N2",
+   "t_min": 60,
+   "thesis_mM_N": 74.71,
+   "daniel_mM_N": 74.751,
+   "diff_mM_N": -0.041,
+   "diff_as_plotted": -0.041,
+   "diff_pct_axis": -0.008,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2",
+   "t_min": 90,
+   "thesis_mM_N": 166.153,
+   "daniel_mM_N": 165.116,
+   "diff_mM_N": 1.037,
+   "diff_as_plotted": 1.037,
+   "diff_pct_axis": 0.207,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2",
+   "t_min": 120,
+   "thesis_mM_N": 249.716,
+   "daniel_mM_N": 248.837,
+   "diff_mM_N": 0.879,
+   "diff_as_plotted": 0.879,
+   "diff_pct_axis": 0.176,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2",
+   "t_min": 150,
+   "thesis_mM_N": 292.29,
+   "daniel_mM_N": 292.027,
+   "diff_mM_N": 0.263,
+   "diff_as_plotted": 0.263,
+   "diff_pct_axis": 0.053,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2",
+   "t_min": 180,
+   "thesis_mM_N": 309.334,
+   "daniel_mM_N": 309.302,
+   "diff_mM_N": 0.032,
+   "diff_as_plotted": 0.032,
+   "diff_pct_axis": 0.006,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NH3",
+   "t_min": 30,
+   "thesis_mM_N": 4.313,
+   "daniel_mM_N": 4.983,
+   "diff_mM_N": -0.67,
+   "diff_as_plotted": -0.67,
+   "diff_pct_axis": -0.134,
+   "thesis_unc_mM_N": 1.794,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_N2O_star;near_axis"
+  },
+  {
+   "species": "NH3",
+   "t_min": 60,
+   "thesis_mM_N": 4.791,
+   "daniel_mM_N": 7.641,
+   "diff_mM_N": -2.85,
+   "diff_as_plotted": -2.85,
+   "diff_pct_axis": -0.57,
+   "thesis_unc_mM_N": 1.495,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "base_on_axis"
+  },
+  {
+   "species": "NH3",
+   "t_min": 90,
+   "thesis_mM_N": 15.029,
+   "daniel_mM_N": 13.621,
+   "diff_mM_N": 1.408,
+   "diff_as_plotted": 1.408,
+   "diff_pct_axis": 0.282,
+   "thesis_unc_mM_N": 0.897,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NH3",
+   "t_min": 120,
+   "thesis_mM_N": 26.23,
+   "daniel_mM_N": 19.601,
+   "diff_mM_N": 6.629,
+   "diff_as_plotted": 6.629,
+   "diff_pct_axis": 1.326,
+   "thesis_unc_mM_N": 0.897,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "drawn_over_NO3_square"
+  },
+  {
+   "species": "NH3",
+   "t_min": 150,
+   "thesis_mM_N": 24.274,
+   "daniel_mM_N": 23.588,
+   "diff_mM_N": 0.686,
+   "diff_as_plotted": 0.686,
+   "diff_pct_axis": 0.137,
+   "thesis_unc_mM_N": 1.196,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "drawn_over_NO3_square"
+  },
+  {
+   "species": "NH3",
+   "t_min": 180,
+   "thesis_mM_N": 27.383,
+   "daniel_mM_N": 27.575,
+   "diff_mM_N": -0.192,
+   "diff_as_plotted": -0.192,
+   "diff_pct_axis": -0.038,
+   "thesis_unc_mM_N": 1.196,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2O",
+   "t_min": 30,
+   "thesis_mM_N": 5.046,
+   "daniel_mM_N": 4.319,
+   "diff_mM_N": 0.727,
+   "diff_as_plotted": 0.727,
+   "diff_pct_axis": 0.145,
+   "thesis_unc_mM_N": 1.794,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_NH3_triangle;near_axis"
+  },
+  {
+   "species": "N2O",
+   "t_min": 60,
+   "thesis_mM_N": 20.155,
+   "daniel_mM_N": 19.601,
+   "diff_mM_N": 0.554,
+   "diff_as_plotted": 0.554,
+   "diff_pct_axis": 0.111,
+   "thesis_unc_mM_N": 0.897,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2O",
+   "t_min": 90,
+   "thesis_mM_N": 42.199,
+   "daniel_mM_N": 41.528,
+   "diff_mM_N": 0.671,
+   "diff_as_plotted": 0.671,
+   "diff_pct_axis": 0.134,
+   "thesis_unc_mM_N": 0.897,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2O",
+   "t_min": 120,
+   "thesis_mM_N": 56.112,
+   "daniel_mM_N": 56.146,
+   "diff_mM_N": -0.034,
+   "diff_as_plotted": -0.034,
+   "diff_pct_axis": -0.007,
+   "thesis_unc_mM_N": 0.897,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2O",
+   "t_min": 150,
+   "thesis_mM_N": 60.734,
+   "daniel_mM_N": 60.133,
+   "diff_mM_N": 0.601,
+   "diff_as_plotted": 0.601,
+   "diff_pct_axis": 0.12,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2O",
+   "t_min": 180,
+   "thesis_mM_N": 62.722,
+   "daniel_mM_N": 62.791,
+   "diff_mM_N": -0.069,
+   "diff_as_plotted": -0.069,
+   "diff_pct_axis": -0.014,
+   "thesis_unc_mM_N": 0.598,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  }
+ ],
+ "findings": [
+  "Agreement: 30 common points, RMS 1.5 mM (0.31% of the 500 mM axis). 27 of 30 points are within 2 mM, with no offset or scale error (Daniel = -0.18 + 1.000 x thesis), no time shift and no species swap.",
+  "NH3 at 120 min: Daniel 19.6 vs thesis 26.2 mM (+6.6 mM, about 11 thesis px, 1.3% of full scale). In the thesis the open triangle at 120 min is drawn on top of the NO3 square, with its apex at row 2776 and base at row 2802, which puts the centre at 26.2 mM. Daniel's 19.6 falls below the triangle's base. This looks like a click on the wrong object in the crowded 120-min cluster (NO3 square, NO2 circle, NH3 triangle, error-bar caps), unless the paper image differs. Re-check against paper Fig. 1. The point sits below the model curve in Daniel's data but above it in the thesis.",
+  "NH3 at 60 min: Daniel 7.6 vs thesis 4.8 mM. The triangle's base lies on the x axis. Daniel's value equals the middle of the visible part (apex to axis); the circumcentre, which is the Origin anchor, is 4.8.",
+  "NO3 at 180 min: Daniel 16.3 vs thesis 13.7 mM. The lower half of the square is hidden under the white-filled NO2 circle. Daniel's value equals the centre of the visible black part; the top edge plus the half-height gives 13.7. A smaller version of the same occlusion effect applies at 120 and 150 min (thesis 29.9 +-1.5 and 28.0).",
+  "N basis: N-equivalent confirmed. The thesis constants in eqs 12.23-12.28 reproduce all five drawn curves (median |residual| 0.07-0.86 mM), and those equations conserve N 1:1. Daniel's 1:1 treatment of N2 and N2O is correct.",
+  "Revision 2026-10-20: the NH3 findings at 120 min ('looks like a click on the wrong object') and 60 min (middle of the visible part) are downgraded to unresolved and source-dependent. The thesis-copy values stand. See revision_2026-10-20."
+ ],
+ "thesis_vs_paper": [
+  "Same seven sampling times and the same values (within reading error, apart from the points above), so the data are shared with paper Fig. 1.",
+  "The thesis curves are the thesis non-linear regression, k1..k5 = 0.0206, 0.0288, 0.0230, 0.0020, 0.0049 min-1. The paper's model-B posterior means used in W3 are 0.0216, 0.0292, 0.0219, 0.0021, 0.0048. The two curve sets differ by up to 8.7 mM for NO3, 4.0 for NO2, 1.5 for N2, 1.3 for NH3 and 1.6 for N2O. The traced thesis curves match the thesis constants (median |resid| 0.07-0.86 mM) and not model B (median |resid| 1.1-5.9 mM).",
+  "The thesis figure has error bars on every series (not extracted). The thesis names the hidden intermediate as nitramide (NH2NO2) and attributes about 70% of the mass-balance loss to it (p. 190)."
+ ],
+ "model_curve_check": {
+  "note": "traced thesis curves vs computed models (500 mM NO3 at t=0)",
+  "per_species": {
+   "NO3": {
+    "n": 961,
+    "median_abs_resid_thesis_k_mM": 0.24,
+    "median_abs_resid_paper_modelB_mM": 5.92,
+    "max_abs_thesisk_minus_modelB_mM": 8.72
+   },
+   "NO2": {
+    "n": 961,
+    "median_abs_resid_thesis_k_mM": 0.2,
+    "median_abs_resid_paper_modelB_mM": 1.93,
+    "max_abs_thesisk_minus_modelB_mM": 3.96
+   },
+   "N2": {
+    "n": 961,
+    "median_abs_resid_thesis_k_mM": 0.45,
+    "median_abs_resid_paper_modelB_mM": 1.54,
+    "max_abs_thesisk_minus_modelB_mM": 1.51
+   },
+   "NH3": {
+    "n": 961,
+    "median_abs_resid_thesis_k_mM": 0.07,
+    "median_abs_resid_paper_modelB_mM": 1.14,
+    "max_abs_thesisk_minus_modelB_mM": 1.29
+   },
+   "N2O": {
+    "n": 961,
+    "median_abs_resid_thesis_k_mM": 0.86,
+    "median_abs_resid_paper_modelB_mM": 1.16,
+    "max_abs_thesisk_minus_modelB_mM": 1.56
+   }
+  },
+  "thesis_k_min": [
+   0.0206,
+   0.0288,
+   0.023,
+   0.002,
+   0.0049
+  ],
+  "paper_modelB_k_min_from_W3": [
+   0.0216,
+   0.0292,
+   0.0219,
+   0.0021,
+   0.0048
+  ]
+ },
+ "revision_2026-10-20": {
+  "date": "2026-10-20",
+  "applies_to": "findings on NH3 at 120 min and NH3 at 60 min; the agreement, NO3 180 min and N-basis findings are unchanged",
+  "status": "downgraded: cause unresolved and source-dependent",
+  "evidence": "The thesis's own Diag 12.1 NH3 rates (katsounaros2009thesis_diag12p1_rates) are central-difference derivatives of the sampled concentrations (mean of the two adjacent interval slopes, one-sided at the ends); the inverse of that scheme reproduces the thesis NO2-, N2 and N2O markers to 0.17-0.19 mM-N RMS. Inverting the NH3 rates gives 3.28, 8.00, 14.85, 20.80, 23.85, 27.13 mM at 30-180 min (sd 0.1-0.3), against thesis Diag 12.3 markers 4.31, 4.79, 15.03, 26.23, 24.27, 27.38 and Daniel's 4.98, 7.64, 13.62, 19.60, 23.59, 27.58. At 120 min the rates give 20.8 (Daniel 19.6; thesis copy about 26, cap midpoint 25.8-25.9); at 60 min 8.0 (Daniel 7.6; thesis copy 4.8). These are the only two points where Daniel departs from the thesis copy, and the rates depart from it at the same two points, in Daniel's direction. Forward check: the NH3 rates miss the thesis markers by up to 0.144 mM/min (78 px, about 50 times the reading error), while NO2- from the same samples matches to 0.0035; replacing only the two thesis values with Daniel's cuts the worst residual to 0.034. The journal Fig. 1 is a re-plot (its curves are model B, not the thesis constants) and was not checked; it may plot NH3 near 8 and 20 mM. The thesis-copy features also lie near the rate-implied values (visible-part midpoint 7.3 at 60 min, triangle base 21.0 at 120 min), so a misclick and a different journal figure cannot be told apart without the journal image.",
+  "recommendation": "Do not replace Daniel's NH3 values with the thesis-copy 4.8 and 26.2. Keep them, flag NH3 at 60 and 120 min as source-dependent (+-3 and +-6 mM), and pixel-check Katsounaros 2012 Fig. 1 in the journal PDF.",
+  "sources": [
+   "data/digitized_inputs/katsounaros2009thesis_diag12p1_intermediates/verification.json (check claim6_NH3_120_and_the_misclick_verdict)",
+   "data/digitized_inputs/katsounaros2009thesis_diag12p3_errorbars/verification.json (check NH3_120_thesis_copy)"
+  ]
+ }
+}

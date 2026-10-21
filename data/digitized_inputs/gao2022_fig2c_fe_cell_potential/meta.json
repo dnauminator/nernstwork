@@ -1,0 +1,26 @@
+{
+  "id": "gao2022_fig2c_fe_cell_potential",
+  "kind": "non_trajectory",
+  "extractor": "agent team 2026-10-20",
+  "provenance": {
+    "citation": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Electrocatalytic Upcycling of Nitrate Wastewater into an Ammonia Fertilizer via an Electrified Membrane, Environ. Sci. Technol. 56 (2022) 11602-11613",
+    "doi": "10.1021/acs.est.1c08442",
+    "figure": "Fig. 2c (journal p. 11607, PDF page 6)",
+    "file": "publisher PDF via NSF PAR record 10451706 (par.nsf.gov/servlets/purl/10451706); local copy 10451706.pdf, not committed",
+    "verified_against_figure": false,
+    "extraction": "Raster digitization. FE axis from 6 located ticks (0-100 %, residual 0.01 %); potential axis from 6 tick positions read off 1-px outward ticks partly merged with the labels (0-5 V, residual 0.008 V). Bar ends: solid bars by first background row; hatched bars by hatch-pixel fraction (nitrate FE: end of profile; E_cathode: first row from the top with >= 30 % green-hatch pixels). E_ionic and E_transfer bars are ~0 (not extracted; the text calls them negligible). Case 1 = with H2 transfer to the anode, case 2 = without (caption)."
+  },
+  "licence": "Licence/terms: publisher copyright (ACS); NSF public-access copy. The PAR record (par.nsf.gov/biblio/10451706) states no reuse licence; the downloaded file is the ACS typeset article (PAR labels its full text 'Accepted Manuscript') and carries the ACS notice 'See https://pubs.acs.org/sharingguidelines for options on how to legitimately share published articles'. Checked Oct 20 2026.",
+  "conditions": {
+    "catalyst": "CuO-coated Cu foam on PTFE/PP membrane (electrified membrane cathode, 4 cm2)",
+    "cell": "flow_cell (trap | cathode membrane | cathode chamber | Nafion 117 | anode chamber), recirculated at 50 mL/min",
+    "potential_as_reported": "-2.0 V vs SCE (no ohmic compensation)",
+    "potential_V_vs_RHE": null,
+    "temperature_C": null,
+    "electrolyte": "25 mM NO3-, 10 mM Cl-, 0.5 M Na2SO4, pH ~7"
+  },
+  "checks": "Text: first 20 min FE of NO3- reduction 92.2-93.3 % (read 93.0 and 89.9; the case-2 bar is visibly lower than 92 in the figure); last 20 min FE of H2 90.2-93.2 % (read 93.2, 92.2); E_anode ~4.2 +/- 0.1 V first 20 min (read 4.24, 4.19), 3.4 +/- 0.2 V without and 2.7 +/- 0.1 V with H2 in the last 20 min (read 3.46, 2.78). E_cathode is plotted as +2 V (the magnitude of the -2 V vs SCE set point).",
+  "flags": [
+    "potential_unverified"
+  ]
+}

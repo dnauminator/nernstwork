@@ -1,0 +1,81 @@
+{
+  "id": "gao2022_fig2a_cuofoam_nomembrane_m2v",
+  "provenance": {
+    "citation": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Electrocatalytic Upcycling of Nitrate Wastewater into an Ammonia Fertilizer via an Electrified Membrane, Environ. Sci. Technol. 56 (2022) 11602-11613",
+    "doi": "10.1021/acs.est.1c08442",
+    "figure": "Fig. 2a, series 'CuO-coated Cu foam (open purple circles)' (journal p. 11607, PDF page 6)",
+    "file": "publisher PDF via NSF PAR record 10451706 (par.nsf.gov/servlets/purl/10451706); local copy 10451706.pdf, not committed",
+    "notes": "Fig. 2a compares NO3- decay for three cathode configurations at -2 V vs SCE, 25 mM NO3-, pH ~7, 10 mM Cl-. Only nitrate was plotted, so this is a single-species dataset (no NO2-, TAN or trap data for this configuration). METHOD: raster digitization of the embedded figure image (main PDF page 6): y axis calibrated from 6 located tick marks (0-25 mM, max residual 0.01 mM), x from 7 located major ticks; markers segmented by colour (OpenCV) and reduced to connected-component centres; times snapped to the nominal 20-min grid (marker x positions sit +0.3 min right of the tick centroids, a uniform offset). 0.078 mM per pixel. The t = 0 markers of all three series overlap (only the orange one is fully visible); t = 0 is pinned to 25 mM. Shaded error bands in the figure were not extracted. Extracted by agent team 2026-10-20; overlay on the figure crop checked by eye (scratch). Ring centres are bounding-box centres of the ring mask; the 20 min ring is partly hidden behind the orange marker, so its centre was taken as its top edge plus the ring radius measured on unoccluded rings (11.0 px), uncertainty about +/-0.15 mM. Text: kap 0.021 min-1 for this configuration, attributed to NH3/H2 gas blocking active sites. quality.n_closure in the converted dataset is the nitrate fraction NO3/c0 only, not a nitrogen closure: no other species were plotted for this configuration. Licence/terms: publisher copyright (ACS); NSF public-access copy. The PAR record (par.nsf.gov/biblio/10451706) states no reuse licence; the downloaded file is the ACS typeset article (PAR labels its full text 'Accepted Manuscript') and carries the ACS notice 'See https://pubs.acs.org/sharingguidelines for options on how to legitimately share published articles'. Checked Oct 20 2026.",
+    "verified_against_figure": false,
+    "source_type": "digitized",
+    "extraction": "Fig. 2a compares NO3- decay for three cathode configurations at -2 V vs SCE, 25 mM NO3-, pH ~7, 10 mM Cl-. Only nitrate was plotted, so this is a single-species dataset (no NO2-, TAN or trap data for this configuration). METHOD: raster digitization of the embedded figure image (main PDF page 6): y axis calibrated from 6 located tick marks (0-25 mM, max residual 0.01 mM), x from 7 located major ticks; markers segmented by colour (OpenCV) and reduced to connected-component centres; times snapped to the nominal 20-min grid (marker x positions sit +0.3 min right of the tick centroids, a uniform offset). 0.078 mM per pixel. The t = 0 markers of all three series overlap (only the orange one is fully visible); t = 0 is pinned to 25 mM. Shaded error bands in the figure were not extracted. Extracted by agent team 2026-10-20; overlay on the figure crop checked by eye (scratch). Converted with scripts/digitized_to_dataset.py."
+  },
+  "conditions": {
+    "catalyst": "CuO-coated Cu foam without the gas-exchange membrane: the PTFE membrane was replaced by a non-permeable panel (Fig. S2c), so there was no gas extraction into the trap chamber",
+    "electrolyte": "synthetic wastewater: 25 mM NO3- (as N; KNO3) + 10 mM Cl- + 0.5 M Na2SO4, initial pH 7.0",
+    "cell": "flow_cell",
+    "potential_V_vs_RHE": null,
+    "potential_as_reported": "-2.0 V vs SCE (no ohmic compensation; SCE +0.241 V vs SHE)",
+    "potential_mode": "potentiostatic",
+    "pH": 7.0,
+    "temperature_C": null,
+    "volume_mL": 50.0,
+    "stirring": "recirculation by peristaltic pumps at 50 mL/min (cathode loop: feed tank <-> cathode chamber; trap loop: trap tank -> trap chamber -> anode chamber -> trap tank)",
+    "c0_mM_N": {
+      "NO3": 25.0
+    },
+    "notes": "Flow cell as in the main runs, but the PTFE gas-exchange membrane was replaced by a non-permeable panel (SI Fig. S2c): CuO-coated Cu foam cathode (same cathode area as the other Fig. 2a runs) | cathode chamber | Nafion 117 PEM | anode chamber (Pt mesh 3.5x3.5 cm); SCE reference in the cathode chamber; CHI 1100C potentiostat. No gas extraction to the trap: the main text says the trap chamber/ammonia stripping was removed, while Fig. S2c still draws the trap chamber behind the panel. The anode/trap-loop recirculation listed under stirring is assumed from the standard setup; it is not stated for this configuration. volume_mL is the feed tank: 50 mL is stated in the text only for the Fig. 2e run and is assumed here; chamber and trap-tank volumes not stated. pH is the initial feed pH (Fig. 2a caption: pH ~7.0). Not reported for this configuration: current or current density, in-run cathode-loop and trap pH, and any NO2-, TAN or trap data (only NO3- is plotted in Fig. 2a). The text's ~50 mA cm-2 (0.204 +/- 0.011 A) and pH values 12.65 (cathode loop) and 1.53 (trap tank after 120 min) belong to the CuO-coated Cu foam/PTFE run of Fig. 2e, not to this one. RHE conversion not done: large uncompensated iR, and the in-run pH is not reported. Text: kap 0.021 min-1, attributed to NH3/H2 gas blocking active sites."
+  },
+  "series": [
+    {
+      "species": "NO3",
+      "t_min": [
+        0.0,
+        20.0,
+        40.0,
+        60.0,
+        80.0,
+        100.0,
+        120.0
+      ],
+      "y": [
+        25.0,
+        17.836,
+        13.155,
+        9.098,
+        4.807,
+        3.208,
+        2.233
+      ],
+      "reported_unit": "mM as N (axis 'N-NO3- concentration (mM)')",
+      "conversion": "mM-N = digitized y * 1.0"
+    }
+  ],
+  "quality": {
+    "n_closure": {
+      "t_min": [
+        0.0,
+        20.0,
+        40.0,
+        60.0,
+        80.0,
+        100.0,
+        120.0
+      ],
+      "fraction": [
+        1.0,
+        0.7134,
+        0.5262,
+        0.3639,
+        0.1923,
+        0.1283,
+        0.0893
+      ]
+    },
+    "flags": [
+      "single_species_only",
+      "potential_unverified"
+    ],
+    "n_basis_note": "Axis label 'N-NO3- concentration (mM)': nitrate expressed as N; no conversion."
+  }
+}

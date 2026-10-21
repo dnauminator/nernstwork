@@ -1,0 +1,15 @@
+j,reaction,half_cycle,time_fraction_label_printed,time_fraction_expected,quantity,value_per_min,value_as_printed,flag,note
+1,NO3- -> NO2-,reduction (cathodic),,,k_j,0.003343,"0,003343",,
+1,NO3- -> NO2-,reduction (cathodic),t1/T,0.8,t_i_over_T_times_k_j,0.002675,"0,002675",,
+-1,NO2- -> NO3-,oxidation (anodic),,,k_j,0.025615,"0,025615",,
+-1,NO2- -> NO3-,oxidation (anodic),t2/T,0.2,t_i_over_T_times_k_j,0.005123,"0,005123",,
+2,NO2- -> NH3,reduction (cathodic),,,k_j,0.075,"0,075",,
+2,NO2- -> NH3,reduction (cathodic),t1/T,0.8,t_i_over_T_times_k_j,0.015,"0,015",uncertain,"printed value equals 0.2 x k2 although k2 is a reduction step (scheme 7.18, eq. 41: (t1/T) k2 [NO2-]); with t1/T = 0.8 it would be 0.060"
+3,NH3 -> N2,oxidation (anodic),,,k_j,0.02865,"0,02865",,
+3,NH3 -> N2,oxidation (anodic),t2/T,0.2,t_i_over_T_times_k_j,0.00573,"0,00573",,
+4,NO2- -> N2,reduction (cathodic),,,k_j,0.003522,"0,003522",,
+4,NO2- -> N2,reduction (cathodic),t1/T,0.8,t_i_over_T_times_k_j,0.002818,"0,002818",,
+5,NH3 -> NO3-,oxidation (anodic),,,k_j,0.007,"0,007",,
+5,NH3 -> NO3-,oxidation (anodic),t2/T,0.2,t_i_over_T_times_k_j,0.0014,"0,0014",,
+6,NO3- -> N2,reduction (cathodic),,,k_j,0.000353,"0,000353",,
+6,NO3- -> N2,reduction (cathodic),t1/T,0.8,t_i_over_T_times_k_j,0.000283,"0,000283",,

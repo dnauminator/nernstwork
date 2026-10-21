@@ -1,0 +1,31 @@
+{
+  "id": "gao2022_fig3b_eff_vs_condition",
+  "kind": "non_trajectory",
+  "extractor": "agent team 2026-10-20",
+  "provenance": {
+    "citation": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Electrocatalytic Upcycling of Nitrate Wastewater into an Ammonia Fertilizer via an Electrified Membrane, Environ. Sci. Technol. 56 (2022) 11602-11613",
+    "doi": "10.1021/acs.est.1c08442",
+    "figure": "Fig. 3b (journal p. 11608, PDF page 7)",
+    "file": "publisher PDF via NSF PAR record 10451706 (par.nsf.gov/servlets/purl/10451706); local copy 10451706.pdf, not committed",
+    "verified_against_figure": false,
+    "extraction": "Raster digitization of the embedded figure image. Left axis calibrated from 19 located tick marks (-70 to 110 %, max residual 0.14 %). FE bars: first background row above the bar in side strips; jNH3 bars (hatched, drawn downward on the same axis, labelled mA cm-2): end of the hatch-pixel profile. Markers near 100 %: blue circle (TAN recovery efficiency) = bounding-box centre; orange triangle (TN removal efficiency) = area centroid of the triangle outline (bounding-box centre would read 1.3-1.4 % higher and exceed 100 % for three conditions). Markers overlap with each other and with error bars: treat marker values as +/-1 %. Error bars not extracted."
+  },
+  "licence": "Licence/terms: publisher copyright (ACS); NSF public-access copy. The PAR record (par.nsf.gov/biblio/10451706) states no reuse licence; the downloaded file is the ACS typeset article (PAR labels its full text 'Accepted Manuscript') and carries the ACS notice 'See https://pubs.acs.org/sharingguidelines for options on how to legitimately share published articles'. Checked Oct 20 2026.",
+  "conditions": {
+    "catalyst": "CuO-coated Cu foam on PTFE/PP membrane (electrified membrane cathode, 4 cm2)",
+    "cell": "flow_cell (trap | cathode membrane | cathode chamber | Nafion 117 | anode chamber), recirculated at 50 mL/min",
+    "potential_as_reported": "-2.0 V vs SCE (no ohmic compensation)",
+    "potential_V_vs_RHE": null,
+    "temperature_C": null,
+    "electrolyte": "synthetic wastewater, 10 mM Cl-, 0.5 M Na2SO4; pH series at 25 mM NO3-, concentration series at pH 7"
+  },
+  "columns": {
+    "jNH3_partial_current_density_mA_cm2": "magnitude; plotted as negative bars",
+    "TAN_recovery_efficiency_pct": "Eq. S9 (trap TAN / TAN in trap + feed), end of run",
+    "TN_removal_efficiency_pct": "Eq. S4, end of run"
+  },
+  "checks": "Text: FE for TAN 49.2-55.4 % and jNH3 28.1 +/- 1.0 to 29.4 +/- 1.3 mA cm-2 across pH (read 49.3-55.6 and 28.1-29.5); TN removal 97.7-99.4 % and TAN recovery 98.1-99.5 % (read 97.5-99.2 and 98.1-99.3). TAN recovery from our end-of-run Fig. S14/S15 trajectories (the full 0-300/360/480 min digitizations, wpd_datasets_full_*.csv in each run folder; pH 7 from gao2022_fig2e_cuo_m2v; the converted datasets stop at DC off): 98.3 (pH 3), 99.0 (pH 5), 99.0 (pH 7), 99.1 (pH 10), 98.9 (75 mM), 99.4 (150 mM).",
+  "flags": [
+    "potential_unverified"
+  ]
+}

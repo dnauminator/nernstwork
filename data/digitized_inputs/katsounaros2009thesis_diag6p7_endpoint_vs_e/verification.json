@@ -1,0 +1,234 @@
+{
+  "dataset": "katsounaros2009thesis_diag6p7_endpoint_vs_e",
+  "source": "Katsounaros I., PhD thesis, Aristotle University of Thessaloniki (2009), doi 10.12681/eadd/19491; page images at 300 dpi from the archive reader (local scratch copy, reader page = printed page + 30); Diag 6.7, printed p. 86 (reader p116.jpg); text pp. 85-89",
+  "verdict": "accept",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "summary": "Independent re-read agrees with all 24 stored points within 0.025 mM (0.07 % of the 35 mM span, under 1 px). Marker mapping, N2 per-molecule basis, conc_mM_N column, the text facts, the Table 6.11 ratio cross-check and the closure figures in the meta all reproduce. No values changed.",
+  "method": "Verifier scripts in literature/extraction_scripts/katsounaros_verify/ (axes_find.py, ticks_find.py, blob.py, ring.py, segfit.py, v64*.py, v67*.py, v106*.py, v121*.py, reread_tables.py), written independently; the extractor's scripts in literature/extraction_scripts/katsounaros_new/ were not run or read. Axes were calibrated from tick marks located on the page image by dark-pixel profiles and fitted by least squares; markers were re-read by connected-component centroids after morphological opening (filled markers) or hole filling (open markers), ring fits for open circles, and, for occluded markers, from visible features (apex, base) or by extrapolating the connecting line segments. Stored points were mapped back onto the page with the verifier's calibration and the overlay was inspected by eye.",
+  "calibration_verifier": {
+    "x": "major ticks -1.8 ... -2.8 V at px 784.91, 982.04, 1179.15, 1376.57, 1573.91, 1771.04; fit -986.24 px/V, max residual 0.16 px",
+    "y": "ticks 0-35 mM every 5 at px 1219.5 ... 356.52; fit 24.654 px/mM, y(0) = 1219.58, max residual 0.27 px",
+    "vs_extractor": "extractor 785/1771 px and 1219.5/480 px (24.64 px/mM); agrees within 0.1 px"
+  },
+  "overlay": "verify_overlay.png (session scratch, not retained; contains thesis page images); every stored point lands on its marker",
+  "max_abs_deviation_mM": 0.025,
+  "max_abs_deviation_fraction_of_axis": 0.0007,
+  "axis_span_used_mM": 35.0,
+  "worst_points": [
+    {
+      "E_V": -2.4,
+      "species": "NO3",
+      "stored": 4.521,
+      "verifier": 4.546,
+      "dev": -0.0251
+    },
+    {
+      "E_V": -2.4,
+      "species": "N2",
+      "stored": 16.54,
+      "verifier": 16.565,
+      "dev": -0.0248
+    },
+    {
+      "E_V": -2.0,
+      "species": "NH3",
+      "stored": 5.002,
+      "verifier": 5.024,
+      "dev": -0.0217
+    },
+    {
+      "E_V": -2.8,
+      "species": "NO2",
+      "stored": 0.017,
+      "verifier": 0.037,
+      "dev": -0.0197
+    }
+  ],
+  "checks": [
+    {
+      "name": "marker_mapping",
+      "result": "pass",
+      "detail": "Caption: filled square nitrate, open circle nitrite, open triangle ammonia, filled down-triangle nitrogen; stored series sit on those markers."
+    },
+    {
+      "name": "units_and_n_basis",
+      "result": "pass",
+      "detail": "y in mM. N2 x2: N2 selectivity at -2.8 V = 2 x 21.05 / (50 - 0.75) = 85.5 % vs text 'about 85 %' (p. 85; the conclusions on p. 89 say 'about 90 %'). conc_mM_N = plotted x2 for N2 and x1 otherwise in every row."
+    },
+    {
+      "name": "closure",
+      "result": "pass",
+      "detail": "Recomputed: 0.875, 0.923, 0.977, 1.025, 1.017, 0.986 from -1.8 to -2.8 V (meta: 0.88, 0.92, 0.98, 1.03, 1.02, 0.99). N2O (about 5 % at -2.8 V) is not plotted."
+    },
+    {
+      "name": "potential_grid",
+      "result": "pass",
+      "detail": "Markers at -1.8 to -2.8 V every 0.2 V (verifier x reads within 0.001 V)."
+    },
+    {
+      "name": "text_facts",
+      "result": "pass",
+      "detail": "NO3- 48 mg/L = 0.774 mM at -2.8 V (stored 0.747, verifier 0.746); NH3 maximum at -2.4 V 13.37 mM (stored 13.362, verifier 13.370); NH3 6.45 mM = 110 mg/L at -2.8 V (stored 6.422, verifier 6.441); NO2- 0.2 mg/L at -2.8 V (stored 0.017 mM, marker on the axis). Text's '>99 % conversion' vs 98.5 % from 48 mg/L is a source inconsistency, correctly noted in the meta."
+    },
+    {
+      "name": "table_6_11",
+      "result": "pass",
+      "detail": "Table 6.11 (p. 88, 70 % conversion) at -2.0 V: CE NO2- 1.32, NH3 14.5, N2 45.2 % with 2, 8, 10 e- give NO2-/NH3 = 0.364 and NH3/N2 = 0.401; digitized 0.3645 and 0.398. Ratios quoted for -2.2 and -2.8 V also reproduce (0.066 vs 0.094; 0.305 vs 0.553)."
+    },
+    {
+      "name": "conditions",
+      "result": "pass",
+      "detail": "2 M NaCl + 0.05 M NaNO3, 1 h electrolysis (caption), potentials vs Ag/AgCl (3 M KCl), standard chapter 5 cell (see Diag 6.4 verification)."
+    }
+  ],
+  "claims_tested": [
+    {
+      "claim": "NO3- 0.75 mM at -2.8 V",
+      "result": "confirmed (verifier 0.746)"
+    },
+    {
+      "claim": "NH3 13.36 mM at -2.4 V",
+      "result": "confirmed (verifier 13.370; text 13.37)"
+    },
+    {
+      "claim": "NH3 6.42 mM at -2.8 V",
+      "result": "confirmed (verifier 6.441; text 6.45)"
+    }
+  ],
+  "issues": [
+    "NO2- at -1.8 V (under the N2 triangle) and NH3 at -2.2 V (apex under the NO3- square) are occluded; verifier reads 1.700 and 7.688 mM agree within 0.01 mM.",
+    "Cross-figure note: at -2.4 V the 1 h NH3 (13.36) equals the Diag 6.4 90 min value (13.34) within reading precision rather than lying strictly between the 60 and 90 min values; NO3- and N2 do lie between. Wording in the meta is approximately right.",
+    "Source inconsistency: N2 selectivity at -2.8 V is 'about 85 %' on p. 85 and 'about 90 %' on p. 89; the figure gives 85.5 %.",
+    "Minor wording: 'Sn foil' is not stated in the thesis text read (see Diag 6.4 verification)."
+  ],
+  "fixes_applied": [],
+  "verifier_reread_mM_as_plotted": [
+    {
+      "E_V": -1.8,
+      "species": "NO3",
+      "verifier": 32.734
+    },
+    {
+      "E_V": -1.8,
+      "species": "NO2",
+      "verifier": 1.7
+    },
+    {
+      "E_V": -1.8,
+      "species": "NH3",
+      "verifier": 5.544
+    },
+    {
+      "E_V": -1.8,
+      "species": "N2",
+      "verifier": 1.887
+    },
+    {
+      "E_V": -2.0,
+      "species": "NO3",
+      "verifier": 14.218
+    },
+    {
+      "E_V": -2.0,
+      "species": "NO2",
+      "verifier": 1.831
+    },
+    {
+      "E_V": -2.0,
+      "species": "NH3",
+      "verifier": 5.024
+    },
+    {
+      "E_V": -2.0,
+      "species": "N2",
+      "verifier": 12.58
+    },
+    {
+      "E_V": -2.2,
+      "species": "NO3",
+      "verifier": 8.353
+    },
+    {
+      "E_V": -2.2,
+      "species": "NO2",
+      "verifier": 0.513
+    },
+    {
+      "E_V": -2.2,
+      "species": "NH3",
+      "verifier": 7.688
+    },
+    {
+      "E_V": -2.2,
+      "species": "N2",
+      "verifier": 16.16
+    },
+    {
+      "E_V": -2.4,
+      "species": "NO3",
+      "verifier": 4.546
+    },
+    {
+      "E_V": -2.4,
+      "species": "NO2",
+      "verifier": 0.31
+    },
+    {
+      "E_V": -2.4,
+      "species": "NH3",
+      "verifier": 13.37
+    },
+    {
+      "E_V": -2.4,
+      "species": "N2",
+      "verifier": 16.565
+    },
+    {
+      "E_V": -2.6,
+      "species": "NO3",
+      "verifier": 1.91
+    },
+    {
+      "E_V": -2.6,
+      "species": "NO2",
+      "verifier": 0.037
+    },
+    {
+      "E_V": -2.6,
+      "species": "NH3",
+      "verifier": 10.37
+    },
+    {
+      "E_V": -2.6,
+      "species": "N2",
+      "verifier": 19.251
+    },
+    {
+      "E_V": -2.8,
+      "species": "NO3",
+      "verifier": 0.746
+    },
+    {
+      "E_V": -2.8,
+      "species": "NO2",
+      "verifier": 0.037
+    },
+    {
+      "E_V": -2.8,
+      "species": "NH3",
+      "verifier": 6.441
+    },
+    {
+      "E_V": -2.8,
+      "species": "N2",
+      "verifier": 21.026
+    }
+  ],
+  "verifier_methods": {
+    "NO3": "filled-blob centroid",
+    "N2": "filled-blob area centroid",
+    "NH3": "filled-hole blob centroid; -2.2 V from the visible base (base - mean base-to-centroid offset of the clean triangles)",
+    "NO2": "ring fit seeded at 1 mM (+-1 mM search), axis rows excluded"
+  }
+}

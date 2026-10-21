@@ -124,8 +124,11 @@ def build(folder):
     common = sorted(set.intersection(*[set(s["t_min"]) for s in series]))
     total0 = sum(c0.values())
     frac = [round(sum(s["y"][s["t_min"].index(tt)] for s in series) / total0, 4) for tt in common]
+    # meta["extraction_method"] records how the points were obtained when that was not WebPlotDigitizer
+    method = meta.get("extraction_method")
     prov = dict(meta["provenance"], source_type="digitized",
-                extraction="scripts/digitized_to_dataset.py (WebPlotDigitizer unified CSV)")
+                extraction=(f"{method} Converted with scripts/digitized_to_dataset.py." if method
+                            else "scripts/digitized_to_dataset.py (WebPlotDigitizer unified CSV)"))
     prov.setdefault("verified_against_figure", False)
     return {"id": meta["id"], "provenance": prov, "conditions": meta["conditions"], "series": series,
             "quality": dict({"n_closure": {"t_min": common, "fraction": frac}, "flags": meta.get("flags", [])}, **quality_extra)}

@@ -1,0 +1,26 @@
+{
+  "id": "gao2022_figs12_trap_reuse_cycles",
+  "kind": "non_trajectory",
+  "extractor": "agent team 2026-10-20",
+  "provenance": {
+    "citation": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Electrocatalytic Upcycling of Nitrate Wastewater into an Ammonia Fertilizer via an Electrified Membrane, Environ. Sci. Technol. 56 (2022) 11602-11613",
+    "doi": "10.1021/acs.est.1c08442",
+    "figure": "Fig. S12 (SI p. S13, PDF page 13)",
+    "file": "literature/uploads/gao2022_si/es1c08442_si_001.pdf (ACS SI, downloaded from acs.figshare.com article 20349409, CC BY-NC 4.0; not committed)",
+    "verified_against_figure": false,
+    "extraction": "Stacked-bar digitizer (same as the trajectory figures): axis from 15 located ticks (0-70 mM, residual 0.03 mM), monotone colour segmentation of side strips. A 1-px 'third cycle' artefact at the top of bar 1 is set to 0 (bar 1 shows only the first cycle). 0.11 mM per pixel."
+  },
+  "licence": "Licence: the SI is CC BY-NC 4.0 (ACS figshare article 20349409, doi 10.1021/acs.est.1c08442.s001; the local SI file has the same MD5 as the figshare file, checked Oct 20 2026). Whether NernstWork's use counts as NonCommercial is the repository owner's decision.",
+  "conditions": {
+    "catalyst": "CuO-coated Cu foam on PTFE/PP membrane (electrified membrane cathode, 4 cm2)",
+    "cell": "flow_cell (trap | cathode membrane | cathode chamber | Nafion 117 | anode chamber), recirculated at 50 mL/min",
+    "potential_as_reported": "-2.0 V vs SCE (no ohmic compensation)",
+    "potential_V_vs_RHE": null,
+    "temperature_C": null,
+    "electrolyte": "feed: 25 mM NO3-, 10 mM Cl-, pH ~7, 5 h per cycle; the same trap solution reused for three feed batches"
+  },
+  "checks": "Per-cycle increments 20.5, 19.6-19.8, 21.2 mM, consistent with ~83 % of 25 mM per batch (Fig. 2e: 20.9 mM in the trap at 300 min). Implies the trap concentration axis is on the same per-volume basis as the feed.",
+  "flags": [
+    "potential_unverified"
+  ]
+}

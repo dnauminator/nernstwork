@@ -1,0 +1,102 @@
+{
+  "dataset": "gao2022_fig2c_fe_cell_potential",
+  "figure": "Fig. 2c (main PDF p.6)",
+  "source": "main paper 10451706.pdf (Environ. Sci. Technol. 2022, 56, 11602)",
+  "verdict": "accept_with_flags",
+  "verdict_basis": "All 16 values within 1 px of the verifier reading. Flag: the case-2 first-20-min nitrate FE is genuinely below the text range.",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "independence": "Verifier extracted the embedded raster itself (pymupdf, native resolution), located the ticks with its own code and re-read every value with its own scripts; extractor scripts and readings were not used.",
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "No change. The verifier's only issue (case-2 first-20-min nitrate FE ~90 % vs text 92.2-93.3 %; keep the figure value and note it) is already noted in meta.json 'checks'.",
+      "files": []
+    }
+  ],
+  "meta_edited": false,
+  "max_deviation": {
+    "FE_nitrate_pct": {
+      "max_abs": 0.33,
+      "csv_row_index_0based": 1,
+      "px": 1.0,
+      "fraction_of_axis_range": 0.0033
+    },
+    "FE_HER_pct": {
+      "max_abs": 0.33,
+      "csv_row_index_0based": 2,
+      "px": 1.0,
+      "fraction_of_axis_range": 0.0033
+    },
+    "E_cathode_V": {
+      "max_abs": 0.008,
+      "csv_row_index_0based": 0,
+      "px": 0.54,
+      "fraction_of_axis_range": 0.0016
+    },
+    "E_anode_V": {
+      "max_abs": 0.03,
+      "csv_row_index_0based": 1,
+      "px": 2.01,
+      "fraction_of_axis_range": 0.006
+    },
+    "units": "FE axis 0.329 % per px; potential axis 0.0149 V per px"
+  },
+  "checks": [
+    {
+      "name": "axis_calibration",
+      "result": "pass",
+      "detail": "FE axis: 1-px tick marks at x=1360, rows 69.96,130.88,191.14,252.2,313.04,373.89 (100..0 %), residual 0.11 %. Potential axis: ticks merge with the labels, so 0 V and 5 V were taken from the frame lines (rows 373.5 and 39.0); cross-checks: label-merged 4 V and 3 V marks read 3.975 and 2.974 V, and all four E_cathode bars read 2.00 V (the -2 V set point)."
+    },
+    {
+      "name": "bars",
+      "result": "pass",
+      "detail": "FE nitrate (hatched, top of hatch profile) [93.22, 90.26, 6.68, 7.67]; FE HER (solid) [6.35, 9.64, 92.9, 91.91]; E_cathode [2.0, 2.0, 2.0, 2.0]; E_anode [4.22, 4.16, 2.77, 3.44]. FE pairs sum to 99.6-99.9 %. Case 1 = with H2 transfer, case 2 = without (caption) matches the CSV."
+    },
+    {
+      "name": "out_of_range_case2_nitrate_FE",
+      "result": "genuine_difference",
+      "detail": "Text: FE of NO3- reduction 92.2-93.3 % in the first 20 min. Pixel map: case-1 hatched bar top at row 91, case-2 at row 100, 9 px (3.0 %) lower; verifier reads 93.22 and 90.26 %, stored 92.98 and 89.93. The case-2 bar is unambiguously plotted at ~90 %, so the mismatch is between the figure and the text, not a digitization error. Value kept (stored 89.93 is 1 px below the verifier edge reading; within tolerance)."
+    },
+    {
+      "name": "text_cross_check",
+      "result": "pass",
+      "detail": "E_anode ~4.2+/-0.1 V first 20 min (4.24/4.19); last 20 min 3.4+/-0.2 V without H2 (case 2: 3.457) and 2.7+/-0.1 V with H2 (case 1: 2.783); FE H2 last 20 min 90.2-93.2 % (93.23/92.21). E_ionic/E_transfer ~0 as stated (bars 1-2 px)."
+    },
+    {
+      "name": "overlay",
+      "result": "pass",
+      "detail": "Stored values drawn as lines on each bar with the text range 92.2-93.3 % marked; the case-2 nitrate bar visibly ends below it."
+    }
+  ],
+  "issues": [
+    "Case-2 (no H2 transfer) first-20-min nitrate FE is ~90 % in the figure vs 92.2-93.3 % in the text; keep the figure value and note the discrepancy."
+  ],
+  "verifier_readings": {
+    "FE_nitrate_pct": [
+      93.22,
+      90.26,
+      6.68,
+      7.67
+    ],
+    "FE_HER_pct": [
+      6.35,
+      9.64,
+      92.9,
+      91.91
+    ],
+    "E_cathode_V": [
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "E_anode_V": [
+      4.22,
+      4.16,
+      2.77,
+      3.44
+    ]
+  },
+  "overlay": "verify_overlay.png (session scratch, not retained; contains publisher figure images)"
+}

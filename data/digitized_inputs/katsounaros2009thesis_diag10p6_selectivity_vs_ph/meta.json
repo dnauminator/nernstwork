@@ -1,0 +1,71 @@
+{
+  "id": "katsounaros2009thesis_diag10p6_selectivity_vs_ph",
+  "kind": "selectivity_vs_initial_pH_at_fixed_conversion",
+  "extractor": "agent team 2026-10-20",
+  "units": {
+    "selectivity_pct": "% selectivity of each product when 50 % of the initial NO3- had been removed (caption), as plotted",
+    "initial_pH_stated": "initial bulk pH of the run as listed in the thesis text (printed p. 156)",
+    "initial_pH_read": "x position of the marker read from the figure (per-segment calibration)",
+    "match_score": "normalized cross-correlation of the marker template; low values mark overlapped markers"
+  },
+  "structure": "40 rows: 8 runs x 5 products (NH3, NH2OH, NO2, N2, N2O). The pH 0.20 run (0.9 M HCl) listed in the text is not plotted in this diagram.",
+  "extraction_method": "Raster digitization of the thesis page image (reader page 192, 300 dpi; the figure is a scan upsampled about 2x, so 1 source pixel spans 2 image pixels) by an agent script (OpenCV). The x axis is broken: the left segment (pH 0-1.0) was calibrated on its five major ticks (0.00 at px 670.5 to 1.00 at px 1187.5, 517 px per pH unit, residuals below 0.001 pH) and the right segment (pH 4-14) separately on its six major ticks (4 at px 1308.5 to 14 at px 1816.5, 50.8 px per pH unit, residuals below 0.008 pH); markers left of the break marks (px about 1250) use the left calibration. y calibrated on the eight ticks 0-70 % (0 at px 2223.5, 70 at px 1398.5; 11.79 px per %, residuals below 0.06 %). Each series was located by normalized cross-correlation with a template cut from a clean marker of that series in the same image (open triangle NH3 at pH 0.16, open square NH2OH at pH 0.16, open circle NO2- at pH 7, filled down-triangle N2 at pH 0.76, open star N2O at pH 7), anchored at the geometric centre (box centre for square and circle, centroid for triangles, circumcentre for the star). Five markers partly hidden under the N2 triangle were matched with the lower half of the template only (N2O at pH 0.16 and 0.28, NH2OH at pH 0.46, NH3 at pH 9.5 and 13.7); controls on clean markers reproduced the full-template positions exactly. NH3 at pH 4.0 is also partly occluded (the lower part of its triangle lies under the N2 marker) and was matched with the full template (score 0.71). N2O at pH 0.16 is almost fully covered (score 0.50; treat as about 1 +- 0.5 %). Markers plotted on the zero line (NO2- at pH 0.16-0.46, NH2OH at pH 0.76 and above) are recorded as read (0.00-0.09 %) and correspond to 'not detected' in the text. Overlay of the inverse-calibrated points on the page crop checked by eye (scratch, not committed).",
+  "selectivity_basis_note": "Not defined explicitly in the pages read. The five plotted selectivities sum to 98, 100, 101, 103, 94, 93, 96 and 92 % for the eight runs, which fits an N-atom basis (N2 and N2O counted as 2 N, as in Diag 6.4 where N2 70.7 % = 2 x [N2] / NO3- removed). On a per-molecule basis for N2 and N2O the N balance would exceed 100 % by the N2 + N2O selectivity (up to about 27 points at high pH). Treat the basis as inferred.",
+  "checks": {
+    "text_facts": [
+      "NH3 60 % at pH 0 (first run, pH 0.16): read 60.05 %; 21 % at pH 4: read 20.85 %",
+      "NH2OH 35 % at pH 0: read 34.96 %; not detected above pH 0.8: plotted on zero from pH 0.76",
+      "NO2- not detected at pH 0-0.5, then 42-45 %: read 0.00-0.09 % for pH 0.16-0.46 and 41.75-45.15 % for pH 0.76-13.7",
+      "N2 2 % at pH 0 and 20 % at pH 4: read 1.98 % and 19.89 %",
+      "N2O 1 % at pH 0 and 8 % at pH 4: read 1.19 % (occluded) and 8.06 %",
+      "N2O 12 % at pH 0.6 decreasing to 2 % at pH 14: read 11.96 % at pH 0.76 (the plotted run nearest 0.6) and 1.27 % at pH 13.7 (2.29 % at pH 9.5)"
+    ],
+    "x_position_discrepancies": "The 1 M NaOH run (stated pH 13.7) is plotted at pH 14.0 (marker at the 14 tick, read 13.98-14.02). The phosphate run is stated as pH 4.0 in the run list (printed p. 156) and plotted at 4.0, but the Diag 10.1 caption lists it as pH 4.5, and printed p. 158 calls the salt Na2HPO4 rather than NaH2PO4. The text's 'pH 0' refers to the 1 M HCl run (pH 0.16)."
+  },
+  "conditions": {
+    "catalyst": "Sn foil (2 cm2 geometric)",
+    "electrolyte": "0.05 M NaNO3 in x M HCl + (2 - x) M NaCl (x = 1, 0.75, 0.5, 0.25), 0.2 M NaH2PO4 + 1.8 M NaCl, 0.3 M NaH2PO4 + 0.1746 M NaOH + 1.5 M NaCl, 0.3 M Na2CO3 + 0.3 M NaHCO3 + 0.8 M NaCl, or 1 M NaOH + 1 M NaCl (per row in extracted.csv)",
+    "cell": "divided_batch (Teflon cell, Nafion 117 H+ form, 10 mL per compartment, platinized Pt anode, Luggin capillary)",
+    "potential_as_reported": "-1.8 V vs Ag/AgCl (3 M KCl)",
+    "potential_V_vs_RHE": null,
+    "potential_mode": "potentiostatic",
+    "conversion_at_readout": "50 % of initial NO3- removed",
+    "volume_mL": 10,
+    "temperature_C": null,
+    "stirring": "He sparge 12 mL/min",
+    "c0_mM_N": {
+      "NO3": 50.0
+    },
+    "notes": "Ambient temperature (not given numerically). For non-neutral solutions the cell was held at zero current during deaeration to avoid dissolving the Sn electrode (thesis ch. 5). NH2OH by spectrophotometry (ferrozine/Fe3+ at 562 nm, or the 8-hydroxyquinoline method), other analytics as in ch. 5. The thesis notes that the local pH at the electrode rises during electrolysis; the x axis is the initial bulk pH."
+  },
+  "provenance": {
+    "citation": "Katsounaros I., Electrochemical reduction of nitrate on tin cathode: removal of nitrate from the ion exchange regenerant solution, PhD thesis (in Greek), Aristotle University of Thessaloniki (2009)",
+    "doi": "10.12681/eadd/19491",
+    "figure": "Diag 10.6, printed p. 162",
+    "file": "thesis page image via the archive's online reader, 300 dpi; not committed",
+    "notes": "Terms: National Archive of PhD Theses (didaktorika.gr, run by EKT). Its terms of use allow deposited theses to be used online for educational, scientific, statistical and research purposes when there is no direct or indirect financial benefit, require any publication based on a thesis to cite its author, and allow linking to the site's content but not reproducing it; the item page states that all items in the archive are protected by copyright. The page image was viewed through the archive's online reader without an account and is not stored in the repo. Whether NernstWork's use meets the no-financial-benefit condition is the repository owner's decision. Caption: dependence of product selectivity on pH: (open triangle) NH3, (open square) NH2OH, (open circle) NO2-, (filled down-triangle) N2, (star) N2O; electrolysis of 0.05 M NaNO3 at -1.8 V vs Ag/AgCl; selectivities calculated when 50 % of the nitrate had been removed. Run compositions and stated pH from printed p. 156; text facts from printed pp. 161-162.",
+    "verified_against_figure": false
+  },
+  "flags": [
+    "endpoint_only",
+    "broken_x_axis_two_calibrations",
+    "selectivity_basis_inferred",
+    "plotted_pH_differs_from_stated_for_1M_NaOH_run",
+    "occluded_markers_lower_confidence",
+    "potential_vs_ag_agcl_not_rhe"
+  ],
+  "rows": 40,
+  "columns": [
+    "run",
+    "initial_pH_stated",
+    "electrolyte",
+    "initial_pH_read",
+    "axis_segment",
+    "species",
+    "selectivity_pct",
+    "selectivity_basis",
+    "method",
+    "match_score",
+    "note"
+  ]
+}

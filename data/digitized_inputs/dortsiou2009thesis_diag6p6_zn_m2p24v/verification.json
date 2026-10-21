@@ -1,0 +1,497 @@
+{
+  "dataset": "dortsiou2009thesis_diag6p6_zn_m2p24v",
+  "also_covers": "data/real/dortsiou2009thesis_diag6p6_zn_m2p24v.json",
+  "source": "Dortsiou M., PhD thesis (in Greek), Aristotle University of Thessaloniki (2009), doi 10.12681/eadd/27551; page images at 300 dpi from the archive reader (local scratch copy, reader page = printed page + 36); Diag 6.6, printed p. 113 (reader p149.jpg)",
+  "verdict": "accept_with_flags",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "summary": "Independent re-read agrees with all 36 stored points (t = 15-90 min) within 0.058 mM (0.12 % of the 50 mM axis, about 1 px); the five species agree within 0.031 mM. The hidden points (N2 60 min and N2O 75 min under red stars, NO2-/NH3 at 15-30 min) were re-read from visible marker edges and an independent joint fit of the overlapping connecting lines. Marker-to-species mapping, N-equivalent basis, closure with the plotted loss, and the conditions check out against the page and the text. Flags: caption potential vs Table 6.1 (0.40 V), inferred catholyte volume and pH. Two small documentation fixes; no values changed; data_real passes schema validation.",
+  "method": "Verifier scripts in literature/extraction_scripts/dortsiou_verify/ (axes_probe.py, ticks.py, calib.py, overlay.py, zoomgrid.py and the per-figure readers), written independently; the extractor's scripts and calibration files in literature/extraction_scripts/dortsiou/ were not run or read. Axes were calibrated from tick marks located by dark-pixel profiles beside the axis lines and fitted by least squares. Stored points were mapped back onto the page with the verifier's calibration and the overlays were inspected by eye. Zn readers: zn_markers.py (filled-marker centroids, triangle geometry), zn_ring.py (open circles), zn_star.py / zn_star2.py (star fits, triangle base rows), zn_apex.py (triangle and diamond apexes), zn_diamond_edge.py (hidden diamond), zn_red.py (red stars), zn_segments.py (single connecting segments) and zn_multiline.py (joint anti-aliased multi-line fit, seeded from the verifier's own rough reads, not from stored values).",
+  "calibration_verifier": {
+    "x": "13 ticks 0-90 min every 7.5 min at px 613.72 ... 1969.55; fit 15.0671 px/min, x(0) = 613.71, max residual 0.018 min",
+    "y": "11 ticks 0-50 mM every 5 mM at px 1534.72 ... 654.50; fit 17.5986 px/mM (1 px = 0.0568 mM), y(0) = 1534.70, max residual 0.016 mM",
+    "vs_extractor": "extractor 15.07 px/min and 17.60 px/mM; same to the stated precision"
+  },
+  "overlay": "verify_overlay.png and verify_overlay_bottom.png (session scratch, not retained; contains thesis page images); every stored point lands on the centre of its marker or, for hidden markers, on the meeting point of its connecting segments",
+  "max_abs_deviation_mM": 0.058,
+  "max_abs_deviation_fraction_of_axis": 0.0012,
+  "axis_span_used_mM": 50.0,
+  "max_abs_deviation_species_only_mM": 0.031,
+  "max_abs_deviation_including_alternate_reads_mM": 0.058,
+  "worst_points": [
+    {
+      "series": "mass_balance_loss",
+      "t_min": 30,
+      "stored": 10.107,
+      "verifier": 10.049,
+      "dev": 0.058,
+      "note": "red-star area centroid; the two red segments meeting at the star give 10.110/10.113, so the stored value follows the line anchor; the anchor ambiguity of the red star is about 1 px"
+    },
+    {
+      "series": "mass_balance_loss",
+      "t_min": 60,
+      "stored": 14.496,
+      "verifier": 14.45,
+      "dev": 0.046,
+      "note": "segments 14.525/14.503"
+    },
+    {
+      "series": "NO2",
+      "t_min": 15,
+      "stored": 0.536,
+      "verifier": 0.505,
+      "dev": 0.031,
+      "note": "joint line fit; ring fit on the visible arcs gives 0.53-0.55"
+    },
+    {
+      "series": "NH3",
+      "t_min": 45,
+      "stored": 1.372,
+      "verifier": 1.387,
+      "dev": -0.015,
+      "note": "line fit gives 1.343 (dev +0.029)"
+    }
+  ],
+  "per_point": [
+    {
+      "series": "NO3",
+      "t_min": 15,
+      "stored": 43.818,
+      "verifier": 43.825,
+      "dev": -0.007,
+      "method": "blob centroid after 7 px opening"
+    },
+    {
+      "series": "NO3",
+      "t_min": 30,
+      "stored": 32.668,
+      "verifier": 32.673,
+      "dev": -0.005,
+      "method": "blob centroid after 7 px opening"
+    },
+    {
+      "series": "NO3",
+      "t_min": 45,
+      "stored": 20.482,
+      "verifier": 20.485,
+      "dev": -0.003,
+      "method": "blob centroid after 7 px opening"
+    },
+    {
+      "series": "NO3",
+      "t_min": 60,
+      "stored": 11.508,
+      "verifier": 11.513,
+      "dev": -0.005,
+      "method": "blob centroid after 7 px opening"
+    },
+    {
+      "series": "NO3",
+      "t_min": 75,
+      "stored": 6.796,
+      "verifier": 6.795,
+      "dev": 0.001,
+      "method": "blob centroid after 7 px opening"
+    },
+    {
+      "series": "NO3",
+      "t_min": 90,
+      "stored": 4.557,
+      "verifier": 4.565,
+      "dev": -0.008,
+      "method": "blob centroid after 7 px opening"
+    },
+    {
+      "series": "NO2",
+      "t_min": 15,
+      "stored": 0.536,
+      "verifier": 0.505,
+      "dev": 0.031,
+      "method": "joint fit of overlapping straight connecting lines (0-15 and 15-30 intervals); marker mostly hidden",
+      "alternate_reads": [
+        0.54
+      ]
+    },
+    {
+      "series": "NO2",
+      "t_min": 30,
+      "stored": 0.944,
+      "verifier": 0.931,
+      "dev": 0.013,
+      "method": "joint fit of overlapping straight connecting lines",
+      "alternate_reads": [
+        0.93
+      ]
+    },
+    {
+      "series": "NO2",
+      "t_min": 45,
+      "stored": 1.214,
+      "verifier": 1.2,
+      "dev": 0.014,
+      "method": "joint fit of overlapping straight connecting lines (30-45 and 45-60)"
+    },
+    {
+      "series": "NO2",
+      "t_min": 60,
+      "stored": 0.884,
+      "verifier": 0.886,
+      "dev": -0.002,
+      "method": "ring fit (r 9.5-9.75 px)"
+    },
+    {
+      "series": "NO2",
+      "t_min": 75,
+      "stored": 0.566,
+      "verifier": 0.57,
+      "dev": -0.004,
+      "method": "ring fit (r 9.5-9.75 px)"
+    },
+    {
+      "series": "NO2",
+      "t_min": 90,
+      "stored": 0.351,
+      "verifier": 0.367,
+      "dev": -0.016,
+      "method": "ring fit (r 9.5-9.75 px)"
+    },
+    {
+      "series": "NH3",
+      "t_min": 15,
+      "stored": 0.597,
+      "verifier": 0.59,
+      "dev": 0.007,
+      "method": "joint fit of overlapping straight connecting lines; star fully hidden under the N2 diamond and N2O triangle"
+    },
+    {
+      "series": "NH3",
+      "t_min": 30,
+      "stored": 1.027,
+      "verifier": 1.031,
+      "dev": -0.004,
+      "method": "joint fit of overlapping straight connecting lines",
+      "alternate_reads": [
+        1.05
+      ]
+    },
+    {
+      "series": "NH3",
+      "t_min": 45,
+      "stored": 1.372,
+      "verifier": 1.387,
+      "dev": -0.015,
+      "method": "blob centroid after 7 px opening (star core inside the NO2 circle)",
+      "alternate_reads": [
+        1.38,
+        1.343
+      ]
+    },
+    {
+      "series": "NH3",
+      "t_min": 60,
+      "stored": 1.826,
+      "verifier": 1.829,
+      "dev": -0.003,
+      "method": "blob centroid after 7 px opening",
+      "alternate_reads": [
+        1.841
+      ]
+    },
+    {
+      "series": "NH3",
+      "t_min": 75,
+      "stored": 2.501,
+      "verifier": 2.502,
+      "dev": -0.001,
+      "method": "blob centroid after 7 px opening",
+      "alternate_reads": [
+        2.494
+      ]
+    },
+    {
+      "series": "NH3",
+      "t_min": 90,
+      "stored": 3.588,
+      "verifier": 3.591,
+      "dev": -0.003,
+      "method": "blob centroid after 7 px opening",
+      "alternate_reads": [
+        3.607
+      ]
+    },
+    {
+      "series": "N2",
+      "t_min": 15,
+      "stored": 0.93,
+      "verifier": 0.931,
+      "dev": -0.001,
+      "method": "joint fit of overlapping straight connecting lines; diamond lower half under the N2O triangle",
+      "alternate_reads": [
+        0.96
+      ]
+    },
+    {
+      "series": "N2",
+      "t_min": 30,
+      "stored": 4.407,
+      "verifier": 4.413,
+      "dev": -0.006,
+      "method": "blob centroid after 7 px opening"
+    },
+    {
+      "series": "N2",
+      "t_min": 45,
+      "stored": 9.309,
+      "verifier": 9.313,
+      "dev": -0.004,
+      "method": "blob centroid after 7 px opening"
+    },
+    {
+      "series": "N2",
+      "t_min": 60,
+      "stored": 14.903,
+      "verifier": 14.906,
+      "dev": -0.003,
+      "method": "upper diamond edges visible beside the red star (offsets from isolated diamonds)",
+      "alternate_reads": [
+        14.907,
+        14.909
+      ]
+    },
+    {
+      "series": "N2",
+      "t_min": 75,
+      "stored": 21.401,
+      "verifier": 21.406,
+      "dev": -0.005,
+      "method": "blob centroid after 7 px opening"
+    },
+    {
+      "series": "N2",
+      "t_min": 90,
+      "stored": 27.46,
+      "verifier": 27.467,
+      "dev": -0.007,
+      "method": "blob centroid after 7 px opening"
+    },
+    {
+      "series": "N2O",
+      "t_min": 15,
+      "stored": 0.05,
+      "verifier": 0.053,
+      "dev": -0.003,
+      "method": "triangle base row, centroid = base - h/3 (h 19.4 px)"
+    },
+    {
+      "series": "N2O",
+      "t_min": 30,
+      "stored": 0.8,
+      "verifier": 0.797,
+      "dev": 0.003,
+      "method": "triangle base row, centroid = base - h/3 (h 19.4 px)"
+    },
+    {
+      "series": "N2O",
+      "t_min": 45,
+      "stored": 3.024,
+      "verifier": 3.035,
+      "dev": -0.011,
+      "method": "triangle base row, centroid = base - h/3 (h 19.4 px)",
+      "alternate_reads": [
+        3.033
+      ]
+    },
+    {
+      "series": "N2O",
+      "t_min": 60,
+      "stored": 6.415,
+      "verifier": 6.403,
+      "dev": 0.012,
+      "method": "triangle base row, centroid = base - h/3 (h 19.4 px)",
+      "alternate_reads": [
+        6.399
+      ]
+    },
+    {
+      "series": "N2O",
+      "t_min": 75,
+      "stored": 9.751,
+      "verifier": 9.755,
+      "dev": -0.004,
+      "method": "connecting-segment extrapolation (triangle base under the red star)",
+      "alternate_reads": [
+        9.757,
+        9.718
+      ]
+    },
+    {
+      "series": "N2O",
+      "t_min": 90,
+      "stored": 12.898,
+      "verifier": 12.895,
+      "dev": 0.003,
+      "method": "triangle base row, centroid = base - h/3 (h 19.4 px)",
+      "alternate_reads": [
+        12.896
+      ]
+    },
+    {
+      "series": "mass_balance_loss",
+      "t_min": 15,
+      "stored": 4.036,
+      "verifier": 4.028,
+      "dev": 0.008,
+      "method": "red-star centroid after 13 px opening",
+      "alternate_reads": [
+        4.04
+      ]
+    },
+    {
+      "series": "mass_balance_loss",
+      "t_min": 30,
+      "stored": 10.107,
+      "verifier": 10.049,
+      "dev": 0.058,
+      "method": "red-star centroid after 13 px opening",
+      "alternate_reads": [
+        10.11
+      ]
+    },
+    {
+      "series": "mass_balance_loss",
+      "t_min": 45,
+      "stored": 14.565,
+      "verifier": 14.542,
+      "dev": 0.023,
+      "method": "red-star centroid after 13 px opening",
+      "alternate_reads": [
+        14.566,
+        14.536
+      ]
+    },
+    {
+      "series": "mass_balance_loss",
+      "t_min": 60,
+      "stored": 14.496,
+      "verifier": 14.45,
+      "dev": 0.046,
+      "method": "red-star centroid after 13 px opening",
+      "alternate_reads": [
+        14.525,
+        14.503
+      ]
+    },
+    {
+      "series": "mass_balance_loss",
+      "t_min": 75,
+      "stored": 8.923,
+      "verifier": 8.911,
+      "dev": 0.012,
+      "method": "red-star centroid after 13 px opening",
+      "alternate_reads": [
+        8.923
+      ]
+    },
+    {
+      "series": "mass_balance_loss",
+      "t_min": 90,
+      "stored": 1.125,
+      "verifier": 1.127,
+      "dev": -0.002,
+      "method": "red-star centroid after 13 px opening"
+    }
+  ],
+  "checks": [
+    {
+      "name": "marker_mapping",
+      "result": "pass",
+      "detail": "Caption (image and text layer): filled circle NO3-, open circle NO2-, black star NH3, filled diamond N2, open up-triangle N2O, red star the mass-balance loss. The stored series sit on exactly those markers in the overlay. Drawing order observed on the page (NO3-, NO2-, NH3, N2, N2O, loss) explains the occlusions: at 15 min the N2O triangle covers the lower N2 diamond and hides the NH3 star; at 45 min the star sits inside the NO2- circle."
+    },
+    {
+      "name": "hidden_points",
+      "result": "pass",
+      "detail": "N2 60 min (stored 14.903): upper diamond edges visible on both sides of the red star top arm give 14.87-14.95 (mean 14.906); the 45-60 and 60-75 segments give 14.907 and 14.909. N2O 75 min (9.751): segments 9.757/9.755; the visible apex gives 9.718. NO2-/NH3 at 15 and 30 min: their connecting lines run 1-1.5 px apart; a joint fit of all lines in the 0-15, 15-30 and 30-45 intervals gives NO2- 0.505/0.931/1.200 and NH3 0.590/1.031/1.343 (15/30/45 min) vs stored 0.536/0.944/1.214 and 0.597/1.027/1.372; ring fits on the visible NO2- arcs give 0.53-0.55 (15) and 0.92-0.94 (30); the NH3 star tips peeking beside the 30 min triangle give 1.04-1.06. NH3 at 15 min has no visible marker pixels; it rests on the lines only (0.59-0.60), as the extractor says. Triangles are anchored at their centroid: base-row centroids agree with segment extrapolations within 0.01 mM, bbox centres would be 0.19 mM higher."
+    },
+    {
+      "name": "t0_points",
+      "result": "pass",
+      "detail": "Products at t = 0 are under the red origin star; all connecting lines start at 0 within 0.01 mM (4-line fit of 0-15 min). NO3- at t = 0 reads 50.017 and is pinned to 50.0; the loss at t = 0 reads -0.008 and is clamped to 0."
+    },
+    {
+      "name": "units_and_n_basis",
+      "result": "pass",
+      "detail": "y axis 'Συγκέντρωση, mM'. Five species plus the plotted loss sum to 49.94-50.03 mM at every time (stored), so all series are N-equivalent; with N2 and N2O x2 the 90 min species sum would be 89 mM. The plotted loss equals 50 mM minus the five species within 0.06 mM at every time (computed deficit 4.07/10.15/14.60/14.46/8.99/1.15 vs plotted 4.04/10.11/14.57/14.50/8.92/1.13). Text p. 112-113: the dotted (red) line of Diag 6.6 is the mass-balance loss."
+    },
+    {
+      "name": "closure",
+      "result": "pass",
+      "detail": "Recomputed from data_real: 1.0, 0.9186, 0.7969, 0.708, 0.7107, 0.8203, 0.9771, identical to quality.n_closure; flag unobserved_sink_suspected is appropriate (text: hyponitrite and hydroxylamine detected, nitramide identified by GC-MS m/z 62 and DAD 206 nm but not quantifiable, N2O keeps evolving ~20 min after stopping at 45 min; pp. 114-117)."
+    },
+    {
+      "name": "loss_storage",
+      "result": "pass",
+      "detail": "The red-star series is stored as quality.reported_n_loss via derived_series, not as a species."
+    },
+    {
+      "name": "conditions",
+      "result": "pass_with_notes",
+      "detail": "Checked on printed pp. 59-65, 83, 109-117 and 162-167: 0.4 M NaHCO3 / 0.4 M Na2CO3 / 0.05 M NaNO3 (caption; ionic strength 1.6 M by design, p. 76); Zn from Sigma-Aldrich 99.9 %, polished with #1200 paper and washed; cathode 2 cm2, platinised Pt anode 6 cm2 at 2 cm; Teflon cell, Nafion 117; Ag/AgCl in 'saturated 3 M' KCl with a Luggin capillary < 1 mm; He 12 mL/min (sec. 4.4) and 11 mL/min (sec. 4.5), 30 min deaeration; 0.1 mL samples; NH3 = catholyte + anolyte + H2SO4 trap. Volume: compartments 12 mL with a 2 mL dead space above the solution (p. 60); 10 mL is an inference, supported by the same lab's Katsounaros thesis (printed p. 64: 12 mL compartments filled with 10 mL). pH 9.65 is the initial pH of the same electrolyte in ch. 5 (p. 83, final 11.3), not reported for this run. Temperature not stated."
+    },
+    {
+      "name": "potential",
+      "result": "pass_with_flag",
+      "detail": "Caption and list of figures: -2.24 V vs Ag/AgCl; Diag 9.2 caption '-2.24 V' and Diag 9.4 caption '2.24 V' (no reference). Section 6.3.1 / Table 6.1: runs at 2.01 V negative of pzc, Zn -2.64 V (Al -2.53 V); captions are 0.40 V less negative for both metals. Table 6.1 k for Zn 0.0374 min-1 would leave 1.73 mM NO3- at 90 min vs 4.56 plotted; this run's log-linear k is 0.0285 min-1 (verifier recomputed). Caption value kept, flag potential_unverified kept."
+    },
+    {
+      "name": "kinetics_claims",
+      "result": "pass",
+      "detail": "Simulating the ch. 9 Zn scheme (k1 0.0211, k2 0.2786, k3 0.0195, k4 0.0141, k5 0.0324 min-1) from 50 mM against these points: overall RMSE 2.68 mM, NO3- 4.48 mM, as the provenance notes state."
+    },
+    {
+      "name": "schema_validation",
+      "result": "pass",
+      "detail": "nernstwork.schemas.errors('dataset', data/real/dortsiou2009thesis_diag6p6_zn_m2p24v.json) returned [] after regeneration."
+    }
+  ],
+  "claims_tested": [
+    "N-equivalent basis (to_mM_N 1): confirmed by closure with the plotted loss.",
+    "Mass-balance loss stored as reported_n_loss: confirmed; it is the authors' plotted c0 minus measured species.",
+    "Volume 10 mL by inference from the Katsounaros thesis: inference confirmed as reasonable and documented as inferred (Dortsiou p. 60: 12 mL compartments, 2 mL dead space).",
+    "pH 9.65 from ch. 5: confirmed (same electrolyte, initial pH; not this run).",
+    "Potential -2.24 V from caption, 0.40 V less negative than Table 6.1: confirmed.",
+    "Hidden markers by connecting-line extrapolation (N2 60 min, N2O 75 min): confirmed by marker edges within 0.05 mM.",
+    "Low-confidence NH3 at 15 min: confirmed that no marker pixels are visible; lines bound it to 0.59-0.60 mM."
+  ],
+  "issues": [
+    "Caption potential (-2.24 V vs Ag/AgCl) and Table 6.1 (-2.64 V) disagree by 0.40 V; this run's NO3- decay also does not match the Table 6.1 k. Kept as flagged.",
+    "Catholyte volume (10 mL) and pH (9.65) are inferred, not stated for this run.",
+    "NO2- and NH3 at 15 and 30 min rest largely on connecting lines that run 1-1.5 px apart; their values are good to about 0.03 mM, and NH3 at 15 min has no visible marker.",
+    "The red loss stars carry about 1 px (0.06 mM) anchor ambiguity between the star area centroid and the line anchor; stored values follow the line anchor.",
+    "provenance.verified_against_figure is still false in meta and data_real; left unchanged (verification recorded here, same convention as the other verifier files)."
+  ],
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "meta.json n_basis_note: the H2SO4 ammonia trap was cited as '1 N ... (thesis section 4.5)'; section 4.5 says 0.1 N while section 4.4 and Scheme 4.4 say 1 N. Reworded to cite both.",
+      "files": [
+        "data/digitized_inputs/dortsiou2009thesis_diag6p6_zn_m2p24v/meta.json",
+        "data/real/dortsiou2009thesis_diag6p6_zn_m2p24v.json"
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "change": "meta.json conditions.notes: said the Diag 9.2 and 9.4 captions give '-2.24 V vs Ag/AgCl'; they give '-2.24 V' and '2.24 V' without a reference electrode. Reworded.",
+      "files": [
+        "data/digitized_inputs/dortsiou2009thesis_diag6p6_zn_m2p24v/meta.json",
+        "data/real/dortsiou2009thesis_diag6p6_zn_m2p24v.json"
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "change": "Regenerated data/real with scripts/digitized_to_dataset.py; series, closure and reported_n_loss unchanged.",
+      "files": [
+        "data/real/dortsiou2009thesis_diag6p6_zn_m2p24v.json"
+      ]
+    }
+  ]
+}

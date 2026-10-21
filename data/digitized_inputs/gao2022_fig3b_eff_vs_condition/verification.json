@@ -1,0 +1,125 @@
+{
+  "dataset": "gao2022_fig3b_eff_vs_condition",
+  "figure": "Fig. 3b (main PDF p.7)",
+  "source": "main paper 10451706.pdf (Environ. Sci. Technol. 2022, 56, 11602)",
+  "verdict": "accept",
+  "verdict_basis": "All 24 values within 1 px of the verifier reading; marker convention reproduces the stored values and the text ranges.",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "independence": "Verifier extracted the embedded raster itself (pymupdf, native resolution), located the ticks with its own code and re-read every value with its own scripts; extractor scripts and readings were not used.",
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "No change. The 55.59 vs 55.40 % FE difference is within tolerance, as recorded. extracted.csv was used read-only to derive the per-run total current density (jNH3 / FE_TAN) now quoted in the S14a/S14b/S14d/S15b/S15c metas.",
+      "files": []
+    },
+    {
+      "date": "2026-10-20",
+      "change": "meta.json 'checks': the end-of-run TAN recovery comparison now says the end-of-run values come from the full digitizations (wpd_datasets_full_*.csv), since the converted S14/S15/Fig. 2e datasets now stop at DC off. No values changed; there is no data/real file for this folder.",
+      "files": [
+        "data/digitized_inputs/gao2022_fig3b_eff_vs_condition/meta.json"
+      ]
+    }
+  ],
+  "meta_edited": false,
+  "max_deviation": {
+    "FE_TAN_pct": {
+      "max_abs": 0.41,
+      "csv_row_index_0based": 1,
+      "px": 0.98,
+      "fraction_of_axis_range": 0.0023
+    },
+    "jNH3_mA_cm2": {
+      "max_abs": 0.31,
+      "csv_row_index_0based": 3,
+      "px": 0.74,
+      "fraction_of_axis_range": 0.0017
+    },
+    "TAN_recovery_pct": {
+      "max_abs": 0.19,
+      "csv_row_index_0based": 0,
+      "px": 0.45,
+      "fraction_of_axis_range": 0.0011
+    },
+    "TN_removal_pct_centroid_convention": {
+      "max_abs": 0.02,
+      "csv_row_index_0based": 0,
+      "px": 0.05,
+      "fraction_of_axis_range": 0.0001
+    },
+    "units": "% or mA cm-2; axis span -70..110 = 180; 0.418 per px"
+  },
+  "checks": [
+    {
+      "name": "axis_calibration",
+      "result": "pass",
+      "detail": "9 major left-axis ticks located at rows 84.5,132.06,180.0,227.94,275.5,323.5,371.06,418.94,466.94 (100..-60 %); 0.4184 %/px, residual 0.06."
+    },
+    {
+      "name": "bars",
+      "result": "pass",
+      "detail": "FE bars (first purple row, side columns avoiding the error bar) [55.19, 52.26, 49.33, 55.4, 63.98, 71.51]; jNH3 hatched bars (end of hatch-pixel profile) [28.07, 28.91, 29.33, 28.07, 45.23, 63.64]. Order of conditions (pH 3, 5, 10, pH 7/25 mM, 75 mM, 150 mM) matches the panel labels and the CSV rows."
+    },
+    {
+      "name": "markers",
+      "result": "pass",
+      "detail": "TAN recovery circles (blue-ring bounding-box centre) [97.87, 98.91, 99.33, 99.12, 99.12, 99.33]. TN removal triangles: apex/base of the orange outline located; area-centroid convention (2/3 from apex) gives [97.52, 97.52, 99.05, 98.77, 98.21, 99.19], reproducing stored values within 0.03 %; bounding-box-centre convention would give [98.91, 98.91, 100.38, 100.17, 99.54, 100.59] (3 values >100 %, and outside the text range). Centroid convention retained; markers overlap, so +/-1 % stands."
+    },
+    {
+      "name": "text_cross_check",
+      "result": "pass",
+      "detail": "Text p. 11608-9: FE for TAN 49.2-55.4 % across pH (verifier 49.3-55.4, stored 49.3-55.6); jNH3 28.1+/-1.0 to 29.4+/-1.3 (verifier 28.1-29.3, stored 28.1-29.5); TN removal 97.7-99.4 % and TAN recovery 98.1-99.5 % (stored 97.5-99.2, 98.1-99.3). TAN recovery is Eq. S9 (trap/(trap+feed)) as the meta says (SI p. S14; Eq. S8 would give ~80 %). End-of-run Eq. S9 from the stored S14/S15 trajectories: 98.3, 99.0, 99.1, 98.9, 99.4 % (pH 3, 5, 10, 75, 150 mM), consistent."
+    },
+    {
+      "name": "overlay",
+      "result": "pass",
+      "detail": "Stored values drawn on the figure; every line sits on the bar end / marker."
+    }
+  ],
+  "issues": [
+    "The pH 7/25 mM FE bar is stored as 55.59 %; verifier reads 55.40 % (0.5 px) and the text gives 55.4 % for -2 V. Within tolerance; no change."
+  ],
+  "verifier_readings": {
+    "FE_TAN_pct": [
+      55.19,
+      52.26,
+      49.33,
+      55.4,
+      63.98,
+      71.51
+    ],
+    "jNH3_mA_cm2": [
+      28.07,
+      28.91,
+      29.33,
+      28.07,
+      45.23,
+      63.64
+    ],
+    "TAN_recovery_pct": [
+      97.87,
+      98.91,
+      99.33,
+      99.12,
+      99.12,
+      99.33
+    ],
+    "TN_removal_pct_centroid": [
+      97.52,
+      97.52,
+      99.05,
+      98.77,
+      98.21,
+      99.19
+    ],
+    "TN_removal_pct_bbox_centre": [
+      98.91,
+      98.91,
+      100.38,
+      100.17,
+      99.54,
+      100.59
+    ]
+  },
+  "overlay": "verify_overlay.png (session scratch, not retained; contains publisher figure images)"
+}

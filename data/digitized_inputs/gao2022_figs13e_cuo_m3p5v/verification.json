@@ -1,0 +1,179 @@
+{
+  "dataset": "gao2022_figs13e_cuo_m3p5v",
+  "source": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Environ. Sci. Technol. 56 (2022) 11602-11613, doi 10.1021/acs.est.1c08442; Fig. S13e (SI PDF page 15, embedded JPEG xref 85, 1430x864 px)",
+  "verdict": "accept_with_flags",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "summary": "Independent re-read agrees with the stored values within 0.17 mM (0.7% of the axis span, <= 3 px). Legend mapping, stacking order, times, units and conditions check out against the text and SI. Flags: trap-TAN volume basis unverified (documented), N2 is the authors' by-difference value, and the pixel-level issues below. No values changed.",
+  "method": "Verifier scripts: literature/extraction_scripts/gao_verify_a/segbars.py (calibration + hue classification + monotone segmentation), compare_overlay.py (comparison + overlay). Written independently of the extractor's scripts, which were not run or read.",
+  "max_abs_deviation_mM": 0.171,
+  "max_abs_deviation_fraction_of_axis": 0.0068,
+  "axis_span_used_mM": 25.0,
+  "max_abs_deviation_cumulative_boundary_mM": 0.171,
+  "worst_points": [
+    {
+      "t": 10,
+      "species": "NH3_trap",
+      "stored": 1.367,
+      "verifier": 1.538,
+      "dev": -0.171,
+      "stored_cum_top": 21.976,
+      "verifier_cum_top": 22.06,
+      "dev_cum": -0.084
+    },
+    {
+      "t": 10,
+      "species": "NO2",
+      "stored": 1.111,
+      "verifier": 0.94,
+      "dev": 0.171,
+      "stored_cum_top": 23.087,
+      "verifier_cum_top": 23.0,
+      "dev_cum": 0.087
+    },
+    {
+      "t": 30,
+      "species": "NH3_trap",
+      "stored": 4.358,
+      "verifier": 4.529,
+      "dev": -0.171,
+      "stored_cum_top": 21.378,
+      "verifier_cum_top": 21.547,
+      "dev_cum": -0.169
+    },
+    {
+      "t": 30,
+      "species": "NO2",
+      "stored": 0.769,
+      "verifier": 0.598,
+      "dev": 0.171,
+      "stored_cum_top": 22.147,
+      "verifier_cum_top": 22.145,
+      "dev_cum": 0.002
+    }
+  ],
+  "verifier_reread_mM": {
+    "NO3": {
+      "0": 25.051,
+      "10": 14.114,
+      "20": 9.841,
+      "30": 7.022,
+      "40": 2.493,
+      "50": 0.613,
+      "60": 0.0
+    },
+    "NH3": {
+      "0": 0.0,
+      "10": 6.408,
+      "20": 8.715,
+      "30": 9.997,
+      "40": 13.244,
+      "50": 13.586,
+      "60": 12.747
+    },
+    "NH3_trap": {
+      "0": 0.0,
+      "10": 1.538,
+      "20": 2.563,
+      "30": 4.529,
+      "40": 5.383,
+      "50": 7.092,
+      "60": 8.544
+    },
+    "NO2": {
+      "0": 0.0,
+      "10": 0.94,
+      "20": 1.025,
+      "30": 0.598,
+      "40": 0.513,
+      "50": 0.171,
+      "60": 0.171
+    },
+    "N2": {
+      "0": 0.0,
+      "10": 1.965,
+      "20": 2.82,
+      "30": 2.82,
+      "40": 3.332,
+      "50": 3.503,
+      "60": 3.503
+    }
+  },
+  "checks": [
+    {
+      "check": "figure extraction and y calibration",
+      "result": "pass",
+      "detail": "Fig. S13e (SI PDF page 15, embedded JPEG xref 85, 1430x864 px) extracted with pymupdf at native resolution (run with python -I). The verifier located 6 y tick marks itself (darkness profile beside the axis line, labels 0-25 mM) and fitted them linearly: 0.0854 mM/px, max tick residual 0.021 mM, zero at y = 808.68 px. The extractor's stated resolution (0.085 mM/px) matches."
+    },
+    {
+      "check": "independent re-read of every segment boundary",
+      "result": "pass",
+      "detail": "Bars were located at x-tick centroids found by the verifier. Two side strips per bar avoid the centred error bars. Pixels were classified by HSV hue, which is invariant to the white hatch lines and the edge shading, and boundaries came from the verifier's own monotone segmentation in legend order. Max |stored - verifier| per segment = 0.171 mM (0.68% of the 0-25 mM labelled axis span); max cumulative-boundary difference = 0.171 mM. Every difference is <= 3 px and most are 0-1 px. Viewed overlay: stored boundaries sit on the image boundaries in every bar."
+    },
+    {
+      "check": "stacking order and colour-to-species assignment vs legend",
+      "result": "pass",
+      "detail": "Legend in every S13 panel: NO3- blue (gradient fill); N2 light-blue grid; NO2- grey hatch; 'TAN in trap chamber' red-orange crosshatch; 'TAN in reaction chamber' light-orange single hatch. The two orange classes separate cleanly by HSV hue (legend patches: trap median 24 deg, reaction 35 deg; the bar interiors match). Bottom-to-top stacking: NO3- | reaction-chamber TAN | trap-chamber TAN | NO2- | N2. Stored mapping: light orange -> NH3, crosshatch -> NH3_trap. Confirmed independently: the -2 V panel S13b at 120 min (light orange 7.71, crosshatch 13.42) reproduces Fig. 2e (purple 'TAN in feed tank' 7.72, green 'TAN in trap tank' 13.54), so light orange = feed loop."
+    },
+    {
+      "check": "time points and DC on/off timing",
+      "result": "pass",
+      "detail": "7 bars at 0, 10, ..., 60 min; stored t_min match. No DC on/off marking in Fig. S13."
+    },
+    {
+      "check": "units / axis label",
+      "result": "pass",
+      "detail": "Axis label 'N species (mM)'; stored as mM-N with factor 1.0. Correct."
+    },
+    {
+      "check": "c0",
+      "result": "pass",
+      "detail": "25 mM NO3--N (Fig. 2 and S13 captions); t = 0 bar reads 25.0 +/- 0.1, pinned to c0 = 25.0."
+    },
+    {
+      "check": "conditions vs text/SI",
+      "result": "pass",
+      "detail": "Main text section 2.4 says 0.5 M Na2SO4 pH 7 for the trap/anode loop and 25-150 mM NO3-, 10-50 mM Cl-, 0.5 M Na2SO4, pH 7 for the feed loop, with two peristaltic pumps at 50 mL/min; SCE +0.241 V vs SHE with a CHI 1100C. Potentials run from -1.5 to -3.5 V vs SCE 'without ohmic compensation' (2.5.3 and the Fig. S13 caption). Cl- is 10 mM (Fig. 2 and Fig. S13 captions), the cathode is 4 cm2, the anode a Pt mesh 3.5x3.5 cm, the PEM Nafion 117 (Fig. S1), and the feed tank holds 50 mL (p. 11608). The current 0.204 +/- 0.011 A matches the 15.2 mmol H+ in 120 min. The final trap pH is 1.53 +/- 0.10. pH 12.65 is attributed to 'the trap chamber' in the text; the meta note flags that. The temperature is not stated (null is correct). potential_V_vs_RHE is null with the reason given (uncompensated iR, pH drift): correct."
+    },
+    {
+      "check": "S13 TAN selectivity range vs text 78.7-85.1%",
+      "result": "pass",
+      "detail": "Stored end-of-run (NH3 + NH3_trap)/25: -1.5 V 78.8%, -2 V (Fig 2e/S13b at 120 min) 85.0%, -2.5 V 82.8%, -3 V 79.3%, -3.5 V 85.2%. The range 78.8-85.2% reproduces the text's 78.7-85.1% to within 0.1 points. The paper's own claim that -2 V gave the 'highest TAN selectivity of 84.7%' conflicts with its stated upper bound of 85.1%; our values cannot settle which is right (85.0 vs 85.2 is within reading error)."
+    },
+    {
+      "check": "DC on/off",
+      "result": "n/a",
+      "detail": "Fig. S13 marks no DC on/off periods. The -2 V panel S13b shows only 0-120 min of the Fig. 2e run (its DC-on part), so these runs are most likely DC-on throughout, but the paper does not say so. The meta notes state this correctly."
+    },
+    {
+      "check": "data/real JSON loads and validates (errors('dataset', ...))",
+      "result": "pass",
+      "detail": "errors = []"
+    },
+    {
+      "check": "reported_n_loss vs c0 - measured species",
+      "result": "pass",
+      "detail": "max |(c0 - sum of NO3, NO2, NH3, NH3_trap) - reported_n_loss| = 0.035 mM over t > 0; bar totals (sum + n_loss) 24.965-24.967 mM. quality.n_closure = sum/c0, consistent."
+    },
+    {
+      "check": "trap-volume basis of NH3_trap (trap TAN on the same mM axis as feed species)",
+      "result": "flag",
+      "detail": "The paper never states the trap-tank volume (only 'the feed tank (50 mL)', p. 11608). SI Eq. S8 divides the trap-tank TAN concentration by the input NO3--N concentration, Eq. S9 adds trap-tank and feed-tank TAN concentrations directly, and SI Part S2 computes N2 as initial NO3--N minus the remaining NO3-, NO2- and NH4+ concentrations. Those are concentration sums, so the bars conserve N only if the trap tank also holds 50 mL or the authors normalized trap TAN to the feed volume. One supporting number the extractor did not cite: the text gives 'total molar amount of the generated NH3 was only 1.05 mmol' at 120 min (p. 11608), and the plotted Fig. 2e TAN at 120 min (7.72 + 13.54 mM) x 50 mL = 1.06 mmol. So the authors themselves treat the plotted trap TAN as mmol per 50 mL of feed. That fits the stored reading (mM-N equivalent on the feed volume), though it cannot tell equal volumes from normalization. With a larger trap tank and raw concentrations, the moles would exceed the 1.25 mmol input, so the plotted values cannot be raw concentrations in a larger trap. The meta n_basis_note and the units_unverified flag describe this honestly. Recommend adding the 1.05 mmol cross-check to the note."
+    }
+  ],
+  "issues": [
+    "NO3- at 50 min: stored 0.784, verifier 0.613. The pixel rows put the blue top at about 0.68 mM, so each read is about 1 px off. End-of-run TAN/input is 85.2%, 0.1 points above the text's stated maximum of 85.1%. That is within reading error."
+  ],
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "meta.json conditions.notes: same boilerplate fix as S14/S15. The ~50 mA cm-2 (0.204 A) current and the pH 12.65 / 1.53 values are attributed to the -2 V Fig. 2e run; current is stated as not reported for this potential (Fig. 3a is normalized, so none can be derived); the volume_mL sentence says 50 mL is stated only for the Fig. 2e run and assumed here. meta.json n_basis_note: added the verifier's recommended 1.05 mmol cross-check (text 1.05 mmol generated NH3 = plotted Fig. 2e feed + trap TAN at 120 min x 50 mL = 1.06 mmol). data/real regenerated (conditions.notes and quality.n_basis_note only; series unchanged). Pixel-level issues: no change, as the verifier recorded.",
+      "files": [
+        "data/digitized_inputs/gao2022_figs13e_cuo_m3p5v/meta.json",
+        "data/real/gao2022_figs13e_cuo_m3p5v.json"
+      ]
+    }
+  ],
+  "agent_overlay_checked_flag": "NOT ADDED. The converter copies meta.json 'flags' into quality.flags, and schema/dataset.schema.json restricts quality.flags to an enum (unobserved_sink_suspected, noisy, sparse, single_species_only, units_unverified, potential_unverified). Adding 'agent_overlay_checked' and regenerating makes data/real/<slug>.json fail errors('dataset', ...) and tests/test_schemas.py (checked by dry run, nothing written). Needs a decision by the lead: extend the enum (one line in the schema) or record the status elsewhere. data/real/<slug>.json is already byte-identical to what the converter builds from the current meta.json, so no regeneration is needed for the values.",
+  "overlay": "verify_overlay.png (session scratch, not retained; contains publisher figure images): stored boundaries on the left half of each bar, verifier boundaries in magenta on the right half"
+}

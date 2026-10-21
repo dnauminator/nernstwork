@@ -1,0 +1,66 @@
+{
+  "id": "katsounaros2009thesis_diag6p7_endpoint_vs_e",
+  "kind": "endpoint_concentration_vs_potential",
+  "extractor": "agent team 2026-10-20",
+  "units": {
+    "E_V_vs_AgCl_3MKCl": "applied cathode potential, V vs Ag/AgCl (3 M KCl), nominal value of the run (marker x read back in E_read_from_marker_V)",
+    "conc_mM_as_plotted": "mM of the species as plotted (N2 per molecule)",
+    "conc_mM_N": "mM of nitrogen: conc_mM_as_plotted x 2 for N2, x 1 otherwise",
+    "match_score": "normalized cross-correlation (template_match) or ring-darkness score (ring_fit); low values mark overlapped markers, not wrong positions"
+  },
+  "structure": "24 rows: 6 potentials (-1.8 to -2.8 V in 0.2 V steps) x 4 species (NO3, NO2, NH3, N2), concentration in the catholyte after 1 h of electrolysis. N2O was measured in these runs (text: about 5 % selectivity at -2.8 V) but is not plotted.",
+  "extraction_method": "Raster digitization of the thesis page image (reader page 116, 300 dpi) by an agent script (OpenCV). x calibrated from the six labelled major ticks (-1.8 V at px 785 to -2.8 V at px 1771, linear fit residuals below 0.0003 V); y from the eight ticks 0-35 mM (0 at px 1219.5, 30 mM at px 480; 24.64 px/mM, residuals below 0.01 mM). Filled squares (NO3-), filled down-triangles (N2) and open up-triangles (NH3) located by normalized cross-correlation with templates cut from the -2.8 V markers, searched within +-6 px of each potential tick; anchors are the square centre and the triangle centroids (circumcentres). Open circles (NO2-) located by a ring fit (radius 8.75-9.5 px; arc hidden by the x-axis line excluded). Overlapped markers: NO2- at -1.8 V (under the N2 triangle), NH3 at -2.2 V (apex under the NO3- square; matched on the visible base). The NO3- line is the author's fitted curve and was not digitized. Overlay of the inverse-calibrated points on the page crop checked by eye (scratch, not committed). 1 px = 0.04 mM.",
+  "n_basis_note": "N2 plotted per molecule, established three ways: (1) text, N2 selectivity about 85 % at -2.8 V: 2 x 21.05 / (50 - 0.75) = 85.5 % (per-N reading would give 43 %); (2) N closure with x2 for N2 (N2O not plotted): 0.88, 0.92, 0.98, 1.03, 1.02, 0.99 from -1.8 to -2.8 V; (3) Table 6.11 at -2.0 V, where the 1 h conversion (71.6 %) matches the table's 70 %: the table's partial current efficiencies (NO2- 1.32 %, NH3 14.5 %, N2 45.2 %, taking 2, 8 and 10 electrons per NO2-, NH3 and N2) imply NO2-/NH3 = 0.364 and NH3/N2 = 0.401 mol/mol; digitized 0.364 and 0.398.",
+  "checks": {
+    "text_facts": [
+      "Final NO3- at -2.8 V 48 mg/L = 0.77 mM: digitized 0.75 mM",
+      "N2 selectivity about 85 % at -2.8 V: digitized 85.5 % (N2 x2 over NO3- removed)",
+      "NH3 maximum at -2.4 V, 13.37 mM: digitized 13.36 mM",
+      "NH3 at -2.8 V 6.45 mM (110 mg/L): digitized 6.42 mM",
+      "NO2- at -2.8 V 0.2 mg/L = 0.004 mM: digitized 0.02 mM (marker on the axis, within 1 px of zero)",
+      "Text says NO3- conversion at -2.8 V exceeded 99 %; 48 mg/L of a 50 mM start is 98.5 % and the figure gives 98.5 %"
+    ],
+    "table_6_11_comparison": "Table 6.11 is at 70 % conversion, so it is directly comparable only at -2.0 V (1 h conversion 71.6 %), where it agrees (see n_basis_note). At -2.2 to -2.8 V the 1 h endpoints are at 83-98.5 % conversion and the product ratios differ from the table's 70 % values (e.g. NO2-/NH3 0.066 vs 0.094 at -2.2 V; NH3/N2 0.305 vs 0.553 at -2.8 V), as expected for later sampling.",
+    "cross_figure": "At -2.4 V this diagram gives NO3- 4.52, NH3 13.36, N2 16.54 mM after 1 h; Diag 6.4 (same conditions, time course) gives 6.88 / 13.04 / 15.53 at 60 min and 3.23 / 13.34 / 16.59 at 90 min. The 1 h endpoint here lies between the 60 and 90 min points of Diag 6.4, so they are probably different runs (or the endpoint was not exactly 60 min)."
+  },
+  "conditions": {
+    "catalyst": "Sn foil (2 cm2 geometric)",
+    "electrolyte": "2 M NaCl + 0.05 M NaNO3",
+    "cell": "divided_batch (Teflon cell, Nafion 117 H+ form, 10 mL per compartment, platinized Pt anode, Luggin capillary)",
+    "potential_as_reported": "-1.8 to -2.8 V vs Ag/AgCl (3 M KCl), one run per potential",
+    "potential_V_vs_RHE": null,
+    "potential_mode": "potentiostatic",
+    "duration_min": 60,
+    "volume_mL": 10,
+    "temperature_C": null,
+    "stirring": "He sparge 12 mL/min",
+    "c0_mM_N": {
+      "NO3": 50.0
+    },
+    "notes": "Ambient temperature (not given numerically). NO3-/NO2- by ion chromatography, NH3 by OPA fluorescence, N2 (and N2O) by on-line GC-TCD with instantaneous readings integrated."
+  },
+  "provenance": {
+    "citation": "Katsounaros I., Electrochemical reduction of nitrate on tin cathode: removal of nitrate from the ion exchange regenerant solution, PhD thesis (in Greek), Aristotle University of Thessaloniki (2009)",
+    "doi": "10.12681/eadd/19491",
+    "figure": "Diag 6.7, printed p. 86",
+    "file": "thesis page image via the archive's online reader, 300 dpi; not committed",
+    "notes": "Terms: National Archive of PhD Theses (didaktorika.gr, run by EKT). Its terms of use allow deposited theses to be used online for educational, scientific, statistical and research purposes when there is no direct or indirect financial benefit, require any publication based on a thesis to cite its author, and allow linking to the site's content but not reproducing it; the item page states that all items in the archive are protected by copyright. The page image was viewed through the archive's online reader without an account and is not stored in the repo. Whether NernstWork's use meets the no-financial-benefit condition is the repository owner's decision. Caption: concentration of (filled square) nitrate, (open circle) nitrite, (open triangle) ammonia and (filled down-triangle) nitrogen after 1 h of electrolysis; electrolyte 2 M NaCl + 0.05 M NaNO3. Text facts from printed pp. 85-87; Table 6.11 from printed p. 88.",
+    "verified_against_figure": false
+  },
+  "flags": [
+    "endpoint_only",
+    "n2o_not_plotted",
+    "potential_vs_ag_agcl_not_rhe"
+  ],
+  "rows": 24,
+  "columns": [
+    "E_V_vs_AgCl_3MKCl",
+    "species",
+    "conc_mM_as_plotted",
+    "conc_mM_N",
+    "plotted_basis",
+    "E_read_from_marker_V",
+    "method",
+    "match_score"
+  ]
+}

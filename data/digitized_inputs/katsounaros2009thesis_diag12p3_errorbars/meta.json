@@ -1,0 +1,172 @@
+{
+ "id": "katsounaros2009thesis_diag12p3_errorbars",
+ "kind": "error_bars_as_plotted",
+ "extractor": "agent team 2026-10-20",
+ "summary": "Error-bar half-widths of every series in Katsounaros thesis Diag 12.3 (the thesis copy of Katsounaros et al. 2012 Fig. 1). Every bar that can be measured is +-10.0% of the plotted value: 18 well-resolved bars (half-width >= 5 px) give 0.0997 +- 0.0010 (range 0.0968-0.1013), 8 small bars give 0.103 +- 0.010, all within their reading error of 0.100. The bars are a constant relative percentage (the plotting program's percent-of-data style), not per-point replicate statistics. The thesis does not describe them.",
+ "provenance": {
+  "citation": "Katsounaros I., Electrochemical reduction of nitrate on tin cathode: removal of nitrate from the ion exchange regenerant solution, PhD thesis (in Greek), Aristotle University of Thessaloniki (2009)",
+  "doi": "10.12681/eadd/19491",
+  "figure": "Diag 12.3, printed p. 191 (archive reader page 221)",
+  "file": "page image from the National Archive of PhD Theses online reader, 300 dpi, 2481 x 3509 px (scratch, not committed)",
+  "caption_translated": "Concentration of (filled square) NO3-, (open circle) NO2-, (filled inverted triangle) N2, (open triangle) NH3 and (open star) N2O during electrolysis of 0.5 M NaNO3 + 1 M NaOH at -2.2 V vs Ag/AgCl. The curves were drawn by non-linear regression of eqs (12.23)-(12.28).",
+  "corresponds_to": "Katsounaros et al., Electrochim. Acta 71 (2012) 270, Fig. 1 = data/real/katsounaros2012_fig1_sn_naoh.json (marker values cross-checked in ../katsounaros2009thesis_diag12p3_xcheck)"
+ },
+ "licence": "Terms: National Archive of PhD Theses (didaktorika.gr, run by EKT). Its terms of use allow deposited theses to be used online for educational, scientific, statistical and research purposes when there is no direct or indirect financial benefit, require any publication based on a thesis to cite its author, and allow linking to the site's content but not reproducing it; the item page states that all items in the archive are protected by copyright. The page images were viewed through the archive's online reader without an account and are not stored in the repo. Whether NernstWork's use meets the no-financial-benefit condition is the repository owner's decision.",
+ "calibration": {
+  "y_ticks_row_px": [
+   2001.0,
+   2084.5,
+   2168.09,
+   2251.5,
+   2335.09,
+   2418.91,
+   2502.5,
+   2586.01,
+   2669.91,
+   2753.02,
+   2837.0
+  ],
+  "y_ticks_mM": [
+   500,
+   450,
+   400,
+   350,
+   300,
+   250,
+   200,
+   150,
+   100,
+   50,
+   0
+  ],
+  "y_tick_length_px": [
+   15,
+   8,
+   15,
+   8,
+   15,
+   8,
+   15,
+   8,
+   15,
+   8,
+   15
+  ],
+  "y_fit": {
+   "mM_per_px": -0.598089,
+   "offset_mM": 1696.698,
+   "px_per_mM": 1.672,
+   "max_abs_resid_mM": 0.149
+  },
+  "x_ticks_col_px": [
+   691.92,
+   891.92,
+   1092.14,
+   1292.57,
+   1493.04,
+   1693.04,
+   1893.04
+  ],
+  "x_ticks_min": [
+   0,
+   30,
+   60,
+   90,
+   120,
+   150,
+   180
+  ],
+  "x_fit": {
+   "min_per_px": 0.149825,
+   "offset_min": -103.6525,
+   "max_abs_resid_min": 0.043
+  },
+  "note": "Tick marks located on the image by darkness profiles beside the axis lines (ticks point outward); all 11 y ticks (majors every 100 mM, 15 px long; minors at the 50s, 8 px) fitted by least squares. Agrees with the xcheck calibration (0.59793 mM/px) to 0.03%."
+ },
+ "method": "Each bar is a 1 px vertical line with a 1 px horizontal cap about 17 px wide at each end (measured on 14 clean caps: darkness integral 0.96, anti-aliased at quarter-pixel positions). Bars are drawn over the markers, and the bar line runs from the marker edge to the cap, so caps inside open (white-filled) markers stay visible; caps inside filled markers do not. Every cluster was inspected in pixel dumps and zoomed crops. Each visible cap was then located by the darkness-weighted centroid of the median-over-columns profile in a small row window, with columns chosen to avoid marker outlines, model curves and other series' caps (per-cap windows and columns in the script). One cap (NO3 at 90 min) is split over two rows of which only one is clean; its row is that row + (1 - darkness/0.96). Centre = cap midpoint when both caps are visible, else the xcheck marker centre. half_width = |cap - centre|; relative = half_width / centre. half_width_sd from the cap position uncertainty (0.15 px clean, 0.2-0.5 px occluded; +0.5 px for the centre when only one cap is visible). Overlay of all caps on the page checked by eye (scratch, not committed).",
+ "csv_columns": {
+  "species": "NO3, NO2, N2, NH3, N2O",
+  "t_min": "nominal sampling time, min",
+  "center_mM_as_plotted": "bar centre, mM as plotted (N2 and N2O are N-equivalents in this figure)",
+  "lower / upper": "center -/+ half_width, mM as plotted",
+  "half_width": "half-width of the bar, mM as plotted",
+  "relative": "half_width / center",
+  "half_width_sd": "1-sigma reading uncertainty of half_width, mM",
+  "status": "both_caps | upper_only | lower_only | low_confidence | hidden | unresolved",
+  "centre_source": "cap_midpoint | marker_centre_xcheck",
+  "upper_cap_row_px / lower_cap_row_px / centre_row_px": "rows on the 300 dpi page image p221.jpg",
+  "method_note": "what was visible, what was excluded and why"
+ },
+ "result": {
+  "constant_relative_width": true,
+  "relative_resolved_bars_half_width_ge_5px": {
+   "n": 18,
+   "mean": 0.0997,
+   "sd": 0.001,
+   "min": 0.0968,
+   "max": 0.1013
+  },
+  "relative_small_bars_half_width_lt_5px": {
+   "n": 8,
+   "mean": 0.1032,
+   "sd": 0.01,
+   "min": 0.0962,
+   "max": 0.1272
+  },
+  "relative_all_measured": {
+   "n": 26,
+   "mean": 0.1008,
+   "sd": 0.0056,
+   "min": 0.0962,
+   "max": 0.1272
+  },
+  "relative_by_species_mean": {
+   "NO3": 0.1001,
+   "NO2": 0.0989,
+   "N2": 0.0997,
+   "NH3": 0.1049,
+   "N2O": 0.1008
+  },
+  "relative_by_species_n": {
+   "NO3": 5,
+   "NO2": 6,
+   "N2": 5,
+   "NH3": 5,
+   "N2O": 5
+  },
+  "chi2_per_point_vs_exactly_10pct": {
+   "resolved": 0.47,
+   "small": 0.28,
+   "note": "below 1 with the assigned reading uncertainties, so the scatter is reading error"
+  },
+  "not_measured": [
+   "NO3 150 min: hidden (expected half-width about 5 px; caps inside the filled square and under the NH3 triangle/model curve)",
+   "N2 30 min: hidden (expected half-width about 3 px; both caps inside the filled N2 triangle)",
+   "NH3 30 min: unresolved (expected half-width under 1 px; caps merge with the N2O star, N2 triangle apex, model curves and the x axis)",
+   "N2O 30 min: unresolved (expected half-width under 1 px; same cluster as NH3 at 30 min)"
+  ],
+  "low_confidence": [
+   "NO3 180 min: relative 0.100, upper cap inside the filled square; lower cap partly visible over the white NO2 circle just below the black square, its upper half may merge with the black; low confidence, not used in the summary"
+  ],
+  "single_cap": [
+   "NO3 0 min (lower_only)",
+   "NO2 60 min (upper_only)",
+   "NO2 90 min (upper_only)"
+  ],
+  "t0_products": "NO2, N2, NH3, N2O markers at t = 0 sit at 0 mM; their bars have zero length and are not listed"
+ },
+ "thesis_text_on_error_bars": "Neither the caption nor the text of Diag 12.3 (printed pp. 191-192) mentions the bars, and no passage in the thesis describes error bars. Related statements: printed p. 81, the deviation of the selectivity sum from 100% 'is due to the experimental error, which was of the order of 10%' (a -2.4 V NaCl run); printed p. 146, mass-balance loss within the experimental error (+-5%) for nitrate below 0.1 M; printed p. 71, ion chromatography of hyponitrite/hyponitrate RSD 5% (9 repeats); printed p. 192, model fit '% error = 9.3%', defined in the appendix (printed p. 201) as sum|residual| / sum(measured). The +-10% bars match the 'order of 10%' experimental error. They are a uniform percentage, not per-point replicate statistics, and their type (1 sigma, 2 sigma, range) is not stated.",
+ "use_as_noise_model": "If adopted, take relative_sigma = 0.10 for all five species (NO3, NO2, N2, NH3, N2O in mM-N) in the task noise model (schema/task.schema.json noise.relative_sigma), or sigma_i = 0.10 x y_i per point (dataset.schema.json series sigma). Add an absolute floor (absolute_sigma_mM) for near-zero points, since a pure relative sigma is zero at t = 0 and below 0.5 mM for NH3 and N2O at 30 min. This is an author-assigned uniform error of unstated type, not measured scatter: if the bars are 2 sigma or a max-error range, the 1-sigma value would be about 0.05.",
+ "byproducts": {
+  "cap_midpoint_centres": "Where both caps are visible the cap midpoint is an independent estimate of the plotted value. It agrees with the xcheck marker centres to <= 0.5 px (0.3 mM) except NO3 at 60 min (123.5 mM from caps vs 122.0 from the occluded template match; the square's bottom edge gives 123.6; Daniel 123.9), NH3 at 120 min (25.8 vs 26.2) and NH3 at 150 min (23.8 vs 24.3). NH3 at 120 min from the caps (25.8 mM) supports the thesis marker over Daniel's 19.6 for the thesis copy only (the journal figure Daniel digitized was not checked); see the integration note in ../katsounaros2009thesis_diag12p1_intermediates (the Diag 12.1 NH3 rates imply about 20.8)."
+ },
+ "flags": [
+  "author_error_bars_type_unstated",
+  "uniform_10pct_not_replicate_statistics",
+  "small_bars_resolution_limited (half-width < 5 px; reading error 0.2-0.5 px)",
+  "hidden_or_unresolved: NO3 150, N2 30, NH3 30, N2O 30; NO3 180 low confidence",
+  "inputs_only (do not convert to data/real)"
+ ],
+ "scripts": "literature/extraction_scripts/k12_hidden/errorbars/ (calib.py, capdet.py, extract_errorbars.py, overlay.py, write_meta_errorbars.py; probe.py, crop.py, caps_scan.py, scan_points.py, scan2.py, capshape.py were the inspection tools)",
+ "rows": 31
+}

@@ -1,0 +1,167 @@
+{
+  "dataset": "katsounaros2009thesis_diag6p4_sn_m2p4v",
+  "also_covers": "data/real/katsounaros2009thesis_diag6p4_sn_m2p4v.json",
+  "source": "Katsounaros I., PhD thesis, Aristotle University of Thessaloniki (2009), doi 10.12681/eadd/19491; page images at 300 dpi from the archive reader (local scratch copy, reader page = printed page + 30); Diag 6.4, printed p. 81 (reader p111.jpg)",
+  "verdict": "accept_with_flags",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "summary": "Independent re-read agrees with all 30 stored points within 0.057 mM (0.11 % of the 50 mM span, about 1 px). Marker-to-species mapping, the x2 N basis for N2 and N2O, the 15 min grid, the closure values and the chapter 5 conditions check out against the page and the text. The NO2- point at 15 min is correctly read from the figure (0.59-0.60 mM); the text's 1.15 mM is not where any marker is drawn. Flags: that text/figure disagreement, closure above 1 (1.05-1.10, within the stated ~10 % error), and the inferred (well supported) N basis. No values changed; data_real file passes schema validation.",
+  "method": "Verifier scripts in literature/extraction_scripts/katsounaros_verify/ (axes_find.py, ticks_find.py, blob.py, ring.py, segfit.py, v64*.py, v67*.py, v106*.py, v121*.py, reread_tables.py), written independently; the extractor's scripts in literature/extraction_scripts/katsounaros_new/ were not run or read. Axes were calibrated from tick marks located on the page image by dark-pixel profiles and fitted by least squares; markers were re-read by connected-component centroids after morphological opening (filled markers) or hole filling (open markers), ring fits for open circles, and, for occluded markers, from visible features (apex, base) or by extrapolating the connecting line segments. Stored points were mapped back onto the page with the verifier's calibration and the overlay was inspected by eye.",
+  "calibration_verifier": {
+    "x": "major ticks 0-90 min located at px 678.32, 873.95, 1069.32, 1264.56, 1460.00, 1655.57, 1851.00; fit 13.0285 px/min, x(0) = 678.39, max residual 0.13 px",
+    "y": "ticks 0-50 mM every 5 at px 1555.9 ... 705.5; fit 17.0066 px/mM, y(0) = 1555.86, max residual 0.31 px",
+    "vs_extractor": "extractor 678.0/1851.0 px and 1556.0/705.5 px; difference below 0.4 px (0.02 mM)"
+  },
+  "overlay": "verify_overlay.png and verify_overlay_bottom.png (session scratch, not retained; contains thesis page images); every stored point lands on the centre of its marker",
+  "max_abs_deviation_mM": 0.057,
+  "max_abs_deviation_fraction_of_axis": 0.0011,
+  "axis_span_used_mM": 50.0,
+  "worst_points": [
+    {
+      "species": "NH3",
+      "t_min": 60,
+      "stored": 13.041,
+      "verifier": 13.098,
+      "dev": -0.057
+    },
+    {
+      "species": "NH3",
+      "t_min": 75,
+      "stored": 13.159,
+      "verifier": 13.215,
+      "dev": -0.056
+    },
+    {
+      "species": "N2O",
+      "t_min": 45,
+      "stored": 1.176,
+      "verifier": 1.132,
+      "dev": 0.044
+    },
+    {
+      "species": "N2O",
+      "t_min": 15,
+      "stored": 0.529,
+      "verifier": 0.571,
+      "dev": -0.042
+    }
+  ],
+  "checks": [
+    {
+      "name": "marker_mapping",
+      "result": "pass",
+      "detail": "Caption (image): filled square NO3-, open circle NO2-, filled down-triangle N2, open triangle NH3, star N2O. Stored series sit on exactly those markers in the overlay. Assignment is also forced by the text selectivities (swapping NH3/N2 would give NH3 35 %)."
+    },
+    {
+      "name": "units_and_n_basis",
+      "result": "pass",
+      "detail": "y axis 'Συγκέντρωση, mM'. With N2 and N2O x2 the 90 min selectivities are NH3 28.5 %, N2 70.9 %, N2O 6.0 % (verifier reads: 28.6, 70.8, 6.1) vs text 28.6 / 70.7 / 6; per-N plotting would give N2 35 % and N2O 3 %. data_real values equal the WPD csv x1 (NO3, NO2, NH3) or x2 (N2, N2O) exactly."
+    },
+    {
+      "name": "closure",
+      "result": "pass",
+      "detail": "Recomputed from data_real: 1.0, 0.9905, 1.0922, 1.0975, 1.0754, 1.0469, 1.0525 (identical to quality.n_closure). Without x2: 0.69 at 90 min. Text: selectivity sum deviates from 100 % because of ~10 % experimental error."
+    },
+    {
+      "name": "time_grid",
+      "result": "pass",
+      "detail": "Markers at 0-90 min every 15 min; verifier x reads within 0.05 min of the ticks."
+    },
+    {
+      "name": "no2_15min",
+      "result": "pass_figure_vs_text_conflict",
+      "detail": "Ring fit of the open circle at 15 min: centre 0.591 mM (full ring, r = 9.0 px) or 0.562 mM (lower half only, star excluded); zoomed manual read 0.60 mM. Stored 0.603 is right for the figure. The text value 1.15 mM would put the circle centre at px 1536, which is the top edge of the drawn circle; no marker is drawn there. Figure and text disagree by about 2x; the dataset follows the figure and documents the conflict."
+    },
+    {
+      "name": "text_facts",
+      "result": "pass",
+      "detail": "NO3- 3.2 mM at 90 min (stored 3.233, verifier 3.226); NO2- maximum at 15 min (figure: 0.60 at 15 vs 0.57 at 30, so the maximum is at 15 min although shallow); selectivities as above; error ~10 %."
+    },
+    {
+      "name": "no3_error_bars",
+      "result": "pass",
+      "detail": "Error-bar stems at 15, 30, 60 min extend +-10.0-10.3 % of the value (45 min top end obscured by the NH3 triangle), as the meta states; not carried as sigma."
+    },
+    {
+      "name": "conditions",
+      "result": "pass",
+      "detail": "Checked on printed pp. 63-69 and 80-81: Sn cathode (Sigma-Aldrich 99.9 %) polished with #1200 paper, 2 cm2 geometric; platinized Pt anode 6 cm2, 2 cm away; Ag/AgCl in 3 M KCl with Luggin capillary; Teflon cell, Nafion 117 (H+); 12 mL compartments filled with 10 mL; He 12 mL/min into the cell bottom (bubbles also stir the catholyte); ambient conditions; 2 M NaCl + 0.05 M NaNO3; -2.4 V vs Ag/AgCl; IC (AS9-HC, UV 220 nm), OPA fluorescence, on-line GC-TCD with integration of instantaneous readings."
+    },
+    {
+      "name": "schema_validation",
+      "result": "pass",
+      "detail": "nernstwork.schemas.errors('dataset', data/real/katsounaros2009thesis_diag6p4_sn_m2p4v.json) returned []."
+    }
+  ],
+  "claims_tested": [
+    {
+      "claim": "90 min selectivities NH3 28.5 / N2 70.9 / N2O 6.0 % vs text 28.6 / 70.7 / 6",
+      "result": "confirmed"
+    },
+    {
+      "claim": "NO2- at 15 min plotted 0.60 mM vs text 1.15 mM; figure followed",
+      "result": "confirmed (verifier 0.56-0.60 mM)"
+    },
+    {
+      "claim": "closure 0.99-1.10",
+      "result": "confirmed (0.9905-1.0975)"
+    }
+  ],
+  "issues": [
+    "Source conflict: text quotes NO2- 1.15 mM at 15 min; the figure shows 0.60 mM. Dataset follows the figure (documented in provenance.notes).",
+    "Closure exceeds 1 by up to 10 % at 30-45 min; consistent with the thesis's stated ~10 % experimental error, but users fitting N balance should allow for it.",
+    "NH3 at 15 and 45 min, N2O at 15 min and NO2- at 30 min are partly occluded; verifier reads from visible features agree within 0.05 mM.",
+    "Minor wording: conditions.catalyst says 'Sn foil'; the thesis text read here (printed p. 63) says only 'Sn electrode, Sigma-Aldrich, 99.9 %'. Not changed (may come from the published papers); worth confirming.",
+    "provenance.verified_against_figure is still false in meta and data_real; left unchanged per instructions (verification recorded here)."
+  ],
+  "fixes_applied": [],
+  "verifier_reread_mM_as_plotted": {
+    "NO3": {
+      "15": 31.801,
+      "30": 20.156,
+      "45": 11.607,
+      "60": 6.873,
+      "75": 3.873,
+      "90": 3.226
+    },
+    "NO2": {
+      "15": 0.591,
+      "30": 0.547,
+      "45": 0.312,
+      "60": 0.194,
+      "75": 0.121,
+      "90": 0.077
+    },
+    "NH3": {
+      "15": 4.627,
+      "30": 9.757,
+      "45": 12.36,
+      "60": 13.098,
+      "75": 13.215,
+      "90": 13.357
+    },
+    "N2O": {
+      "15": 0.571,
+      "30": 0.908,
+      "45": 1.132,
+      "60": 1.326,
+      "75": 1.381,
+      "90": 1.43
+    },
+    "N2": {
+      "15": 5.672,
+      "30": 11.151,
+      "45": 14.115,
+      "60": 15.511,
+      "75": 16.217,
+      "90": 16.569
+    }
+  },
+  "verifier_methods": {
+    "NO3": "filled-blob centroid",
+    "NO2": "ring fit (axis rows excluded; 30 min lower half only)",
+    "N2": "filled-blob area centroid (line extrapolation agrees within 0.03)",
+    "N2O": "filled-hole blob centroid; 15 min from apex + mean apex-to-centre offset",
+    "NH3": "filled-hole blob centroid; 15 min base - h/3, 45 min apex + 2h/3 (line extrapolation agrees within 0.06)"
+  }
+}

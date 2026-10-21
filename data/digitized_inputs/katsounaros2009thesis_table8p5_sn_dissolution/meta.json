@@ -1,0 +1,55 @@
+{
+ "id": "katsounaros2009thesis_table8p5_sn_dissolution",
+ "kind": "inputs_only_thesis_table",
+ "note": "Inputs only: dissolved tin in the catholyte (cathodic corrosion of the Sn cathode) versus NaCl concentration.",
+ "files": {
+  "extracted.csv": "one row per NaCl concentration"
+ },
+ "csv_columns": {
+  "table_row": "row order",
+  "NaCl_M": "mol L-1",
+  "NaNO3_M": "caption",
+  "E_V_vs_AgAgCl": "applied potential",
+  "duration_h": "electrolysis time (text gives 4 h for 0.1 and 0.5 M)",
+  "Sn_dissolved_mg_per_L": "dissolved Sn (Sn2+ + Sn4+), mg L-1, atomic absorption",
+  "value_as_printed": "as printed",
+  "flag": "",
+  "note": ""
+ },
+ "provenance": {
+  "citation": "Katsounaros I., Electrochemical reduction of nitrate on tin cathode - removal of nitrate from ion-exchange resin regeneration wastes, PhD thesis (in Greek), Aristotle University of Thessaloniki, Dept. of Chemical Engineering (2009)",
+  "doi": "10.12681/eadd/19491",
+  "table": "Table 8.5",
+  "printed_page": 125,
+  "reader_page": 155,
+  "page_offset_note": "printed page = online-reader page - 30",
+  "caption_translated": "Table 8.5. Concentration of dissolved tin during electrolysis at -1.8 V vs. Ag/AgCl of solutions of 0.05 M NaNO3 and different NaCl concentration. Columns: NaCl concentration (M) | dissolved tin concentration (mg/L).",
+  "source_file": "page text layer from the archive's online reader (scratch only, not committed)",
+  "licence": "National Archive of PhD Theses terms: research use with no direct or indirect financial benefit; author must be cited; items protected by copyright"
+ },
+ "conditions": {
+  "cathode": "Sn foil, 2 cm2",
+  "analysis": "atomic absorption of the catholyte (section 8.2.1)",
+  "cell": "Teflon divided cell, Nafion 117, 10 mL catholyte",
+  "procedure": "same methodology as the nitrate runs, including 30 min at open circuit during deaeration (printed p. 124)"
+ },
+ "text_translated": "Printed p. 125: increasing the supporting-electrolyte concentration hindered tin corrosion: in 0.1 M NaCl the tin concentration after 4 hours of electrolysis was 79 mg L-1, in 0.5 M NaCl about half (38 mg L-1); NaCl above 0.5 M did not reduce corrosion further. Related (printed p. 123): after 1 h in 2 M NaCl + 0.05 M NaNO3 dissolved Sn rose linearly from 28 mg/L (-1.8 V) to 258 mg/L (-2.8 V); at -2.4 V SnH4 was trapped in AgNO3 (3.5 ppm after 150 min, 50 ug total vs 2 mg cathode mass loss).",
+ "checks": {
+  "values_found_on_page": [
+   {
+    "printed_sequence": "0,1 79 0,5 38 1,0 36 2,0 33 4,0 35",
+    "found_on_page": true
+   }
+  ],
+  "text_quotes": {
+   "0.1 M": "79 mg L-1 after 4 h (matches)",
+   "0.5 M": "about half, 38 mg L-1 (matches)"
+  }
+ },
+ "flags": [
+  "duration_stated_only_for_two_rows",
+  "corrosion_not_nitrogen_species",
+  "potential_vs_ag_agcl_not_rhe"
+ ],
+ "transcription_method": "thesis text layer: per-page text layer of the National Archive of PhD Theses online reader (EKT freader), read and typed in by an agent on 2026-10-20; table layout reconstructed by hand from the flattened text; every row's printed number sequence was checked by script to occur verbatim on the cited page (literature/extraction_scripts/thesis_tables/build_tables.py). Page images of these pages were not viewed. Not yet re-checked by a person."
+}

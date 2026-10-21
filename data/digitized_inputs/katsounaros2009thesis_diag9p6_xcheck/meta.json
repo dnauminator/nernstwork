@@ -1,0 +1,144 @@
+{
+ "id": "katsounaros2009thesis_diag9p6_xcheck",
+ "kind": "inputs_only_crosscheck",
+ "note": "Independent raster digitization of the thesis copy of Katsounaros & Kyriacou 2008 Fig. 2, made to measure digitization error in data/real/katsounaros2008_fig2_sn_nacl_1M.json. Inputs only: do not convert to data/real; Daniel's folder and dataset are unchanged.",
+ "files": {
+  "extracted.csv": "tidy long; kind = data (markers)",
+  "comparison_vs_daniel.json": "per point and per species differences against data/real/katsounaros2008_fig2_sn_nacl_1M.json"
+ },
+ "csv_columns": {
+  "species": "NO3, NO2, NH3, N2, N2O; N_loss = the authors' plotted loss of mass balance (light-grey open stars, caption '(open star) represents the loss of mass balance'), not a species",
+  "t_min": "nominal sampling time (15-min grid; N2 and N2O also at 195 min)",
+  "value_as_plotted": "value read on the y axis (mM)",
+  "unit_as_plotted": "see units",
+  "value_mM_N": "value_as_plotted x 2 for N2 and N2O (plotted per molecule), x 1 otherwise",
+  "kind": "data",
+  "marker": "symbol on the page",
+  "t_read_min": "time read from the marker x position",
+  "x_px/y_px": "marker anchor on the 300 dpi page image p167.jpg (2481 x 3509 px)",
+  "unc_as_plotted": "read uncertainty estimate (1 px = 1.158 mM; 1-2.5 px depending on overlap, more for clipped markers)",
+  "method": "template_ncc | plus_stroke_top | plus_stroke_bottom (see methods)",
+  "match_score": "NCC peak for template_ncc",
+  "flags": "per-point overlap/visibility flags"
+ },
+ "provenance": {
+  "citation": "Katsounaros I. (2009), PhD thesis, Aristotle University of Thessaloniki (National Archive of PhD Theses, EKT)",
+  "doi": "10.12681/eadd/19491",
+  "figure": "Diagram 9.6 (printed page 137; reader page 167)",
+  "caption_translated": "Concentration of (filled square) nitrate, (O) nitrite, (open triangle) ammonia, (filled inverted triangle) nitrogen and (filled star) nitrous oxide at -2.8 V vs Ag/AgCl. (open star) represents the loss of mass balance. Electrolyte: 1 M NaNO3 + 1 M NaCl.",
+  "corresponds_to": "Katsounaros I., Kyriacou G., Electrochim. Acta 53 (2008) 5477-5484, Fig. 2 (digitized by Daniel: data/digitized_inputs/katsounaros2008_fig2)",
+  "source_images": "EKT online reader page images at 300 dpi (img_19491/p167.jpg), scratch only"
+ },
+ "licence": "Terms: National Archive of PhD Theses (didaktorika.gr, run by EKT). Its terms of use allow deposited theses to be used online for educational, scientific, statistical and research purposes when there is no direct or indirect financial benefit, require any publication based on a thesis to cite its author, and allow linking to the site's content but not reproducing it; the item page states that all items in the archive are protected by copyright. The page images were viewed through the archive's online reader without an account and are not stored in the repo. Whether NernstWork's use meets the no-financial-benefit condition is the repository owner's decision.",
+ "extraction_method": "Raster digitization of the 300 dpi page image from the National Archive of PhD Theses online reader (EKT freader; page images stay in scratch, not committed). Axes calibrated by linear fits to tick-mark centroids located automatically from darkness profiles beside the axis lines (all labelled ticks; residuals and the axis-line origin check are in 'calibration'). Markers located by OpenCV normalized cross-correlation (cv2.matchTemplate, TM_CCOEFF_NORMED) with one template per marker shape, searched in a column window of +-6 to 8 px around each sampling time and a per-point concentration window set from visual inspection (the window only selects which marker; the value comes from the match peak, refined to sub-pixel by a parabolic fit). Every detection was checked by eye on zoomed crops with the template outline drawn at the detected position (scratch QA images). Points that template matching could not resolve are handled by the per-point 'method' column, explained in 'methods'. Extracted by agent team 2026-10-20.",
+ "methods": {
+  "template_ncc": "synthetic anti-aliased templates fitted to a clean instance of each symbol (square 13 px filled; circle r 9 px; triangles circumradius 12.5/13 px; star r 10 px on a light-grey mask for the loss series). Anchor = centre of the circumscribed circle: on this page the N2 connecting polyline passes through the triangle centroid (checked on 7 clean markers, within 1 px), not the bounding-box centre.",
+  "plus_stroke_top": "N2O '+' markers sit on a dashed line inside or behind other markers, so NCC fails. The vertical stroke of the + was found from the darkness of the best adjacent column pair within +-2 px of the sampling time; the isolated 195-min marker has a 16-row stroke centred on its horizontal arm, so centre = stroke top + 7.5 px (bottom - 7.5 px where the top merges with a triangle apex). Row windows that exclude other markers were set by the analyst from zoomed crops.",
+  "not_resolved": "N2O at 15 and 30 min lies under the filled N2 triangles near the axis; no value was read (Daniel has 3.3 and 4.5 mM molecular there from the paper figure)."
+ },
+ "units": {
+  "NO3, NO2, NH3": "mM",
+  "N2, N2O": "mM per molecule (x2 to mM-N)",
+  "N_loss": "mM-N"
+ },
+ "conditions": {
+  "catalyst": "Sn",
+  "electrolyte": "1 M NaNO3 + 1 M NaCl",
+  "potential_as_reported": "-2.8 V vs Ag/AgCl",
+  "c0_mM_N": {
+   "NO3": 1000.0
+  }
+ },
+ "n_basis_note": "N2 and N2O plotted per molecule: at 210 min the thesis values give N2 842 mM-N (84.2%), N2O 59 mM-N (5.9%), NH3 87 mM (8.7%) of 1000 mM-N, against the thesis text 85.7% / 6% / 8.9% (same numbers as the paper). With N2 taken 1:1 the 90-min N balance would be 525 mM-N, a 475 mM-N gap, while the authors' plotted loss at 90 min is 263 mM-N, which matches the per-N sum (1000 - 728 = 272). Text checks: NO2- maximum 0.136 M at 60 min (read 136.5 mM at 60 and 136.3 at 75); NO2- 1.52 mM at the end (read 2.4 mM at 210, marker half below the axis); loss maximum 0.25 M at 90 min (read 262.8).",
+ "flags": [
+  "potential_unverified",
+  "inputs_only_crosscheck"
+ ],
+ "not_digitized": [
+  "t = 0 product markers (pile up at the origin; NO3 t0 kept with clipped_at_frame_top)",
+  "N2O at 15 and 30 min (hidden)",
+  "NO3 error bars (thesis shows +-~10% bars on NO3 only)",
+  "the smooth unlabelled line through the NO3 points (not identified as a model in the caption)"
+ ],
+ "thesis_vs_paper": [
+  "Same 15-min sampling, the same extra 195-min N2 and N2O points, and the same mass-balance-loss series. Values agree to about one thesis pixel, so this is the same data and almost certainly the same Origin figure as paper Fig. 2.",
+  "The thesis caption lists N2O as a filled star, but the plot draws N2O as '+' on a dashed line. The open (light-grey) star is the mass-balance loss.",
+  "The thesis shows error bars (about +-10%) on NO3 only, plus a smooth unlabelled curve through the NO3 points. Without the paper image here, it is unknown whether the paper version has them."
+ ],
+ "findings": [
+  "Agreement: 78 common points (t > 0), RMS 1.8 mM as plotted (0.18% of the 1000 mM axis), largest 3.9 mM as plotted (N2 at 120 min, 7.7 mM-N). No time shift, no scale error (Daniel = -1.2 + 0.999 x thesis, plotted units), no species swap.",
+  "Small systematic offset: thesis - Daniel averages +1.3 mM as plotted (about 1 thesis pixel). It is largest for N2: +5.1 mM-N mean (+2.6 mM N2, all 14 points positive). On this page the N2 connecting polyline passes through the triangle centroid, about 3 px (3.4 mM) above the bounding-box centre of the filled inverted triangle, which is where a by-eye click lands. Daniel's N2 plateau is therefore 6.9 mM-N low (835.3 vs 842.2 mM-N at 210 min): 0.82% of the plateau, or 0.69% of c0 = 1000 mM-N (text 85.7% = 857 mM-N).",
+  "N2O: from 135 to 195 min, Daniel's values are 2.0-2.3 mM N2O (4.0-4.6 mM-N) below the thesis + markers, and 1.2 mM N2O below at 210 min (thesis 29.4-29.5 mM N2O from 150 to 210 min). Thesis N2O at 210 min is 5.9% of N against the text's 6%; Daniel's is 5.65%. Most + markers sit inside or under other symbols. The 15 and 30 min N2O points are hidden in the thesis and were not checked.",
+  "N basis: N2 and N2O per molecule confirmed (end distribution vs text, and the authors' plotted loss of mass balance equals 1000 minus the per-N sum of the thesis points: 264 vs plotted 263 mM-N at 90 min). Daniel's x2 conversion is correct. His 'Ag/AgCl'-labelled WPD dataset is the mass-balance loss and is stored as quality.reported_n_loss; its values agree with the thesis (RMS 2.2 mM-N).",
+  "Late NO2 (165-210 min) and NO3 (135, 165, 210 min) differ by 2-3 mM, inside the read uncertainty for markers half under the x axis or overlapping the N2O +. Not an error in either digitization."
+ ],
+ "calibration": {
+  "x_ticks_px": [
+   646.976,
+   829.558,
+   1012.024,
+   1195.024,
+   1378.0,
+   1560.976,
+   1744.0,
+   1926.976
+  ],
+  "x_ticks_min": [
+   0,
+   30,
+   60,
+   90,
+   120,
+   150,
+   180,
+   210
+  ],
+  "x_fit_min_per_px": 0.16404066024147765,
+  "x_fit_offset": -106.06974988602265,
+  "x_resid_max_min": 0.061,
+  "y_ticks_px": [
+   595.974,
+   768.974,
+   941.5,
+   1114.469,
+   1287.0,
+   1460.026
+  ],
+  "y_ticks_val": [
+   1000,
+   800,
+   600,
+   400,
+   200,
+   0
+  ],
+  "y_fit_per_px": -1.1575390070187466,
+  "y_fit_offset": 1689.9391164785418,
+  "y_resid_max_as_plotted": 0.186,
+  "origin_check": {
+   "t_at_yaxis": 0.06455729021338641,
+   "c_at_xaxis": -0.06783376882822267
+  },
+  "resolution_as_plotted_per_px": 1.158
+ },
+ "points": {
+  "NO3": 14,
+  "NO2": 13,
+  "NH3": 13,
+  "N2": 14,
+  "N2O": 12,
+  "N_loss": 13
+ },
+ "comparison_summary": {
+  "per_species_rms_mM_N": {
+   "NO3": 1.468,
+   "NO2": 1.412,
+   "NH3": 0.733,
+   "N2": 5.479,
+   "N2O": 2.974,
+   "N_loss": 2.196
+  },
+  "overall_rms_pct_axis": 0.181,
+  "file": "comparison_vs_daniel.json"
+ }
+}

@@ -1,0 +1,193 @@
+{
+  "id": "dortsiou2009thesis_diag6p6_zn_m2p24v",
+  "provenance": {
+    "citation": "Dortsiou M., Electrochemical removal of nitrate and ammonia from aqueous solutions and environmental samples, PhD thesis (in Greek), Aristotle University of Thessaloniki (2009)",
+    "doi": "10.12681/eadd/27551",
+    "figure": "Diag 6.6, printed p. 113",
+    "file": "thesis page image via the archive's online reader, 300 dpi; not committed",
+    "notes": "Terms: National Archive of PhD Theses (didaktorika.gr, run by EKT). Its terms of use allow deposited theses to be used online for educational, scientific, statistical and research purposes when there is no direct or indirect financial benefit, require any publication based on a thesis to cite its author, and allow linking to the site's content but not reproducing it; the item page states that all items in the archive are protected by copyright. The page image was viewed through the archive's online reader without an account and is not stored in the repo. Whether NernstWork's use meets the no-financial-benefit condition is the repository owner's decision. Caption: concentration of (filled circle) nitrate, (O) nitrite, (star) ammonia, (filled diamond) nitrogen, (open triangle) nitrous oxide and (red star) the loss of mass balance on a Zn electrode at -2.24 V vs Ag/AgCl, 0.4 M NaHCO3 / 0.4 M Na2CO3 / 0.05 M NaNO3. Text (printed pp. 112-117): the loss peaks at 45 min, after the nitrite maximum; hyponitrite and hydroxylamine were detected, nitramide was identified (GC-MS m/z 62, HPLC-DAD 206 nm) after acidifying the catholyte at 45 min but could not be quantified, and N2O kept evolving for about 20 min after electrolysis was stopped at 45 min. The ch. 9 Zn rate constants (k1 0.0211, k2 0.2786, k3 0.0195, k4 0.0141, k5 0.0324 min-1; k2 to nitramide, k3 to NH3, k4 to N2O, k5 to N2) were fitted to Diag 9.4 (Zn, 0-120 min, same caption conditions), possibly a different run: simulated from 50 mM they miss these points (overall RMSE 2.7 mM, NO3- 4.5 mM; this run's NO3- decay is sigmoidal, log-linear k 0.0285 min-1).",
+    "verified_against_figure": false,
+    "source_type": "digitized",
+    "extraction": "Raster digitization of the thesis page image (online-reader page 149 = printed p. 113, 300 dpi, 2481x3509 px) by agent scripts (OpenCV/NumPy/SciPy), not WebPlotDigitizer; wpd_datasets.csv is written in the WebPlotDigitizer unified layout. Axes calibrated by least squares on intensity-weighted tick centroids: x from 13 ticks (0-90 min, majors every 15 min, minors every 7.5 min; 15.07 px/min; max tick residual 0.009 min), y from 11 ticks (0-50 mM every 5 mM; 17.60 px/mM, so 1 px = 0.057 mM; max residual 0.010 mM). Unoccluded filled circles (NO3-), filled diamonds (N2) and the cores of the black stars (NH3) were located as blob centroids after thresholding and a 7 px morphological opening that removes the ~2 px connecting lines; open circles (NO2-) and open up-triangles (N2O) by the centroid of their enclosed white interior. Partly hidden markers were fitted by a z-ordered composite of rendered marker templates (sizes fitted to isolated markers of this figure; legend plot order NO3-, NO2-, NH3, N2, N2O, loss; open symbols opaque) minimising a capped pixel residual with only y free: NO2- at 15, 30, 45 and 90 min, NH3 at 15 and 30 min, N2 at 15 min. N2 at 60 min and N2O at 75 min lie under red loss stars and were taken as the mean of the two adjacent connecting-segment extrapolations (straight point-to-point segments located by a Hough search over end heights on the marker-free middle of each interval, refined by sub-pixel column centroids); the composite fit agrees within 0.005 and 0.033 mM. The red loss series uses the same segment extrapolation (the two segments meeting at each star agree within 0.01 mM; red-star centroids are 0.00-0.06 mM lower). Where a point's own segments are resolvable they agree with the marker value within 0.06 mM and confirm that triangles are anchored at their centroid, not their box centre; at 15 and 30 min the NO2- and NH3 segments overlap within 1-2 px and only bound both species to 0.55-0.60 mM (15 min) and 0.9-1.03 mM (30 min). Product markers at t = 0 are hidden under the red star at the origin and entered as 0 (all segments start at 0 +- 0.15 mM); NO3- at t = 0 (50.01) and the loss at t = 0 (-0.01) are pinned or clamped by the converter. Low-confidence point: NH3 at 15 min (0.60 mM; star almost entirely covered by the N2 diamond and N2O triangle). Inverse-calibration overlay checked by eye on the page crop (scratch, not committed). Converted with scripts/digitized_to_dataset.py."
+  },
+  "conditions": {
+    "catalyst": "Zn sheet (99.9 %, Sigma-Aldrich), 2 cm2 geometric, polished with #1200 emery paper and rinsed",
+    "electrolyte": "0.4 M NaHCO3 + 0.4 M Na2CO3 + 0.05 M NaNO3 (ionic strength 1.6 M)",
+    "cell": "divided_batch",
+    "potential_V_vs_RHE": null,
+    "potential_as_reported": "-2.24 V vs Ag/AgCl (figure caption; Table 6.1 lists -2.64 V for Zn)",
+    "potential_mode": "potentiostatic",
+    "pH": 9.65,
+    "temperature_C": null,
+    "volume_mL": 10,
+    "stirring": "He sparge 11-12 mL/min through the catholyte; no stirrer stated",
+    "c0_mM_N": {
+      "NO3": 50.0
+    },
+    "notes": "Potential discrepancy: this caption and its list-of-figures entry give -2.24 V vs Ag/AgCl for Zn (the Diag 9.2 caption '-2.24 V' and the Diag 9.4 caption '2.24 V', both without a reference electrode), while section 6.3.1 and Table 6.1 state that the metal-comparison runs were made 2.01 V negative of each pzc, i.e. -2.64 V for Zn (-2.53 V for Al); the captions of both metals are exactly 0.40 V less negative than Table 6.1. No text passage states the potential of this run, and the Table 6.1 first-order k for Zn (0.0374 min-1) does not match this run's NO3- decay (log-linear 0.0285 min-1; 4.6 mM left at 90 min where 0.0374 would leave 1.7 mM), so the run is not evidently the Table 6.1 run. Caption value kept; not converted to RHE. Teflon divided cell, Nafion 117 (H+) separator; compartments 12 mL each with a 2 mL dead space above the liquid, so the catholyte is taken as 10 mL (inferred: the same lab's Katsounaros 2009 thesis states a 10 mL fill in the 12 mL compartments of this cell); platinised Pt anode 6 cm2 facing the 2 cm2 cathode at 2 cm; reference Ag/AgCl in saturated (stated 3 M) KCl via a Luggin capillary <1 mm from the cathode; He 11-12 mL/min through the catholyte (deaeration 30 min, then carrier to the on-line GC); 0.1 mL liquid samples. pH: 9.65 is the initial pH of this electrolyte stated in ch. 5 (Bi runs, final 11.3 there); not reported for this run. Temperature not stated. The thesis's other Zn captions, Diags. 9.2 and 9.4, repeat 2.24 V (9.4 without a sign). Against the Table 6.1 pzc values (Zn -0.63 V, Al -0.52 V vs Ag/AgCl), the Zn and Al captions (Diags. 6.6 and 9.3) both sit 1.61 V negative of the metal's pzc, while Table 6.1 and the text (section 6.3.1) put the runs 2.01 V negative of it. The 0.40 V offset is the same for both metals, so it looks systematic rather than a one-off misprint; which set is right is still open."
+  },
+  "series": [
+    {
+      "species": "NO3",
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90
+      ],
+      "y": [
+        50.0,
+        43.818,
+        32.668,
+        20.482,
+        11.508,
+        6.796,
+        4.557
+      ],
+      "reported_unit": "mM (N-equivalent; N2, N2O and the loss per N atom)",
+      "conversion": "mM-N = digitized y * 1.0"
+    },
+    {
+      "species": "NO2",
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90
+      ],
+      "y": [
+        0.0,
+        0.536,
+        0.944,
+        1.214,
+        0.884,
+        0.566,
+        0.351
+      ],
+      "reported_unit": "mM (N-equivalent; N2, N2O and the loss per N atom)",
+      "conversion": "mM-N = digitized y * 1.0"
+    },
+    {
+      "species": "NH3",
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90
+      ],
+      "y": [
+        0.0,
+        0.597,
+        1.027,
+        1.372,
+        1.826,
+        2.501,
+        3.588
+      ],
+      "reported_unit": "mM (N-equivalent; N2, N2O and the loss per N atom)",
+      "conversion": "mM-N = digitized y * 1.0"
+    },
+    {
+      "species": "N2",
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90
+      ],
+      "y": [
+        0.0,
+        0.93,
+        4.407,
+        9.309,
+        14.903,
+        21.401,
+        27.46
+      ],
+      "reported_unit": "mM (N-equivalent; N2, N2O and the loss per N atom)",
+      "conversion": "mM-N = digitized y * 1.0"
+    },
+    {
+      "species": "N2O",
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90
+      ],
+      "y": [
+        0.0,
+        0.05,
+        0.8,
+        3.024,
+        6.415,
+        9.751,
+        12.898
+      ],
+      "reported_unit": "mM (N-equivalent; N2, N2O and the loss per N atom)",
+      "conversion": "mM-N = digitized y * 1.0"
+    }
+  ],
+  "quality": {
+    "n_closure": {
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90
+      ],
+      "fraction": [
+        1.0,
+        0.9186,
+        0.7969,
+        0.708,
+        0.7107,
+        0.8203,
+        0.9771
+      ]
+    },
+    "flags": [
+      "potential_unverified",
+      "unobserved_sink_suspected"
+    ],
+    "reported_n_loss": {
+      "t_min": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90
+      ],
+      "y": [
+        0.0,
+        4.036,
+        10.107,
+        14.565,
+        14.496,
+        8.923,
+        1.125
+      ]
+    },
+    "n_basis_note": "N-equivalent basis for every series (y axis 'Concentration, mM' read as mM N). Adding the authors' plotted mass-balance loss to the five species gives 49.94-50.03 mM at every sampling time (closure 0.999-1.001 of the 50 mM NO3- start), so the loss is plotted as 50 mM minus the measured N; a per-molecule reading of N2 and N2O would put the 90 min sum at 89 mM. The measured species alone close at 0.92, 0.80, 0.71, 0.71, 0.82 and 0.98 (15-90 min). N2 and N2O come from on-line GC of the He carrier expressed per catholyte volume; NH3 is the sum of catholyte, anolyte (Nafion crossover) and the H2SO4 gas trap (thesis section 4.5; the trap is 1 N in section 4.4 and Scheme 4.4, 0.1 N in section 4.5). The dataset 'mass_balance_loss' in the export is the authors' plotted loss (red stars), not a species."
+  }
+}

@@ -1,0 +1,7 @@
+table_row,metal,pzc_V,E_applied_V,E_minus_pzc_V,k_per_min,pzc_as_printed,E_as_printed,k_as_printed,flag,note
+1,Bi,-0.39,-2.4,-2.01,0.0307,"-0,39","-2,40","0,0307",,
+2,Sn,-0.43,-2.44,-2.01,0.0205,"-0,43","-2,44","0,0205",,
+3,Al,-0.52,-2.53,-2.01,0.02033,"-0,52","-2,53","0,02033",,"Diag 9.3 caption gives '2.13 V' for Al, 0.40 V less negative"
+4,Pb,-0.62,-2.63,-2.01,0.01437,"-0,62","-2,63","0,01437",,
+5,Zn,-0.63,-2.64,-2.01,0.0374,"-0,63","-2,64","0,0374",,"Diag 6.6 and Diag 9.2/9.4 captions give 2.24 V (-2.24 V vs Ag/AgCl) for Zn, 0.40 V less negative"
+6,In,-0.65,-2.66,-2.01,0.02367,"-0,65","-2,66","0,02367",,

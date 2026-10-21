@@ -1,0 +1,25 @@
+{
+  "id": "gao2022_fig2d_chloride_pem_textvalues",
+  "kind": "non_trajectory",
+  "extractor": "agent team 2026-10-20",
+  "provenance": {
+    "citation": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Electrocatalytic Upcycling of Nitrate Wastewater into an Ammonia Fertilizer via an Electrified Membrane, Environ. Sci. Technol. 56 (2022) 11602-11613",
+    "doi": "10.1021/acs.est.1c08442",
+    "figure": "Fig. 2d values stated in the text (section 3.3.4); the 3D bar chart itself was NOT digitized (perspective projection, no recoverable per-bar axis)",
+    "file": "publisher PDF via NSF PAR record 10451706 (par.nsf.gov/servlets/purl/10451706); local copy 10451706.pdf, not committed",
+    "verified_against_figure": false,
+    "extraction": "Transcribed from the text: 'TAN selectivity, FE for TAN, and jNH3 increased from 7.1 %, 3.6 %, and 1.7 mA cm-2 to 82.6 %, 52.1 %, and 27.4 mA cm-2, respectively, when Cl- was 50 mM' (without vs with PEM). The 10 mM Cl- bars are not given numerically."
+  },
+  "licence": "Licence/terms: publisher copyright (ACS); NSF public-access copy. The PAR record (par.nsf.gov/biblio/10451706) states no reuse licence; the downloaded file is the ACS typeset article (PAR labels its full text 'Accepted Manuscript') and carries the ACS notice 'See https://pubs.acs.org/sharingguidelines for options on how to legitimately share published articles'. Checked Oct 20 2026.",
+  "conditions": {
+    "catalyst": "CuO-coated Cu foam on PTFE/PP membrane (electrified membrane cathode, 4 cm2)",
+    "cell": "flow_cell (trap | cathode membrane | cathode chamber | Nafion 117 | anode chamber), recirculated at 50 mL/min",
+    "potential_as_reported": "-2.0 V vs SCE (no ohmic compensation)",
+    "potential_V_vs_RHE": null,
+    "temperature_C": null,
+    "electrolyte": "25 mM NO3-, 10 or 50 mM Cl-, 0.5 M Na2SO4, pH ~7"
+  },
+  "flags": [
+    "potential_unverified"
+  ]
+}

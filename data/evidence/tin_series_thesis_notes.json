@@ -1,0 +1,638 @@
+{
+  "source": {
+    "theses": [
+      {
+        "key": "polatides2007",
+        "citation": "Polatides C., Electrochemical removal of nitrate from aqueous solutions and environmental samples using constant and pulsed potential, PhD thesis (in Greek), Aristotle University of Thessaloniki (2007)",
+        "doi": "10.12681/eadd/15209",
+        "page_numbers": "printed page = online-reader page - 21"
+      },
+      {
+        "key": "katsounaros2009",
+        "citation": "Katsounaros I., Electrochemical reduction of nitrate on tin cathode - removal of nitrate from ion-exchange resin regeneration wastes, PhD thesis (in Greek), Aristotle University of Thessaloniki (2009)",
+        "doi": "10.12681/eadd/19491",
+        "page_numbers": "printed page = online-reader page - 30"
+      },
+      {
+        "key": "dortsiou2009",
+        "citation": "Dortsiou M., Electrochemical removal of nitrate and ammonia from aqueous solutions and environmental samples, PhD thesis (in Greek), Aristotle University of Thessaloniki (2009)",
+        "doi": "10.12681/eadd/27551",
+        "page_numbers": "printed page = online-reader page - 36"
+      }
+    ],
+    "read": "Per-page text layers of the National Archive of PhD Theses online reader, read and translated from Greek by an assistant subagent on 2026-10-20. Page images were not viewed except where a repository dataset says so; equation and table layout is reconstructed from flattened text. Quoted numbers and key phrases were checked by script against the thesis pages (literature/extraction_scripts/thesis_tables/build_claims.py). An independent check on 2026-10-20 (data/digitized_inputs/thesis_tables_verification.json) found three quoted values on pages outside the cited location (T5, T8, T60); those pages have been added to the location fields, and with them every quoted thesis number is on a cited page. Numbers that are derived, taken from repository digitizations, or equation and table labels are not printed on the page by design. Numbers are quoted with the printed digits; decimal commas are written as points. Claims marked 'derived' combine printed values with arithmetic or with repository digitizations named in the statement. The same independent check read and translated all 67 claims against the pages (57 confirmed, 10 confirmed with a note); its notes on T5, T8, T44, T55 and T60 are applied below, each marked in 'verification_note'. Not yet re-checked by a person.",
+    "licence": "National Archive of PhD Theses terms: research use with no direct or indirect financial benefit; author must be cited; items protected by copyright",
+    "status_values": "stated = printed in the thesis; derived = follows from printed values by arithmetic or a named repository analysis; unresolved = conflicting or missing information",
+    "discrepancy_field": "null when none; otherwise a one-line description of the conflict"
+  },
+  "claims": [
+    {
+      "id": "T1",
+      "topic": "cell",
+      "thesis": "katsounaros2009",
+      "statement": "Batch Teflon cell 10x10x10 cm; anode and cathode compartments separated by a Nafion 117 (H+) membrane. Cathode Sn (Sigma-Aldrich, 99.9 %), polished with #1200 paper and rinsed before every run, geometric area 2 cm2 unless stated otherwise; anode platinized Pt foil, 6 cm2, facing the cathode at 2 cm. Each compartment is 12 mL but is filled with 10 mL so that a head space prevents the He stream carrying solution to the GC. Reference Ag/AgCl in 3 M KCl with a Luggin capillary. He at 12 mL/min enters at the cell bottom and stirs the catholyte with its bubbles. Experiments at ambient conditions; a heated or ice/ethylene-glycol bath was used only for the temperature study.",
+      "location": "Katsounaros 2009 thesis, printed pp. 63-65, section 5.1-5.2, Scheme 5.2",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T2",
+      "topic": "analytics",
+      "thesis": "katsounaros2009",
+      "statement": "NO3- and NO2- by ion chromatography (Dionex 4500i, AS9-HC, 9 mM Na2CO3 at 1 mL/min, UV 220 nm); NH3 by OPA fluorescence with a strengthened 0.1 M K2HPO4 + 0.1 M KH2PO4 buffer so that sample pH does not matter; H2, N2 and N2O by on-line GC-TCD (Agilent 6820, Molecular Sieve 13X, He 25 mL/min), the instantaneous gas concentration being integrated over time (eq. 5.3); N2 calibrated with a 956 ppm CO standard, N2O with 2 % N2O in He; hyponitrite and hyponitrate by an in-house IC method (AS19, 20 mM NaOH, UV 248 nm; detection limits 50 and 100 ug/L); NH2OH by ferrozine/Fe3+ (562 nm) or 8-hydroxyquinoline (705 nm); N2H4 by p-dimethylaminobenzaldehyde (458 nm); NO/NO2 by a chemiluminescence NOx analyser and Draeger tubes. Liquid samples of 0.1 mL by chromatography syringe, diluted and analysed for nitrate, nitrite, ammonia, hydroxylamine and hyponitrite.",
+      "location": "Katsounaros 2009 thesis, printed pp. 68-73, sections 5.5-5.6",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T3",
+      "topic": "NH3 accounting",
+      "thesis": "katsounaros2009",
+      "statement": "No anolyte ammonia analysis and no acid trap for ammonia stripped by the He stream are described. The 0.1 mL liquid samples are not assigned to a compartment (by context the catholyte). Whether NH4+ crossing the Nafion membrane or NH3 leaving with the gas was counted is therefore not stated, unlike the Polatides and Dortsiou procedures.",
+      "location": "Katsounaros 2009 thesis, printed pp. 63-73 (chapter 5 searched)",
+      "status": "unresolved",
+      "discrepancy": null
+    },
+    {
+      "id": "T4",
+      "topic": "cell",
+      "thesis": "polatides2007",
+      "statement": "Teflon cell of 40 mL total volume. Divided cell: anode and cathode compartments 20 mL each, separated by Nafion 117 (H form, Electrosynthesis Corp.). Undivided cell: one compartment removed, cell volume 20 mL. Working and auxiliary electrodes 12.56 cm2 geometric unless stated otherwise, facing each other; 2 mL dead space above the solution in each compartment. Reference Ag/AgCl in saturated KCl. All experiments at ambient temperature. He at 15 mL/min for 30 min of deaeration before polarisation.",
+      "location": "Polatides 2007 thesis, printed pp. 64-67, 79, sections 4.1-4.2, 4.7",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T5",
+      "topic": "analytics",
+      "thesis": "polatides2007",
+      "statement": "NO3- by UV absorbance at 220 nm or, mainly (because nitrite also absorbs), by ion chromatography (AS9-HC, 9 mM Na2CO3, UV 220 nm); NO2- by the naphthylamine method (540 nm); NH3 by OPA fluorescence (or indophenol, 630 nm); N2H4 and NH2OH were never detected. N2 and N2O by GC-TCD (Hewlett Packard, Molecular Sieve 5A, He 15 mL/min, 750 uL loop), the cathode-compartment exit gas sampled every 5 min and the N2 volume obtained as V = integral of C x R dt; N2O was below the GC detection limit (~500 ppm) in most samples. NO and NO2 by chemiluminescence (Environment SA AC 30M, calibrated at 5.83 ppm NO) and Draeger tubes.",
+      "location": "Polatides 2007 thesis, printed pp. 75-80, sections 4.6-4.7; 750 uL GC loop on printed p. 69",
+      "status": "stated",
+      "discrepancy": null,
+      "verification_note": "Edited 2026-10-20 after the independent check (data/digitized_inputs/thesis_tables_verification.json): the 750 uL loop volume is printed on p. 69, outside the original location; page added."
+    },
+    {
+      "id": "T6",
+      "topic": "NH3 accounting",
+      "thesis": "polatides2007",
+      "statement": "Ammonia is the sum of the anolyte, the catholyte and the ammonia trapped in the 1 N H2SO4 through which the exit gas passed before the NOx analyser and GC. 0.1 mL samples were taken from both compartments because Nafion 117 also passes part of the NH4+ produced.",
+      "location": "Polatides 2007 thesis, printed pp. 69 and 79, sections 4.3 and 4.7",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T7",
+      "topic": "cell",
+      "thesis": "dortsiou2009",
+      "statement": "Teflon cell 10x10x10 cm; cathode and anode compartments separated by Nafion 117 (H+); both compartments 12 mL with a 2 mL dead space above the solution; cathode 2 cm2, platinised Pt anode 6 cm2, 2 cm apart; Ag/AgCl reference ('in saturated 3 M KCl') with a Luggin capillary less than 1 mm from the cathode, checked against a second Ag/AgCl or an RHE. Cathodes Al, Sn, Bi, Pb, In, Zn, Cu and Pt (Sigma-Aldrich, 99.9 %), polished with #1200 emery paper; Bi electrodes cast from melted granules. The fill volume is not stated (10 mL by inference from 12 mL minus 2 mL).",
+      "location": "Dortsiou 2009 thesis, printed pp. 59-63, sections 4.1-4.2",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T8",
+      "topic": "analytics",
+      "thesis": "dortsiou2009",
+      "statement": "Exit gas from the cathode compartment passed through an H2SO4 trap, then to the GC (Agilent 6820, TCD, Molecular Sieve 13X, He 25 mL/min, 7.5 mL loop) and a NOx analyser. Ammonia = anolyte + catholyte + trap solution, because Nafion 117 passes part of the NH4+. Nitrite by the naphthylamine method, because in IC other ions (probably hyponitrite and nitramide) co-eluted with nitrite; NH3 by OPA (20-2000 ug/L); NH2OH mainly by 8-hydroxyquinoline (705 nm) because hyponitrite interferes with the ferrozine method; hyponitrite and hyponitrate by IC (AS19, 248 nm). 0.1 mL samples.",
+      "location": "Dortsiou 2009 thesis, printed pp. 63-70, sections 4.4-4.6; ferrozine/hyponitrite interference on printed p. 113 (ch. 6)",
+      "status": "stated",
+      "discrepancy": null,
+      "verification_note": "Edited 2026-10-20 after the independent check (data/digitized_inputs/thesis_tables_verification.json): the reason for not using the ferrozine method (hyponitrite interference) is stated on p. 113, outside the original location; page added."
+    },
+    {
+      "id": "T9",
+      "topic": "cell",
+      "thesis": "dortsiou2009",
+      "statement": "He flow is 12 mL/min in section 4.4 and 11 mL/min in section 4.5; the ammonia trap is 1 N H2SO4 in section 4.4 and Scheme 4.4 but 0.1 N H2SO4 in section 4.5.",
+      "location": "Dortsiou 2009 thesis, printed p. 63 (section 4.4, Scheme 4.4) vs printed p. 65 (section 4.5)",
+      "status": "stated",
+      "discrepancy": "He flow (12 vs 11 mL/min) and trap normality (1 N vs 0.1 N) differ between two sections of the same chapter"
+    },
+    {
+      "id": "T10",
+      "topic": "N balance practice",
+      "thesis": "katsounaros2009+dortsiou2009",
+      "statement": "Dortsiou: most published work analyses only nitrate, nitrite and ammonia and assumes the rest of the mass balance is N2; 'this assumption, as follows from our experimental results, is completely wrong'. Katsounaros makes the same point and lists NO, N2O, NH2OH, H2N2O2 and NH2NO2 as species formed in significant amounts.",
+      "location": "Dortsiou 2009 thesis, printed p. 66; Katsounaros 2009 thesis, printed p. 145",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T11",
+      "topic": "current efficiency definition",
+      "thesis": "katsounaros2009+dortsiou2009",
+      "statement": "FE_r = Q_r / Q_total with Q_i = m_i n_i F / MW_i, n_i being the electrons needed to form product i from nitrate. The 'total current efficiency of nitrate reduction' is the sum of the partial efficiencies of all reactions except H2 evolution. Katsounaros also computes it as 1 - FE_H2 from the on-line GC hydrogen signal. Products that were not analysed (e.g. nitramide) have no partial efficiency.",
+      "location": "Katsounaros 2009 thesis, printed pp. 199-200, Appendix 1; Dortsiou 2009 thesis, printed pp. 175-176, Appendix",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T12",
+      "topic": "N basis",
+      "thesis": "polatides2007",
+      "statement": "%RE = mols NO3- reduced / mols NO3- initially x 100; %S = mols product / mols NO3- reduced x 100; 'in the case of nitrogen the mols N2 produced were multiplied by two, because 2 mols of nitrate are required to produce 1 mol N2'. Selectivities in Tables 5.1, 5.14 and 5.21 are therefore on an N-atom basis.",
+      "location": "Polatides 2007 thesis, printed pp. 83-84, section 5.1",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T13",
+      "topic": "N basis",
+      "thesis": "polatides2007",
+      "statement": "Gaseous-product selectivities are partly by difference: for graphite the 30.02 % is the value 'as it resulted from the mass balance', and in the undivided cell the gaseous selectivity 'resulted from subtracting the selectivities of nitrite and ammonia from 100 %'. All Table 5.1 rows except Pb, and all undivided rows of Table 5.21, sum to 100 %; the divided-cell rows of Table 5.21 sum to 85.7-98.6 %, so their gas column is not by difference (basis not stated).",
+      "location": "Polatides 2007 thesis, printed pp. 84-85 (Table 5.1) and 116 (Table 5.21)",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T14",
+      "topic": "N basis",
+      "thesis": "katsounaros2009",
+      "statement": "No explicit selectivity definition was found in the pages read. The quoted selectivities (Diag 6.4 at 90 min: NH3 28.6 %, N2 70.7 %, N2O 6 %, with 3.2 mM NO3- left; Diag 9.6: N2 85.7 %, N2O 6 %, NH3 8.9 %) are reproduced from the plotted concentrations only when N2 and N2O are counted as 2 N each, so the plots are per molecule and the selectivities per N atom (repository datasets katsounaros2009thesis_diag6p4_sn_m2p4v, katsounaros2009thesis_diag6p7_endpoint_vs_e, katsounaros2009thesis_diag9p6_xcheck).",
+      "location": "Katsounaros 2009 thesis, printed p. 81 (Diag 6.4), p. 85 (Diag 6.7), p. 136 (Diag 9.6)",
+      "status": "derived",
+      "discrepancy": null
+    },
+    {
+      "id": "T15",
+      "topic": "N basis",
+      "thesis": "dortsiou2009",
+      "statement": "No explicit selectivity definition was found. The plotted Zn (Diag 6.6) and Al (Diag 9.3) series close to the 50 mM start only on an N-equivalent basis, and the authors' plotted mass-balance loss (Zn) and 'NH2NO2' series (Al) equal 50 mM minus the measured species (repository datasets dortsiou2009thesis_diag6p6_zn_m2p24v and dortsiou2009thesis_diag9p3_al_m2p13v). Nitramide was never quantified, so the plotted NH2NO2 is a balance deficit.",
+      "location": "Dortsiou 2009 thesis, printed pp. 113, 117, 165-166 (Diag 6.6, Diag 9.3)",
+      "status": "derived",
+      "discrepancy": null
+    },
+    {
+      "id": "T16",
+      "topic": "N basis",
+      "thesis": "polatides2007+katsounaros2009+dortsiou2009",
+      "statement": "The Katsounaros and Dortsiou model equations are linear first order with 1:1 terms (e.g. d[NH2NO2]/dt = +k2[NO2-] with nitrite lost at k2[NO2-]), so they conserve N only if NH2NO2, N2O and N2 are N-equivalent concentrations. The Polatides model counts N2 per molecule: eq. 42 removes nitrite at 2k3[NO2-]^2 and eq. 44 forms N2 at k3[NO2-]^2 (the appendix code uses k3 and 0.5 k3).",
+      "location": "Katsounaros 2009 thesis, printed p. 192 (eqs 12.23-12.28); Dortsiou 2009 thesis, printed p. 165 (eqs 9.19-9.24); Polatides 2007 thesis, printed p. 101 (eqs 42, 44) and appendix pp. 195-196",
+      "status": "derived",
+      "discrepancy": null
+    },
+    {
+      "id": "T17",
+      "topic": "N basis",
+      "thesis": "polatides2007",
+      "statement": "Text: reduction of nitrite gave NH3 70.5 % and N2 29.5 % after 120 min, a NH3:N2 selectivity ratio of 2.38, 'while the corresponding ratio was 2.44 for 120 min electrolysis of 0.1 M K2SO4 + 0.05 M KNO3'. Table 5.14 for that run gives NH3 41.0 % and N2 33.6 % (N-atom basis), a ratio of 1.22; 2.44 = 41.0 / (33.6 / 2) is obtained only with N2 counted per molecule. The nitrite run's 70.5 + 29.5 = 100 % is N-basis, so the two ratios compared in the text use different bases.",
+      "location": "Polatides 2007 thesis, printed pp. 95-96, section 5.3.2; Table 5.14 (printed p. 108)",
+      "status": "derived",
+      "discrepancy": "the 'same NH3:N2 ratio' argument compares an N-basis ratio (2.38) with a per-molecule ratio (2.44); on one basis the ratios are 2.38 vs 1.22"
+    },
+    {
+      "id": "T18",
+      "topic": "intermediate feed",
+      "thesis": "katsounaros2009",
+      "statement": "'In a new experiment in which the initial solution contained, besides nitrate, also 0.25 M NH2OH, 90 % of the initial hydroxylamine was converted to NH3. This means that ammonia is produced from the reduction of hydroxylamine.' The electrolyte, potential and duration of this run are not given; the surrounding text discusses the Diag 12.1 run (0.5 M NaNO3 + 1 M NaOH, -2.2 V vs Ag/AgCl).",
+      "location": "Katsounaros 2009 thesis, printed p. 187, section 12.2",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T19",
+      "topic": "intermediate feed",
+      "thesis": "katsounaros2009",
+      "statement": "Electrolysis at -2.8 V of 0.1 M NaOH + 0.05 M Na2N2O2 (hyponitrite relatively stable): N2O:N2 production ratio 30:1, against about 1:10 in the nitrate experiments, and N2 formed slowly; hyponitrite was therefore excluded as the main N2 precursor.",
+      "location": "Katsounaros 2009 thesis, printed p. 189, section 12.2.2 (1)",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T20",
+      "topic": "intermediate feed",
+      "thesis": "katsounaros2009",
+      "statement": "Electrolysis of 0.1 M NaOH + 0.5 M Na2N2O3 (Angeli's salt) 'showed that N2O3^2- is not reduced', so the route N2O3^2- -> N2 was excluded; N2O3^2- was never detected by the IC method in the nitrate runs. It is the trioxodinitrate anion, not N2O, that is reported as not reduced. No potential or duration is given, and 0.5 M (ten times the hyponitrite run) is as printed.",
+      "location": "Katsounaros 2009 thesis, printed pp. 189-190, section 12.2.2 (2)",
+      "status": "stated",
+      "discrepancy": "potential and duration not given; the 0.5 M concentration is unusually high and could be a misprint"
+    },
+    {
+      "id": "T21",
+      "topic": "intermediate feed",
+      "thesis": "katsounaros2009",
+      "statement": "NO2- + NH4+ -> N2 is slow under these conditions (Nguyen et al.) and cannot be the main route; HNO + NH2OH -> N2 + 2H2O cannot be excluded but could not be tested (HNO too short-lived); electroreduction of nitramide to nitrosamine, which decomposes to N2 (12.19-12.20), is proposed as the main N2 route.",
+      "location": "Katsounaros 2009 thesis, printed p. 190, section 12.2.2 (3)-(5)",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T22",
+      "topic": "intermediate feed",
+      "thesis": "polatides2007",
+      "statement": "Reduction of nitrite under the same conditions as nitrate (Sn85Cu15, -2.0 V, initial solution 0.1 M K2SO4 + 0.05 M KNO2, 120 min) gave nitrogen and ammonia in about the same ratio as from nitrate: NH3 selectivity 70.5 %, N2 29.5 %. The authors read this as evidence for consecutive reactions through nitrite.",
+      "location": "Polatides 2007 thesis, printed pp. 95-96, section 5.3.2",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T23",
+      "topic": "intermediate feed",
+      "thesis": "dortsiou2009",
+      "statement": "Current-free tests in 10 mL carbonate buffer (0.4 M Na2CO3 / 0.4 M NaHCO3) with 15 mM nitrate, 3 h: + 15 mM Angeli's salt -> 0 % nitrate decrease; + 15 mM NO2- + 15 mM NH2OH -> 5 %; NO passed at 10 mL/min -> 29 %. Read as: HNO from Angeli's salt does not reduce nitrate; the nitrite-catalysed hydroxylamine reaction plays a small part; nitrate reacts directly with NO (Abel-Schmid reaction), although its kinetics predict a very low rate at this pH. The text's cross-references slip (it cites (5.23) for the Angeli decomposition, which is (5.24), and says '(5.24) has no participation' where (5.21) is meant). Table in data/digitized_inputs/dortsiou2009thesis_table5p1_additions.",
+      "location": "Dortsiou 2009 thesis, printed pp. 90-91, Table 5.1",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T24",
+      "topic": "intermediate feed",
+      "thesis": "dortsiou2009",
+      "statement": "Bi at -1.8 V vs Ag/AgCl, 0.4 M NaHCO3 / 0.4 M Na2CO3 with 50 mM nitrate: (a) + 15 mM NH3 gave a slightly higher rate in the early stages (NH4+ as a stronger proton donor than water, 5.17); (b) + 15 mM NO2- shortened the lag (incubation) time by 15 min but a lag remained, so another product of nitrite reduction is the catalyst; (c) NO passed into the cathode compartment instead of He (after two 4 M KOH bottles to remove NO2; saturated NO is 1.88e-3 M, caption '~0.002 M NO') gave a smooth decrease from the start of electrolysis. No lag was seen at more negative potentials because NO is then produced much faster.",
+      "location": "Dortsiou 2009 thesis, printed pp. 87-89, Diag 5.8",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T25",
+      "topic": "intermediate feed",
+      "thesis": "dortsiou2009",
+      "statement": "An electrolysis under the Diag 5.8 nitrate conditions in He atmosphere but without continuous He flow (so the produced NO stayed in solution): the incubation time was only 15 min, against about 100 min with continuous He flow; taken as further strong evidence that NO is the autocatalyst. The Diag 5.9 nitrate axis tops at 15 mM; the initial nitrate of these runs is not stated in the text and the figure was not viewed.",
+      "location": "Dortsiou 2009 thesis, printed pp. 91-92, Diag 5.9",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T26",
+      "topic": "current-free chemistry",
+      "thesis": "katsounaros2009",
+      "statement": "During electrolysis at -2.8 V (1 M NaCl + 1 M NaNO3) the catholyte UV absorbance at 240-280 nm grew with a maximum at 243 nm. Electrolysis was stopped after 100 min and spectra were recorded every 10 min (0-70 min): the absorbance at 230-270 nm, followed at 243 nm in Diag 9.11, fell gradually, so the intermediate forms only while the cathodic potential is applied and decomposes chemically when it is switched off. Assigned to hyponitrite decomposing to N2O (H2N2O2 -> N2O + H2O, 9.14), supported by N2O being detected by GC for about one hour after the electrolysis stopped.",
+      "location": "Katsounaros 2009 thesis, printed pp. 140-143, Diags 9.9-9.11",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T27",
+      "topic": "current-free chemistry",
+      "thesis": "katsounaros2009",
+      "statement": "Hyponitrite identified in a run at -2.8 V in 0.5 M CH3COONa + 0.5 M CH3COOH + 1 M NaNO3: after 90 min, 2 mL catholyte + 2 mL 0.1 M AgNO3 gave a yellow precipitate (Ag2N2O2) with IR bands at 880, 1010, 1410 and 1605 cm-1 and a UV maximum at 243 nm when dissolved in 0.1 M KOH. Hyponitrate was excluded: acidifying the catholyte to pH < 1 with 2 M HCl for 30 min (destroys hyponitrate, not hyponitrite) did not change the 248 nm absorbance, and IC detected hyponitrite but not hyponitrate.",
+      "location": "Katsounaros 2009 thesis, printed pp. 142-144, Diag 9.12",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T28",
+      "topic": "current-free chemistry",
+      "thesis": "katsounaros2009",
+      "statement": "Chapter 9 attributes the post-electrolysis loss of the 243 nm band and the N2O seen for about one hour after stopping to hyponitrite decomposition (9.14). Chapter 12 lists three N2O routes (hyponitrite decomposition, HNO2 + NH2OH, nitramide decomposition) and explains the N2O production that continued 'for about 60 minutes' after stopping by the homogeneous HNO2 + NH2OH reaction (12.12).",
+      "location": "Katsounaros 2009 thesis, printed p. 143 (section 9.2) vs printed p. 188 (section 12.2.1)",
+      "status": "stated",
+      "discrepancy": "the same post-electrolysis N2O is attributed to hyponitrite decomposition in ch. 9 and to the nitrite + hydroxylamine reaction in ch. 12"
+    },
+    {
+      "id": "T29",
+      "topic": "current-free chemistry",
+      "thesis": "dortsiou2009",
+      "statement": "Zn, -2.24 V vs Ag/AgCl (caption), carbonate buffer: when electrolysis was stopped at 45 min, where the mass-balance deficit was at its maximum, N2O kept evolving for about 20 min. 'Since hyponitrite is stable in basic solution, the only compound that could decompose to N2O (6.7) was nitramide.' Nitramide was identified in a run stopped at 45 min, acidified to pH 1 and extracted with diethyl ether: GC-MS fragments 62 (molecular ion), 44, 46, 30 and 18; an unassigned HPLC peak at 6.83 min with lambda_max 206 nm. It could not be quantified (no commercial standard, complex synthesis). Hydroxylamine and hyponitrite were detected; N2O3^2-, N3- and hydrazine were not.",
+      "location": "Dortsiou 2009 thesis, printed pp. 113-117, Diags 6.6-6.8",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T30",
+      "topic": "current-free chemistry",
+      "thesis": "dortsiou2009",
+      "statement": "Table 6.2 lists the hyponitrite ion as 'unstable at pH 3-13', while the text on the next page argues that 'hyponitrite is stable in basic solution' to assign the post-electrolysis N2O to nitramide. The carbonate catholyte runs from pH 9.65 to 11.3 (ch. 5), inside the range the table calls unstable. Katsounaros (same lab) assigns post-electrolysis N2O to hyponitrite decomposition.",
+      "location": "Dortsiou 2009 thesis, printed p. 114 (Table 6.2) vs printed p. 115 (text); printed p. 83 (pH)",
+      "status": "stated",
+      "discrepancy": "hyponitrite stability: Table 6.2 (unstable at pH 3-13) contradicts the text argument (stable in basic solution) used to exclude hyponitrite as the N2O source"
+    },
+    {
+      "id": "T31",
+      "topic": "Tafel",
+      "thesis": "katsounaros2009",
+      "statement": "Steady-state net current (2 M NaCl + 0.5 M NaNO3 minus 2 M NaCl) shows two Tafel regions: 0.319 V/dec between -1.6 and -1.8 V and 1.708 V/dec more negative than -2.0 V vs Ag/AgCl. The -1.6 to -1.8 V slope gives alpha = 0.19, matched to a one-electron rate-determining transfer to nitrate (alpha = 0.25 mechanism of De et al.); above -2.0 V alpha tends to zero and reduction is attributed to electrocatalytic hydrogenation by H formed via Na incorporation (Sn(Na) + H2O). The authors note that quantitative conclusions for -1.8 to -2.5 V are unsafe (massive H2 evolution, possible hydrides).",
+      "location": "Katsounaros 2009 thesis, printed pp. 77-83, 183, 195; Diags 6.2-6.3",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T32",
+      "topic": "kinetic order",
+      "thesis": "katsounaros2009",
+      "statement": "Apparent first-order rate constants from 1 h electrolyses in 2 M NaCl + 0.05 M NaNO3 increase linearly with potential from -1.8 to -2.8 V vs Ag/AgCl, whereas Frumkin's equation predicts a nearly exponential rise; the linearity is used as the argument for electrocatalytic hydrogenation.",
+      "location": "Katsounaros 2009 thesis, printed pp. 82-83 and 195, Diag 6.5",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T33",
+      "topic": "kinetic order",
+      "thesis": "katsounaros2009",
+      "statement": "At -2.8 V (x M NaNO3 + (2-x) M NaCl) nitrate reduction is first order at 0.1 M and zero order at 1 M for the first 75 min; log j vs log C at -2.0 V is not linear (order falls as concentration rises). Model eq. 9.11 (ion pairing with the electrolyte cation in the outer Helmholtz plane): -d[NO3-]/dt = k[M+] K[NO3-] / (1 + K[NO3-]), fitted with k = 4.56 min-1 cm-2 and K = 1.85 M-1 (k = 5.14 min-1 if the literature K = 1.43 M-1 for NaNO3 is used); it also predicts runs from 1.5e-3 to 45e-3 mol/L initial nitrate (Diag 9.5). Units of k are as printed.",
+      "location": "Katsounaros 2009 thesis, printed pp. 130-135, Diags 9.1-9.5, eq. 9.11",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T34",
+      "topic": "kinetic order",
+      "thesis": "katsounaros2009",
+      "statement": "At -1.8 V the slope of log j_net vs log C(NaCl) at the corrected potential is 0.84, read as an effective charge of -0.84 for the reacting species (less than nitrate's -1, i.e. ion pairing). At -2.2 V the nitrate -> nitrite rate constant k1 is independent of NaCl from 0.1 to 3.0 M (0.0284-0.0315 min-1, Table 7.7), but the nitrite maximum falls from 5.5 mM (0.1 M NaCl) to not above 0.5 mM (3 M NaCl). Table in data/digitized_inputs/katsounaros2009thesis_table7p7_k_vs_nacl.",
+      "location": "Katsounaros 2009 thesis, printed pp. 98-101, Diags 7.5-7.8, Table 7.7",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T35",
+      "topic": "Tafel",
+      "thesis": "polatides2007",
+      "statement": "Sn85Cu15 voltammetry: Tafel slope 226 mV/dec (-1.5 to -1.6 V) and 644 mV/dec (-1.65 to -2.0 V) in 0.5 M K2SO4 + 0.2 M KNO3; 540 mV/dec for 50 mM KNO3 (not plotted); 235 mV/dec for the blank (H2 evolution, -1.6 to -2.0 V). Overall reaction order in nitrate 0.9 at -1.6 V and 0.80 at -1.7 V. Charge-transfer coefficients from the slopes of ln(mean 15-min rate) vs potential in electrolyses: alpha1 = 0.09 (NO3- -> NO2-), alpha2 = 0.131 (NO2- -> NH3), alpha3 = 0.089 (2NO2- -> N2); from the Tafel slopes alpha1 = 0.108 (50 mM) and 0.091 (200 mM). The authors conclude only about 10 % of the supplied electrical energy drives nitrate reduction.",
+      "location": "Polatides 2007 thesis, printed pp. 89, 93, 115-116; Diags 5.4, 5.7, 5.20",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T36",
+      "topic": "Tafel",
+      "thesis": "dortsiou2009",
+      "statement": "Bi in NaHCO3/Na2CO3 (ionic strength 1.6 M): H2 evolution from -1.55 V, nitrate reduction from -1.4 V vs Ag/AgCl, current rising even at -2.25 V and independent of scan rate (25-100 mV/s). Tafel slope 0.26 V/decade between -1.30 and -1.55 V (no H2 evolution), charge-transfer coefficient 0.23. At -1.6 V the current density is almost linear in nitrate for 0.05-0.2 M and rises little above (Langmuir-like eq. 5.2 from ion pairing). H2 evolution on Bi scales with the square root of [Na+]. Nitrate decay was first order on Pb, Al, Sn, Bi and In at -2.4 V.",
+      "location": "Dortsiou 2009 thesis, printed pp. 76-80, 95-96, 109, 162; Diags 5.1-5.2, 5.12, 6.3",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T37",
+      "topic": "model",
+      "thesis": "katsounaros2009",
+      "statement": "Simplified scheme used to fit 0.5 M NaNO3 + 1 M NaOH at -2.2 V vs Ag/AgCl: d[NO3-]/dt = -k1[NO3-]; d[NO2-]/dt = +k1[NO3-] - (k2 + k4 + k5)[NO2-]; d[NH2NO2]/dt = +k2[NO2-] - k3[NH2NO2]; d[NH3]/dt = +k4[NO2-]; d[N2O]/dt = +k5[NO2-]; d[N2]/dt = +k3[NH2NO2]. Non-linear regression (Excel Solver, Appendix 2A) gave k1 = 0.0206, k2 = 0.0288, k3 = 0.0230, k4 = 0.0020 and k5 = 0.0049 min-1, %Error = 9.3 %; the same constants came from the linear-programming (Simplex) route of Appendix 2B. %Error = sum |residual| / sum of the target values.",
+      "location": "Katsounaros 2009 thesis, printed pp. 191-192 and 201 (Appendix 2), Scheme 12.4, eqs 12.23-12.28, Diag 12.3",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T38",
+      "topic": "model",
+      "thesis": "dortsiou2009",
+      "statement": "Scheme: NO3- -k1-> NO2-; NO2- -k2-> NH2NO2; NO2- -k3-> NH3; NH2NO2 -k4-> N2O; NH2NO2 -k5-> N2 (eqs 9.19-9.24, all first order). Non-linear regression on Al: k1 = 0.0252, k2 = 0.1278, k3 = 0.0296, k4 = 0.0299, k5 = 0.0639 min-1 (Diag 9.3, caption 'Al at potential 2.13 V'); on Zn: k1 = 0.0211, k2 = 0.2786, k3 = 0.0195, k4 = 0.0141, k5 = 0.0324 min-1 (Diag 9.4, caption 'Zn at potential 2.24 V'); '%Error about 10 %' in both cases. The text says the study used 'differential equations 9.23 to 9.28', but the equations are printed as 9.19-9.24.",
+      "location": "Dortsiou 2009 thesis, printed pp. 165-167, Scheme 9.2, eqs 9.19-9.24, Diags 9.3-9.4",
+      "status": "stated",
+      "discrepancy": "equation numbers cited in the text (9.23-9.28) do not match the printed equations (9.19-9.24); caption potentials lack sign and reference"
+    },
+    {
+      "id": "T39",
+      "topic": "model conventions",
+      "thesis": "katsounaros2009+dortsiou2009",
+      "statement": "The two same-lab schemes use the same symbols for different steps. Katsounaros: k3 = NH2NO2 -> N2, k4 = NO2- -> NH3, k5 = NO2- -> N2O (N2O formed directly from nitrite). Dortsiou: k3 = NO2- -> NH3, k4 = NH2NO2 -> N2O, k5 = NH2NO2 -> N2 (N2O formed from nitramide). Only k1 (NO3- -> NO2-) and k2 (NO2- -> NH2NO2) mean the same.",
+      "location": "Katsounaros 2009 thesis, printed p. 192; Dortsiou 2009 thesis, printed p. 165",
+      "status": "derived",
+      "discrepancy": "identical labels k3-k5 denote different reactions in the two theses; values cannot be compared label by label"
+    },
+    {
+      "id": "T40",
+      "topic": "model",
+      "thesis": "polatides2007",
+      "statement": "Second-order nitrite-to-N2 model adopted because the first-order version (eqs 32-40) did not fit N2 on Sn85Cu15: d[NO3-]/dt = -k1[NO3-] (41); d[NO2-]/dt = k1[NO3-] - k2[NO2-] - 2k3[NO2-]^2 (42); d[NH3]/dt = k2[NO2-] (43); d[N2]/dt = k3[NO2-]^2 (44); solved by Adams-Bashforth-Moulton in MATLAB 6.5 from [NO3-] = 50 mM, other species 0. Printed constants: k1 = 4.9e-4 s-1 from the slope of ln([NO3-]/[NO3-]0) (eq. 45), k2 = 1.76e-5 s-1 and k3 = 7.66e-3 L mol-1 s-1. The factor 2 and the squares are reconstructed from the flattened text layer.",
+      "location": "Polatides 2007 thesis, printed pp. 100-102, eqs 41-45",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T41",
+      "topic": "model",
+      "thesis": "polatides2007",
+      "statement": "The listing 'function de2' integrates dx = [-k1*x(1); k1*x(1)-k2*x(2)-k3*x(2)^2; k2*x(2); 0.5*k3*x(2)^2] with ode113 in mM and min (t = 0:0.1:120, start [50,0,0,0]) and random-searches k1 = 0.0295+rand/3333, k2 = 0.01848+rand/2500, k3 = 0.0004501+rand/3300, stopping when the summed absolute error is below 40. The code removes nitrite at k3[NO2-]^2 and forms N2 at 0.5 k3[NO2-]^2, whereas eqs 42 and 44 remove nitrite at 2k3[NO2-]^2 and form N2 at k3[NO2-]^2. The printed k3 = 7.66e-3 L mol-1 s-1 = 4.60e-4 mM-1 min-1 lies inside the code's k3 range (4.50e-4 to 7.53e-4 mM-1 min-1), so the printed k3 is the nitrite-loss coefficient (2k3 of eq. 42). An independent fit of the drawn Diag 5.8 curves gives a nitrite-loss coefficient of 7.53e-3 L mol-1 s-1 (data/digitized_inputs/tin_xcheck_verification.json).",
+      "location": "Polatides 2007 thesis, printed pp. 195-196, Appendix 2 (MATLAB 6.5 listing)",
+      "status": "derived",
+      "discrepancy": "printed equations and the authors' code differ by a factor 2 in where k3 sits; the printed k3 follows the code convention"
+    },
+    {
+      "id": "T42",
+      "topic": "model",
+      "thesis": "polatides2007",
+      "statement": "k1: printed 4.9e-4 s-1 (regression of eq. 45, p. 102); the diffusion estimate on p. 96 uses k1 = 3.9e-4 s-1 'from the experimental data at short times'; the drawn Diag 5.8 curves need about 4.18e-4 s-1 (repository fit); the code's k1 search range is 0.0295-0.0298 min-1 (4.92e-4 to 4.97e-4 s-1). k2: printed 1.76e-5 s-1 does not reproduce the drawn curves, 1.76e-4 s-1 does (exponent misprint); the code's k2 range 0.01848-0.01888 min-1 (3.1e-4 s-1) matches neither.",
+      "location": "Polatides 2007 thesis, printed pp. 96, 102, 195; repository polatides2007thesis_diag5p8_xcheck",
+      "status": "derived",
+      "discrepancy": "three different k1 values in one section; printed k2 exponent inconsistent with the drawn curves"
+    },
+    {
+      "id": "T43",
+      "topic": "model",
+      "thesis": "polatides2007",
+      "statement": "The listing's data matrix at t = 0, 15, 30, 45, 60, 75, 90, 120 min is NO3- 50, 32.4, 19.33, 14.96, 8.55, 4.98, 2.43, 0.94; NO2- 0, 12.33, 20, 23.13, 20.75, 18.46, 12.29, 8.56; NH3 0, 4.9, 9.74, 9.59, 16.05, 20.59, 25, 32; N2 0, 0.305, 0.923, 2.239, 4.053, 5.97, 7.37, 8.25 (mM; N2 per molecule). The repository verifier found NO2- and N2 close to the Diag 5.8 markers but NO3- (about 0.82x) and NH3 (about 1.55x) not, so the listing is an example run, not necessarily the Diag 5.8 fit.",
+      "location": "Polatides 2007 thesis, printed p. 195, Appendix 2 (data matrix in the MATLAB listing)",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T44",
+      "topic": "model",
+      "thesis": "polatides2007",
+      "statement": "Pulsed-potential model on Cu60Zn40 (asymmetric square pulse 50 Hz, cathodic -1.5 V for 80 % and anodic +1.5 V for 20 % of the period): first-order steps weighted by t1/T (reductions k1, k2, k4, k6) or t2/T (oxidations k-1, k3, k5). Model 1 failed; model 2 (Scheme 7.18, adds NH3 -> NO3- and NO3- -> N2, and drops model 1's NH3 -> NO2- step, k-2) fitted by the Simplex/linear-programming route gave k1 = 0.003343, k-1 = 0.025615, k2 = 0.075, k3 = 0.02865, k4 = 0.003522, k5 = 0.007, k6 = 0.000353 min-1 (N2 mean absolute error 7 %). In the printed (t_i/T)k_j column six values equal 0.8 or 0.2 x k_j as their half-cycle requires, but (t1/T)k2 = 0.015 = 0.2 x 0.075 although k2 (NO2- -> NH3) is a reduction. Table in data/digitized_inputs/polatides2007thesis_table7p24_rateconstants.",
+      "location": "Polatides 2007 thesis, printed pp. 170-178, Schemes 7.17-7.18, eqs 35-42, Table 7.24",
+      "status": "derived",
+      "discrepancy": "(t1/T)k2 printed as 0.015 (0.2 weight) for a cathodic step; 0.060 expected",
+      "verification_note": "Edited 2026-10-20 after the independent check (data/digitized_inputs/thesis_tables_verification.json): model 2 also drops the NH3 -> NO2- step (k-2) of model 1; the statement originally named only the two added steps."
+    },
+    {
+      "id": "T45",
+      "topic": "model",
+      "thesis": "dortsiou2009",
+      "statement": "Bi, -1.8 V vs Ag/AgCl, carbonate buffer: nitrate decay is slow for the first 90 min and then accelerates (sigmoidal); pH (9.65 vs 12) does not explain it. Autocatalytic scheme NO3- -k1-> X; NO3- + X -k2-> 2X; X -k3-> P (P = N2, N2O, NH3), with [X] = [NO3-]0 - [NO3-] - [P], fitted from r/[NO3-] vs [NO3-] + [P] (Diag 5.6): k1 = 1.5e-4 min-1 and k2 = 4.9e-4 min-1 mM-1. After 180 min the autocatalytic rate is 48 times the electrochemical rate.",
+      "location": "Dortsiou 2009 thesis, printed pp. 82-87, eqs 5.9-5.14, Diags 5.4-5.7",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T46",
+      "topic": "model",
+      "thesis": "katsounaros2009",
+      "statement": "In phosphate electrolyte the nitrate decay is slow for the first 30 min and then accelerates (autocatalytic, as on Bi in Dortsiou's work, where NO or one of its reduction intermediates is the catalyst). The proposed cause is NO+ capture: H2PO4- + NO+ <-> (NO)H2PO4, K = 1e7 M-1 (10.8); acetate binds NO+ more weakly (K = 2e3 M-1, 10.9) and gives a shorter lag and a bell-shaped rate-time profile; more phosphate (1 M vs 0.2 M NaH2PO4, same pH 4.5 and ionic strength) slows reduction. Autocatalysis at pH above 1 is described as reported for the first time by this laboratory.",
+      "location": "Katsounaros 2009 thesis, printed pp. 158-161, Diags 10.1, 10.3, 10.5",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T47",
+      "topic": "temperature",
+      "thesis": "katsounaros2009",
+      "statement": "Electrolyses at -1.8 V vs Ag/AgCl in 0.1 M MCl + 0.05 M MNO3 (M = Na+ or Cs+): rate increases slightly with temperature; apparent activation energy 9.8 kJ/mol for Na+ and 8.4 kJ/mol for Cs+ (conclusions: 'about 9 kJ/mol'), against 18-32 kJ/mol in the literature, and compared with the 11.5 kJ/mol O-NO2 bond-breaking energy of Bhat et al. The Arrhenius plot is ln(k) vs 1/T; its top axis runs to 70 C (temperature range not given in the text; figure not viewed).",
+      "location": "Katsounaros 2009 thesis, printed pp. 167-169, Diag 10.10",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T48",
+      "topic": "temperature",
+      "thesis": "polatides2007+katsounaros2009+dortsiou2009",
+      "statement": "Polatides: 'all our experiments were carried out at ambient temperature'. Katsounaros: experiments at ambient conditions, a thermostatted bath only for the temperature study. Dortsiou: the cell allowed thermostatting, but no temperature is stated for the runs. No numerical run temperature is given in any of the three theses.",
+      "location": "Polatides 2007 thesis, printed p. 66; Katsounaros 2009 thesis, printed p. 65; Dortsiou 2009 thesis, printed p. 59",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T49",
+      "topic": "pH",
+      "thesis": "katsounaros2009",
+      "statement": "Runs at -1.8 V vs Ag/AgCl with 0.05 M NaNO3 in solutions of high buffer capacity (each composition totals about 2 M salt; ionic strength not stated): x M HCl + (2-x) M NaCl with x = 0.25, 0.5, 0.75, 0.9, 1 M (initial pH 0.76, 0.46, 0.28, 0.20, 0.16); 0.2 M NaH2PO4 + 1.8 M NaCl (pH 4.0); 0.3 M NaH2PO4 + 0.1746 M NaOH + 1.5 M NaCl (pH 7.0); 0.3 M Na2CO3 + 0.3 M NaHCO3 + 0.8 M NaCl (pH 9.5); 1 M NaOH + 1 M NaCl (pH 13.7). The rate differs only for initial pH < 4; above pH 4 the curves nearly coincide. For pH 0-4 the mean rate (first 30 min) is proportional to the initial [H3O+] (eq. 10.4: hydronium as proton donor below pH 4, water above).",
+      "location": "Katsounaros 2009 thesis, printed pp. 156-157, Diags 10.1-10.2",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T50",
+      "topic": "pH",
+      "thesis": "katsounaros2009",
+      "statement": "Selectivities at 50 % nitrate removal (-1.8 V): NH3 falls from 60 % at pH 0 to 21 % at pH 4; NH2OH from 35 % at pH 0, not detectable in the final solution above pH 0.8; NO2- not detected at pH 0-0.5, then roughly constant at 42-45 %; N2 and N2O rise from 2 % and 1 % at pH 0 to 20 % and 8 % at pH 4; above pH 4 selectivities are about constant 'except N2O, which decreased almost linearly from 12 % (pH = 0.6) to 2 % (pH = 14)'. N2O is explained by HNO2 + NH2OH and H2N2O2 decomposition. Repository digitization: data/digitized_inputs/katsounaros2009thesis_diag10p6_selectivity_vs_ph.",
+      "location": "Katsounaros 2009 thesis, printed pp. 161-162, Diag 10.6",
+      "status": "stated",
+      "discrepancy": "the 12 % N2O at pH 0.6 sits inside the 'pH > 4' sentence and exceeds the 8 % given for pH 4; the digitized values (11.96 % at pH 0.76, 8.06 % at pH 4.0) show the N2O maximum near pH 0.5-0.8"
+    },
+    {
+      "id": "T51",
+      "topic": "pH",
+      "thesis": "katsounaros2009",
+      "statement": "In the HCl runs H2 evolution stops abruptly after the first minutes together with a drop in current, later at lower initial pH. A diffusion-reaction calculation (reaction layer assumed 10 um, H3O+ diffusivity 9.311e-5 cm2/s corrected for viscosity) gives a local pH rise of about 3 units in 1 M HCl, shifting the H2 evolution potential about 180 mV negative; this is also offered as the reason the product distribution depends only weakly on pH above 0.6.",
+      "location": "Katsounaros 2009 thesis, printed pp. 162-166, 169, Diags 10.7-10.9",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T52",
+      "topic": "pH",
+      "thesis": "dortsiou2009",
+      "statement": "Bi in 0.4 M NaHCO3 / 0.4 M Na2CO3 / 0.05 M NaNO3: initial pH 9.65, final 11.3. A run at pH 12 (0.65 M Na2CO3 + NaOH, same ionic strength, 0.05 M NaNO3) showed that pH plays no substantial role in the rate, consistent with pH dependence only in the 0-4 range.",
+      "location": "Dortsiou 2009 thesis, printed pp. 83-84, Diag 5.5",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T53",
+      "topic": "pH",
+      "thesis": "polatides2007",
+      "statement": "Sn85Cu15 at -2.0 V: unbuffered 0.1 M K2SO4 went from pH 7 to pH 10.3 after 120 min. Buffers 0.2 M K2CO3 + 0.2 M KHCO3 (pH 9.4) and 0.5 M K2HPO4 + 0.5 M KH2PO4 (pH 7) changed removal and selectivities only within experimental error (RE 98.1, 97.2, 92.6 %). Table in data/digitized_inputs/polatides2007thesis_table5p14_electrolyte.",
+      "location": "Polatides 2007 thesis, printed p. 108, Table 5.14",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T54",
+      "topic": "products",
+      "thesis": "katsounaros2009",
+      "statement": "1 M NaNO3 + 1 M NaCl at -2.8 V: N2 85.7 %, N2O 6 %, NH3 about 8.9 %; NH2OH absent from the final solution; nitrite maximum 0.136 mol/L at 60 min, 1.52e-3 mol/L after 210 min (0.16 %). Mass-balance loss peaks at 0.25 M at 90 min, after the nitrite maximum, and is zero after 210 min, so it is not a gas escaping (Draeger tubes: only traces of NO). Charge after 90 min: 3747 C passed vs 2338 C for known products, a 37 % charge deficit. Hydroxylamine accounts for only 10 % of the mass loss (possibly more, since it reacts with nitrite in about 7 min during analysis).",
+      "location": "Katsounaros 2009 thesis, printed pp. 136-140, Diags 9.6, 9.8",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T55",
+      "topic": "products",
+      "thesis": "katsounaros2009+dortsiou2009",
+      "statement": "Katsounaros attributes 'the remaining about 70 %' of the mass-balance deficit 'most probably' to nitramide. Nitramide was not measured: no quantitative method exists (Katsounaros p. 144; Dortsiou printed p. 117), so the 70 % is asserted, not measured. The thesis gives no derivation: it names a hydroxylamine share (10 %) but no hyponitrite share, so the arithmetic behind 70 % (100 - 10 = 90) cannot be reproduced.",
+      "location": "Katsounaros 2009 thesis, printed pp. 144-145 and 190; Dortsiou 2009 thesis, printed p. 117",
+      "status": "derived",
+      "discrepancy": "the 70 % nitramide share is not measured and its derivation is not given, but it is cited in ch. 12 as an experimental result",
+      "verification_note": "Edited 2026-10-20 after the independent check (data/digitized_inputs/thesis_tables_verification.json): the earlier gloss that the 70 % is 'a remainder after the hydroxylamine share (10 %) and the hyponitrite evidence' is not arithmetic the thesis gives (no hyponitrite share is stated); statement and discrepancy reworded to say no derivation is given."
+    },
+    {
+      "id": "T56",
+      "topic": "products",
+      "thesis": "katsounaros2009",
+      "statement": "At -2.8 V, ionic strength 2 M, 95 % removal: N2 selectivity rises from 70 to 83 % as initial nitrate goes from 1.5e-3 to 25e-3 mol/L, then stays about constant; NH3 falls from 24.5 to 10.8 %; nitrite selectivity is independent of concentration. Below 0.1 M initial nitrate the mass-balance loss is within the +-5 % error. H2 is absent from the exit gas for 105 min at 1 M nitrate and 30 min at 0.5 M, and appears immediately below 0.1 M.",
+      "location": "Katsounaros 2009 thesis, printed pp. 145-147, Diags 9.13-9.14",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T57",
+      "topic": "products",
+      "thesis": "katsounaros2009",
+      "statement": "0.5 M NaNO3 + 1 M NaOH at -2.2 V: maximum production rate of N2O at 75 min and of N2 at 90 min (so not from the same intermediate); maximum consumption rates of nitrite and hydroxylamine both at 90 min (they may react, giving N2O); hyponitrite production rate maximal at 60 min; NH3 production maximal at 90 min; NH2OH concentration maximal (rate zero) at 60 min. Repository digitization: data/digitized_inputs/katsounaros2009thesis_diag12p1_rates.",
+      "location": "Katsounaros 2009 thesis, printed pp. 185-187, Diag 12.1",
+      "status": "stated",
+      "discrepancy": null
+    },
+    {
+      "id": "T58",
+      "topic": "products",
+      "thesis": "dortsiou2009",
+      "statement": "Bi, carbonate buffer: at -2.1 V N2 65 %, N2O 16 %, NH3 12 %, NO2- 1 % (error about +-10 %); NH2OH and hyponitrite detected during but not at the end. At 95 % removal from -1.8 to -2.6 V: N2 58-65 % and NO2- 1.8-2.6 % independent of potential, N2O 7.2 -> 22 %, NH3 19 -> 3.8 %; total current efficiency 79 -> 18 %, N2 current efficiency 62 -> 12 %. The Diag 5.10 caption calls the N2O series 'hyponitrite' (υπονιτρώδους), while the legend and text say N2O.",
+      "location": "Dortsiou 2009 thesis, printed pp. 81, 93-94, Diags 5.3, 5.10, 5.11",
+      "status": "stated",
+      "discrepancy": "Diag 5.10 caption labels the N2O series as hyponitrite"
+    },
+    {
+      "id": "T59",
+      "topic": "inconsistency",
+      "thesis": "katsounaros2009",
+      "statement": "The text says nitrite shows a small maximum at 15 min '(1.15 mM)'; the plotted 15 min nitrite circle sits at 0.60 mM (0.55-0.65 mM allowing for overlap) in the repository digitization (katsounaros2009thesis_diag6p4_sn_m2p4v). Other text values on the page (3.2 mM NO3- at 90 min; 28.6/70.7/6 % selectivities) agree with the plot.",
+      "location": "Katsounaros 2009 thesis, printed p. 81, Diag 6.4",
+      "status": "unresolved",
+      "discrepancy": "text 1.15 mM vs figure 0.60 mM for the 15 min nitrite maximum (factor about 2)"
+    },
+    {
+      "id": "T60",
+      "topic": "inconsistency",
+      "thesis": "katsounaros2009",
+      "statement": "Section 6.2.2: 'the selectivity of nitrogen was of the order of 85 % at -2.8 V'. The chapter-6 conclusions (p. 89), chapter 12 (pp. 183, 188) and the thesis conclusions (p. 195) give about 90 %. The data support 85 %: Diag 6.7 at -2.8 V gives 85.5 % (repository digitization) and Diag 9.6 85.7 %.",
+      "location": "Katsounaros 2009 thesis, printed p. 85 vs printed pp. 89, 183, 188, 195; Diag 9.6 value 85.7 % on printed p. 136",
+      "status": "stated",
+      "discrepancy": "N2 selectivity at -2.8 V quoted as 85 % and as about 90 %",
+      "verification_note": "Edited 2026-10-20 after the independent check (data/digitized_inputs/thesis_tables_verification.json): the 85.7 % for Diag 9.6 sits on printed p. 136, outside the original location; page added."
+    },
+    {
+      "id": "T61",
+      "topic": "inconsistency",
+      "thesis": "katsounaros2009",
+      "statement": "The run list gives '0.2 M NaH2PO4 + 1.8 M NaCl (pH=4.0)'; the Diag 10.1 legend lists pH 4.5 (no 4.0) and the text on p. 159 describes the extra phosphate runs as having 'the same pH = 4.5'. The text on p. 158 also names the salt '0.2 M Na2HPO4' instead of NaH2PO4. Diag 10.6 plots the run at pH 4.0 (repository digitization).",
+      "location": "Katsounaros 2009 thesis, printed p. 156 vs pp. 157-159, Diags 10.1, 10.3",
+      "status": "stated",
+      "discrepancy": "phosphate run pH 4.0 vs 4.5, and NaH2PO4 vs Na2HPO4"
+    },
+    {
+      "id": "T62",
+      "topic": "inconsistency",
+      "thesis": "dortsiou2009",
+      "statement": "Table 6.1 and section 6.3.1 state that the metal-comparison runs were made 2.01 V negative of each pzc: Zn -2.64 V, Al -2.53 V (vs Ag/AgCl implied). The Zn captions give -2.24 V vs Ag/AgCl (Diag 6.6, Diag 9.2) and '2.24 V' (Diag 9.4), the Al caption '2.13 V' (Diag 9.3): both exactly 0.40 V less negative. No text passage states the potential of these runs. Table in data/digitized_inputs/dortsiou2009thesis_table6p1_metals.",
+      "location": "Dortsiou 2009 thesis, printed p. 111 (Table 6.1) vs captions of Diags 6.6 (p. 113), 9.2 (p. 164), 9.3 (p. 166), 9.4 (p. 167)",
+      "status": "unresolved",
+      "discrepancy": "caption potentials for Zn and Al are 0.40 V less negative than Table 6.1"
+    },
+    {
+      "id": "T63",
+      "topic": "inconsistency",
+      "thesis": "polatides2007",
+      "statement": "Same electrodes, potentials, electrolyte and 12 h duration: removal and nitrite agree (Cu60Zn40 99.1/9.6, Al 88.6/2.3, Pb 93.3/0.1 vs 99.10/9.62, 88.66/2.26, 93.28/0.00), NH3 agrees for Al and Pb but not Cu60Zn40 (75.2 vs 72.24), and the gaseous selectivity differs (Cu60Zn40 3.0 vs 18.14, Al 43.0 vs 44.45, Pb 17.2 vs 31.18). Also, the Pb row of Table 5.1 sums to 99.67 %, although its gas value is supposed to close the balance (100 - 68.49 = 31.51).",
+      "location": "Polatides 2007 thesis, printed p. 84 (Table 5.1) vs printed p. 117 (Table 5.21)",
+      "status": "stated",
+      "discrepancy": "divided-cell rows of Table 5.21 disagree with Table 5.1 for gases (and NH3 on Cu60Zn40); Pb row of Table 5.1 does not close"
+    },
+    {
+      "id": "T64",
+      "topic": "inconsistency",
+      "thesis": "polatides2007",
+      "statement": "The Table 5.21 divided-cell row for Sn85Cu15 at -2.0 V (RE 97.4, NO2- 17.4, NH3 41.1, gases 35.3 %), captioned 12 h, is almost identical to the 120 min K2SO4 row of Table 5.14 (98.1, 17.5, 41.0, 33.6 %), and 17 % nitrite after 12 h would mean almost no nitrite reduction after 2 h, while Diag 5.8 shows nitrite falling from 45 to 120 min. The row may be the 120 min run.",
+      "location": "Polatides 2007 thesis, printed p. 117 (Table 5.21) vs printed p. 108 (Table 5.14)",
+      "status": "unresolved",
+      "discrepancy": "possible duration mislabel (12 h vs 120 min) for one Table 5.21 row"
+    },
+    {
+      "id": "T65",
+      "topic": "inconsistency",
+      "thesis": "polatides2007",
+      "statement": "The text defines an '80 %-20 %' pulse as one with 80 % of the period at the positive potential and 20 % at the cathodic potential, and Diag 7.2 is captioned 'asymmetric square pulse 20 %-80 %', whereas every experiment caption reads 'cathodic -1.5 V (80 %), anodic +1.5 V (20 %)' and the model weights reductions by t1/T for the negative potential.",
+      "location": "Polatides 2007 thesis, printed pp. 155-156 (Diag 7.2 and text) vs experiment captions in ch. 7",
+      "status": "stated",
+      "discrepancy": "pulse duty-cycle naming reversed between the definition and the experiments"
+    },
+    {
+      "id": "T66",
+      "topic": "inconsistency",
+      "thesis": "polatides2007",
+      "statement": "The diffusion estimate for Sn85Cu15 uses an apparent electrode area A = 3.1e-4 m2 (3.1 cm2), whereas the cell chapter gives 12.56 cm2 unless stated otherwise and section 5.1 used 12.56 cm2. The same paragraph's initial rate 3.91e-7 mol/s equals k1 (3.9e-4 s-1) x 0.05 M x 20 mL, i.e. it is consistent with the 20 mL catholyte; the area of the Diag 5.8 electrode is not otherwise stated.",
+      "location": "Polatides 2007 thesis, printed p. 96 vs ch. 4 (printed p. 67) and section 5.1 (printed p. 83)",
+      "status": "unresolved",
+      "discrepancy": "electrode area 3.1 cm2 vs the 12.56 cm2 default"
+    },
+    {
+      "id": "T67",
+      "topic": "inconsistency",
+      "thesis": "katsounaros2009",
+      "statement": "Table 6.11 (partial current efficiencies at 70 % conversion, -2.0 to -2.8 V) has columns for NO2-, NH3 and N2 only, although N2O was detected in every run (about 5 % selectivity at -2.8 V, printed p. 87); the printed total therefore excludes N2O. Column order NO2-, NH3, N2 is reconstructed from the flattened header and confirmed by row sums and by the Diag 6.7 endpoints. Table in data/digitized_inputs/katsounaros2009thesis_table6p11_ce_vs_e.",
+      "location": "Katsounaros 2009 thesis, printed p. 88, Table 6.11",
+      "status": "derived",
+      "discrepancy": "total current efficiency omits N2O"
+    }
+  ]
+}

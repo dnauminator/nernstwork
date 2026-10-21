@@ -14,3 +14,5 @@ literature/**
 .venv/
 agent/node_modules/
 /investigations/
+# Barrera et al. 2023 data are CC BY-NC-ND 4.0: reshaped copies stay local until the owner decides (docs/DATASETS.md)
+/data/digitized_inputs/barrera2023_*

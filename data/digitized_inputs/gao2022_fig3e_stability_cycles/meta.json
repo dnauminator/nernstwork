@@ -1,0 +1,26 @@
+{
+  "id": "gao2022_fig3e_stability_cycles",
+  "kind": "non_trajectory",
+  "extractor": "agent team 2026-10-20",
+  "provenance": {
+    "citation": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Electrocatalytic Upcycling of Nitrate Wastewater into an Ammonia Fertilizer via an Electrified Membrane, Environ. Sci. Technol. 56 (2022) 11602-11613",
+    "doi": "10.1021/acs.est.1c08442",
+    "figure": "Fig. 3e (journal p. 11608, PDF page 7)",
+    "file": "publisher PDF via NSF PAR record 10451706 (par.nsf.gov/servlets/purl/10451706); local copy 10451706.pdf, not committed",
+    "verified_against_figure": false,
+    "extraction": "Raster digitization: left axis (0-100 %) from 6 located ticks, right axis (0-3 mg/L) from 4 located major ticks (y = 0 of the right axis sits 10 px above the frame bottom), cycle axis from 5 located major ticks. Markers segmented by colour after a 5x5 morphological opening (removes connecting lines); red circles = blob centroid, blue triangles = area centroid. Cu values within one pixel of zero (-0.007 to -0.005) recorded as 0. One pixel = 0.32 % (left) and 0.009 mg/L (right). The top axis (treated volume) is 50 mL per cycle by the tick labels."
+  },
+  "licence": "Licence/terms: publisher copyright (ACS); NSF public-access copy. The PAR record (par.nsf.gov/biblio/10451706) states no reuse licence; the downloaded file is the ACS typeset article (PAR labels its full text 'Accepted Manuscript') and carries the ACS notice 'See https://pubs.acs.org/sharingguidelines for options on how to legitimately share published articles'. Checked Oct 20 2026.",
+  "conditions": {
+    "catalyst": "CuO-coated Cu foam on PTFE/PP membrane (electrified membrane cathode, 4 cm2)",
+    "cell": "flow_cell (trap | cathode membrane | cathode chamber | Nafion 117 | anode chamber), recirculated at 50 mL/min",
+    "potential_as_reported": "-2.0 V vs SCE (no ohmic compensation)",
+    "potential_V_vs_RHE": null,
+    "temperature_C": null,
+    "electrolyte": "25 mM NO3-, 10 mM Cl-, 0.5 M Na2SO4, pH ~7; 2.0 h per cycle"
+  },
+  "checks": "Text: NO3- removal 96.6-99.9 % over 20 cycles (read 96.2-99.8; the 96.2 % point is 1.4 px below the stated minimum); Cu below 0.1 ppm at steady state (read <= 0.10 from cycle 14 on).",
+  "flags": [
+    "potential_unverified"
+  ]
+}

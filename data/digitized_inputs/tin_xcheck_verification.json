@@ -1,0 +1,662 @@
+{
+  "subject": "Thesis cross-checks of Daniel's three tin digitizations (katsounaros2009thesis_diag9p6_xcheck, katsounaros2009thesis_diag12p3_xcheck, polatides2007thesis_diag5p8_xcheck) and the downstream W5 factor-of-2 claim",
+  "folders": [
+    "katsounaros2009thesis_diag9p6_xcheck",
+    "katsounaros2009thesis_diag12p3_xcheck",
+    "polatides2007thesis_diag5p8_xcheck"
+  ],
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "verdict": "accept_with_flags",
+  "summary": "The three cross-checks hold up. Independent re-reads of 10 markers on the thesis page images (own tick calibration, own geometry; for Diag 9.6 also the Origin connecting polyline) agree with the teammate's values to 0.0-0.6 mM as plotted, and confirm the specific disagreements with Daniel (Diag 12.3 NH3 at 120 min 26.0 vs Daniel 19.6; occlusion bias at NH3 60 and NO3 180; Diag 9.6 N2 about 3-4 mM N2 low in Daniel's data; Diag 5.8 N2 offset about -0.2 mM N2 from anchor choice). The Polatides constants claim is confirmed by an independent fit of the drawn curves and, more directly, by the authors' own MATLAB function in the thesis appendix, which consumes nitrite at k3[NO2]^2 and forms N2 at 0.5 k3[NO2]^2. The W5 factor-of-2 claim is right: W5 reproduces thesis eqs 41-44 as printed (2 k3 in the nitrite equation) with the printed k3, but the printed k3 is the authors' nitrite-loss coefficient, so W5 removes nitrite twice as fast as the published model. Two repo issues hid this: tests/test_simulate.py doubles an N2 series that is already in mM-N, and docs/SPEC.md 7d therefore reports W5 N2 as undershooting (23 vs 34) when it overshoots (23 vs 16.8). Nothing in worlds/, scripts/, tests/ or Daniel's files was changed.",
+  "revision_2026-10-20": "The summary's Diag 12.3 NH3 items (120 min 26.0 vs Daniel 19.6; occlusion bias at NH3 60) describe the thesis copy only. Their causes are downgraded to unresolved and source-dependent after the thesis's own Diag 12.1 NH3 rates were found to imply 20.8 and 8.0 mM, near Daniel's values; see checks A2 and A3 (revision entries).",
+  "sources_checked": {
+    "page_images": "img_19491/p167.jpg (Diag 9.6), p221.jpg (Diag 12.3), img_15209/p116.jpg (Diag 5.8); 300 dpi (session scratch, not retained; thesis page images)",
+    "text_layers": "reader text layer (session scratch, not retained) txt_15209/p116-p124 (section 5.3, eqs 26-45, printed constants) and p216-p217 (appendix 2, MATLAB 6.5 listing); no page image of the equation pages or the appendix was available, so equation layout is read from the text layer",
+    "repo": "worlds/W5_potential_dependent.json, scripts/build_worlds.py (W5 block), src/nernstwork/mechanism.py (simulate, rate), src/nernstwork/model.py, tests/test_simulate.py, data/real/polatides2005_fig3_sn85cu15_50mM.json, data/digitized_inputs/polatides2005_fig3/wpd_datasets.csv, docs/SPEC.md 7c-7d",
+    "not_available": "the journal PDFs (Katsounaros 2012 Fig. 1, Katsounaros 2008 Fig. 2, Polatides 2005) are not on this machine; nothing here compares against the journal images directly"
+  },
+  "checks": [
+    {
+      "name": "A0_agreement_statistics_recomputed",
+      "result": "pass",
+      "detail": "Joined extracted.csv (kind=data, t>0) with Daniel's data/real files. Diag 9.6: 78 points, RMS 1.81 mM as plotted, mean +1.33; N2 mean +5.14 mM-N (14 points); thesis N2 at 210 = 842.2 vs Daniel 835.3 mM-N. Diag 12.3: 30 points, RMS 1.54 mM-N (NH3 3.03, NO3 1.39, others 0.29-0.58). Diag 5.8: 28 points, NO3/NO2/NH3 RMS 0.036/0.044/0.092 mM, N2 mean -0.385 mM-N = -0.19 mM N2. All match the teammate's comparison files."
+    },
+    {
+      "name": "A1_calibration_independent",
+      "result": "pass",
+      "detail": "Axis lines and tick centroids located with own code (darkness profiles beside the axis lines). p221: x ticks 891.92...1893.04 px, y ticks 2001.0-2669.76 px, 0.59817 mM/px, residual 0.06 mM. p167: 1.15722 mM/px, residual 0.19 mM, x 0.16407 min/px. p116: 0.061461 mM/px, residual 0.06 mM, x 0.106561 min/px, axis-origin checks within 0.03 mM and 0.01 min. Same tick positions as the teammate to <0.5 px."
+    },
+    {
+      "name": "A2_diag12p3_NH3_120_claimed_misclick",
+      "result": "confirmed_on_thesis_image; cause_unverified",
+      "detail": "The NH3 open triangle at 120 min is drawn over the NO3 square. Side-stroke widths at rows 2795-2797 (below the square) give the geometric vertex at row 2776.76; the clean 90-min triangle gives circumradius 16.72 px (vertex 2795.25, base 2820.33). Circumcentre row 2793.48 = 25.96 mM (bounding-box-centre convention would give 28.46). Predicted base 2801.8 matches the drawn base stroke (rows 2801-2802). Daniel's 19.6 mM is row 2804.11, below the triangle's outer base edge (about 2802.5), on the error-bar stem. So in the thesis copy the marker is at 26-28.5 mM and 19.6 is off the marker; whether the journal figure differs could not be checked (no PDF here). Apart from the 60-min occlusion case, Daniel's other NH3 points agree with the thesis within 1.4 mM, so a click on the base/stem of a crowded cluster is the most likely explanation, not a proven one.",
+      "values_mM": {
+        "verifier": 25.96,
+        "teammate": 26.23,
+        "daniel": 19.6
+      },
+      "revision_2026-10-20": {
+        "date": "2026-10-20",
+        "status": "downgraded: cause unresolved and source-dependent",
+        "what_changes": "The thesis-image reading above stands (marker at about 26 mM, 19.6 below its base). The ranking of 'a click on the base/stem of a crowded cluster' as the most likely explanation is withdrawn; it now competes with the journal figure plotting a different value. The same applies to NH3 at 60 min (check A3).",
+        "evidence": "The thesis's own Diag 12.1 NH3 rates (katsounaros2009thesis_diag12p1_rates) are central-difference derivatives of the sampled concentrations (mean of the two adjacent interval slopes, one-sided at the ends); the inverse of that scheme reproduces the thesis NO2-, N2 and N2O markers to 0.17-0.19 mM-N RMS. Inverting the NH3 rates gives 3.28, 8.00, 14.85, 20.80, 23.85, 27.13 mM at 30-180 min (sd 0.1-0.3), against thesis Diag 12.3 markers 4.31, 4.79, 15.03, 26.23, 24.27, 27.38 and Daniel's 4.98, 7.64, 13.62, 19.60, 23.59, 27.58. At 120 min the rates give 20.8 (Daniel 19.6; thesis copy about 26, cap midpoint 25.8-25.9); at 60 min 8.0 (Daniel 7.6; thesis copy 4.8). These are the only two points where Daniel departs from the thesis copy, and the rates depart from it at the same two points, in Daniel's direction. Forward check: the NH3 rates miss the thesis markers by up to 0.144 mM/min (78 px, about 50 times the reading error), while NO2- from the same samples matches to 0.0035; replacing only the two thesis values with Daniel's cuts the worst residual to 0.034. The journal Fig. 1 is a re-plot (its curves are model B, not the thesis constants) and was not checked; it may plot NH3 near 8 and 20 mM. The thesis-copy features also lie near the rate-implied values (visible-part midpoint 7.3 at 60 min, triangle base 21.0 at 120 min), so a misclick and a different journal figure cannot be told apart without the journal image.",
+        "recommendation": "Do not replace Daniel's NH3 values with the thesis-copy 4.8 and 26.2. Keep them, flag NH3 at 60 and 120 min as source-dependent (+-3 and +-6 mM), and pixel-check Katsounaros 2012 Fig. 1 in the journal PDF.",
+        "sources": [
+          "data/digitized_inputs/katsounaros2009thesis_diag12p1_intermediates/verification.json (check claim6_NH3_120_and_the_misclick_verdict)",
+          "data/digitized_inputs/katsounaros2009thesis_diag12p3_errorbars/verification.json (check NH3_120_thesis_copy)"
+        ]
+      }
+    },
+    {
+      "name": "A3_diag12p3_occlusion_points",
+      "result": "confirmed",
+      "detail": "NH3 at 60 min: vertex row 2812.26 (side strokes, fixed 30-degree slope; apex itself is under the N2O star), circumcentre 4.72 mM, base on the x axis; the midpoint of the visible part (vertex to axis) is 7.33 mM, which is Daniel's 7.64. NO3 at 180 min: top edge 2802.94, width 22.66 px (square), centre 13.53 mM; midpoint of the visible black part (top to the NO2 circle at 2816.5) 16.25 mM, which is Daniel's 16.28. N2 at 90 min (clean filled inverted triangle, control point): centroid 166.19 mM-N vs teammate 166.15, Daniel 165.12.",
+      "values_mM": {
+        "NH3_60": {
+          "verifier": 4.72,
+          "teammate": 4.79,
+          "daniel": 7.64
+        },
+        "NO3_180": {
+          "verifier": 13.53,
+          "teammate": 13.67,
+          "daniel": 16.28
+        },
+        "N2_90": {
+          "verifier": 166.19,
+          "teammate": 166.15,
+          "daniel": 165.12
+        }
+      },
+      "revision_2026-10-20": {
+        "date": "2026-10-20",
+        "status": "NH3 at 60 min: occlusion explanation no longer settled; NO3 at 180 min unchanged",
+        "detail": "Daniel's NH3 7.64 at 60 min equals the midpoint of the visible part of the thesis marker (7.33), but it also matches the 8.00 mM implied by the thesis's own Diag 12.1 NH3 rates, so the 60-min point belongs to the unresolved, source-dependent NH3 question in check A2 (revision entry). The NO3 180-min occlusion reading is unaffected (Diag 12.1 has no nitrate rate).",
+        "sources": [
+          "data/digitized_inputs/katsounaros2009thesis_diag12p1_intermediates/verification.json (check claim6_NH3_120_and_the_misclick_verdict)",
+          "data/digitized_inputs/katsounaros2009thesis_diag12p3_errorbars/verification.json (check NH3_120_thesis_copy)"
+        ]
+      }
+    },
+    {
+      "name": "A4_diag9p6_N2_offset_and_plateau",
+      "result": "confirmed",
+      "detail": "Read through the Origin connecting polyline, which does not depend on a marker-anchor assumption: line segments fitted on both sides of the N2 marker at 120 min (63 and 61 columns, residual <0.2 px) cross x(120) at rows 1198.25-1198.64 = 303.0-303.4 mM N2; the filled-triangle centroid is 303.14 and its bounding-box middle 299.7; Daniel 299.3. At 210 min the 195->210 segment reaches x(210) at row 1096.38 = 420.8 mM N2 (841.5 mM-N); centroid 421.06 (842.1); bounding-box middle 417.7 (835.5); Daniel 835.3 mM-N. So the polyline vertex sits on the centroid, and Daniel's N2 values match the bounding-box middle, about 3.3 px low. Control: NO2 at 60 min, circle fit centre row 1342.06 = 136.5 mM (teammate 136.5, Daniel 135.7, thesis text 0.136 M).",
+      "values": {
+        "N2_120_mM_N2": {
+          "verifier_polyline": 302.67,
+          "verifier_centroid": 303.14,
+          "teammate": 303.17,
+          "daniel": 299.32
+        },
+        "N2_210_mM_N": {
+          "verifier_polyline": 841.5,
+          "verifier_centroid": 842.1,
+          "teammate": 842.2,
+          "daniel": 835.3
+        },
+        "NO2_60_mM": {
+          "verifier": 136.5,
+          "teammate": 136.52,
+          "daniel": 135.73
+        }
+      }
+    },
+    {
+      "name": "A5_diag5p8_points",
+      "result": "confirmed",
+      "detail": "Binary MATLAB raster, 1-px strokes. N2 at 90 min: 'v' spans rows 2272-2284 -> bounding-box middle 7.26 mM N2, triangle centroid (top + h/3) 7.38; teammate 7.23, Daniel 7.43. N2 at 120 min: rows 2257-2269 -> 8.18 (bbox) / 8.30 (centroid); teammate 8.18, Daniel 8.41. NO2 at 45 min: circle rows 2013-2026 -> 23.11-23.14 mM; teammate 23.12, Daniel 23.17. The N2 offset (thesis - Daniel about -0.2 mM N2) is the anchor choice: Daniel sits at or slightly above the centroid, the teammate at the bounding-box middle; MATLAB's anchor for 'v' was not established. Effect <=0.5 mM-N, negligible for kinetics."
+    },
+    {
+      "name": "B1_thesis_model_equations",
+      "result": "read",
+      "detail": "Text layer, reader p122 (printed p101): eq 42 d[NO2-]/dt = k1[NO3-] - k2[NO2-] - 2 k3[NO2-]^2; eq 44 d[N2]/dt = k3[NO2-]^2 (N2 per molecule). Reader p123 (printed p102): k1 = 4.9e-4 s-1 from the ln[NO3] slope (eq 45); best values k2 = 1.76e-5 s-1 and k3 = 7.66e-3 L mol-1 s-1, initial conditions 50 mM NO3. Appendix 2 (reader p216-217, printed p195-196), the MATLAB 6.5 function the text cites for the numerical solution: dx=[-k1*x(1); k1*x(1)-k2*x(2)-k3*x(2)^2; k2*x(2); 0.5*k3*x(2)^2], with mM and min units and a random search k1 = 0.0295+rand/3333, k2 = 0.01848+rand/2500, k3 = 0.0004501+rand/3300 (k3 range 4.50e-4 to 7.53e-4 mM-1 min-1). So the printed equations put 2 k3 in the nitrite balance and k3 in the N2 balance, while the authors' code puts k3 in the nitrite balance and k3/2 in the N2 balance. The printed 7.66e-3 L mol-1 s-1 = 4.60e-4 mM-1 min-1 sits inside the code's k3 search range. Caveat: the superscript 2 and the factor placement are reconstructed from the flattened text layer; the code listing is plain text and unambiguous. The appendix data matrix matches the plotted NO2 and N2 values but not NO3 (about 0.82x) or NH3 (about 1.55x), and its k2 range (3.1e-4 s-1) is not the printed k2, so the listing is an example run, not necessarily the Diag 5.8 fit; only its ODE form is used here."
+    },
+    {
+      "name": "B2_constants_reproduce_drawn_curves",
+      "result": "confirmed",
+      "detail": "Independent fit, no curve assignment: every dark pixel run in non-marker columns of Diag 5.8 (3632 runs, t = 1-119.6 min) scored by distance to the nearest of the four model curves, soft-L1 loss. Result k1 = 4.177e-04 s-1, k2 = 1.765e-04 s-1, nitrite-loss coefficient 7.530e-03 L mol-1 s-1 (N2 formation 3.765e-03, per molecule); median |residual| 0.029 mM, RMS 0.045 mM. Both conventions give the same curves, so the fit fixes the nitrite-loss coefficient at 7.53e-3: printed 7.66e-3 is 1.7% above it; reading 7.66e-3 as eq 44's k3 would put it 2.03x too high. Printed constants in the code form leave a median curve residual of 0.69 mM (k1 effect); in the eq 42 form 1.56 mM. Printed k1 = 4.9e-4 gives NO3(120) = 1.47 mM against the drawn 2.5; the curves need 4.18e-4. Teammate's values (4.18e-4, 1.77e-4, 3.77e-3) reproduced to 3 digits.",
+      "fit": {
+        "matlab": {
+          "k1_s": 0.0004176641892224583,
+          "k2_s": 0.0001765446728964814,
+          "k3_L_mol_s": 0.007530407390849084,
+          "median_abs_resid_mM": 0.029267300024026888,
+          "rms_inliers_mM": 0.045128049098420796,
+          "inlier_frac": 1.0,
+          "nitrite_loss_coeff_L_mol_s": 0.007530407390849084,
+          "N2_formation_coeff_molecular_L_mol_s": 0.003765203695424542
+        },
+        "eq42_as_printed": {
+          "k1_s": 0.00041766418917791264,
+          "k2_s": 0.0001765446728983066,
+          "k3_L_mol_s": 0.0037652036953268082,
+          "median_abs_resid_mM": 0.02926730038106662,
+          "rms_inliers_mM": 0.04512804911088429,
+          "inlier_frac": 1.0,
+          "nitrite_loss_coeff_L_mol_s": 0.0075304073906536165,
+          "N2_formation_coeff_molecular_L_mol_s": 0.0037652036953268082
+        },
+        "printed_matlab": {
+          "median_abs_resid_mM": 0.6884099058283217,
+          "frac_within_0.3mM": 0.14041850220264318
+        },
+        "printed_eq42_as_printed": {
+          "median_abs_resid_mM": 1.5596425871992692,
+          "frac_within_0.3mM": 0.14234581497797358
+        }
+      }
+    },
+    {
+      "name": "C1_simulator_convention",
+      "result": "confirmed",
+      "detail": "src/nernstwork/mechanism.py rate(): mass_action rate = k * prod(c^coeff); simulate() subtracts coeff * rate from each reactant. For W5 R3 (2 NO2 -> 2 SINK, k = 4.6e-4) nitrite is consumed at 2 x 4.6e-4 [NO2]^2 = 9.2e-4 [NO2]^2 mM-N min-1, and SINK (mM-N) forms at the same rate. Integrating W5 with the repo simulator equals integrating thesis eqs 41-44 as printed with printed constants (max difference 0.008 mM-N over 0-120 min); W5 with R3 k = 2.3e-4 equals the appendix MATLAB form with printed constants (max difference 0.008 mM-N)."
+    },
+    {
+      "name": "C2_W5_potential_anchor",
+      "result": "pass_with_flag",
+      "detail": "All three W5 reactions have E_ref_V = -1.39 V vs RHE (= -2.0 V vs Ag/AgCl + 0.197 + 0.059 x 7), and design_space.initial_conditions is at -1.39, so simulating at E_V = -1.39 applies the nominal k values (checked: effective k = 0.0294, 0.01056, 4.6e-4). The comparison below is at that potential, which is the thesis/paper potential (-2.0 V vs Ag/AgCl, Diag 5.8 caption). Flag for the W5 owner, not part of this claim: design_space.potential_V_vs_RHE is [-1.79, -1.39], i.e. -2.4 to -2.0 V vs Ag/AgCl, so the second design potential lies 0.4 V beyond the most cathodic measured potential, where the Fig. 6 alphas are extrapolated (SPEC 7d itself says they say nothing outside -1.6 to -2.0 V). At -1.79 the effective R2 and R3 are 7.7x and 4.0x their anchor values. Also the R3 k unit in the world file reads 'min^-1'; it is a second-order constant (mM^-1 min^-1)."
+    },
+    {
+      "name": "C3_W5_vs_curves_and_data",
+      "result": "confirmed",
+      "detail": "Repo simulator, E_V = -1.39, pH 7, 50 mM NO3, 0-120 min. RMS in mM-N (N2 x2). Against the thesis-traced Diag 5.8 curves (extracted.csv model_curve rows): W5 as built NO3 2.19, NO2 3.14, NH3 1.42, N2 5.98 (2.99 as plotted); R1 0.0251 + R3 2.3e-4: 0.07, 0.08, 0.09, 0.12 (0.06 as plotted). Against Daniel's data/real points (t>0): W5 as built 3.63, 3.20, 1.66, 5.45; corrected 2.41, 1.99, 1.14, 1.10. At 120 min W5 gives N2 23.1 mM-N against 16.8 (Daniel's point), 16.4 (thesis point) and about 15.3-15.5 (drawn curve, traced to 119 min). Own spot reads of the drawn curves at 50, 100, 110, 116, 119 min (20 values, independent of the teammate's trace): W5 RMS 4.39 (max 7.77), corrected RMS 0.10 (max 0.18). Separating the two changes: halving R3 alone (R1 kept at 0.0294) takes N2 vs Daniel from 5.45 to 1.13 and NO2 from 3.20 to 2.03; changing R1 alone leaves N2 at 4.06. So the factor of 2 drives the NO2/NH3/N2 miss and the printed k1 drives the NO3 miss. A fit of Daniel's points with the repo simulator (R3 coefficient 2) gives R1 0.0250, R2 0.01084, R3 2.58e-4 mM-1 min-1 (= 4.30e-3 L mol-1 s-1, which is Daniel's own reported fit), i.e. 0.56x the W5 value.",
+      "variants": {
+        "W5_as_built (R1 0.0294, R3 4.6e-4)": {
+          "N_balance_max_dev": 4.263256414560601e-14,
+          "at_120_mM_N": {
+            "NO3": 1.468,
+            "NO2": 7.979,
+            "NH3": 17.492,
+            "N2": 23.061
+          },
+          "rms_vs_daniel_points_t_gt_0_mM_N": {
+            "NO3": 3.625,
+            "NO2": 3.2,
+            "NH3": 1.658,
+            "N2": 5.453
+          },
+          "rms_vs_thesis_points_t_gt_0_mM_N": {
+            "NO3": 3.602,
+            "NO2": 3.181,
+            "NH3": 1.701,
+            "N2": 5.797
+          },
+          "rms_vs_thesis_curves_mM_N": {
+            "NO3": 2.187,
+            "NO2": 3.136,
+            "NH3": 1.422,
+            "N2": 5.984
+          },
+          "rms_vs_thesis_curves_as_plotted_mM": {
+            "NO3": 2.187,
+            "NO2": 3.136,
+            "NH3": 1.422,
+            "N2": 2.992
+          }
+        },
+        "R3 halved only (R1 0.0294, R3 2.3e-4)": {
+          "N_balance_max_dev": 6.394884621840902e-14,
+          "at_120_mM_N": {
+            "NO3": 1.468,
+            "NO2": 10.893,
+            "NH3": 21.098,
+            "N2": 16.541
+          },
+          "rms_vs_daniel_points_t_gt_0_mM_N": {
+            "NO3": 3.625,
+            "NO2": 2.028,
+            "NH3": 1.169,
+            "N2": 1.131
+          },
+          "rms_vs_thesis_points_t_gt_0_mM_N": {
+            "NO3": 3.602,
+            "NO2": 2.056,
+            "NH3": 1.203,
+            "N2": 1.34
+          },
+          "rms_vs_thesis_curves_mM_N": {
+            "NO3": 2.187,
+            "NO2": 1.018,
+            "NH3": 0.593,
+            "N2": 1.115
+          },
+          "rms_vs_thesis_curves_as_plotted_mM": {
+            "NO3": 2.187,
+            "NO2": 1.018,
+            "NH3": 0.593,
+            "N2": 0.558
+          }
+        },
+        "R1 corrected only (R1 0.0251, R3 4.6e-4)": {
+          "N_balance_max_dev": 4.263256414560601e-14,
+          "at_120_mM_N": {
+            "NO3": 2.46,
+            "NO2": 8.637,
+            "NH3": 17.109,
+            "N2": 21.794
+          },
+          "rms_vs_daniel_points_t_gt_0_mM_N": {
+            "NO3": 2.407,
+            "NO2": 3.237,
+            "NH3": 2.064,
+            "N2": 4.057
+          },
+          "rms_vs_thesis_points_t_gt_0_mM_N": {
+            "NO3": 2.403,
+            "NO2": 3.216,
+            "NH3": 2.102,
+            "N2": 4.399
+          },
+          "rms_vs_thesis_curves_mM_N": {
+            "NO3": 0.072,
+            "NO2": 3.009,
+            "NH3": 1.807,
+            "N2": 4.64
+          },
+          "rms_vs_thesis_curves_as_plotted_mM": {
+            "NO3": 0.072,
+            "NO2": 3.009,
+            "NH3": 1.807,
+            "N2": 2.32
+          }
+        },
+        "teammate corrected (R1 0.0251, R3 2.3e-4)": {
+          "N_balance_max_dev": 6.394884621840902e-14,
+          "at_120_mM_N": {
+            "NO3": 2.46,
+            "NO2": 11.582,
+            "NH3": 20.472,
+            "N2": 15.486
+          },
+          "rms_vs_daniel_points_t_gt_0_mM_N": {
+            "NO3": 2.407,
+            "NO2": 1.994,
+            "NH3": 1.144,
+            "N2": 1.095
+          },
+          "rms_vs_thesis_points_t_gt_0_mM_N": {
+            "NO3": 2.403,
+            "NO2": 2.012,
+            "NH3": 1.188,
+            "N2": 1.003
+          },
+          "rms_vs_thesis_curves_mM_N": {
+            "NO3": 0.072,
+            "NO2": 0.082,
+            "NH3": 0.085,
+            "N2": 0.12
+          },
+          "rms_vs_thesis_curves_as_plotted_mM": {
+            "NO3": 0.072,
+            "NO2": 0.082,
+            "NH3": 0.085,
+            "N2": 0.06
+          }
+        }
+      },
+      "thesis_forms_direct_ode": {
+        "eqs41-44 as printed, printed k (k1 4.9e-4, k2 1.76e-4, k3 7.66e-3)": {
+          "at_120_mM_N": {
+            "NO3": 1.468,
+            "NO2": 7.983,
+            "NH3": 17.496,
+            "N2": 23.053
+          },
+          "rms_vs_thesis_curves_mM_N": {
+            "NO3": 2.187,
+            "NO2": 3.133,
+            "NH3": 1.419,
+            "N2": 5.977
+          },
+          "rms_vs_daniel_points_t_gt_0_mM_N": {
+            "NO3": 3.625,
+            "NO2": 3.196,
+            "NH3": 1.656,
+            "N2": 5.447
+          }
+        },
+        "appendix MATLAB form, printed k": {
+          "at_120_mM_N": {
+            "NO3": 1.468,
+            "NO2": 10.897,
+            "NH3": 21.102,
+            "N2": 16.533
+          },
+          "rms_vs_thesis_curves_mM_N": {
+            "NO3": 2.187,
+            "NO2": 1.019,
+            "NH3": 0.595,
+            "N2": 1.11
+          },
+          "rms_vs_daniel_points_t_gt_0_mM_N": {
+            "NO3": 3.625,
+            "NO2": 2.03,
+            "NH3": 1.17,
+            "N2": 1.129
+          }
+        },
+        "appendix MATLAB form, k1 4.18e-4": {
+          "at_120_mM_N": {
+            "NO3": 2.466,
+            "NO2": 11.589,
+            "NH3": 20.473,
+            "N2": 15.472
+          },
+          "rms_vs_thesis_curves_mM_N": {
+            "NO3": 0.067,
+            "NO2": 0.081,
+            "NH3": 0.087,
+            "N2": 0.112
+          },
+          "rms_vs_daniel_points_t_gt_0_mM_N": {
+            "NO3": 2.405,
+            "NO2": 1.996,
+            "NH3": 1.145,
+            "N2": 1.101
+          }
+        }
+      },
+      "curve_spot_reads_rms": {
+        "W5_as_built (R1 0.0294, R3 4.6e-4)": {
+          "rms_mM_N": 4.395,
+          "max_abs_mM_N": 7.771
+        },
+        "R3 halved only (R1 0.0294, R3 2.3e-4)": {
+          "rms_mM_N": 1.141,
+          "max_abs_mM_N": 2.747
+        },
+        "R1 corrected only (R1 0.0251, R3 4.6e-4)": {
+          "rms_mM_N": 3.71,
+          "max_abs_mM_N": 6.476
+        },
+        "teammate corrected (R1 0.0251, R3 2.3e-4)": {
+          "rms_mM_N": 0.103,
+          "max_abs_mM_N": 0.185
+        }
+      }
+    },
+    {
+      "name": "C4_existing_test_and_spec",
+      "result": "fail",
+      "detail": "tests/test_simulate.py::test_w5_reproduces_polatides_fig3_at_reference_potential multiplies the N2 series by 2, but data/real/polatides2005_fig3_sn85cu15_50mM.json already stores N2 in mM-N (wpd_datasets.csv 8.411 at 120 min -> stored 16.822; n_closure 0.937 at 120 min uses the stored value directly). The test therefore compares W5 N2 with 33.6 mM-N at 120 min; with its 7.0 mM tolerance it passes either way (N2 RMS 5.49 as written, 5.10 with correct units). docs/SPEC.md 7d repeats the doubled number ('simulated N2 is 23 mM-N at 120 min against 34 digitized, so the printed k3 undershoots the N2 curve'); with correct units W5 overshoots (23.1 vs 16.8). This is probably why the factor of 2 went unnoticed. Not changed here."
+    }
+  ],
+  "image_reads_verifier": {
+    "diag12p3_p221": {
+      "NH3_120": {
+        "vertex_row": 2776.7568607905996,
+        "centre_row": 2793.4782355235984,
+        "value_mM": 25.963378285397766,
+        "value_if_bbox_centre_mM": 28.46392763563199,
+        "outer_base_edge_row": 2802.5,
+        "daniel_row": 2804.1146694229406
+      },
+      "NH3_90": {
+        "vertex_row": 2795.2512712338353,
+        "base_row": 2820.3333333333335,
+        "circumradius_px": 16.72137473299881,
+        "centre_row": 2811.972645966834,
+        "value_mM": 14.900607010849171
+      },
+      "NH3_60": {
+        "vertex_row": 2812.263507490806,
+        "centre_row": 2828.984882223805,
+        "value_mM": 4.724425447392605,
+        "base_row": 2837.3455695903044,
+        "visible_mid_value_mM": 7.328329196208642
+      },
+      "NO3_180": {
+        "top_edge_row": 2802.938779956427,
+        "width_px": 22.658823529411766,
+        "centre_row": 2814.268191721133,
+        "value_mM": 13.527484157973504,
+        "visible_mid_value_mM": 16.248433463691754
+      },
+      "N2_90": {
+        "top_edge_row": 2549.99609375,
+        "tip_row": 2577.1795501591905,
+        "centroid_row": 2559.0572458863967,
+        "value_mM_N": 166.1865986075254,
+        "bbox_mid_value": 163.476551323874
+      },
+      "calibration": {
+        "y_per_px": -0.5981683659775605,
+        "y_offset": 1696.9336898224276
+      }
+    },
+    "diag9p6_p167": {
+      "N2_120": {
+        "row": 1198.4428836762281,
+        "val_molecular": 302.6652982107046,
+        "intersect_row": 1196.6806433972665,
+        "intersect_t": 120.59094806259378,
+        "blob": {
+          "centroid_row": 1198.0322182010766,
+          "centroid_col": 1377.7904669432428,
+          "top": 1192,
+          "bottom": 1210,
+          "bbox_mid_row": 1201.0,
+          "val_centroid_molecular": 303.14052919012215,
+          "val_bboxmid_molecular": 299.70614783512883
+        }
+      },
+      "N2_210": {
+        "row": 1096.382135321891,
+        "val_molecular": 420.7722059867242,
+        "blob": {
+          "centroid_row": 1096.134839715448,
+          "centroid_col": 1926.6272689805937,
+          "top": 1090,
+          "bottom": 1108,
+          "bbox_mid_row": 1099.0,
+          "val_centroid_molecular": 421.0583818168502,
+          "val_bboxmid_molecular": 417.7427563002093
+        }
+      }
+    },
+    "diag5p8_p116": {
+      "calibration": {
+        "x_min_per_px": 0.10656110230476848,
+        "x_offset": -78.04889146875827,
+        "y_per_px": -0.06146139189643437,
+        "y_offset": 147.2637911721758
+      },
+      "N2_90_bbox_mid": {
+        "row": 2278.0,
+        "value_as_plotted": 7.255
+      },
+      "N2_90_centroid": {
+        "row": 2276.0,
+        "value_as_plotted": 7.378
+      },
+      "N2_120_bbox_mid": {
+        "row": 2263.0,
+        "value_as_plotted": 8.177
+      },
+      "N2_120_centroid": {
+        "row": 2261.0,
+        "value_as_plotted": 8.3
+      },
+      "NO2_45_bbox_mid": {
+        "row": 2019.5,
+        "value_as_plotted": 23.143
+      },
+      "NO2_45_side_mid": {
+        "row": 2020.0,
+        "value_as_plotted": 23.112
+      },
+      "curve_columns": {
+        "50": {
+          "col": 1202,
+          "t_col": 50.038,
+          "runs": [
+            [
+              2056,
+              2057,
+              20.868
+            ],
+            [
+              2164,
+              2165,
+              14.231
+            ],
+            [
+              2259,
+              2260,
+              8.392
+            ],
+            [
+              2342,
+              2343,
+              3.29
+            ]
+          ]
+        },
+        "100": {
+          "col": 1671,
+          "t_col": 100.015,
+          "runs": [
+            [
+              2106,
+              2106,
+              17.826
+            ],
+            [
+              2163,
+              2163,
+              14.323
+            ],
+            [
+              2284,
+              2284,
+              6.886
+            ],
+            [
+              2328,
+              2329,
+              4.151
+            ],
+            [
+              2384,
+              2393,
+              0.463
+            ]
+          ]
+        },
+        "110": {
+          "col": 1765,
+          "t_col": 110.031,
+          "runs": [
+            [
+              2081,
+              2082,
+              19.332
+            ],
+            [
+              2186,
+              2186,
+              12.909
+            ],
+            [
+              2276,
+              2277,
+              7.347
+            ],
+            [
+              2344,
+              2344,
+              3.198
+            ]
+          ]
+        },
+        "116": {
+          "col": 1821,
+          "t_col": 115.999,
+          "runs": [
+            [
+              2069,
+              2069,
+              20.1
+            ],
+            [
+              2198,
+              2198,
+              12.172
+            ],
+            [
+              2273,
+              2274,
+              7.531
+            ],
+            [
+              2350,
+              2351,
+              2.799
+            ]
+          ]
+        },
+        "119": {
+          "col": 1849,
+          "t_col": 118.983,
+          "runs": [
+            [
+              2063,
+              2063,
+              20.469
+            ],
+            [
+              2204,
+              2205,
+              11.772
+            ],
+            [
+              2272,
+              2272,
+              7.624
+            ],
+            [
+              2355,
+              2355,
+              2.522
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "conclusions": {
+    "A": "Confirmed. Diag 9.6 RMS 1.8 mM as plotted; Daniel's N2 is low by about 3-4 mM N2 (5 mM-N mean) because his clicks sit on the bounding-box middle while the Origin polyline vertex (the data position) sits on the triangle centroid; plateau 835 vs 842 mM-N. Diag 12.3 RMS 1.5 mM; NH3 at 120 min is 26.0 mM in the thesis (verifier) against Daniel's 19.6, which falls below the drawn marker; 'misclick' fits the thesis image but the journal image was not checked. NH3 60 and NO3 180 differences are occlusion bias in Daniel's reads (he took the middle of the visible part). Diag 5.8 agrees to under one pixel except a constant N2 offset of about -0.2 mM N2 set by the anchor convention.",
+    "B": "Confirmed. Drawn curves: k1 = 4.18e-4 s-1, k2 = 1.77e-4 s-1, nitrite loss 7.53e-3 [NO2]^2 L mol-1 s-1 (N2 forms at 3.77e-3, per molecule). Printed k1 = 4.9e-4 does not reproduce the NO3 curve. Printed k3 = 7.66e-3 is the nitrite-loss coefficient: the authors' MATLAB function (thesis appendix 2) uses it that way, despite eq 42 printing 2 k3.",
+    "C_W5": "The factor-of-2 claim is right. W5 R3 (2 NO2 -> 2 SINK, k = 4.6e-4 mM-1 min-1) removes nitrite at 9.2e-4 [NO2]^2, twice the published model's 4.6e-4 [NO2]^2. W5 literally implements printed eqs 42/44 with the printed k3, but that pairing is not the authors' model: their code, their drawn curves and the data all put the nitrite-loss coefficient at 4.5-4.6e-4 (code, curves) or about 5.2e-4 (data fit) mM-1 min-1. In the repo's convention R3 k should be about 2.3e-4 (2.26e-4 from the curves, 2.58e-4 from Daniel's points). Separately, R1 = 0.0294 is the printed k1, which the drawn curves do not use (0.0251); that choice is a judgment call (printed vs drawn), whereas the R3 value is a convention error. No world, script or test was changed.",
+    "A_revision_2026-10-20": "Diag 12.3 NH3 at 120 and 60 min: the causes ('misclick', 'occlusion bias') are downgraded to unresolved and source-dependent; see the revision entries in checks A2 and A3. The thesis-copy readings, the NO3 180-min occlusion finding and the Diag 9.6 and 5.8 conclusions are unchanged. Keep Daniel's NH3 values until the journal figure is pixel-checked."
+  },
+  "artifacts": {
+    "plots": [
+      "w5_vs_polatides_diag5p8.png (session scratch, not retained; regenerate with literature/extraction_scripts/tin_xcheck_verify/plot_w5.py)",
+      "image_reads_qa.png (session scratch, not retained; contains thesis page crops)"
+    ],
+    "scripts": [
+      "literature/extraction_scripts/tin_xcheck_verify/axes.py",
+      "literature/extraction_scripts/tin_xcheck_verify/ticks.py",
+      "literature/extraction_scripts/tin_xcheck_verify/reads_221.py",
+      "literature/extraction_scripts/tin_xcheck_verify/seg.py",
+      "literature/extraction_scripts/tin_xcheck_verify/circ.py",
+      "literature/extraction_scripts/tin_xcheck_verify/p116_reads.py",
+      "literature/extraction_scripts/tin_xcheck_verify/fit_curves.py",
+      "literature/extraction_scripts/tin_xcheck_verify/sim_w5.py",
+      "literature/extraction_scripts/tin_xcheck_verify/plot_w5.py",
+      "literature/extraction_scripts/tin_xcheck_verify/qa_crops.py",
+      "literature/extraction_scripts/tin_xcheck_verify/write_json.py"
+    ],
+    "results": [
+      "literature/extraction_scripts/tin_xcheck_verify/sim_w5_results.json",
+      "literature/extraction_scripts/tin_xcheck_verify/fit_curves_result.json",
+      "literature/extraction_scripts/tin_xcheck_verify/p221_reads.json",
+      "literature/extraction_scripts/tin_xcheck_verify/p167_reads.json",
+      "literature/extraction_scripts/tin_xcheck_verify/p116_reads.json",
+      "literature/extraction_scripts/tin_xcheck_verify/p116_curve_spots_vs_models.json"
+    ]
+  }
+}

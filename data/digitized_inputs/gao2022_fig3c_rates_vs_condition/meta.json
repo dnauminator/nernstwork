@@ -1,0 +1,26 @@
+{
+  "id": "gao2022_fig3c_rates_vs_condition",
+  "kind": "non_trajectory",
+  "extractor": "agent team 2026-10-20",
+  "provenance": {
+    "citation": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Electrocatalytic Upcycling of Nitrate Wastewater into an Ammonia Fertilizer via an Electrified Membrane, Environ. Sci. Technol. 56 (2022) 11602-11613",
+    "doi": "10.1021/acs.est.1c08442",
+    "figure": "Fig. 3c (journal p. 11608, PDF page 7)",
+    "file": "publisher PDF via NSF PAR record 10451706 (par.nsf.gov/servlets/purl/10451706); local copy 10451706.pdf, not committed",
+    "verified_against_figure": false,
+    "extraction": "Raster digitization of the embedded figure image. Left 'Rate' axis from 9 located ticks (0-4000, max residual 1.7), right EC axis from 11 located ticks (0-50 kWh/kg, max residual 0.05). Solid red bars: first background row above the bar; hatched blue bars: end of the blue-hatch pixel profile (bar assumed immediately left of the red bar with the same width). EC: centroids of orange filled circles (legend marker excluded). Rates are normalized by electrode area (4 cm2) and overall reaction time per the paper; the red-bar unit is g of (NH4)2SO4, not g N. Error bars not extracted."
+  },
+  "licence": "Licence/terms: publisher copyright (ACS); NSF public-access copy. The PAR record (par.nsf.gov/biblio/10451706) states no reuse licence; the downloaded file is the ACS typeset article (PAR labels its full text 'Accepted Manuscript') and carries the ACS notice 'See https://pubs.acs.org/sharingguidelines for options on how to legitimately share published articles'. Checked Oct 20 2026.",
+  "conditions": {
+    "catalyst": "CuO-coated Cu foam on PTFE/PP membrane (electrified membrane cathode, 4 cm2)",
+    "cell": "flow_cell (trap | cathode membrane | cathode chamber | Nafion 117 | anode chamber), recirculated at 50 mL/min",
+    "potential_as_reported": "-2.0 V vs SCE (no ohmic compensation)",
+    "potential_V_vs_RHE": null,
+    "temperature_C": null,
+    "electrolyte": "synthetic wastewater, 10 mM Cl-, 0.5 M Na2SO4; pH series at 25 mM NO3-, concentration series at pH 7"
+  },
+  "checks": "Text: NO3- removal 894 +/- 33 and 1258 +/- 39 g-N m-2 d-1 at 75 and 150 mM (read 894.1, 1256.7); TAN recovery 2030 +/- 98 and 3100 +/- 91 g-(NH4)2SO4 m-2 d-1 (read 2033.5, 3106.2); EC 25.2 +/- 3.5 and 21.8 +/- 3.8 (read 25.19, 21.82); EC range 29.8-33.5 at 25 mM (read 29.82-33.58).",
+  "flags": [
+    "potential_unverified"
+  ]
+}

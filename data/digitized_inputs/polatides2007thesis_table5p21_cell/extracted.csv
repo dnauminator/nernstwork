@@ -1,0 +1,41 @@
+table_row,electrode,E_V_vs_AgAgCl,cell,duration_h,quantity,species,value_pct,value_as_printed,flag,note
+1,Cu60Zn40,-1.5,divided,12,removal,NO3,99.1,"99,1",,
+1,Cu60Zn40,-1.5,divided,12,selectivity,NO2,9.6,"9,6",,
+1,Cu60Zn40,-1.5,divided,12,selectivity,NH3,75.2,"75,2",uncertain,"differs from Table 5.1 (same electrode, -1500 mV, 12 h): NH3 72.24, gases 18.14"
+1,Cu60Zn40,-1.5,divided,12,selectivity,gaseous_products,3.0,"3,0",uncertain,"basis not stated; the divided-cell selectivities do not close to 100 %; differs from Table 5.1 (same electrode, -1500 mV, 12 h): NH3 72.24, gases 18.14"
+1,Cu60Zn40,-1.5,undivided,12,removal,NO3,91.5,"91,5",,
+1,Cu60Zn40,-1.5,undivided,12,selectivity,NO2,3.1,"3,1",,
+1,Cu60Zn40,-1.5,undivided,12,selectivity,NH3,34.6,"34,6",,
+1,Cu60Zn40,-1.5,undivided,12,selectivity,gaseous_products,62.3,"62,3",,"by difference (100 - NO2 - NH3), stated for the undivided cell"
+2,Sn85Cu15,-2.0,divided,12,removal,NO3,97.4,"97,4",,row is close to Table 5.14 at 120 min (98.1/17.5/41.0/33.6) although the caption gives 12 h
+2,Sn85Cu15,-2.0,divided,12,selectivity,NO2,17.4,"17,4",,row is close to Table 5.14 at 120 min (98.1/17.5/41.0/33.6) although the caption gives 12 h
+2,Sn85Cu15,-2.0,divided,12,selectivity,NH3,41.1,"41,1",,row is close to Table 5.14 at 120 min (98.1/17.5/41.0/33.6) although the caption gives 12 h
+2,Sn85Cu15,-2.0,divided,12,selectivity,gaseous_products,35.3,"35,3",,basis not stated; the divided-cell selectivities do not close to 100 %; row is close to Table 5.14 at 120 min (98.1/17.5/41.0/33.6) although the caption gives 12 h
+2,Sn85Cu15,-2.0,undivided,12,removal,NO3,93.4,"93,4",,
+2,Sn85Cu15,-2.0,undivided,12,selectivity,NO2,1.9,"1,9",,
+2,Sn85Cu15,-2.0,undivided,12,selectivity,NH3,18.5,"18,5",,
+2,Sn85Cu15,-2.0,undivided,12,selectivity,gaseous_products,79.6,"79,6",,"by difference (100 - NO2 - NH3), stated for the undivided cell"
+3,Sn85Cu15,-1.9,divided,12,removal,NO3,98.8,"98,8",,
+3,Sn85Cu15,-1.9,divided,12,selectivity,NO2,22.6,"22,6",,
+3,Sn85Cu15,-1.9,divided,12,selectivity,NH3,28.5,"28,5",,
+3,Sn85Cu15,-1.9,divided,12,selectivity,gaseous_products,34.6,"34,6",,basis not stated; the divided-cell selectivities do not close to 100 %
+3,Sn85Cu15,-1.9,undivided,12,removal,NO3,92.1,"92,1",,
+3,Sn85Cu15,-1.9,undivided,12,selectivity,NO2,4.7,"4,7",,
+3,Sn85Cu15,-1.9,undivided,12,selectivity,NH3,12.8,"12,8",,
+3,Sn85Cu15,-1.9,undivided,12,selectivity,gaseous_products,82.5,"82,5",,"by difference (100 - NO2 - NH3), stated for the undivided cell"
+4,Al,-1.8,divided,12,removal,NO3,88.6,"88,6",,
+4,Al,-1.8,divided,12,selectivity,NO2,2.3,"2,3",,
+4,Al,-1.8,divided,12,selectivity,NH3,53.3,"53,3",,
+4,Al,-1.8,divided,12,selectivity,gaseous_products,43.0,"43,0",,basis not stated; the divided-cell selectivities do not close to 100 %
+4,Al,-1.8,undivided,12,removal,NO3,82.1,"82,1",,
+4,Al,-1.8,undivided,12,selectivity,NO2,0.6,"0,6",,
+4,Al,-1.8,undivided,12,selectivity,NH3,35.3,"35,3",,
+4,Al,-1.8,undivided,12,selectivity,gaseous_products,64.1,"64,1",,"by difference (100 - NO2 - NH3), stated for the undivided cell"
+5,Pb,-2.0,divided,12,removal,NO3,93.3,"93,3",,
+5,Pb,-2.0,divided,12,selectivity,NO2,0.1,"0,1",,
+5,Pb,-2.0,divided,12,selectivity,NH3,68.5,"68,5",,
+5,Pb,-2.0,divided,12,selectivity,gaseous_products,17.2,"17,2",uncertain,basis not stated; the divided-cell selectivities do not close to 100 %; Table 5.1 (same conditions) gives 31.18
+5,Pb,-2.0,undivided,12,removal,NO3,86.4,"86,4",,
+5,Pb,-2.0,undivided,12,selectivity,NO2,1.1,"1,1",,
+5,Pb,-2.0,undivided,12,selectivity,NH3,45.3,"45,3",,
+5,Pb,-2.0,undivided,12,selectivity,gaseous_products,53.6,"53,6",,"by difference (100 - NO2 - NH3), stated for the undivided cell"

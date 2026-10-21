@@ -1,0 +1,124 @@
+{
+ "id": "katsounaros2009thesis_table6p11_ce_vs_e",
+ "kind": "inputs_only_thesis_table",
+ "note": "Inputs only: partial current efficiencies at a fixed nitrate conversion (70 %), one row per potential x product.",
+ "files": {
+  "extracted.csv": "tidy long: one row per potential x product"
+ },
+ "csv_columns": {
+  "table_row": "row order",
+  "E_V_vs_AgAgCl": "applied potential (vs Ag/AgCl, 3 M KCl)",
+  "conversion_pct": "nitrate conversion at which CE was evaluated (caption)",
+  "species": "NO2, NH3, N2 or total_excl_H2 (sum of the partial CEs, i.e. all reactions except H2 evolution)",
+  "CE_pct": "current (Faradaic) efficiency in %",
+  "value_as_printed": "as printed",
+  "flag": "",
+  "note": ""
+ },
+ "provenance": {
+  "citation": "Katsounaros I., Electrochemical reduction of nitrate on tin cathode - removal of nitrate from ion-exchange resin regeneration wastes, PhD thesis (in Greek), Aristotle University of Thessaloniki, Dept. of Chemical Engineering (2009)",
+  "doi": "10.12681/eadd/19491",
+  "table": "Table 6.11",
+  "printed_page": 88,
+  "reader_page": 118,
+  "page_offset_note": "printed page = online-reader page - 30",
+  "caption_translated": "Table 6.11. Partial current efficiencies of the reduction products and total current efficiency during nitrate reduction at various potentials. Electrolyte: 0.05 M NaNO3 in 2 M NaCl. Degree of conversion: 70 %. Columns: E/V | %CE NO2- | %CE NH3 | %CE N2 | %CE (total).",
+  "source_file": "page text layer from the archive's online reader (scratch only, not committed)",
+  "licence": "National Archive of PhD Theses terms: research use with no direct or indirect financial benefit; author must be cited; items protected by copyright"
+ },
+ "header_reconstruction": "The text layer flattens the header to '% CE % CE % CE E / V % CE − NH N NO 2 3 2'. Column order NO2-, NH3, N2, total was taken from the subscript order (2, 3, 2) and confirmed by (i) the first column falling from 1.32 to 0.07 % as the text says the final nitrite concentration fell with potential, (ii) the parts summing to the printed total in every row, and (iii) the repository digitization of Diag 6.7 (data/digitized_inputs/katsounaros2009thesis_diag6p7_endpoint_vs_e), whose -2.0 V endpoint (71.6 % conversion) gives NO2-/NH3 = 0.364 and NH3/N2 = 0.398 mol/mol against 0.364 and 0.401 implied here with 2, 8 and 10 electrons.",
+ "conditions": {
+  "cathode": "Sn foil, 2 cm2 geometric, polished (#1200) before each run",
+  "electrolyte": "2 M NaCl + 0.05 M NaNO3",
+  "cell": "Teflon divided cell, Nafion 117 (H+), 10 mL per compartment, platinized Pt anode 6 cm2 at 2 cm, Luggin capillary",
+  "stirring": "He 12 mL/min sparged at the cell bottom (also carrier to the on-line GC)",
+  "temperature": "ambient (not given numerically)",
+  "c0_mM_N": {
+   "NO3": 50.0
+  },
+  "ce_definition": "Appendix 1 (printed pp. 199-200): FE_r = Q_r/Q_total; Q_i = m_i n_i F / MW_i with n_i the electrons needed to form i from nitrate; total CE = sum of partial CEs of all reactions except H2 evolution (alternatively 1 - FE_H2 from on-line GC). Partial CEs exclude products not analysed, e.g. nitramide.",
+  "N2O": "N2O was detected in all experiments (about 5 % selectivity at -2.8 V, printed p. 87) but has no column; the total excludes it"
+ },
+ "checks": {
+  "row_sequences_on_page": [
+   {
+    "printed_sequence": "-2,0 1,32 14,5 45,2 61,0",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "-2,2 0,32 13,6 36,5 50,5",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "-2,4 0,29 9,1 15,7 25,0",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "-2,6 0,18 8,5 11,8 20,5",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "-2,8 0,07 4,6 10,4 15,1",
+    "found_on_page": true
+   }
+  ],
+  "row_sequences_dash_note": "The page prints the minus sign of each potential as an en dash (U+2013); the sequences above are written with an ASCII hyphen, so 'found_on_page: true' holds after dash normalisation. Independent re-check 2026-10-20 (data/digitized_inputs/thesis_tables_verification.json): 0 of 5 found exactly, 5 of 5 after normalisation.",
+  "parts_vs_printed_total": {
+   "-2.0": {
+    "sum_of_parts": 61.02,
+    "printed_total": 61.0
+   },
+   "-2.2": {
+    "sum_of_parts": 50.42,
+    "printed_total": 50.5
+   },
+   "-2.4": {
+    "sum_of_parts": 25.09,
+    "printed_total": 25.0
+   },
+   "-2.6": {
+    "sum_of_parts": 20.48,
+    "printed_total": 20.5
+   },
+   "-2.8": {
+    "sum_of_parts": 15.07,
+    "printed_total": 15.1
+   }
+  },
+  "implied_selectivity_from_CE_assuming_2_8_10_electrons": {
+   "-2.0": {
+    "NO2_pct": 5.7,
+    "NH3_pct": 15.7,
+    "N2_pct_Nbasis": 78.5
+   },
+   "-2.2": {
+    "NO2_pct": 1.7,
+    "NH3_pct": 18.6,
+    "N2_pct_Nbasis": 79.7
+   },
+   "-2.4": {
+    "NO2_pct": 3.3,
+    "NH3_pct": 25.7,
+    "N2_pct_Nbasis": 71.0
+   },
+   "-2.6": {
+    "NO2_pct": 2.6,
+    "NH3_pct": 30.2,
+    "N2_pct_Nbasis": 67.2
+   },
+   "-2.8": {
+    "NO2_pct": 1.3,
+    "NH3_pct": 21.4,
+    "N2_pct_Nbasis": 77.3
+   }
+  },
+  "text_printed_p88": "CEs of all products and the total decrease with increasingly negative potential (hydrogen evolution favoured): holds for every column"
+ },
+ "flags": [
+  "fixed_conversion_not_time_series",
+  "n2o_not_included",
+  "header_order_reconstructed",
+  "potential_vs_ag_agcl_not_rhe"
+ ],
+ "transcription_method": "thesis text layer: per-page text layer of the National Archive of PhD Theses online reader (EKT freader), read and typed in by an agent on 2026-10-20; table layout reconstructed by hand from the flattened text; every row's printed number sequence was checked by script to occur verbatim on the cited page (for this table after normalising the page's en dashes to '-'; see checks.row_sequences_dash_note) (literature/extraction_scripts/thesis_tables/build_tables.py). Page images of these pages were not viewed. Not yet re-checked by a person."
+}

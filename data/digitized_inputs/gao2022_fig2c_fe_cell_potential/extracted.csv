@@ -1,0 +1,5 @@
+period,H2_transfer_case,FE_nitrate_reduction_pct,FE_HER_pct,E_cathode_V_plotted_magnitude,E_anode_V
+0-20 min,1,92.98,6.66,2.008,4.236
+0-20 min,2,89.93,9.66,2.008,4.19
+100-120 min,1,6.4,93.23,2.008,2.783
+100-120 min,2,7.63,92.21,2.008,3.457

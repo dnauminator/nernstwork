@@ -1,0 +1,41 @@
+run,initial_pH_stated,electrolyte,initial_pH_read,axis_segment,species,selectivity_pct,selectivity_basis,method,match_score,note
+1,0.16,1 M HCl + 1 M NaCl + 0.05 M NaNO3,0.157,left (0-1.0),NH3,60.05,N_atom_inferred,template_match,1.00,
+1,0.16,1 M HCl + 1 M NaCl + 0.05 M NaNO3,0.157,left (0-1.0),NH2OH,34.96,N_atom_inferred,template_match,1.00,
+1,0.16,1 M HCl + 1 M NaCl + 0.05 M NaNO3,0.157,left (0-1.0),NO2,0.00,N_atom_inferred,template_match,0.69,plotted on the zero line; text: NO2- not detected at pH 0-0.5
+1,0.16,1 M HCl + 1 M NaCl + 0.05 M NaNO3,0.159,left (0-1.0),N2,1.98,N_atom_inferred,template_match,0.76,
+1,0.16,1 M HCl + 1 M NaCl + 0.05 M NaNO3,0.157,left (0-1.0),N2O,1.19,N_atom_inferred,template_match_lower_part,0.50,occluded by the N2 marker; lower part of star matched (low confidence)
+2,0.28,0.75 M HCl + 1.25 M NaCl + 0.05 M NaNO3,0.281,left (0-1.0),NH3,57.00,N_atom_inferred,template_match,0.74,
+2,0.28,0.75 M HCl + 1.25 M NaCl + 0.05 M NaNO3,0.281,left (0-1.0),NH2OH,27.84,N_atom_inferred,template_match,0.76,
+2,0.28,0.75 M HCl + 1.25 M NaCl + 0.05 M NaNO3,0.281,left (0-1.0),NO2,0.09,N_atom_inferred,template_match,0.75,plotted on the zero line; text: NO2- not detected at pH 0-0.5
+2,0.28,0.75 M HCl + 1.25 M NaCl + 0.05 M NaNO3,0.283,left (0-1.0),N2,8.09,N_atom_inferred,template_match,0.74,
+2,0.28,0.75 M HCl + 1.25 M NaCl + 0.05 M NaNO3,0.281,left (0-1.0),N2O,7.04,N_atom_inferred,template_match_lower_part,0.71,partly occluded by the N2 marker; lower part of star matched
+3,0.46,0.5 M HCl + 1.5 M NaCl + 0.05 M NaNO3,0.459,left (0-1.0),NH3,54.96,N_atom_inferred,template_match,0.75,
+3,0.46,0.5 M HCl + 1.5 M NaCl + 0.05 M NaNO3,0.459,left (0-1.0),NH2OH,16.89,N_atom_inferred,template_match_lower_part,0.73,partly occluded by the N2 marker; lower part of square matched
+3,0.46,0.5 M HCl + 1.5 M NaCl + 0.05 M NaNO3,0.459,left (0-1.0),NO2,0.00,N_atom_inferred,template_match,0.81,plotted on the zero line; text: NO2- not detected at pH 0-0.5
+3,0.46,0.5 M HCl + 1.5 M NaCl + 0.05 M NaNO3,0.457,left (0-1.0),N2,17.94,N_atom_inferred,template_match,0.86,
+3,0.46,0.5 M HCl + 1.5 M NaCl + 0.05 M NaNO3,0.459,left (0-1.0),N2O,11.03,N_atom_inferred,template_match,0.69,
+4,0.76,0.25 M HCl + 1.75 M NaCl + 0.05 M NaNO3,0.757,left (0-1.0),NH3,26.96,N_atom_inferred,template_match,0.72,
+4,0.76,0.25 M HCl + 1.75 M NaCl + 0.05 M NaNO3,0.757,left (0-1.0),NH2OH,0.00,N_atom_inferred,template_match,0.70,plotted on the zero line; text: NH2OH not detected above pH 0.8
+4,0.76,0.25 M HCl + 1.75 M NaCl + 0.05 M NaNO3,0.761,left (0-1.0),NO2,42.26,N_atom_inferred,template_match,0.80,
+4,0.76,0.25 M HCl + 1.75 M NaCl + 0.05 M NaNO3,0.759,left (0-1.0),N2,21.92,N_atom_inferred,template_match,1.00,
+4,0.76,0.25 M HCl + 1.75 M NaCl + 0.05 M NaNO3,0.759,left (0-1.0),N2O,11.96,N_atom_inferred,template_match,0.65,
+5,4.0,0.2 M NaH2PO4 + 1.8 M NaCl + 0.05 M NaNO3,4.018,right (4-14),NH3,20.85,N_atom_inferred,template_match,0.71,partly occluded: lower part of the triangle hidden under the N2 marker (full template matched)
+5,4.0,0.2 M NaH2PO4 + 1.8 M NaCl + 0.05 M NaNO3,4.018,right (4-14),NH2OH,0.00,N_atom_inferred,template_match,0.75,plotted on the zero line; text: NH2OH not detected above pH 0.8
+5,4.0,0.2 M NaH2PO4 + 1.8 M NaCl + 0.05 M NaNO3,4.018,right (4-14),NO2,44.98,N_atom_inferred,template_match,0.90,
+5,4.0,0.2 M NaH2PO4 + 1.8 M NaCl + 0.05 M NaNO3,3.998,right (4-14),N2,19.89,N_atom_inferred,template_match,0.89,
+5,4.0,0.2 M NaH2PO4 + 1.8 M NaCl + 0.05 M NaNO3,4.018,right (4-14),N2O,8.06,N_atom_inferred,template_match,0.88,
+6,7.0,0.3 M NaH2PO4 + 0.1746 M NaOH + 1.5 M NaCl + 0.05 M NaNO3,7.009,right (4-14),NH3,23.56,N_atom_inferred,template_match,0.81,
+6,7.0,0.3 M NaH2PO4 + 0.1746 M NaOH + 1.5 M NaCl + 0.05 M NaNO3,7.009,right (4-14),NH2OH,0.00,N_atom_inferred,template_match,0.81,plotted on the zero line; text: NH2OH not detected above pH 0.8
+6,7.0,0.3 M NaH2PO4 + 0.1746 M NaOH + 1.5 M NaCl + 0.05 M NaNO3,7.009,right (4-14),NO2,41.75,N_atom_inferred,template_match,1.00,
+6,7.0,0.3 M NaH2PO4 + 0.1746 M NaOH + 1.5 M NaCl + 0.05 M NaNO3,6.989,right (4-14),N2,21.75,N_atom_inferred,template_match,0.92,
+6,7.0,0.3 M NaH2PO4 + 0.1746 M NaOH + 1.5 M NaCl + 0.05 M NaNO3,7.009,right (4-14),N2O,6.02,N_atom_inferred,template_match,1.00,
+7,9.5,0.3 M Na2CO3 + 0.3 M NaHCO3 + 0.8 M NaCl + 0.05 M NaNO3,9.489,right (4-14),NH3,23.22,N_atom_inferred,template_match_lower_part,0.52,partly occluded by the N2 marker; lower part of triangle matched
+7,9.5,0.3 M Na2CO3 + 0.3 M NaHCO3 + 0.8 M NaCl + 0.05 M NaNO3,9.528,right (4-14),NH2OH,0.00,N_atom_inferred,template_match,0.70,plotted on the zero line; text: NH2OH not detected above pH 0.8
+7,9.5,0.3 M Na2CO3 + 0.3 M NaHCO3 + 0.8 M NaCl + 0.05 M NaNO3,9.528,right (4-14),NO2,45.15,N_atom_inferred,template_match,0.75,
+7,9.5,0.3 M Na2CO3 + 0.3 M NaHCO3 + 0.8 M NaCl + 0.05 M NaNO3,9.508,right (4-14),N2,25.23,N_atom_inferred,template_match,0.93,
+7,9.5,0.3 M Na2CO3 + 0.3 M NaHCO3 + 0.8 M NaCl + 0.05 M NaNO3,9.528,right (4-14),N2O,2.29,N_atom_inferred,template_match,0.67,
+8,13.7,1 M NaOH + 1 M NaCl + 0.05 M NaNO3,13.976,right (4-14),NH3,22.72,N_atom_inferred,template_match_lower_part,0.57,partly occluded by the N2 marker; lower part of triangle matched
+8,13.7,1 M NaOH + 1 M NaCl + 0.05 M NaNO3,14.015,right (4-14),NH2OH,0.00,N_atom_inferred,template_match,0.69,plotted on the zero line; text: NH2OH not detected above pH 0.8
+8,13.7,1 M NaOH + 1 M NaCl + 0.05 M NaNO3,14.015,right (4-14),NO2,43.45,N_atom_inferred,template_match,0.80,
+8,13.7,1 M NaOH + 1 M NaCl + 0.05 M NaNO3,13.995,right (4-14),N2,24.30,N_atom_inferred,template_match,0.90,
+8,13.7,1 M NaOH + 1 M NaCl + 0.05 M NaNO3,14.015,right (4-14),N2O,1.27,N_atom_inferred,template_match,0.72,

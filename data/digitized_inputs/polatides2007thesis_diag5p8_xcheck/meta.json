@@ -1,0 +1,138 @@
+{
+ "id": "polatides2007thesis_diag5p8_xcheck",
+ "kind": "inputs_only_crosscheck",
+ "note": "Independent raster digitization of the thesis copy of Polatides & Kyriacou 2005 Fig. 3, made to measure digitization error in data/real/polatides2005_fig3_sn85cu15_50mM.json. Inputs only: do not convert to data/real; Daniel's folder and dataset are unchanged.",
+ "files": {
+  "extracted.csv": "tidy long; kind = data (markers) or model_curve (thesis simulation curves, resampled to 1 min)",
+  "comparison_vs_daniel.json": "per point and per species differences against data/real/polatides2005_fig3_sn85cu15_50mM.json, plus the model-curve constants check"
+ },
+ "csv_columns": {
+  "species": "NO3, NO2, NH3, N2",
+  "t_min": "nominal sampling time (0, 15, 30, 45, 60, 75, 90, 120) or curve time",
+  "value_as_plotted": "value read on the y axis (mM)",
+  "unit_as_plotted": "see units",
+  "value_mM_N": "value_as_plotted x 2 for N2 (per molecule), x 1 otherwise",
+  "kind": "data | model_curve",
+  "marker": "symbol on the page",
+  "t_read_min": "time read from the marker x position",
+  "x_px/y_px": "anchor on the 300 dpi page image p116.jpg (2480 x 3509 px)",
+  "unc_as_plotted": "read uncertainty estimate (1 px = 0.0615 mM)",
+  "method": "template_ncc | continuity_trace_from_seed",
+  "match_score": "NCC peak",
+  "flags": "per-point overlap flags"
+ },
+ "provenance": {
+  "citation": "Polatides C. (2007), PhD thesis, Aristotle University of Thessaloniki (National Archive of PhD Theses, EKT)",
+  "doi": "10.12681/eadd/15209",
+  "figure": "Diagram 5.8 (printed page 95; reader page 116)",
+  "caption_translated": "Change of the concentration of nitrate (open square), nitrite (o), ammonia (open triangle) and nitrogen (open inverted triangle) with electrolysis time on a Sn85Cu15 cathode at -2.0 V vs Ag/AgCl. The curves were drawn after simulation of the experimental results with the kinetic model.",
+  "corresponds_to": "Polatides C., Kyriacou G., J. Appl. Electrochem. 35 (2005) 421-427, Fig. 3 (digitized by Daniel: data/digitized_inputs/polatides2005_fig3)",
+  "source_images": "EKT online reader page images at 300 dpi (img_15209/p116.jpg), scratch only"
+ },
+ "licence": "Terms: National Archive of PhD Theses (didaktorika.gr, run by EKT). Its terms of use allow deposited theses to be used online for educational, scientific, statistical and research purposes when there is no direct or indirect financial benefit, require any publication based on a thesis to cite its author, and allow linking to the site's content but not reproducing it; the item page states that all items in the archive are protected by copyright. The page images were viewed through the archive's online reader without an account and are not stored in the repo. Whether NernstWork's use meets the no-financial-benefit condition is the repository owner's decision.",
+ "extraction_method": "Raster digitization of the 300 dpi page image from the National Archive of PhD Theses online reader (EKT freader; page images stay in scratch, not committed). Axes calibrated by linear fits to tick-mark centroids located automatically from darkness profiles beside the axis lines (all labelled ticks; residuals and the axis-line origin check are in 'calibration'). Markers located by OpenCV normalized cross-correlation (cv2.matchTemplate, TM_CCOEFF_NORMED) with one template per marker shape cut from a clean instance on the same page (the figure is a low-resolution MATLAB raster with 2-px strokes; the inverted triangle template is the mirror image of the clean upright triangle), searched in a column window of +-6 to 8 px around each sampling time and a per-point concentration window set from visual inspection (the window only selects which marker; the value comes from the match peak, refined to sub-pixel by a parabolic fit). Every detection was checked by eye on zoomed crops with the template outline drawn at the detected position (scratch QA images). Points that template matching could not resolve are handled by the per-point 'method' column, explained in 'methods'. Extracted by agent team 2026-10-20.",
+ "methods": {
+  "template_ncc": "templates cut from clean markers (square and circle at 15 min, triangle at 30 min); anchor = bounding-box centre. For the triangles the centroid convention would move values by about 2 px (0.14 mM); MATLAB's convention was not verified on this page.",
+  "continuity_trace_from_seed": "model curves: each curve seeded at a point where it is isolated (NO3 at 2 and 105 min, NO2 at 4 min, NH3 and N2 at 105 min) and followed column by column (linear predictor over the last 14 accepted columns, +-3.5 px), bridging marker columns; NO3 is traced in two pieces that stop short of its crossing with the N2 curve near 84 min, so NO3 curve rows are missing for 81-87 min."
+ },
+ "units": {
+  "NO3, NO2, NH3": "mM",
+  "N2": "mM per molecule (x2 to mM-N)"
+ },
+ "conditions": {
+  "catalyst": "Sn85Cu15 (bronze)",
+  "electrolyte": "0.1 M K2SO4 + 0.05 M KNO3 (thesis section 5.3.1, p. 94: stated for the electrolysis experiments)",
+  "potential_as_reported": "-2.0 V vs Ag/AgCl",
+  "c0_mM_N": {
+   "NO3": 50.0
+  }
+ },
+ "n_basis_note": "N2 is plotted per molecule. Thesis model eqs 41-44 (p. 101) are d[NO3]/dt = -k1[NO3], d[NO2]/dt = k1[NO3] - k2[NO2] - 2k3[NO2]^2, d[NH3]/dt = k2[NO2], d[N2]/dt = k3[NO2]^2, i.e. molecular N2; the drawn curves fit this family to 0.05 mM rms. Thesis Table 5.14 at -2.0 V, 120 min (removal 98.1%, NO2- 17.5%, NH3 41.0%, N2 33.6%) gives N2 = 16.8 mM-N = 8.4 mM N2; read here 8.18 mM N2 (16.4 mM-N, 32.7%), NO2 8.56 (17.1%), NH3 20.32 (40.6%), NO3 1.12 (97.8% removal).",
+ "flags": [
+  "potential_unverified",
+  "inputs_only_crosscheck"
+ ],
+ "not_digitized": [
+  "t = 0 product markers (pile up at the origin)"
+ ],
+ "thesis_vs_paper": [
+  "Same eight sampling times (no 105-min sample) and identical values within one thesis pixel for NO3, NO2 and NH3, so this is the same figure as paper Fig. 3. The thesis copy also shows the t=0 markers.",
+  "The model in the thesis (eqs 41-44, second-order nitrite-to-N2 step, solved with Adams-Bashforth-Moulton in MATLAB 6.5) is the one Daniel describes for the paper. The thesis also prints the first-order version (eqs 32-40), which the author rejected because it did not fit N2 on Sn85Cu15."
+ ],
+ "findings": [
+  "Agreement: NO3 and NO2 agree within 0.06 mM at every point, and NH3 within 0.11 mM except at 60 min (0.18 mM, overlapping symbols). Per-species RMS is 0.04-0.09 mM, under one thesis pixel (0.061 mM). The paper's Fig. 3 and thesis Diag 5.8 are the same raster, and Daniel's digitization of it is precise.",
+  "N2: thesis - Daniel = -0.15 to -0.24 mM N2 at all 7 points (mean -0.19 mM N2 = -0.39 mM-N, about 3 thesis px). Because the sign never changes, this is a marker-anchor difference, not noise: bounding-box centres were used here for the MATLAB 'v' symbol, and its centroid sits 2.3 px (0.14 mM) higher. The effect is at most 0.5 mM-N (1% of c0) and does not matter for kinetics.",
+  "N basis: N2 per molecule confirmed. Thesis eqs 41-44 have d[N2]/dt = k3[NO2]^2 with NO2 consumed at 2k3[NO2]^2. Thesis Table 5.14 at 120 min (N2 33.6% of N = 8.4 mM N2) matches the plotted 8.2 mM N2. Daniel's x2 conversion is correct, so units_unverified can be dropped for the N2 basis.",
+  "The thesis (section 5.3.1, p. 94) states the electrolysis solution: 0.1 M K2SO4 + 0.05 M KNO3. This settles the 'confirm' note in Daniel's conditions.",
+  "Constants (thesis p. 102 prints the same values as the paper: k1 4.9e-4 s-1, k2 1.76e-5 s-1, k3 7.66e-3 L mol-1 s-1): the drawn curves are reproduced to 0.05 mM rms by eqs 41-44 with k1 = 4.18e-04 s-1, k2 = 1.77e-04 s-1 and k3 = 3.77e-03 L mol-1 s-1, where k3 is the coefficient in d[N2]/dt = k3[NO2]^2. (a) The k2 exponent is a typo in the thesis as well; 1.76e-4 reproduces the curves, which confirms Daniel's reading. (b) The printed k1 = 4.9e-4 does not reproduce the drawn NO3 curve (2.2 mM rms; NO3 at 120 min would be 1.5 mM, but the curve shows 2.5). The curves use about 4.2e-4 s-1, which equals Daniel's own data fit, and the thesis text also quotes 3.9e-4 from early-time data (p. 96). (c) The printed k3 = 7.66e-3 matches the nitrite-loss coefficient 2k3 = 7.53e-03, not k3 of eq. 44 as written. So N2 forms at 3.8e-3[NO2]^2 (molecular), and nitrite (mM-N) is consumed at 7.66e-3[NO2]^2 L mol-1 s-1 = 4.6e-4 mM-1 min-1. Check: k1 = 0.0251 min-1, k2 = 0.01056 min-1 and a nitrite loss of 4.6e-4[NO2]^2 mM-1 min-1, with N2 = half of it, reproduce all four curves to 0.06-0.08 mM rms."
+ ],
+ "calibration": {
+  "x_ticks_px": [
+   920.0,
+   1108.0,
+   1295.5,
+   1483.0,
+   1671.0,
+   1858.5
+  ],
+  "x_ticks_min": [
+   20,
+   40,
+   60,
+   80,
+   100,
+   120
+  ],
+  "x_fit_min_per_px": 0.10656110230476848,
+  "x_fit_offset": -78.04889146875827,
+  "x_resid_max_min": 0.021,
+  "y_ticks_px": [
+   1583.5,
+   1663.5,
+   1745.0,
+   1826.0,
+   1908.0,
+   1989.0,
+   2070.5,
+   2152.0,
+   2233.5,
+   2315.0
+  ],
+  "y_ticks_val": [
+   50,
+   45,
+   40,
+   35,
+   30,
+   25,
+   20,
+   15,
+   10,
+   5
+  ],
+  "y_fit_per_px": -0.06146147821837814,
+  "y_fit_offset": 147.26383645633166,
+  "y_resid_max_as_plotted": 0.06,
+  "origin_check": {
+   "t_at_yaxis": 0.0071159694846443244,
+   "c_at_xaxis": -0.02859609401156149
+  },
+  "resolution_as_plotted_per_px": 0.061
+ },
+ "points": {
+  "NO3": 8,
+  "NO2": 7,
+  "NH3": 7,
+  "N2": 7
+ },
+ "comparison_summary": {
+  "per_species_rms_mM_N": {
+   "NO3": 0.036,
+   "NO2": 0.044,
+   "NH3": 0.092,
+   "N2": 0.39
+  },
+  "overall_rms_pct_axis": 0.223,
+  "file": "comparison_vs_daniel.json"
+ }
+}

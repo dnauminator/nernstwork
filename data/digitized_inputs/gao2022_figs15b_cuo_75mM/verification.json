@@ -1,0 +1,193 @@
+{
+  "dataset": "gao2022_figs15b_cuo_75mM",
+  "figure": "Fig. S15b (SI PDF p.17, 1170x2272 px JPEG)",
+  "source": "SI es1c08442_si_001.pdf",
+  "verdict": "accept_with_flags",
+  "verdict_basis": "All digitized values accepted (within ~2 px of the verifier reading). Flag is documentation only: conditions.notes misattributes the Fig. 2e current density / trap pH to this run (see issues).",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "independence": "Verifier extracted the embedded raster itself (pymupdf, native resolution), located tick marks with its own code, and re-read every value with its own reader (per-row nearest-prototype colour classification of two side strips per bar, error-bar green and white hatch excluded, monotone DP over the legend stacking order; markers by colour masks + morphological opening). Extractor scripts and readings were not used.",
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "meta.json conditions.notes: the ~50 mA cm-2 (0.204 A) current and the cathode-loop pH 12.65 / trap-tank pH 1.53 are now attributed to the Fig. 2e run (25 mM, pH 7) and stated as not reported for this run; added the derived total current density for this run, about 70 mA cm-2 (70.2) = jNH3 / FE_TAN from gao2022_fig3b_eff_vs_condition/extracted.csv, labelled as derived; the volume_mL sentence now says 50 mL is stated only for the Fig. 2e run and assumed here; removed the duplicate 'Feed volume ... assumed' sentence. data/real regenerated with scripts/digitized_to_dataset.py (conditions.notes only; series unchanged).",
+      "files": [
+        "data/digitized_inputs/gao2022_figs15b_cuo_75mM/meta.json",
+        "data/real/gao2022_figs15b_cuo_75mM.json"
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "change": "Powered-window cut (coordinator request): the unchanged 0-360 min digitization was copied byte-identically to wpd_datasets_full_0-360min.csv, and wpd_datasets.csv now holds only t <= 210 min (8 of 13 sampling times, original values, nothing re-read), so the converted dataset matches potential_mode 'potentiostatic'. DC-off time established from the figure (no switch time in the text for this run): In Fig. S15b the green 'Electricity turn on' / lavender 'Electricity turn off' shading boundary sits midway between the 210 and 240 min bars (pixel measurement on the native SI image: x = 732.0 px, 0.47 of the bar-centre gap), so the last DC-on sample is 210 min and the switch fell between 210 and 240 min. The S15a panel (25 mM) is the Fig. 2e run, which the text says was switched off after 120 min; its shading boundary is drawn the same way (0.49 of the 120-150 min gap). Derived corroboration: the text's NO3- removal rate at 75 mM (894 +/- 33 g-N m-2 d-1) equals 75 mM x 50 mL removed over 211 min (204-220 min across the stated range) on 4 cm2, consistent with normalization over the 210-min DC-on window and with the assumed 50 mL feed. meta.json: conditions.notes records the window, the full-series path and how the DC-off time was established; provenance.figure notes the window; n_basis_note says no equivalent of the Fig. 2e 1.05 mmol check exists for this run (molar NH3 amount stated only for Fig. 2e). data/real/gao2022_figs15b_cuo_75mM.json regenerated: series, reported_n_loss and n_closure now end at 210 min.",
+      "files": [
+        "data/digitized_inputs/gao2022_figs15b_cuo_75mM/wpd_datasets.csv",
+        "data/digitized_inputs/gao2022_figs15b_cuo_75mM/wpd_datasets_full_0-360min.csv",
+        "data/digitized_inputs/gao2022_figs15b_cuo_75mM/meta.json",
+        "data/real/gao2022_figs15b_cuo_75mM.json"
+      ]
+    }
+  ],
+  "meta_and_data_real_edited": false,
+  "max_deviation": {
+    "auto_reader_max_abs_mM": 0.314,
+    "at": "210 min, NH3",
+    "px": 2.0,
+    "fraction_of_axis_range": 0.0038,
+    "axis_range_mM": [
+      0,
+      82.4
+    ],
+    "mM_per_px": 0.1574,
+    "values_compared": 60,
+    "values_over_2px": 0
+  },
+  "checks": [
+    {
+      "name": "axis_calibration",
+      "result": "pass",
+      "detail": "y ticks located by verifier at rows [931.0, 1027.0, 1122.0, 1217.0, 1312.0, 1408.0] (major ticks, labelled values top->bottom); linear fit 0.1574 mM/px, max tick residual 0.068 mM. Bars located at x major-tick centroids [182.0, 256.0, 329.0, 403.0, 476.0, 550.0, 624.0, 697.0, 771.0, 844.0, 918.0, 992.0, 1065.0]."
+    },
+    {
+      "name": "all_segments_reread",
+      "result": "pass",
+      "detail": "60 segment values (t>0) re-read; max |stored - verifier| 0.314 mM (2.0 px) at 210 min NH3; 0 values over 2 px. Overlay of stored boundaries on the figure inspected: every boundary sits on the visible colour transition."
+    },
+    {
+      "name": "stacking_order_and_colour",
+      "result": "pass",
+      "detail": "Legend swatches sampled and compared with bar colours: bottom->top NO3- (dark blue), TAN in reaction chamber/feed tank (light orange) -> NH3, TAN in trap (dark orange crosshatch) -> NH3_trap, NO2- (grey), N2 (light blue grid/hatch) -> reported_n_loss. CSV dataset names map correctly."
+    },
+    {
+      "name": "time_points",
+      "result": "pass",
+      "detail": "0-360 min every 30 min (13 bars); on 0-210 / off 240-360 shading"
+    },
+    {
+      "name": "units",
+      "result": "pass",
+      "detail": "Axis 'N species (mM)' / 'N concentration (mM)': mM as N, to_mM_N 1.0 correct. Trap-TAN per-volume basis remains unverified as the meta says (units_unverified flag appropriate)."
+    },
+    {
+      "name": "conditions",
+      "result": "pass",
+      "detail": "75 mM NO3-, pH 7.0, 10 mM Cl-, -2 V vs SCE (SI caption S15). Potential -2 V vs SCE without ohmic compensation; RHE left null (appropriate)."
+    },
+    {
+      "name": "c0_and_t0",
+      "result": "pass",
+      "detail": "t=0 bar read 74.966 mM vs c0 75.0; pinned to c0 by the converter."
+    },
+    {
+      "name": "data_real_schema",
+      "result": "pass",
+      "detail": "nernstwork.schemas.errors(dataset, data/real/gao2022_figs15b_cuo_75mM.json) -> [] (file not regenerated by verifier, per coordinator instruction)."
+    },
+    {
+      "name": "reported_n_loss_vs_c0_minus_species",
+      "result": "pass",
+      "detail": "c0 - sum(species) - reported_n_loss = +0.185 to +0.187 mM at every t>0 (constant offset = c0 minus the digitized bar top, 1.2 px). Within digitization resolution, not numerical rounding; the stored N2 segment is the plotted top segment, not recomputed."
+    },
+    {
+      "name": "pH7_25mM_is_fig2e_run",
+      "result": "pass",
+      "detail": "Verifier read S14c and S15a with the same reader: all 65 segment values agree within 0.09 mM, so the pH 7 / 25 mM panels are the same plotted run (consistent with not writing them separately)."
+    }
+  ],
+  "issues": [
+    "conditions.notes states 'Current density ~50 mA cm-2 (0.204 +/- 0.011 A) at -2 V vs SCE' and a trap pH of 1.53 after 120 min; both are stated in the text only for the 25 mM, pH 7 run (Fig. 2e). For this run Fig. 3b implies a total of ~70 mA cm-2 (jNH3 / FE_TAN). Fix: attribute the 50 mA cm-2 / 0.204 A and pH 1.53 values to the Fig. 2e run and add the implied ~70 mA cm-2."
+  ],
+  "overlay": "verify_overlay.png (session scratch, not retained; contains publisher figure images): stored cumulative boundaries as coloured lines across each bar, verifier boundaries as yellow ticks at the right edge",
+  "verifier_readings_mM": {
+    "0": {
+      "NO3": 74.966,
+      "NO2": 0.0,
+      "NH3": 0.0,
+      "TAN_trap": 0.0,
+      "N2_by_difference": 0.0
+    },
+    "30": {
+      "NO3": 45.371,
+      "NO2": 9.76,
+      "NH3": 8.501,
+      "TAN_trap": 3.463,
+      "N2_by_difference": 7.714
+    },
+    "60": {
+      "NO3": 18.452,
+      "NO2": 15.899,
+      "NH3": 16.844,
+      "TAN_trap": 13.538,
+      "N2_by_difference": 10.075
+    },
+    "90": {
+      "NO3": 11.211,
+      "NO2": 11.334,
+      "NH3": 19.52,
+      "TAN_trap": 20.15,
+      "N2_by_difference": 12.594
+    },
+    "120": {
+      "NO3": 5.858,
+      "NO2": 5.51,
+      "NH3": 21.252,
+      "TAN_trap": 28.336,
+      "N2_by_difference": 13.853
+    },
+    "150": {
+      "NO3": 2.867,
+      "NO2": 3.306,
+      "NH3": 20.465,
+      "TAN_trap": 33.845,
+      "N2_by_difference": 14.325
+    },
+    "180": {
+      "NO3": 1.608,
+      "NO2": 1.102,
+      "NH3": 18.89,
+      "TAN_trap": 38.096,
+      "N2_by_difference": 15.112
+    },
+    "210": {
+      "NO3": 0.506,
+      "NO2": 0.315,
+      "NH3": 14.483,
+      "TAN_trap": 44.393,
+      "N2_by_difference": 15.112
+    },
+    "240": {
+      "NO3": 0.506,
+      "NO2": 0.157,
+      "NH3": 9.603,
+      "TAN_trap": 49.115,
+      "N2_by_difference": 15.427
+    },
+    "270": {
+      "NO3": 0.506,
+      "NO2": 0.157,
+      "NH3": 6.927,
+      "TAN_trap": 51.791,
+      "N2_by_difference": 15.427
+    },
+    "300": {
+      "NO3": 0.506,
+      "NO2": 0.315,
+      "NH3": 4.565,
+      "TAN_trap": 54.31,
+      "N2_by_difference": 15.112
+    },
+    "330": {
+      "NO3": 0.506,
+      "NO2": 0.157,
+      "NH3": 1.417,
+      "TAN_trap": 57.301,
+      "N2_by_difference": 15.427
+    },
+    "360": {
+      "NO3": 0.506,
+      "NO2": 0.315,
+      "NH3": 0.472,
+      "TAN_trap": 58.088,
+      "N2_by_difference": 15.427
+    }
+  }
+}

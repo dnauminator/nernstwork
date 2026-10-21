@@ -1,0 +1,676 @@
+{
+ "id": "katsounaros2009thesis_diag12p1_intermediates",
+ "kind": "derived_from_rates",
+ "extractor": "agent team 2026-10-20",
+ "summary": "Concentrations of the measured intermediates NH2OH and hyponitrite (H2N2O2), and of NO2-, NH3, N2, N2O, obtained by integrating the digitized Diag 12.1 production/consumption rates of the Katsounaros thesis (0.5 M NaNO3 + 1 M NaOH, Sn, -2.2 V vs Ag/AgCl), compared with the nitrogen deficit of data/real/katsounaros2012_fig1_sn_naoh.json. NH2OH + 2 x H2N2O2 covers about 10% of the deficit at 30 min, 28% at 60 min, 38% at 90-120 min and 48-52% at 150-180 min. The unmeasured remainder peaks at about 103 mM-N (21% of total N) at 30-60 min and falls to 38 mM-N at 180 min.",
+ "provenance_chain": [
+  "Katsounaros PhD thesis (AUTh 2009, doi 10.12681/eadd/19491), Diag 12.1, printed p. 186: rates of production (+) or consumption (-) of NO2-, H2N2O2, NH2OH, NH3, N2, N2O in mM/min (page image, 300 dpi, not committed)",
+  "digitized and independently verified: data/digitized_inputs/katsounaros2009thesis_diag12p1_rates/extracted.csv (+ verification.json; worst reading error 0.0039 mM/min top panel, 0.0028 bottom panel)",
+  "integrated here (four schemes, see method) to concentrations: extracted.csv",
+  "nitrogen deficit from Daniel's digitization of Katsounaros et al. 2012 Fig. 1: data/real/katsounaros2012_fig1_sn_naoh.json (same run inferred; see flags)",
+  "sensitivity and validation against the thesis copy of that figure (Diag 12.3): data/digitized_inputs/katsounaros2009thesis_diag12p3_xcheck/extracted.csv and comparison_vs_daniel.json"
+ ],
+ "citation": "Katsounaros I., Electrochemical reduction of nitrate on tin cathode: removal of nitrate from the ion exchange regenerant solution, PhD thesis (in Greek), Aristotle University of Thessaloniki (2009)",
+ "doi": "10.12681/eadd/19491",
+ "licence": "Terms: National Archive of PhD Theses (didaktorika.gr, run by EKT). Its terms of use allow deposited theses to be used online for educational, scientific, statistical and research purposes when there is no direct or indirect financial benefit, require any publication based on a thesis to cite its author, and allow linking to the site's content but not reproducing it; the item page states that all items in the archive are protected by copyright. The page images were viewed through the archive's online reader without an account and are not stored in the repo. Whether NernstWork's use meets the no-financial-benefit condition is the repository owner's decision.",
+ "conditions": {
+  "catalyst": "Sn",
+  "electrolyte": "0.5 M NaNO3 + 1 M NaOH",
+  "potential_as_reported": "-2.2 V vs Ag/AgCl",
+  "potential_mode": "potentiostatic",
+  "c0_mM_N": {
+   "NO3": 500.0
+  }
+ },
+ "files": {
+  "extracted.csv": "long table, one row per (method, species, time); 4 methods x 6 species (7 or 14 times) = 224 rows",
+  "README.md": "deficit table, coverage, meaning for model B (W3/W4), limits"
+ },
+ "csv_columns": {
+  "t_min": "nominal sampling time, min (30-min grid for NO2-, H2N2O2, NH2OH, NH3; 0, 4, 15, 30, ... 180 for the gases N2 and N2O)",
+  "species": "NH2OH, H2N2O2, NO2, NH3, N2, N2O",
+  "value_mM_as_integrated": "integral of the plotted rate from t = 0 with zero initial concentration, mM of the species (per molecule)",
+  "basis": "per molecule (1 N) or per molecule (2 N)",
+  "value_mM_N": "value_mM_as_integrated x N atoms per molecule (H2N2O2, N2, N2O x 2)",
+  "method": "trapezoid | left_step | right_step | fd_inverse (see method)",
+  "sd_read_mM_N": "1-sigma from the rate reading error only (Monte Carlo, 20000 draws, worst-case verified reading error used as sigma)"
+ },
+ "method": {
+  "trapezoid": "trapezoid rule on the plotted rate samples (the requested baseline)",
+  "left_step": "rectangle rule, rate held at the start of each interval",
+  "right_step": "rectangle rule, rate held at the end of each interval",
+  "fd_inverse": "exact inverse of the numerical differentiation the rates appear to come from: rate_i = mean of the two adjacent interval slopes (central difference on a uniform grid), one-sided slope at the first and last point (what Origin's Differentiate does). With c(0) = 0 the interval slopes follow recursively, s_0 = g_0 and s_i = 2 g_i - s_(i-1); the last equation is unused and serves as a check (fd_end_check).",
+  "recommended": "fd_inverse. It reproduces the thesis's own plotted concentrations (Diag 12.3 markers) of NO2-, N2 and N2O to 0.17-0.19 mM-N RMS, against 11.4, 1.9 and 0.7 for the trapezoid and 2.5-64 for the step rules (scheme_validation). The trapezoid underestimates NO2- by 21 mM at 30 min because the plotted rates are centred differences of 30-min samples, not instantaneous rates.",
+  "scheme_validation_rms_mM_N_vs_thesis_diag12p3": {
+   "NO2": {
+    "trapezoid": 11.43,
+    "left_step": 59.6,
+    "right_step": 63.99,
+    "fd_inverse": 0.17
+   },
+   "N2": {
+    "trapezoid": 1.89,
+    "left_step": 13.58,
+    "right_step": 12.3,
+    "fd_inverse": 0.19
+   },
+   "N2O": {
+    "trapezoid": 0.73,
+    "left_step": 3.05,
+    "right_step": 2.45,
+    "fd_inverse": 0.19
+   },
+   "NH3": {
+    "trapezoid": 2.97,
+    "left_step": 3.09,
+    "right_step": 3.09,
+    "fd_inverse": 2.62
+   }
+  },
+  "scheme_validation_rms_mM_N_vs_daniel": {
+   "NO2": {
+    "trapezoid": 11.32,
+    "left_step": 59.76,
+    "right_step": 63.8,
+    "fd_inverse": 0.32
+   },
+   "N2": {
+    "trapezoid": 1.55,
+    "left_step": 13.08,
+    "right_step": 12.75,
+    "fd_inverse": 0.66
+   },
+   "N2O": {
+    "trapezoid": 0.74,
+    "left_step": 2.65,
+    "right_step": 2.88,
+    "fd_inverse": 0.47
+   },
+   "NH3": {
+    "trapezoid": 0.84,
+    "left_step": 0.79,
+    "right_step": 1.51,
+    "fd_inverse": 1.02
+   }
+  },
+  "forward_check_NO2": "differentiating the thesis Diag 12.3 NO2- markers with the same rule gives the stored Diag 12.1 NO2- rates to within 0.0096 mM/min at every point (0.0036 except at 180 min); Daniel's NO2- values give 0.0091",
+  "fd_end_check_mM_per_min": {
+   "NO2": 0.0211,
+   "N2": 0.028,
+   "H2N2O2": 0.0011,
+   "NH2OH": -0.0018,
+   "NH3": -0.0055,
+   "N2O": -0.0001
+  },
+  "NH3_exception": "NH3 is the one species the inversion does not reproduce: inverting the NH3 rates gives 3.3, 8.0, 14.9, 20.8, 23.9, 27.1 mM at 30-180 min, against the thesis Diag 12.3 markers 4.3, 4.8, 15.0, 26.2, 24.3, 27.4 (RMS 2.6) and Daniel's paper-figure reading 5.0, 7.6, 13.6, 19.6, 23.6, 27.6 (RMS 1.0). The rates therefore came from NH3 values that differ from the thesis markers at 60 and 120 min and lie close to Daniel's reading there. The thesis does not say how the rates were computed.",
+  "deficit": "deficit(t) = 500 - (NO3 + NO2 + N2 + N2O + NH3) in mM-N from data/real/katsounaros2012_fig1_sn_naoh.json (N2 and N2O already N-equivalents there). t = 0 is pinned to c0 by that dataset, so the deficit is 0 by construction.",
+  "coverage": "(NH2OH + 2 x H2N2O2) / deficit at each sampling time, Monte Carlo over the rate reading error and a deficit sigma",
+  "deficit_sigma": "digitization only: 3.43 mM-N at every time, the root-sum-square of the per-species RMS differences between Daniel's reading and the thesis copy (comparison_vs_daniel.json). With bars: adds the thesis Diag 12.3 error bars (+-10% of each value, see katsounaros2009thesis_diag12p3_errorbars) as if they were independent 1-sigma errors."
+ },
+ "n_basis": {
+  "NH2OH": "1 N per molecule; rates and concentrations per molecule = mM-N",
+  "H2N2O2": "2 N per molecule; the plotted rates are per molecule, so value_mM_N = 2 x value_mM_as_integrated",
+  "evidence_per_molecule": [
+   "Same axis and unit for all six species (mM min-1). N2 and N2O, the other 2-N species on the same figure, are per molecule: their x2 integrals reproduce the N-equivalent concentrations of paper Fig. 1 and thesis Diag 12.3 to 0.2 mM-N (fd_inverse), and without x2 the N2 total would be half the plotted value.",
+   "The hyponitrite analysis (thesis section 5.5.4, printed pp. 70-71) is ion chromatography (Dionex AS19, 20 mM NaOH, 1 mL/min, UV 248 nm) calibrated with Na2N2O2 standards in mg/L of the anion (linear 0.4-100 mg/L, detection limit 50 ug/L, RSD 5% for 9 repeats). That yields molar anion concentrations, not N-equivalents.",
+   "The thesis writes hyponitrite chemistry per molecule (2 HNO -> H2N2O2, eq. 12.10; H2N2O2 -> N2O + H2O, eq. 12.11).",
+   "Mass balance does not overturn it: with x2 the measured intermediates never exceed the deficit (largest coverage 0.52, upper 68% bound 0.54 with digitization error). It does not discriminate strongly either: the deficit-weighted unmeasured share over 30-180 min is 0.665 with x2 and 0.80 if the rates were already N-equivalents; the thesis's 'remaining ~70% of the deficit is nitramide' (printed p. 145) is closer to x2, but it was stated for a different run (1 M NaNO3 + 1 M NaCl, -2.8 V)."
+  ],
+  "decision": "per molecule; H2N2O2 counted as 2 N"
+ },
+ "results": {
+  "t_min": [
+   30.0,
+   60.0,
+   90.0,
+   120.0,
+   150.0,
+   180.0
+  ],
+  "deficit_mM_N": [
+   114.29,
+   142.19,
+   95.68,
+   106.31,
+   86.38,
+   77.74
+  ],
+  "deficit_pct_c0": [
+   22.86,
+   28.44,
+   19.14,
+   21.26,
+   17.28,
+   15.55
+  ],
+  "deficit_from_thesis_diag12p3_mM_N": [
+   113.69,
+   146.11,
+   93.12,
+   99.29,
+   83.87,
+   80.6
+  ],
+  "NH2OH_mM_N": {
+   "fd_inverse": [
+    7.72,
+    27.02,
+    5.69,
+    2.29,
+    -0.01,
+    0.04
+   ],
+   "trapezoid": [
+    10.62,
+    16.86,
+    10.17,
+    2.56,
+    0.58,
+    0.01
+   ]
+  },
+  "H2N2O2_mM_N_x2": {
+   "fd_inverse": [
+    3.58,
+    12.37,
+    30.23,
+    38.08,
+    41.15,
+    40.13
+   ],
+   "trapezoid": [
+    4.88,
+    14.64,
+    27.73,
+    36.88,
+    40.12,
+    40.16
+   ]
+  },
+  "measured_intermediates_mM_N": {
+   "trapezoid": [
+    15.5,
+    31.5,
+    37.9,
+    39.45,
+    40.7,
+    40.17
+   ],
+   "left_step": [
+    11.3,
+    30.99,
+    43.3,
+    43.79,
+    46.4,
+    46.3
+   ],
+   "right_step": [
+    19.7,
+    32.01,
+    32.49,
+    35.1,
+    35.0,
+    34.04
+   ],
+   "fd_inverse": [
+    11.3,
+    39.39,
+    35.92,
+    40.36,
+    41.14,
+    40.16
+   ]
+  },
+  "measured_intermediates_sd_read_mM_N": {
+   "trapezoid": [
+    0.13,
+    0.23,
+    0.3,
+    0.35,
+    0.4,
+    0.44
+   ],
+   "left_step": [
+    0.19,
+    0.27,
+    0.33,
+    0.38,
+    0.42,
+    0.46
+   ],
+   "right_step": [
+    0.19,
+    0.26,
+    0.32,
+    0.37,
+    0.42,
+    0.46
+   ],
+   "fd_inverse": [
+    0.19,
+    0.37,
+    0.42,
+    0.53,
+    0.56,
+    0.65
+   ]
+  },
+  "coverage_central_lo_hi_68pct_digitization_only": {
+   "trapezoid": [
+    [
+     0.136,
+     0.132,
+     0.14
+    ],
+    [
+     0.222,
+     0.216,
+     0.227
+    ],
+    [
+     0.396,
+     0.382,
+     0.411
+    ],
+    [
+     0.371,
+     0.359,
+     0.384
+    ],
+    [
+     0.471,
+     0.453,
+     0.491
+    ],
+    [
+     0.517,
+     0.494,
+     0.541
+    ]
+   ],
+   "left_step": [
+    [
+     0.099,
+     0.096,
+     0.102
+    ],
+    [
+     0.218,
+     0.213,
+     0.224
+    ],
+    [
+     0.453,
+     0.437,
+     0.47
+    ],
+    [
+     0.412,
+     0.399,
+     0.426
+    ],
+    [
+     0.537,
+     0.516,
+     0.559
+    ],
+    [
+     0.596,
+     0.569,
+     0.623
+    ]
+   ],
+   "right_step": [
+    [
+     0.172,
+     0.167,
+     0.178
+    ],
+    [
+     0.225,
+     0.219,
+     0.231
+    ],
+    [
+     0.34,
+     0.327,
+     0.352
+    ],
+    [
+     0.33,
+     0.319,
+     0.342
+    ],
+    [
+     0.405,
+     0.389,
+     0.422
+    ],
+    [
+     0.438,
+     0.418,
+     0.459
+    ]
+   ],
+   "fd_inverse": [
+    [
+     0.099,
+     0.096,
+     0.102
+    ],
+    [
+     0.277,
+     0.27,
+     0.284
+    ],
+    [
+     0.375,
+     0.362,
+     0.39
+    ],
+    [
+     0.38,
+     0.367,
+     0.393
+    ],
+    [
+     0.476,
+     0.457,
+     0.497
+    ],
+    [
+     0.517,
+     0.493,
+     0.542
+    ]
+   ]
+  },
+  "coverage_central_lo_hi_68pct_with_10pct_bars_as_1sigma": {
+   "trapezoid": [
+    [
+     0.136,
+     0.109,
+     0.179
+    ],
+    [
+     0.222,
+     0.195,
+     0.258
+    ],
+    [
+     0.396,
+     0.324,
+     0.511
+    ],
+    [
+     0.371,
+     0.298,
+     0.491
+    ],
+    [
+     0.471,
+     0.35,
+     0.726
+    ],
+    [
+     0.517,
+     0.366,
+     0.855
+    ]
+   ],
+   "left_step": [
+    [
+     0.099,
+     0.08,
+     0.13
+    ],
+    [
+     0.218,
+     0.191,
+     0.254
+    ],
+    [
+     0.453,
+     0.37,
+     0.588
+    ],
+    [
+     0.412,
+     0.33,
+     0.547
+    ],
+    [
+     0.537,
+     0.398,
+     0.825
+    ],
+    [
+     0.596,
+     0.418,
+     0.985
+    ]
+   ],
+   "right_step": [
+    [
+     0.172,
+     0.139,
+     0.227
+    ],
+    [
+     0.225,
+     0.197,
+     0.262
+    ],
+    [
+     0.34,
+     0.277,
+     0.44
+    ],
+    [
+     0.33,
+     0.265,
+     0.437
+    ],
+    [
+     0.405,
+     0.3,
+     0.629
+    ],
+    [
+     0.438,
+     0.309,
+     0.728
+    ]
+   ],
+   "fd_inverse": [
+    [
+     0.099,
+     0.08,
+     0.13
+    ],
+    [
+     0.277,
+     0.242,
+     0.322
+    ],
+    [
+     0.375,
+     0.305,
+     0.486
+    ],
+    [
+     0.38,
+     0.305,
+     0.507
+    ],
+    [
+     0.476,
+     0.353,
+     0.734
+    ],
+    [
+     0.517,
+     0.363,
+     0.85
+    ]
+   ]
+  },
+  "coverage_fd_inverse_vs_thesis_deficit": [
+   0.099,
+   0.27,
+   0.386,
+   0.406,
+   0.491,
+   0.498
+  ],
+  "residual_unmeasured_pool_mM_N": {
+   "trapezoid": [
+    98.79,
+    110.69,
+    57.78,
+    66.87,
+    45.68,
+    37.57
+   ],
+   "left_step": [
+    102.99,
+    111.2,
+    52.38,
+    62.52,
+    39.98,
+    31.44
+   ],
+   "right_step": [
+    94.59,
+    110.19,
+    63.19,
+    71.21,
+    51.37,
+    43.7
+   ],
+   "fd_inverse": [
+    102.99,
+    102.8,
+    59.76,
+    65.95,
+    45.24,
+    37.58
+   ]
+  },
+  "residual_unmeasured_pool_pct_c0": {
+   "trapezoid": [
+    19.76,
+    22.14,
+    11.56,
+    13.37,
+    9.14,
+    7.51
+   ],
+   "left_step": [
+    20.6,
+    22.24,
+    10.48,
+    12.5,
+    8.0,
+    6.29
+   ],
+   "right_step": [
+    18.92,
+    22.04,
+    12.64,
+    14.24,
+    10.27,
+    8.74
+   ],
+   "fd_inverse": [
+    20.6,
+    20.56,
+    11.95,
+    13.19,
+    9.05,
+    7.52
+   ]
+  },
+  "deficit_weighted_unmeasured_share_30_180min": {
+   "trapezoid": {
+    "x2_per_molecule": 0.67,
+    "x1_if_rates_were_N_equivalents": 0.802
+   },
+   "left_step": {
+    "x2_per_molecule": 0.643,
+    "x1_if_rates_were_N_equivalents": 0.769
+   },
+   "right_step": {
+    "x2_per_molecule": 0.697,
+    "x1_if_rates_were_N_equivalents": 0.836
+   },
+   "fd_inverse": {
+    "x2_per_molecule": 0.665,
+    "x1_if_rates_were_N_equivalents": 0.798
+   }
+  },
+  "modelB_paper_X_mM_N": [
+   64.34,
+   117.83,
+   122.48,
+   101.44,
+   74.4,
+   50.65
+  ],
+  "modelB_paper_X_peak_mM_N_at_min": [
+   125.2,
+   78
+  ],
+  "modelB_constants_min-1": {
+   "k1": 0.0216,
+   "k2": 0.0292,
+   "k3": 0.0219,
+   "k4": 0.0021,
+   "k5": 0.0048,
+   "source": "worlds/W3_katsounaros_hidden_intermediate.json (paper Table 1)"
+  },
+  "thesis_eq12_X_mM_N": [
+   60.7,
+   111.43,
+   116.08,
+   96.33,
+   70.8,
+   48.3
+  ],
+  "thesis_eq12_constants_min-1": {
+   "k1": 0.0206,
+   "k2": 0.0288,
+   "k3": 0.023,
+   "k4": 0.002,
+   "k5": 0.0049,
+   "source": "thesis eqs 12.23-12.28, printed p. 192 (X = NH2NO2)"
+  }
+ },
+ "thesis_statements": {
+  "NH2OH_method": "Printed pp. 71 and 138: two colorimetric methods, 8-hydroxyquinoline (indooxine, 705 nm; preferred) and ferrozine/Fe3+ (562 nm, pH 3.2). The ferrozine method can read high because hyponitrite and hyponitrate also reduce Fe3+. Which method was used for this run is not stated.",
+  "NH2OH_bias": "Printed p. 140: NH2OH reacts with nitrite during the analysis (about 7 min) to give N2O (HNO2 + NH2OH -> N2O + 2 H2O), so the true NH2OH, and slightly the true nitrite, could be higher than measured. Printed p. 145: samples must be analysed at once because NH2OH + nitrite react and hyponitrite decomposes.",
+  "H2N2O2_method": "Printed pp. 70-71 (section 5.5.4): ion chromatography developed in the lab, AS19 column, 20 mM NaOH eluent, 1 mL/min, UV detection at 248 nm, simultaneous with hyponitrate, nitrate and nitrite. Hyponitrite identity confirmed in a separate run by Ag2N2O2 precipitation (IR 880, 1010, 1410, 1605 cm-1; UV maximum 243 nm), printed pp. 142-143. Hyponitrate was not detected.",
+  "liquid_sampling": "Printed p. 73: 0.1 mL liquid samples (syringe) analysed for nitrate, nitrite, ammonia, hydroxylamine and hyponitrite after dilution; gases by on-line GC every 15 min.",
+  "nitramide": "Proposed, not measured. Printed pp. 144-145: no quantitative method exists; nitramide was detected (spectroscopy, GC-MS) in Dortsiou's thesis; 'the remaining ~70% of the mass-balance deficit is most probably due to nitramide' (chapter 9 run, 1 M NaNO3 + 1 M NaCl, -2.8 V, where NH2OH was only 10% of the loss, printed p. 140). Printed pp. 188-190: the deficit 'could not be explained only by the detected intermediates (hydroxylamine and hyponitrite) and was attributed to NH2NO2'; nitramide is ~70% of the mass loss; proposed main N2 route NH2NO2 + H2O + 2e -> NH2NO + 2 OH-, NH2NO -> N2 + H2O (eqs 12.19-12.20); NH2NO2 -> N2O + H2O (eq. 12.13). The thesis kinetic model (Scheme 12.4, eqs 12.23-12.28) uses NH2NO2 as the hidden species between nitrite and N2.",
+  "routes_of_the_measured_intermediates": "Printed pp. 187-190: hyponitrite forms by HNO dimerisation and decomposes to N2O; a hyponitrite electrolysis gave N2O:N2 = 30:1, so hyponitrite is not the main N2 precursor. NH2OH is reduced to NH3 (90% conversion when 0.25 M NH2OH was added) and reacts with nitrite to N2O; HNO + NH2OH -> N2 + 2 H2O cannot be excluded."
+ },
+ "assumptions": [
+  "Zero initial concentration of every species at t = 0.",
+  "Nominal sampling times (30-min grid; 0, 4, 15, 30, ... for the gases; the second GC sample is read at 3.96 min and taken as 4.0).",
+  "The rates of NH2OH and H2N2O2 were obtained by the same differentiation as those of NO2-, N2 and N2O (validated only on those three).",
+  "Diag 12.1, Diag 12.3 and paper Fig. 1 are the same run (inferred from agreement: same conditions and times, and the integrated rates reproduce the plotted concentrations; the thesis does not say so).",
+  "N2 and N2O in data/real/katsounaros2012_fig1_sn_naoh.json are N-equivalents (confirmed by the x2 integrals here and by the xcheck)."
+ ],
+ "flags": [
+  "derived_from_rates_not_measured_concentrations",
+  "rates_digitized_from_plot",
+  "integration_scheme_dependent (fd_inverse validated on NO2/N2/N2O; trapezoid and step rules shown for comparison)",
+  "same_run_inferred",
+  "NH3_rates_inconsistent_with_thesis_diag12p3_markers",
+  "NH2OH_possibly_underestimated_by_analysis (reaction with nitrite before analysis, thesis p. 140)",
+  "deficit_uncertainty_dominated_by_measurement_error_if_10pct_bars_are_1sigma",
+  "nitramide_not_measured",
+  "potential_vs_ag_agcl_not_rhe"
+ ],
+ "scripts": "literature/extraction_scripts/k12_hidden/integrate_intermediates.py (and write_meta_intermediates.py); run with the repo root as argument"
+}

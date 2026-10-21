@@ -1,0 +1,79 @@
+{
+  "dataset": "gao2022_figs12_trap_reuse_cycles",
+  "figure": "Fig. S12 (SI PDF p.13, 942x753 px raster)",
+  "source": "SI es1c08442_si_001.pdf",
+  "verdict": "accept",
+  "verdict_basis": "Verifier reading reproduces all 12 values within 0.01 mM.",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "independence": "Verifier extracted the embedded raster itself (pymupdf, native resolution), located the ticks with its own code and re-read every value with its own scripts; extractor scripts and readings were not used.",
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "No change; the verifier listed no issues.",
+      "files": []
+    }
+  ],
+  "meta_edited": false,
+  "max_deviation": {
+    "per_cycle_mM": {
+      "max_abs": 0.01,
+      "csv_row_index_0based": 7,
+      "px": 0.09,
+      "fraction_of_axis_range": 0.0001
+    },
+    "accumulated_mM": {
+      "max_abs": 0.01,
+      "csv_row_index_0based": 2,
+      "px": 0.09,
+      "fraction_of_axis_range": 0.0001
+    },
+    "units": "0.1114 mM per px"
+  },
+  "checks": [
+    {
+      "name": "axis_calibration",
+      "result": "pass",
+      "detail": "8 major ticks at rows 24.89..653.29 (70..0 mM), 0.1114 mM/px, residual 0.03; bars at x major ticks 272.7, 532.7, 792.2."
+    },
+    {
+      "name": "segments",
+      "result": "pass",
+      "detail": "First/second/third cycle by colour (salmon / blue grid / purple crosshatch, legend order): cycle1 [20.59, 20.48, 20.48], cycle2 [0.0, 19.83, 19.61], cycle3 [0.0, 0.0, 21.16], totals [20.59, 40.3, 61.25]. Bar 1 shows only the first cycle (third-cycle artefact correctly set to 0)."
+    },
+    {
+      "name": "conditions",
+      "result": "pass",
+      "detail": "Caption: -2 V vs SCE without ohmic compensation, 25 mM NO3-, pH ~7, 10 mM Cl-, 5 h per cycle; matches meta."
+    },
+    {
+      "name": "overlay",
+      "result": "pass",
+      "detail": "Stored cumulative tops drawn on the figure; all on the segment boundaries."
+    }
+  ],
+  "issues": [],
+  "verifier_readings": {
+    "cycle1": [
+      20.59,
+      20.48,
+      20.48
+    ],
+    "cycle2": [
+      0.0,
+      19.83,
+      19.61
+    ],
+    "cycle3": [
+      0.0,
+      0.0,
+      21.16
+    ],
+    "total": [
+      20.59,
+      40.3,
+      61.25
+    ]
+  },
+  "overlay": "verify_overlay.png (session scratch, not retained; contains publisher figure images)"
+}

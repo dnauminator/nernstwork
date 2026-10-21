@@ -1,0 +1,150 @@
+{
+ "id": "katsounaros2009thesis_diag12p3_xcheck",
+ "kind": "inputs_only_crosscheck",
+ "note": "Independent raster digitization of the thesis copy of Katsounaros et al. 2012 Fig. 1, made to measure digitization error in data/real/katsounaros2012_fig1_sn_naoh.json. Inputs only: do not convert to data/real; Daniel's folder and dataset are unchanged.",
+ "files": {
+  "extracted.csv": "tidy long; kind = data (markers) or model_curve (thesis fit curves, resampled to 1 min)",
+  "comparison_vs_daniel.json": "per point and per species differences against data/real/katsounaros2012_fig1_sn_naoh.json, plus the model-curve check"
+ },
+ "csv_columns": {
+  "species": "NO3, NO2, N2, NH3, N2O",
+  "t_min": "nominal sampling time (30-min grid) or curve time",
+  "value_as_plotted": "value read on the y axis (mM; N2 and N2O in N-equivalents)",
+  "unit_as_plotted": "see units",
+  "value_mM_N": "same as value_as_plotted (N-equivalent basis)",
+  "kind": "data | model_curve",
+  "marker": "symbol on the page",
+  "t_read_min": "time read from the marker x position",
+  "x_px/y_px": "anchor on the 300 dpi page image p221.jpg (2481 x 3509 px)",
+  "unc_as_plotted": "read uncertainty estimate (1 px = 0.598 mM)",
+  "method": "template_ncc | square_top_edge | square_bounded_by_visible_extent | trace_nearest_run_to_thesis_k_model",
+  "match_score": "NCC peak for template_ncc",
+  "flags": "per-point overlap/visibility flags"
+ },
+ "provenance": {
+  "citation": "Katsounaros I. (2009), PhD thesis, Aristotle University of Thessaloniki (National Archive of PhD Theses, EKT)",
+  "doi": "10.12681/eadd/19491",
+  "figure": "Diagram 12.3 (printed page 191; reader page 221)",
+  "caption_translated": "Concentration of (filled square) NO3-, (O) NO2-, (filled inverted triangle) N2, (open triangle) NH3 and (open star) N2O during electrolysis of 0.5 M NaNO3 + 1 M NaOH at -2.2 V vs Ag/AgCl. The curves were drawn by non-linear regression of eqs (12.23)-(12.28).",
+  "corresponds_to": "Katsounaros I., Dortsiou M., Polatides C., Preston S., Kypraios T., Kyriacou G., Electrochim. Acta 71 (2012) 270-276, Fig. 1 (digitized by Daniel: data/digitized_inputs/katsounaros2012_fig1)",
+  "source_images": "EKT online reader page images at 300 dpi (img_19491/p221.jpg), scratch only"
+ },
+ "licence": "Terms: National Archive of PhD Theses (didaktorika.gr, run by EKT). Its terms of use allow deposited theses to be used online for educational, scientific, statistical and research purposes when there is no direct or indirect financial benefit, require any publication based on a thesis to cite its author, and allow linking to the site's content but not reproducing it; the item page states that all items in the archive are protected by copyright. The page images were viewed through the archive's online reader without an account and are not stored in the repo. Whether NernstWork's use meets the no-financial-benefit condition is the repository owner's decision.",
+ "extraction_method": "Raster digitization of the 300 dpi page image from the National Archive of PhD Theses online reader (EKT freader; page images stay in scratch, not committed). Axes calibrated by linear fits to tick-mark centroids located automatically from darkness profiles beside the axis lines (all labelled ticks; residuals and the axis-line origin check are in 'calibration'). Markers located by OpenCV normalized cross-correlation (cv2.matchTemplate, TM_CCOEFF_NORMED) with one template per marker shape, searched in a column window of +-6 to 8 px around each sampling time and a per-point concentration window set from visual inspection (the window only selects which marker; the value comes from the match peak, refined to sub-pixel by a parabolic fit). Every detection was checked by eye on zoomed crops with the template outline drawn at the detected position (scratch QA images). Points that template matching could not resolve are handled by the per-point 'method' column, explained in 'methods'. Extracted by agent team 2026-10-20.",
+ "methods": {
+  "template_ncc": "synthetic templates fitted to clean instances: filled square 22 px, open circle r 12 px (2 px stroke), filled inverted triangle circumradius 18 px, open triangle circumradius 16.5 px, open star r 14.5 px (inner/outer 0.38). Anchor = circumcentre (same Origin convention as Diag 9.6). All series carry error bars on this page; they were not extracted.",
+  "square_top_edge": "NO3 squares at 150 and 180 min are partly covered by the white-filled NH3 triangle / NO2 circle drawn on top, which drags the NCC peak by 1.5-4 px. Centre = top edge (50% grey crossing on columns just inside the square sides) + half-height 11.17 px measured the same way on the clean 30-min square (whose edge centre agrees with its NCC centre to 0.1 px).",
+  "square_bounded_by_visible_extent": "NO3 at 120 min: top hidden by the NO2 circle, bottom by the NH3 triangle. The square sides are visibly dark from <= row 2778 to >= row 2796, which bounds the centre to rows 2784.8-2789.2 (28.6-31.2 mM); the midpoint is used and the half-range is the uncertainty.",
+  "trace_nearest_run_to_thesis_k_model": "model curves: per pixel column, the nearest thin dark run within +-6 px of the curve computed from the thesis constants (marker columns skipped); the traced positions, not the computed model, are stored. Residual statistics are in comparison_vs_daniel.json model_curve_check. Columns within +-3 min of a sampling time are skipped (markers), so curve rows are missing there."
+ },
+ "units": {
+  "NO3, NO2, NH3": "mM",
+  "N2, N2O": "mM N-equivalent (= mM-N)"
+ },
+ "conditions": {
+  "catalyst": "Sn",
+  "electrolyte": "0.5 M NaNO3 + 1 M NaOH",
+  "potential_as_reported": "-2.2 V vs Ag/AgCl",
+  "c0_mM_N": {
+   "NO3": 500.0
+  }
+ },
+ "n_basis_note": "N2 and N2O are N-equivalents. Thesis eqs 12.23-12.28 (p. 192) are linear first order and conserve N 1:1 (NO3 -k1-> NO2; NO2 -k2-> NH2NO2 -k3-> N2; NO2 -k4-> NH3; NO2 -k5-> N2O) with k1..k5 = 0.0206, 0.0288, 0.0230, 0.0020, 0.0049 min-1. Integrating these from 500 mM reproduces all five drawn curves to a median of 0.0-0.8 mM (median residual per curve -1.4 to +0.7 px over 961 traced columns each), so the curves, and the data they were fitted to, share the N-equivalent axis. Per molecule, the 180-min data would sum to about 795 mM-N against 500 initial.",
+ "flags": [
+  "potential_unverified",
+  "inputs_only_crosscheck"
+ ],
+ "not_digitized": [
+  "t = 0 product markers (pile up at the origin)",
+  "error bars (present on every series in the thesis figure)"
+ ],
+ "thesis_vs_paper": [
+  "Same seven sampling times and the same values (within reading error, apart from the points above), so the data are shared with paper Fig. 1.",
+  "The thesis curves are the thesis non-linear regression, k1..k5 = 0.0206, 0.0288, 0.0230, 0.0020, 0.0049 min-1. The paper's model-B posterior means used in W3 are 0.0216, 0.0292, 0.0219, 0.0021, 0.0048. The two curve sets differ by up to 8.7 mM for NO3, 4.0 for NO2, 1.5 for N2, 1.3 for NH3 and 1.6 for N2O. The traced thesis curves match the thesis constants (median |resid| 0.07-0.86 mM) and not model B (median |resid| 1.1-5.9 mM).",
+  "The thesis figure has error bars on every series (not extracted). The thesis names the hidden intermediate as nitramide (NH2NO2) and attributes about 70% of the mass-balance loss to it (p. 190)."
+ ],
+ "findings": [
+  "Agreement: 30 common points, RMS 1.5 mM (0.31% of the 500 mM axis). 27 of 30 points are within 2 mM, with no offset or scale error (Daniel = -0.18 + 1.000 x thesis), no time shift and no species swap.",
+  "NH3 at 120 min: Daniel 19.6 vs thesis 26.2 mM (+6.6 mM, about 11 thesis px, 1.3% of full scale). In the thesis the open triangle at 120 min is drawn on top of the NO3 square, with its apex at row 2776 and base at row 2802, which puts the centre at 26.2 mM. Daniel's 19.6 falls below the triangle's base. This looks like a click on the wrong object in the crowded 120-min cluster (NO3 square, NO2 circle, NH3 triangle, error-bar caps), unless the paper image differs. Re-check against paper Fig. 1. The point sits below the model curve in Daniel's data but above it in the thesis.",
+  "NH3 at 60 min: Daniel 7.6 vs thesis 4.8 mM. The triangle's base lies on the x axis. Daniel's value equals the middle of the visible part (apex to axis); the circumcentre, which is the Origin anchor, is 4.8.",
+  "NO3 at 180 min: Daniel 16.3 vs thesis 13.7 mM. The lower half of the square is hidden under the white-filled NO2 circle. Daniel's value equals the centre of the visible black part; the top edge plus the half-height gives 13.7. A smaller version of the same occlusion effect applies at 120 and 150 min (thesis 29.9 +-1.5 and 28.0).",
+  "N basis: N-equivalent confirmed. The thesis constants in eqs 12.23-12.28 reproduce all five drawn curves (median |residual| 0.07-0.86 mM), and those equations conserve N 1:1. Daniel's 1:1 treatment of N2 and N2O is correct.",
+  "Revision 2026-10-20: the NH3 findings at 120 min ('looks like a click on the wrong object') and 60 min (middle of the visible part) are downgraded to unresolved and source-dependent. The thesis-copy values stand. See revision_2026-10-20."
+ ],
+ "calibration": {
+  "x_ticks_px": [
+   692.0,
+   892.0,
+   1092.024,
+   1292.976,
+   1493.0,
+   1693.0,
+   1893.0
+  ],
+  "x_ticks_min": [
+   0,
+   30,
+   60,
+   90,
+   120,
+   150,
+   180
+  ],
+  "x_fit_min_per_px": 0.14984005738527068,
+  "x_fit_offset": -103.67897703170405,
+  "x_resid_max_min": 0.061,
+  "y_ticks_px": [
+   2001.0,
+   2168.0,
+   2335.0,
+   2502.531,
+   2670.0,
+   2837.0
+  ],
+  "y_ticks_val": [
+   500,
+   400,
+   300,
+   200,
+   100,
+   0
+  ],
+  "y_fit_per_px": -0.5979295203540421,
+  "y_fit_offset": 1696.3447329372154,
+  "y_resid_max_as_plotted": 0.179,
+  "origin_check": {
+   "t_at_yaxis": 0.010342678903256797,
+   "c_at_xaxis": 0.01868369279804938
+  },
+  "resolution_as_plotted_per_px": 0.598
+ },
+ "points": {
+  "NO3": 7,
+  "NO2": 6,
+  "N2": 6,
+  "NH3": 6,
+  "N2O": 6
+ },
+ "comparison_summary": {
+  "per_species_rms_mM_N": {
+   "NO3": 1.386,
+   "NO2": 0.292,
+   "N2": 0.583,
+   "NH3": 3.028,
+   "N2O": 0.525
+  },
+  "overall_rms_pct_axis": 0.307,
+  "file": "comparison_vs_daniel.json"
+ },
+ "revision_2026-10-20": {
+  "date": "2026-10-20",
+  "applies_to": "findings on NH3 at 120 min and NH3 at 60 min; the agreement, NO3 180 min and N-basis findings are unchanged",
+  "status": "downgraded: cause unresolved and source-dependent",
+  "evidence": "The thesis's own Diag 12.1 NH3 rates (katsounaros2009thesis_diag12p1_rates) are central-difference derivatives of the sampled concentrations (mean of the two adjacent interval slopes, one-sided at the ends); the inverse of that scheme reproduces the thesis NO2-, N2 and N2O markers to 0.17-0.19 mM-N RMS. Inverting the NH3 rates gives 3.28, 8.00, 14.85, 20.80, 23.85, 27.13 mM at 30-180 min (sd 0.1-0.3), against thesis Diag 12.3 markers 4.31, 4.79, 15.03, 26.23, 24.27, 27.38 and Daniel's 4.98, 7.64, 13.62, 19.60, 23.59, 27.58. At 120 min the rates give 20.8 (Daniel 19.6; thesis copy about 26, cap midpoint 25.8-25.9); at 60 min 8.0 (Daniel 7.6; thesis copy 4.8). These are the only two points where Daniel departs from the thesis copy, and the rates depart from it at the same two points, in Daniel's direction. Forward check: the NH3 rates miss the thesis markers by up to 0.144 mM/min (78 px, about 50 times the reading error), while NO2- from the same samples matches to 0.0035; replacing only the two thesis values with Daniel's cuts the worst residual to 0.034. The journal Fig. 1 is a re-plot (its curves are model B, not the thesis constants) and was not checked; it may plot NH3 near 8 and 20 mM. The thesis-copy features also lie near the rate-implied values (visible-part midpoint 7.3 at 60 min, triangle base 21.0 at 120 min), so a misclick and a different journal figure cannot be told apart without the journal image.",
+  "recommendation": "Do not replace Daniel's NH3 values with the thesis-copy 4.8 and 26.2. Keep them, flag NH3 at 60 and 120 min as source-dependent (+-3 and +-6 mM), and pixel-check Katsounaros 2012 Fig. 1 in the journal PDF.",
+  "sources": [
+   "data/digitized_inputs/katsounaros2009thesis_diag12p1_intermediates/verification.json (check claim6_NH3_120_and_the_misclick_verdict)",
+   "data/digitized_inputs/katsounaros2009thesis_diag12p3_errorbars/verification.json (check NH3_120_thesis_copy)"
+  ]
+ }
+}

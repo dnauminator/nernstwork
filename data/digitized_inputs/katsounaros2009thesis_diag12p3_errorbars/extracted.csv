@@ -1,0 +1,32 @@
+species,t_min,center_mM_as_plotted,lower,upper,half_width,relative,half_width_sd,status,centre_source,upper_cap_row_px,lower_cap_row_px,centre_row_px,method_note
+NO3,0,499.97,449.98,549.96,49.992,0.1000,0.334,lower_only,marker_centre_xcheck,,2084.50,2000.92,"upper bar end above the top of the y axis (550 mM > axis maximum, clipped); lower cap at 450 mM coincides with the 450 minor tick, measured on its right half (ticks point outward, left of the axis); bar line coincides with the y axis"
+NO3,30,250.90,225.86,275.94,25.041,0.0998,0.063,both_caps,cap_midpoint,2375.49,2459.23,2417.36,both caps clean
+NO3,60,123.50,111.16,135.83,12.334,0.0999,0.063,both_caps,cap_midpoint,2609.76,2651.00,2630.38,"upper cap visible inside the white NO2 circle (bars drawn over markers); cap midpoint is 2.6 px above the xcheck template centre, which the overlapping circle biased; square bottom edge minus half-height agrees with the midpoint within 0.2 px"
+NO3,90,84.48,76.02,92.94,8.458,0.1001,0.169,both_caps,cap_midpoint,2681.47,2709.75,2695.61,"upper cap split over rows 2681/2682 and drawn over the bottom arc of the NO2 circle; only row 2681 is clean, so the cap row is row 2681 + (1 - its darkness / 0.96); lower cap crossed by model curves on its right end (columns 1299+ excluded)"
+NO3,120,30.17,27.13,33.21,3.042,0.1008,0.148,both_caps,cap_midpoint,2781.33,2791.50,2786.42,square hidden under the NO2 circle and NH3 triangle; upper cap drawn over the white circle/triangle (columns clear of their outlines); lower cap is the second of two caps in a 4-row grey band (rows 2789-2792) shared with the NH3 upper cap; pairing by symmetry about each marker is unique
+NO3,150,27.93,,,,,,hidden,marker_centre_xcheck,,,2790.16,expected half-width about 5 px; caps inside the filled square and under the NH3 triangle/model curve
+NO3,180,13.58,12.23,14.93,1.352,0.0996,0.423,low_confidence,marker_centre_xcheck,,2816.42,2814.16,"upper cap inside the filled square; lower cap partly visible over the white NO2 circle just below the black square, its upper half may merge with the black; low confidence, not used in the summary"
+NO2,30,107.28,96.52,118.05,10.765,0.1003,0.063,both_caps,cap_midpoint,2639.49,2675.49,2657.49,both caps clean
+NO2,60,132.15,118.91,145.39,13.240,0.1002,0.312,upper_only,marker_centre_xcheck,2593.77,,2615.91,lower cap would fall inside the filled NO3 square (hidden); centre from marker (circle top edge + radius agrees within 0.1 px)
+NO2,90,98.94,89.11,108.77,9.831,0.0994,0.312,upper_only,marker_centre_xcheck,2655.00,,2671.44,lower cap would fall inside the filled NO3 square (hidden); centre from marker
+NO2,120,38.64,34.90,42.38,3.739,0.0968,0.127,both_caps,cap_midpoint,2766.01,2778.51,2772.26,"upper cap crossed by two model curves (only columns 1494-1496 clean); lower cap split equally over rows 2778/2779, just above the NO3 square, NH3 triangle apex excluded"
+NO2,150,10.39,9.34,11.43,1.042,0.1003,0.085,both_caps,cap_midpoint,2817.76,2821.24,2819.50,"both caps inside the open circle, 3.4 px apart"
+NO2,180,6.20,5.60,6.80,0.597,0.0962,0.127,both_caps,cap_midpoint,2825.50,2827.49,2826.49,two caps 2 px apart form a uniform grey band over rows 2825-2828 inside the circle; split at the band middle
+N2,30,18.52,,,,,,hidden,marker_centre_xcheck,,,2805.90,expected half-width about 3 px; both caps inside the filled N2 triangle
+N2,60,74.90,67.50,82.29,7.395,0.0987,0.063,both_caps,cap_midpoint,2699.27,2724.00,2711.64,lower cap crosses the narrow part of the filled triangle; measured on the columns outside it
+N2,90,166.19,149.59,182.80,16.605,0.0999,0.063,both_caps,cap_midpoint,2531.23,2586.76,2558.99,both caps clean; bar column split over px 1292-1293
+N2,120,249.70,224.65,274.75,25.046,0.1003,0.063,both_caps,cap_midpoint,2377.49,2461.24,2419.37,both caps clean
+N2,150,292.23,263.08,321.39,29.156,0.0998,0.063,both_caps,cap_midpoint,2299.50,2397.00,2348.25,both caps clean
+N2,180,309.36,278.48,340.23,30.874,0.0998,0.063,both_caps,cap_midpoint,2268.00,2371.24,2319.62,both caps clean
+NH3,30,4.21,,,,,,unresolved,marker_centre_xcheck,,,2829.82,"expected half-width under 1 px; caps merge with the N2O star, N2 triangle apex, model curves and the x axis"
+NH3,60,4.70,4.11,5.30,0.598,0.1272,0.106,both_caps,cap_midpoint,2828.00,2830.00,2829.00,two caps 1.7 px apart inside the open triangle; windows split at row 2829 (its 0.2 darkness ignored); triangle base under the x axis
+NH3,90,14.87,13.37,16.37,1.499,0.1008,0.085,both_caps,cap_midpoint,2809.49,2814.50,2812.00,"both caps inside the open triangle, 5 px apart"
+NH3,120,25.78,23.24,28.32,2.539,0.0985,0.148,both_caps,cap_midpoint,2789.51,2798.00,2793.76,upper cap is the first of the two caps in the grey band; lower cap at row 2798 directly above a model curve at row 2799 (excluded)
+NH3,150,23.80,21.45,26.15,2.352,0.0988,0.127,both_caps,cap_midpoint,2793.13,2801.00,2797.07,triangle drawn over the NO3 square; upper cap inside the white triangle above a model curve at row 2795 (excluded); lower cap clean
+NH3,180,27.14,24.44,29.83,2.696,0.0994,0.085,both_caps,cap_midpoint,2786.98,2796.00,2791.49,both caps inside the open triangle; triangle sides excluded
+N2O,30,4.95,,,,,,unresolved,marker_centre_xcheck,,,2828.59,expected half-width under 1 px; same cluster as NH3 at 30 min
+N2O,60,20.09,17.99,22.20,2.102,0.1046,0.127,both_caps,cap_midpoint,2799.75,2806.78,2803.27,"both caps inside the open star; upper cap sits just under the star arms (columns between the arm edges), lower cap between the lower legs"
+N2O,90,41.99,37.86,46.12,4.129,0.0983,0.169,both_caps,cap_midpoint,2759.76,2773.57,2766.66,"upper cap just under the star top point (row 2761 excluded: antialiasing of the star arms at row 2762); lower cap visible only inside the left lower leg (columns 1287-1288, rows 2773-2774), the rest merges with the star notch and legs"
+N2O,120,55.91,50.31,61.52,5.607,0.1003,0.127,both_caps,cap_midpoint,2734.00,2752.75,2743.38,upper cap above the star arms; lower cap between the lower legs
+N2O,150,60.63,54.48,66.77,6.141,0.1013,0.127,both_caps,cap_midpoint,2725.23,2745.77,2735.50,upper cap above the star arms; lower cap between the lower legs
+N2O,180,62.49,56.28,68.70,6.211,0.0994,0.127,both_caps,cap_midpoint,2722.00,2742.77,2732.38,upper cap crosses the star top point (point columns excluded); lower cap between the lower legs

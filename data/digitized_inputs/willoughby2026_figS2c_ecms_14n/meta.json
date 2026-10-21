@@ -1,0 +1,424 @@
+{
+ "id": "willoughby2026_figS2c_ecms_14n",
+ "kind": "ecms_gas_flux_time_series",
+ "note": "Gas-phase EC-MS signals digitized from SI figures. Inputs only: not a batch concentration trajectory; do not convert with scripts/digitized_to_dataset.py and do not copy to data/real.",
+ "files": {
+  "extracted.csv": "tidy long format, one row per trace per pixel column"
+ },
+ "csv_columns": {
+  "time_min": "time axis of the figure (minutes, figure's own origin)",
+  "species": "assigned species, or the authors' label for a raw m/z channel; empty for current/potential",
+  "channel": "plotted channel (m/z, deconvoluted channel, current density, potential)",
+  "value": "column-median value of the plotted stroke",
+  "value_lo/value_hi": "vertical extent of the stroke centre-line in that pixel column (wide on steep or noisy segments)",
+  "unit": "unit as plotted",
+  "signal_type": "gas_flux_per_area | ms_ion_current | applied_current_density | electrode_potential",
+  "condition": "run identifier",
+  "isotope": "14N or 15N nitrate",
+  "figure_panel": "SI panel",
+  "trace": "internal trace id",
+  "px_col": "pixel column in the native embedded image",
+  "flags": "per-point: multi_row_column (stroke spans > stroke+2 px: use lo/hi), clipped_at_panel_top (true value >= value_hi), touches_panel_bottom, split_stroke (JPEG gap in a steep segment); per-trace flags explained in quality_flags"
+ },
+ "units": {
+  "H2/NO/N2O": "mol s-1 cm-2 (as S1c)",
+  "j": "mA cm-2",
+  "E": "V vs RHE"
+ },
+ "conditions": {
+  "catalyst": "Ti (titanium disk electrode; SI gives disk area 0.196 cm2)",
+  "electrolyte": "0.1 M HNO3 + 0.3 M KNO3",
+  "nitrate_total_mM": 400.0,
+  "pH": null,
+  "pH_note": "not stated in SI; 0.1 M HNO3 implies roughly pH 1 (inference)",
+  "cell": "EC-MS (ixdat analysis, He carrier); geometry and volume not given in SI",
+  "temperature_C": null,
+  "potential_scale": "V vs RHE as plotted (no conversion done)",
+  "mode": "galvanostatic pulses",
+  "current_density_mA_cm2": -0.2,
+  "pulse_schedule_min": [
+   [
+    6.01,
+    10.99
+   ],
+   [
+    16.0,
+    21.02
+   ],
+   [
+    26.03,
+    31.01
+   ]
+  ],
+  "pulse_schedule_note": "from step columns of the plotted j trace, +/-0.1 min; 3 pulses"
+ },
+ "points_per_trace": {
+  "S2c:E": 526,
+  "S2c:H2": 526,
+  "S2c:N2O": 526,
+  "S2c:NO": 526,
+  "S2c:j": 526
+ },
+ "flag_counts": {
+  "multi_row_column": 905,
+  "axis_zero_from_label_centre": 526
+ },
+ "provenance": {
+  "citation": "Willoughby W. L., Hannagan R. T., Guo J., Benedek P., Yap K. M. K., Burke Stevens M., Nielander A. C., Tarpeh W. A., Jaramillo T. F., Dynamic Quantification of Nitrogen Species in Acidic Titanium-Catalyzed Nitrate Reduction toward Ammonia, ACS Electrochem. 2 (2026) 353. Supporting Information.",
+  "doi": "10.1021/acselectrochem.5c00405",
+  "figure": "Fig. S2c",
+  "page": "PDF p. 5 (SI p. S5)",
+  "si_version": {
+   "file_used": "ec5c00405_si_001.pdf (16 pp, md5 1c5b26ae4c8534372aaf332815fc63aa, Word-generated, created 2026-01-06)",
+   "other_version": "ec5c00405_si_001__1_.pdf (md5 0fb0d1662e45f89665c7abdf4c25c792): identical text and byte-identical embedded figure images; differs only by an ACS 'Downloaded from pubs.acs.org ... by guest on 20 October 2026' margin stamp on every page (x 588-593 pt, outside all figure areas) and PDF producer/ModDate metadata. The unstamped file was used.",
+   "main_text": "not available (paywalled); only the SI was read"
+  },
+  "extraction_method": "Raster digitization. Every SI figure is a single embedded raster (no vector paths, no text layer over the figure), so page.get_drawings() did not apply. Native embedded image extracted with pymupdf at ~200 dpi. Axes: linear least-squares fit of tick-mark pixel positions (located by scanning for dark tick runs off each axis line) to tick labels read visually from zoomed crops; label centres were used only where a tick is hidden (flagged). Trace: per pixel column, pixels within an RGB distance of the trace colour and above a saturation floor, legend line samples masked; value = calibrated median row of the stroke pixels; value_lo/value_hi = top/bottom of the stroke shrunk by half the stroke width (the vertical extent the plotted line covers in that column). One row per pixel column; no smoothing, interpolation or filling. Columns where the trace is hidden under another trace or off-scale are absent. Checked by redrawing the extracted values onto the original crop through the inverse calibration (overlay kept in scratch, not in the repo).",
+  "calibration": {
+   "s2c": {
+    "x_ticks_px_to_min": [
+     [
+      808,
+      5
+     ],
+     [
+      882,
+      10
+     ],
+     [
+      956,
+      15
+     ],
+     [
+      1029.5,
+      20
+     ],
+     [
+      1103,
+      25
+     ],
+     [
+      1177,
+      30
+     ],
+     [
+      1251,
+      35
+     ]
+    ],
+    "min_per_px": 0.06776,
+    "x_tick_residual_px_max": 0.29,
+    "traces": {
+     "H2": {
+      "y_ticks_px_to_value": [
+       [
+        417.5,
+        1.25e-10
+       ],
+       [
+        433,
+        1e-10
+       ],
+       [
+        449,
+        7.5e-11
+       ],
+       [
+        465,
+        5e-11
+       ],
+       [
+        481,
+        2.5e-11
+       ]
+      ],
+      "value_per_px": 1.57e-12,
+      "y_tick_residual_px_max": 0.2,
+      "panel_interior_px": [
+       737,
+       404,
+       1262,
+       499
+      ],
+      "trace_rgb": [
+       248,
+       200,
+       40
+      ],
+      "rgb_tolerance": 60,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [
+       [
+        1130,
+        409,
+        1180,
+        415
+       ]
+      ],
+      "columns_with_trace": 526,
+      "columns_without_trace": 0
+     },
+     "NO": {
+      "y_ticks_px_to_value": [
+       [
+        517,
+        2.5e-10
+       ],
+       [
+        532,
+        2e-10
+       ],
+       [
+        547,
+        1.5e-10
+       ],
+       [
+        562,
+        1e-10
+       ],
+       [
+        577,
+        5e-11
+       ]
+      ],
+      "value_per_px": 3.33e-12,
+      "y_tick_residual_px_max": 0.0,
+      "panel_interior_px": [
+       737,
+       504,
+       1262,
+       599
+      ],
+      "trace_rgb": [
+       56,
+       184,
+       120
+      ],
+      "rgb_tolerance": 60,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [
+       [
+        1042,
+        509,
+        1093,
+        515
+       ]
+      ],
+      "columns_with_trace": 526,
+      "columns_without_trace": 0
+     },
+     "N2O": {
+      "y_ticks_px_to_value": [
+       [
+        618,
+        5e-11
+       ],
+       [
+        633,
+        4e-11
+       ],
+       [
+        648,
+        3e-11
+       ],
+       [
+        663.5,
+        2e-11
+       ],
+       [
+        678.5,
+        1e-11
+       ]
+      ],
+      "value_per_px": 6.6e-13,
+      "y_tick_residual_px_max": 0.2,
+      "panel_interior_px": [
+       737,
+       604,
+       1262,
+       699
+      ],
+      "trace_rgb": [
+       24,
+       152,
+       200
+      ],
+      "rgb_tolerance": 60,
+      "min_saturation": 35,
+      "stroke_px": 2,
+      "legend_mask_boxes_px": [
+       [
+        1078,
+        607,
+        1130,
+        612
+       ]
+      ],
+      "columns_with_trace": 526,
+      "columns_without_trace": 0
+     },
+     "j": {
+      "y_ticks_px_to_value": [
+       [
+        790,
+        -0.2
+       ],
+       [
+        710.5,
+        0.0
+       ]
+      ],
+      "value_per_px": 0.00252,
+      "y_tick_residual_px_max": 0.0,
+      "panel_interior_px": [
+       737,
+       704,
+       1262,
+       799
+      ],
+      "trace_rgb": [
+       120,
+       88,
+       168
+      ],
+      "rgb_tolerance": 60,
+      "min_saturation": 35,
+      "stroke_px": 3,
+      "legend_mask_boxes_px": [],
+      "columns_with_trace": 526,
+      "columns_without_trace": 0
+     },
+     "E": {
+      "y_ticks_px_to_value": [
+       [
+        809,
+        0.4
+       ],
+       [
+        825,
+        0.0
+       ],
+       [
+        833,
+        -0.2
+       ],
+       [
+        841,
+        -0.4
+       ],
+       [
+        849,
+        -0.6
+       ],
+       [
+        857,
+        -0.8
+       ],
+       [
+        865,
+        -1.0
+       ],
+       [
+        873,
+        -1.2
+       ],
+       [
+        881,
+        -1.4
+       ],
+       [
+        889,
+        -1.6
+       ],
+       [
+        897,
+        -1.8
+       ]
+      ],
+      "value_per_px": 0.025,
+      "y_tick_residual_px_max": 0.0,
+      "panel_interior_px": [
+       737,
+       803,
+       1262,
+       899
+      ],
+      "trace_rgb": [
+       24,
+       40,
+       88
+      ],
+      "rgb_tolerance": 60,
+      "min_saturation": 35,
+      "stroke_px": 2,
+      "legend_mask_boxes_px": [],
+      "columns_with_trace": 526,
+      "columns_without_trace": 0
+     }
+    }
+   }
+  },
+  "extractor": "agent team 2026-10-20",
+  "scripts": "scratch only (team/willoughby/digitize.py, build.py, overlay_final.py); not in repo",
+  "verified_against_figure": true,
+  "verification": "inverse-calibration overlay of every extracted point on the native figure crop, inspected visually per panel; tick-fit residuals listed under calibration"
+ },
+ "licence": "Licence: the SI is CC BY-NC 4.0 per ACS figshare article 31048851 (doi 10.1021/acselectrochem.5c00405.s001). The unstamped SI file used here has the same MD5 as the figshare file (checked Oct 20 2026); the second, stamped copy came from pubs.acs.org, whose own SI terms were not checked. Whether NernstWork's use counts as NonCommercial is the repository owner's decision.",
+ "quality_flags": {
+  "raster_digitized": "no vector data in the SI; precision limited to ~0.25 px after calibration",
+  "gas_phase_rate_not_concentration": "EC-MS gas-outlet signals; not liquid-phase concentrations; not for scripts/digitized_to_dataset.py",
+  "zero_floor_likely_clipped": "off-period traces sit exactly on zero for long stretches (e.g. S1c H2 0-6 min); the authors' baseline-subtracted data appear floored at 0, so near-zero values are not informative",
+  "slightly_negative_at_zero": "values within ~1 px of zero can be slightly negative from stroke width; left unclamped",
+  "axis_zero_from_label_centre (j)": "as S1c",
+  "potential_spiky": "E sits at a median of -1.45 V vs RHE during pulses (10th-90th percentile -1.59 to -1.10) with excursions to -0.6 V (bubbles or contact); the 15N run at the same current sits at -0.41 V (Fig. S4b/S5b), so the 14N and 15N runs are not replicate electrode states"
+ },
+ "derived_checks": {
+  "per_cycle_FE_check": [
+   {
+    "cycle": 1,
+    "on_min": 6.01,
+    "off_min": 10.99,
+    "window_end_min": 16.0,
+    "charge_C_cm2": 0.05976,
+    "FE_NO_pct": 24.7,
+    "n_NO_mol_cm2": 5.11e-08,
+    "FE_N2O_pct": 20.1,
+    "n_N2O_mol_cm2": 1.56e-08,
+    "FE_H2_pct": 2.1,
+    "n_H2_mol_cm2": 6.43e-09,
+    "FE_sum_pct": 46.9
+   },
+   {
+    "cycle": 2,
+    "on_min": 16.0,
+    "off_min": 21.02,
+    "window_end_min": 26.03,
+    "charge_C_cm2": 0.06024,
+    "FE_NO_pct": 9.1,
+    "n_NO_mol_cm2": 1.89e-08,
+    "FE_N2O_pct": 11.8,
+    "n_N2O_mol_cm2": 9.23e-09,
+    "FE_H2_pct": 6.4,
+    "n_H2_mol_cm2": 1.99e-08,
+    "FE_sum_pct": 27.3
+   },
+   {
+    "cycle": 3,
+    "on_min": 26.03,
+    "off_min": 31.01,
+    "window_end_min": 35.76,
+    "charge_C_cm2": 0.05976,
+    "FE_NO_pct": 6.2,
+    "n_NO_mol_cm2": 1.27e-08,
+    "FE_N2O_pct": 8.8,
+    "n_N2O_mol_cm2": 6.84e-09,
+    "FE_H2_pct": 9.2,
+    "n_H2_mol_cm2": 2.85e-08,
+    "FE_sum_pct": 24.2
+   }
+  ],
+  "note": "DERIVED, as S1c"
+ }
+}

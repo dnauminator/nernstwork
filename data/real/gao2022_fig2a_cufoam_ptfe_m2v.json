@@ -1,0 +1,81 @@
+{
+  "id": "gao2022_fig2a_cufoam_ptfe_m2v",
+  "provenance": {
+    "citation": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Electrocatalytic Upcycling of Nitrate Wastewater into an Ammonia Fertilizer via an Electrified Membrane, Environ. Sci. Technol. 56 (2022) 11602-11613",
+    "doi": "10.1021/acs.est.1c08442",
+    "figure": "Fig. 2a, series 'Cu foam/PTFE membrane (green triangles)' (journal p. 11607, PDF page 6)",
+    "file": "publisher PDF via NSF PAR record 10451706 (par.nsf.gov/servlets/purl/10451706); local copy 10451706.pdf, not committed",
+    "notes": "Fig. 2a compares NO3- decay for three cathode configurations at -2 V vs SCE, 25 mM NO3-, pH ~7, 10 mM Cl-. Only nitrate was plotted, so this is a single-species dataset (no NO2-, TAN or trap data for this configuration). METHOD: raster digitization of the embedded figure image (main PDF page 6): y axis calibrated from 6 located tick marks (0-25 mM, max residual 0.01 mM), x from 7 located major ticks; markers segmented by colour (OpenCV) and reduced to connected-component centres; times snapped to the nominal 20-min grid (marker x positions sit +0.3 min right of the tick centroids, a uniform offset). 0.078 mM per pixel. The t = 0 markers of all three series overlap (only the orange one is fully visible); t = 0 is pinned to 25 mM. Shaded error bands in the figure were not extracted. Extracted by agent team 2026-10-20; overlay on the figure crop checked by eye (scratch). Triangle centres are area centroids; the bounding-box centre would read about 0.25 mM higher. We chose the centroid because the partly hidden t = 0 triangle then sits at 24.9 mM, level with the t = 0 circle, while the box centre puts it at 25.25 mM. Verifier check (2026-10-20), a stronger reason for the centroid choice: in the Fig. 2a legend the text-line centres are evenly spaced (22.30 px), the legend ring and filled circle sit 0.45-0.64 px above their text lines, and the legend triangle's area centroid sits 0.45 px above its line while its bounding-box centre sits 3.25 px above; so the plotting software anchors triangles at their area centroid. Text: pseudo-first-order kap 0.010 min-1 for this cathode. quality.n_closure in the converted dataset is the nitrate fraction NO3/c0 only, not a nitrogen closure: no other species were plotted for this configuration. Licence/terms: publisher copyright (ACS); NSF public-access copy. The PAR record (par.nsf.gov/biblio/10451706) states no reuse licence; the downloaded file is the ACS typeset article (PAR labels its full text 'Accepted Manuscript') and carries the ACS notice 'See https://pubs.acs.org/sharingguidelines for options on how to legitimately share published articles'. Checked Oct 20 2026.",
+    "verified_against_figure": false,
+    "source_type": "digitized",
+    "extraction": "Fig. 2a compares NO3- decay for three cathode configurations at -2 V vs SCE, 25 mM NO3-, pH ~7, 10 mM Cl-. Only nitrate was plotted, so this is a single-species dataset (no NO2-, TAN or trap data for this configuration). METHOD: raster digitization of the embedded figure image (main PDF page 6): y axis calibrated from 6 located tick marks (0-25 mM, max residual 0.01 mM), x from 7 located major ticks; markers segmented by colour (OpenCV) and reduced to connected-component centres; times snapped to the nominal 20-min grid (marker x positions sit +0.3 min right of the tick centroids, a uniform offset). 0.078 mM per pixel. The t = 0 markers of all three series overlap (only the orange one is fully visible); t = 0 is pinned to 25 mM. Shaded error bands in the figure were not extracted. Extracted by agent team 2026-10-20; overlay on the figure crop checked by eye (scratch). Converted with scripts/digitized_to_dataset.py."
+  },
+  "conditions": {
+    "catalyst": "pristine Cu foam (HCl-cleaned, no CuO layer) clipped to the PTFE/PP membrane, 4 cm2",
+    "electrolyte": "synthetic wastewater: 25 mM NO3- (as N; KNO3) + 10 mM Cl- + 0.5 M Na2SO4, initial pH 7.0",
+    "cell": "flow_cell",
+    "potential_V_vs_RHE": null,
+    "potential_as_reported": "-2.0 V vs SCE (no ohmic compensation; SCE +0.241 V vs SHE)",
+    "potential_mode": "potentiostatic",
+    "pH": 7.0,
+    "temperature_C": null,
+    "volume_mL": 50.0,
+    "stirring": "recirculation by peristaltic pumps at 50 mL/min (cathode loop: feed tank <-> cathode chamber; trap loop: trap tank -> trap chamber -> anode chamber -> trap tank)",
+    "c0_mM_N": {
+      "NO3": 25.0
+    },
+    "notes": "Same three-chamber flow cell as the CuO/PTFE runs, but the cathode membrane is pristine Cu foam on the PTFE/PP membrane (no CuO layer; SI Fig. S2c): trap | Cu-foam/PTFE cathode membrane | cathode chamber | Nafion 117 PEM | anode chamber (Pt mesh 3.5x3.5 cm); SCE reference in the cathode chamber; CHI 1100C potentiostat. This configuration keeps gas extraction through the PTFE membrane into the trap chamber, as in the main runs (Fig. S2c compares the cathodes with/without gas extraction). volume_mL is the feed tank: 50 mL is stated in the text only for the Fig. 2e run and is assumed here; chamber and trap-tank volumes not stated. pH is the initial feed pH (Fig. 2a caption: pH ~7.0). Not reported for this configuration: current or current density, in-run cathode-loop and trap pH, and any NO2-, TAN or trap data (only NO3- is plotted in Fig. 2a). The text's ~50 mA cm-2 (0.204 +/- 0.011 A) and pH values 12.65 (cathode loop) and 1.53 (trap tank after 120 min) belong to the CuO-coated Cu foam/PTFE run of Fig. 2e, not to this one. RHE conversion not done: large uncompensated iR, and the in-run pH is not reported. Text: kap 0.010 min-1 for this cathode."
+  },
+  "series": [
+    {
+      "species": "NO3",
+      "t_min": [
+        0.0,
+        20.0,
+        40.0,
+        60.0,
+        80.0,
+        100.0,
+        120.0
+      ],
+      "y": [
+        25.0,
+        19.689,
+        16.891,
+        13.051,
+        10.901,
+        8.236,
+        6.274
+      ],
+      "reported_unit": "mM as N (axis 'N-NO3- concentration (mM)')",
+      "conversion": "mM-N = digitized y * 1.0"
+    }
+  ],
+  "quality": {
+    "n_closure": {
+      "t_min": [
+        0.0,
+        20.0,
+        40.0,
+        60.0,
+        80.0,
+        100.0,
+        120.0
+      ],
+      "fraction": [
+        1.0,
+        0.7876,
+        0.6756,
+        0.522,
+        0.436,
+        0.3294,
+        0.251
+      ]
+    },
+    "flags": [
+      "single_species_only",
+      "potential_unverified"
+    ],
+    "n_basis_note": "Axis label 'N-NO3- concentration (mM)': nitrate expressed as N; no conversion."
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "dataset": "gao2022_fig2a_cufoam_ptfe_m2v",
+  "source": "Gao J., Shi N., Li Y., Jiang B., Marhaba T., Zhang W., Environ. Sci. Technol. 56 (2022) 11602-11613, doi 10.1021/acs.est.1c08442; Fig. 2a (main PDF page 6)",
+  "verdict": "accept_with_flags",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "summary": "Independent marker re-read agrees within 0.08 mM (about 1 px). Calibration, series identity, times, units and the text rate constant check out. Flags are documentation-level only (the conditions.notes boilerplate). No values changed.",
+  "method": "Verifier scripts: literature/extraction_scripts/gao_verify_a/markers2a.py and overlay2a.py, written independently of the extractor's scripts.",
+  "max_abs_deviation_mM": 0.082,
+  "max_abs_deviation_fraction_of_axis": 0.0033,
+  "axis_span_used_mM": 25.0,
+  "per_point": [
+    {
+      "t": 0.0,
+      "stored": 25.0,
+      "verifier": null,
+      "dev": null,
+      "note": "t=0 marker hidden/overlapped; pinned to c0"
+    },
+    {
+      "t": 20.0,
+      "stored": 19.689,
+      "verifier": 19.771,
+      "dev": -0.082,
+      "verifier_bbox": 19.994
+    },
+    {
+      "t": 40.0,
+      "stored": 16.891,
+      "verifier": 16.971,
+      "dev": -0.08,
+      "verifier_bbox": 17.222
+    },
+    {
+      "t": 60.0,
+      "stored": 13.051,
+      "verifier": 13.13,
+      "dev": -0.079,
+      "verifier_bbox": 13.396
+    },
+    {
+      "t": 80.0,
+      "stored": 10.901,
+      "verifier": 10.977,
+      "dev": -0.076,
+      "verifier_bbox": 11.249
+    },
+    {
+      "t": 100.0,
+      "stored": 8.236,
+      "verifier": 8.318,
+      "dev": -0.082,
+      "verifier_bbox": 8.594
+    },
+    {
+      "t": 120.0,
+      "stored": 6.274,
+      "verifier": 6.353,
+      "dev": -0.079,
+      "verifier_bbox": 6.603
+    }
+  ],
+  "checks": [
+    {
+      "check": "figure extraction and calibration",
+      "result": "pass",
+      "detail": "Fig. 2a from main PDF page 6 (PNG xref 388, 2092x997 px), extracted with pymupdf. The verifier located the y ticks itself: 6 at y = 66.41/130.41/194.48/258.45/322.57/386.55 px for 25..0 mM, 0.0781 mM/px, max residual 0.003 mM. It also located 7 x ticks (0-120 min), max residual 0.08 min. The plot frame spans -2.5 to 27.5 mM."
+    },
+    {
+      "check": "independent re-read of every marker",
+      "result": "pass",
+      "detail": "Series: green filled triangles 'Cu foam/PTFE membrane'. Markers were segmented by HSV hue/chroma (the shaded error bands are low-chroma and drop out) and reduced to connected-component centroids; legend symbols were excluded. Max |stored - verifier| = 0.082 mM (0.33% of the 0-25 mM labelled span, 0.27% of the full -2.5..27.5 frame). The t = 0 markers of all three series overlap, so t = 0 is pinned to 25. Viewed overlay: stored crosses sit on the marker centres."
+    },
+    {
+      "check": "series identity vs legend",
+      "result": "pass",
+      "detail": "Legend: green triangle 'Cu foam/PTFE membrane', purple open circle 'CuO-coated Cu foam', orange filled circle 'CuO-coated Cu foam/PTFE membrane'. The text says the no-membrane case 'removed the trap chamber or ammonia stripping'; SI Fig. S2c says the PTFE was 'replaced with a non-permeable panel'."
+    },
+    {
+      "check": "time points",
+      "result": "pass",
+      "detail": "Markers at 0, 20, ..., 120 min; the verifier's marker x positions fall within 0.06 min of the ticks."
+    },
+    {
+      "check": "units / axis label",
+      "result": "pass",
+      "detail": "Axis 'N-NO3- concentration (mM)': nitrate as N, factor 1.0. Correct."
+    },
+    {
+      "check": "conditions (caption)",
+      "result": "pass",
+      "detail": "Fig. 2 caption: -2 V vs SCE without ohmic compensation, initial NO3- 25 mM, pH ~7.0, Cl- 10 mM, other conditions as section 2.4 (0.5 M Na2SO4, 50 mL/min). Cu foam was pretreated in 3 M HCl for 10 min (section 2.1)."
+    },
+    {
+      "check": "pseudo-first-order k vs text kap 0.010 min-1",
+      "result": "pass",
+      "detail": "ln(C0/C) vs t through the origin on the stored points gives 0.0111 min-1 (free fit 0.0113)."
+    },
+    {
+      "check": "data/real JSON loads and validates (errors('dataset', ...))",
+      "result": "pass",
+      "detail": "errors = []"
+    },
+    {
+      "check": "reported_n_loss",
+      "result": "n/a",
+      "detail": "Single-species dataset (NO3- only); no reported_n_loss; flag single_species_only present."
+    }
+  ],
+  "issues": [
+    "Triangles: the stored values sit 0.076-0.082 mM (1 px) below the verifier's area centroids at every point, a uniform offset that probably comes from a stricter colour mask. It is within the stated resolution; no change was made.",
+    "Anchor choice (area centroid vs bounding-box centre, which differ by 0.22-0.28 mM): the verifier checked it independently with the legend. Legend text-line centres are evenly spaced at 22.30 px. The legend ring and filled circle sit 0.45-0.64 px above their text lines, the triangle's centroid 0.45 px, and its box centre 3.25 px. So Origin anchors the triangle at its centroid, and the extractor's choice is right. Their stated reason (the partly hidden t = 0 triangle) is weak, because only the apex is visible; the legend argument is stronger and could replace it in the notes.",
+    "Documentation: conditions.notes describes the cell as 'trap | CuO@Cu-foam/PTFE cathode membrane | ...' and quotes the pH, current and trap-pH values of the CuO/PTFE run (Fig. 2e). This dataset is pristine Cu foam/PTFE, which the catalyst field states correctly. Suggest rewording the notes so they do not imply a CuO cathode or carry over another run's current and pH."
+  ],
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "meta.json conditions.notes rewritten for this run: describes the pristine Cu foam/PTFE cathode (no longer 'CuO@Cu-foam'), states that current, in-run pH and NO2-/TAN/trap data are not reported for this configuration, and attributes the ~50 mA cm-2 (0.204 A) and pH 12.65 / 1.53 values to the Fig. 2e CuO/PTFE run; volume_mL sentence says 50 mL is assumed from the Fig. 2e run. meta.json provenance.notes: added the verifier's legend-geometry argument for the area-centroid triangle anchor (the earlier t = 0 argument is kept). data/real regenerated (conditions.notes and provenance.notes only; series unchanged). Uniform 1-px offset vs the verifier: no change, as recorded.",
+      "files": [
+        "data/digitized_inputs/gao2022_fig2a_cufoam_ptfe_m2v/meta.json",
+        "data/real/gao2022_fig2a_cufoam_ptfe_m2v.json"
+      ]
+    }
+  ],
+  "agent_overlay_checked_flag": "NOT ADDED. The converter copies meta.json 'flags' into quality.flags, and schema/dataset.schema.json restricts quality.flags to an enum (unobserved_sink_suspected, noisy, sparse, single_species_only, units_unverified, potential_unverified). Adding 'agent_overlay_checked' and regenerating makes data/real/<slug>.json fail errors('dataset', ...) and tests/test_schemas.py (checked by dry run, nothing written). Needs a decision by the lead: extend the enum (one line in the schema) or record the status elsewhere. data/real/<slug>.json is already byte-identical to what the converter builds from the current meta.json, so no regeneration is needed for the values.",
+  "overlay": "verify_overlay.png (session scratch, not retained; contains publisher figure images): stored = red crosses, verifier centroids = magenta dots"
+}

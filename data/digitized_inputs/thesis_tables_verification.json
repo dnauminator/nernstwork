@@ -1,0 +1,1682 @@
+{
+ "id": "thesis_tables_verification",
+ "date": "2026-10-20",
+ "verifier": "agent team",
+ "scope": "Independent re-check of nine thesis tables (Polatides 2007 Tables 5.1, 5.14, 5.21, 7.24; Katsounaros 2009 Tables 6.11, 7.7, 8.5; Dortsiou 2009 Tables 6.1, 5.1) and of data/evidence/tin_series_thesis_notes.json (T1-T67).",
+ "sources": {
+  "text_layers": "National Archive of PhD Theses online-reader per-page text layers (session scratch, not committed); page offsets printed = reader - 21 (Polatides, eadd/15209), - 30 (Katsounaros, eadd/19491), - 36 (Dortsiou, eadd/27551)",
+  "translation": "Greek read and translated by the verifier"
+ },
+ "method": "Tables: each table body cut from the page text, rows parsed with the verifier's own layout regex, tidy rows rebuilt and compared cell by cell (printed string, numeric value and row keys) with extracted.csv; layout tested by row sums, sign/offset relations, header subscript order, text quotes, cross-table values and repository figure digitizations; every meta printed_sequence re-searched. Claims: automated scan of every quoted number on the cited printed pages for all 67 claims, plus manual reading and translation of all 67 against the pages. The transcriber's scripts were not used.",
+ "scripts": "literature/extraction_scripts/thesis_tables_verify/ (verify_tables.py, verify_claims.py, assemble.py, find.py)",
+ "tables": [
+  {
+   "id": "polatides2007thesis_table5p1_cathodes",
+   "table": "Polatides 2007, Table 5.1",
+   "files": [
+    "data/digitized_inputs/polatides2007thesis_table5p1_cathodes/extracted.csv",
+    "data/digitized_inputs/polatides2007thesis_table5p1_cathodes/meta.json"
+   ],
+   "printed_page": 84,
+   "reader_page": 105,
+   "verdict": "accept_with_flags",
+   "summary": "All 44 values (11 cathodes x RE + three selectivities), potentials and labels match the text layer. Column order confirmed by the subscript row and by 10 of 11 rows closing to 100.00 +- 0.01 %; all ten text quotes on printed pp. 84-85 agree with the table.",
+   "rows_rebuilt_from_text": 11,
+   "csv_coverage": {
+    "tidy_rows_rebuilt_from_text": 44,
+    "csv_rows": 44,
+    "equal": true
+   },
+   "cells_checked": 220,
+   "mismatches": [],
+   "layout_evidence": {
+    "header_text_layer": "Υλικό E/mV % RE %S %S %S - - καθόδου vs. Ag/AgCl NO NO NH Αερίων 3 2 3 προϊόντων",
+    "header_reading": "labels row: cathode material | E/mV vs Ag/AgCl | %RE | %S | %S | %S; subscript row \"NO NO NH Αερίων / 3 2 3 προϊόντων\" gives NO3- (RE), NO2-, NH3, gaseous products in that order",
+    "selectivity_row_sums": {
+     "Zn": 100.0,
+     "Al": 100.0,
+     "Pb": 99.67,
+     "Sn": 100.01,
+     "graphite": 100.0,
+     "Ru on graphite": 100.0,
+     "Os on graphite": 100.0,
+     "Pd on graphite": 100.0,
+     "Cu": 100.0,
+     "Cu60Zn40": 100.0,
+     "Sn85Cu15": 100.0
+    },
+    "rows_closing_to_100_pct_within_0.01": [
+     "Al",
+     "Cu",
+     "Cu60Zn40",
+     "Os on graphite",
+     "Pd on graphite",
+     "Ru on graphite",
+     "Sn",
+     "Sn85Cu15",
+     "Zn",
+     "graphite"
+    ],
+    "rows_not_closing": {
+     "Pb": 99.67
+    },
+    "text_quotes_found_printed_pp84_85": {
+     "61%": true,
+     "90%": true,
+     "99,1%": true,
+     "(30,02%)": true,
+     "(31,18%)": true,
+     "(93,28%)": true,
+     "(64,59%)": true,
+     "(16,27%)": true,
+     "(88,66%, 84% και 93,46%)": true,
+     "(44,45%, 42,94% και 32,9%)": true
+    },
+    "mass_balance_wording": "printed p. 85 applies \"as it resulted from the mass balance\" to the graphite value (30,02 %) only; the same page repeats Pb gas 31,18 % and RE 93,28 %"
+   },
+   "flag_review": {
+    "Pb gaseous_products 31.18 (uncertain)": "Justified: the Pb row sums to 99.67 % while the other rows close. But the CSV note overstates the text: printed p. 85 calls a gas value \"as it resulted from the mass balance\" only for graphite (30,02 %), and the same page repeats Pb gas 31,18 % and RE 93,28 %. NH3 68,49 is corroborated by Table 5.21 (68,5). Which value is off (or whether the Pb gas was not taken by difference) cannot be settled from the text. Recommend rewording the note; not edited.",
+    "Os/Pd NH3 both 32,26": "Correct as printed; each row closes to 100.00.",
+    "dataset flags": "endpoint_only, gas_selectivity_by_difference, pb_row_sum_99p67, potential_vs_ag_agcl_not_rhe, cell_type_not_stated_in_section: all supported by the pages."
+   },
+   "units_conditions": "E in mV vs Ag/AgCl (saturated KCl, printed p. 64); 0.1 M K2SO4 + 0.05 M KNO3, 12 h, 12.56 cm2, ~40 mA initial current (printed pp. 83-84): confirmed. Ru/Os/Pd \"deposited on graphite\" (p. 83); carbon felt is stated for Pd and for the graphite sheets (p. 64), so \"carbon felt\" for Ru and Os is a reasonable inference.",
+   "meta_printed_sequences_rechecked": {
+    "n": 11,
+    "found_exact": 11,
+    "found_after_dash_normalisation": 11
+   }
+  },
+  {
+   "id": "polatides2007thesis_table5p14_electrolyte",
+   "table": "Polatides 2007, Table 5.14",
+   "files": [
+    "data/digitized_inputs/polatides2007thesis_table5p14_electrolyte/extracted.csv",
+    "data/digitized_inputs/polatides2007thesis_table5p14_electrolyte/meta.json"
+   ],
+   "printed_page": 108,
+   "reader_page": 129,
+   "verdict": "accept",
+   "summary": "All 12 values, pH entries, buffer marks and electrolyte labels match. Sums 92.1 / 93.0 / 92.6 % as stated. N-atom basis for N2 is confirmed independently: on a per-molecule reading the K2SO4 row would sum to 125.7 % on the N basis, which is impossible; the p. 96 ratio 2.44 is reproduced only per molecule (41.0 / 16.8).",
+   "rows_rebuilt_from_text": 3,
+   "csv_coverage": {
+    "tidy_rows_rebuilt_from_text": 12,
+    "csv_rows": 12,
+    "equal": true
+   },
+   "cells_checked": 108,
+   "mismatches": [],
+   "layout_evidence": {
+    "header_text_layer": "pH % RE %S %S %S - - NO NO NH N 3 2 3 2",
+    "header_reading": "supporting electrolyte | pH | %RE NO3- | %S NO2- | %S NH3 | %S N2 (subscript row \"NO NO NH N / 3 2 3 2\")",
+    "electrolyte_labels_in_text": {
+     "0,1 M K SO": true,
+     "0,2 K CO + 0,2 M KHCO": true,
+     "0,5 K Μ Η PO + 0,5 M KH PO": true
+    },
+    "selectivity_row_sums": {
+     "0.1 M K2SO4": 92.1,
+     "0.2 M K2CO3 + 0.2 M KHCO3": 93.0,
+     "0.5 M K2HPO4 + 0.5 M KH2PO4": 92.6
+    },
+    "pH_text_printed_p108": {
+     "pH = 7 initial": true,
+     "pH = 10,3 after 120 min at -2,0 V": true,
+     "buffer pH = 9,4": true
+    },
+    "section_5p3_is_Sn85Cu15": true,
+    "nh3_n2_ratio_text_p96": {
+     "printed_2.44_on_page": true,
+     "NH3/N2_N_basis": 1.22,
+     "NH3/(N2/2)_per_molecule": 2.44
+    }
+   },
+   "flag_review": {
+    "dataset flags": "endpoint_only, selectivities_do_not_close_92_to_93_pct, potential_vs_ag_agcl_not_rhe: supported."
+   },
+   "units_conditions": "Sn85Cu15 confirmed by the section 5.3 heading (printed p. 94); -2.0 V and 120 min from the caption; pH 7 -> 10.3 for the unbuffered run (printed p. 108).",
+   "meta_printed_sequences_rechecked": {
+    "n": 3,
+    "found_exact": 3,
+    "found_after_dash_normalisation": 3
+   }
+  },
+  {
+   "id": "polatides2007thesis_table5p21_cell",
+   "table": "Polatides 2007, Table 5.21",
+   "files": [
+    "data/digitized_inputs/polatides2007thesis_table5p21_cell/extracted.csv",
+    "data/digitized_inputs/polatides2007thesis_table5p21_cell/meta.json"
+   ],
+   "printed_page": 117,
+   "reader_page": 138,
+   "verdict": "accept_with_flags",
+   "summary": "All 40 values match. Block order (divided first, undivided second) is confirmed three ways: header order in the text layer, every second block sums to 100.0 % as the text says for the undivided cell (by difference), and RE is lower in the second block in every row as the text states.",
+   "rows_rebuilt_from_text": 5,
+   "csv_coverage": {
+    "tidy_rows_rebuilt_from_text": 40,
+    "csv_rows": 40,
+    "equal": true
+   },
+   "cells_checked": 200,
+   "mismatches": [],
+   "layout_evidence": {
+    "header_text_layer": "Ε /V vs. Κελί ε διάφραγ α µ µ Κελί χωρίς διάφραγ α µ Ag/AgCl %RE %S %S %S %RE %S %S %S - - - - NO NO NH Αερίων NO NO NH Αερίων 3 2 3 3 2 3",
+    "header_reading": "electrode | E/V vs Ag/AgCl | [cell with diaphragm: %RE NO3-, %S NO2-, %S NH3, %S gases] | [cell without diaphragm: same four]; \"Κελί με διάφραγμα\" precedes \"Κελί χωρίς διάφραγμα\" in the header line",
+    "selectivity_sums": {
+     "Cu60Zn40 -1,5": {
+      "divided": 87.8,
+      "undivided": 100.0
+     },
+     "Sn85Cu15 -2,0": {
+      "divided": 93.8,
+      "undivided": 100.0
+     },
+     "Sn85Cu15 -1,9": {
+      "divided": 85.7,
+      "undivided": 100.0
+     },
+     "Al -1,8": {
+      "divided": 98.6,
+      "undivided": 100.0
+     },
+     "Pb -2,0": {
+      "divided": 85.8,
+      "undivided": 100.0
+     }
+    },
+    "second_block_sums_to_100_every_row": true,
+    "first_block_sums_to_100_every_row": false,
+    "text_p116_gas_by_difference_for_undivided": true,
+    "text_p116_RE_lower_undivided_all_cases": {
+     "Cu60Zn40 -1,5": true,
+     "Sn85Cu15 -2,0": true,
+     "Sn85Cu15 -1,9": true,
+     "Al -1,8": true,
+     "Pb -2,0": true
+    },
+    "text_p116_NO2_NH3_selectivity_lower_undivided": {
+     "Cu60Zn40 -1,5": {
+      "NO2": true,
+      "NH3": true
+     },
+     "Sn85Cu15 -2,0": {
+      "NO2": true,
+      "NH3": true
+     },
+     "Sn85Cu15 -1,9": {
+      "NO2": true,
+      "NH3": true
+     },
+     "Al -1,8": {
+      "NO2": true,
+      "NH3": true
+     },
+     "Pb -2,0": {
+      "NO2": false,
+      "NH3": true
+     }
+    },
+    "note_on_exception": "Pb NO2- is the one exception to the text statement (0.1 divided vs 1.1 undivided); swapping the Pb blocks would make the undivided sum 99.0 instead of 100.0, so the printed order is kept"
+   },
+   "flag_review": {
+    "Cu60Zn40 NH3 75.2 and gas 3.0 (uncertain)": "Justified cross-table inconsistency with Table 5.1 (72.24 / 18.14); the printed row is unambiguous in the text layer, so this is a thesis-side problem, not a transcription error.",
+    "Pb divided gas 17.2 (uncertain)": "Justified (Table 5.1: 31.18).",
+    "divided-cell gas basis not stated": "Correct: divided rows sum to 85.7-98.6 %.",
+    "Sn85Cu15 -2.0 V row may be 120 min": "Reasonable inference (97.4/17.4/41.1/35.3 vs Table 5.14 98.1/17.5/41.0/33.6); kept as an inference.",
+    "thesis-side exception": "The text says NO2- and NH3 selectivities fall in the undivided cell; Pb NO2- rises (0.1 -> 1.1). Swapping the Pb blocks would break the undivided 100.0 % closure, so the printed layout stands."
+   },
+   "units_conditions": "Divided cell 20 + 20 mL Nafion 117 and undivided 20 mL (printed p. 67) confirmed; electrolyte not restated in section 5.4 (meta marks it as the thesis default).",
+   "meta_printed_sequences_rechecked": {
+    "n": 5,
+    "found_exact": 5,
+    "found_after_dash_normalisation": 5
+   }
+  },
+  {
+   "id": "polatides2007thesis_table7p24_rateconstants",
+   "table": "Polatides 2007, Table 7.24",
+   "files": [
+    "data/digitized_inputs/polatides2007thesis_table7p24_rateconstants/extracted.csv",
+    "data/digitized_inputs/polatides2007thesis_table7p24_rateconstants/meta.json"
+   ],
+   "printed_page": 178,
+   "reader_page": 199,
+   "verdict": "accept_with_flags",
+   "summary": "All 14 constants match. Each flattened row reads \"-1 k = V1 min t SUB -1 TSUB k = V2 min SUB T\"; the k subscript appears twice and agrees in every row, giving printed time labels t1, t2, t1, t2, t1, t2, t1 for j = 1, -1, 2, 3, 4, 5, 6, as in the CSV. Labels agree with the reduction/oxidation split of Scheme 7.18.",
+   "rows_rebuilt_from_text": 7,
+   "csv_coverage": {
+    "tidy_rows_rebuilt_from_text": 14,
+    "csv_rows": 14,
+    "equal": true
+   },
+   "cells_checked": 56,
+   "mismatches": [],
+   "layout_evidence": {
+    "row_token_pattern": "'-1 k = V1 min t SUB(k) -1 SUB(t) k = V2 min SUB(k) T' per row; SUB(k) appears twice and matches in every row",
+    "k_subscript_repeated_consistently": {
+     "1": true,
+     "-1": true,
+     "2": true,
+     "3": true,
+     "4": true,
+     "5": true,
+     "6": true
+    },
+    "printed_time_labels": {
+     "1": "t1/T",
+     "-1": "t2/T",
+     "2": "t1/T",
+     "3": "t2/T",
+     "4": "t1/T",
+     "5": "t2/T",
+     "6": "t1/T"
+    },
+    "ratio_(ti/T)kj_over_kj": {
+     "1": 0.8002,
+     "-1": 0.2,
+     "2": 0.2,
+     "3": 0.2,
+     "4": 0.8001,
+     "5": 0.2,
+     "6": 0.8017
+    },
+    "label_agrees_with_half_cycle_of_scheme_7p18": {
+     "1": true,
+     "-1": true,
+     "2": true,
+     "3": true,
+     "4": true,
+     "5": true,
+     "6": true
+    },
+    "ratio_agrees_with_printed_label_(t1/T=0.8,t2/T=0.2)": {
+     "1": true,
+     "-1": true,
+     "2": false,
+     "3": true,
+     "4": true,
+     "5": true,
+     "6": true
+    },
+    "csv_flags": {
+     "2": "uncertain"
+    },
+    "eq41_text_layer_has_t1_for_k2": true,
+    "scheme_7p18_reduction_constants_k1_k2_k4_k6": true,
+    "diag7p8_caption_cathodic_80pct": true,
+    "table7p5_header_duration_cathodic_anodic_80_20": true
+   },
+   "flag_review": {
+    "(t1/T)k2 = 0.015 (uncertain)": "Justified: the label is t1 in the table and in eq. 41 (text layer \"t t t ... = 1 k [NO ]\" gives (t1/T)k2), t1/T = 0.8 from every experiment caption and from the Table 7.5 header (\"cathodic 80, anodic 20\"), yet 0.015/0.075 = 0.200. The other six ratios are 0.800-0.802 or 0.200. Keeping the printed 0.015 with the flag is the right treatment.",
+    "dataset flags": "model_constants_not_data, k2_time_weighting_inconsistent, subscripts_reconstructed_from_text_layer, electrolyte_inferred (Table 7.5 caption), potential_vs_ag_agcl_not_rhe: supported."
+   },
+   "units_conditions": "min-1 as printed; Cu60Zn40, 50 Hz, -1.5 V (80 %) / +1.5 V (20 %) from the Diag 7.8 and 7.23 captions; Diag 7.8 axis runs 0-120 min.",
+   "meta_printed_sequences_rechecked": {
+    "n": 14,
+    "found_exact": 14,
+    "found_after_dash_normalisation": 14
+   }
+  },
+  {
+   "id": "katsounaros2009thesis_table6p11_ce_vs_e",
+   "table": "Katsounaros 2009, Table 6.11",
+   "files": [
+    "data/digitized_inputs/katsounaros2009thesis_table6p11_ce_vs_e/extracted.csv",
+    "data/digitized_inputs/katsounaros2009thesis_table6p11_ce_vs_e/meta.json"
+   ],
+   "printed_page": 88,
+   "reader_page": 118,
+   "verdict": "accept_with_flags",
+   "summary": "All 20 values match. The reconstructed column order NO2-, NH3, N2, total was tested independently: (i) parts sum to the printed total in every row (within 0.09), as the text on p. 88 says the total is the sum; (ii) every column falls with potential, as the text says; (iii) against the repository Diag 6.7 digitization at -2.0 V (71.6 % conversion) only this order reproduces NO2-/NH3 = 0.364 and NH3/N2 = 0.40 (0.364 / 0.398 in the figure); all five other orders miss by more than a factor 3.",
+   "rows_rebuilt_from_text": 5,
+   "csv_coverage": {
+    "tidy_rows_rebuilt_from_text": 20,
+    "csv_rows": 20,
+    "equal": true
+   },
+   "cells_checked": 80,
+   "mismatches": [],
+   "layout_evidence": {
+    "header_text_layer": "% CE % CE % CE E / V % CE − NH N NO 2 3 2",
+    "header_reading": "E/V first, then four '% CE' columns; subscript row '2 3 2' read left to right gives NO2-, NH3, N2; the fourth column is the total",
+    "parts_vs_printed_total": {
+     "-2.0": {
+      "parts": 61.02,
+      "printed_total": 61.0
+     },
+     "-2.2": {
+      "parts": 50.42,
+      "printed_total": 50.5
+     },
+     "-2.4": {
+      "parts": 25.09,
+      "printed_total": 25.0
+     },
+     "-2.6": {
+      "parts": 20.48,
+      "printed_total": 20.5
+     },
+     "-2.8": {
+      "parts": 15.07,
+      "printed_total": 15.1
+     }
+    },
+    "text_p88_total_is_sum_of_partials": true,
+    "text_p88_all_CEs_fall_with_potential": {
+     "NO2": true,
+     "NH3": true,
+     "N2": true,
+     "total_excl_H2": true
+    },
+    "diag6p7_cross_check_at_-2.0V": {
+     "diag_conversion": 0.716,
+     "diag_ratios": {
+      "NO2/NH3": 0.364,
+      "NH3/N2_molecule": 0.398
+     },
+     "table_ratios_for_each_column_order": {
+      "NO2/NH3/N2": {
+       "NO2/NH3": 0.364,
+       "NH3/N2_molecule": 0.401
+      },
+      "NO2/N2/NH3": {
+       "NO2/NH3": 0.117,
+       "NH3/N2_molecule": 3.897
+      },
+      "NH3/NO2/N2": {
+       "NO2/NH3": 43.939,
+       "NH3/N2_molecule": 0.037
+      },
+      "NH3/N2/NO2": {
+       "NO2/NH3": 136.97,
+       "NH3/N2_molecule": 0.114
+      },
+      "N2/NO2/NH3": {
+       "NO2/NH3": 1.283,
+       "NH3/N2_molecule": 42.803
+      },
+      "N2/NH3/NO2": {
+       "NO2/NH3": 12.469,
+       "NH3/N2_molecule": 13.731
+      }
+     },
+     "note": "only the NO2/NH3/N2 order reproduces the figure (0.364 and 0.40); every other order is off by more than a factor 3"
+    },
+    "text_p86_final_nitrite_falls_with_potential": true,
+    "text_p87_N2O_detected_5pct_at_-2.8V": true
+   },
+   "flag_review": {
+    "dataset flags": "fixed_conversion_not_time_series, n2o_not_included (N2O detected in every run, ~5 % at -2.8 V, printed p. 87), header_order_reconstructed (confirmed), potential_vs_ag_agcl_not_rhe: supported."
+   },
+   "units_conditions": "2 M NaCl + 0.05 M NaNO3, 70 % conversion, V vs Ag/AgCl (3 M KCl): confirmed. Meta row sequences use \"-\" where the page prints an en dash; they match only after dash normalisation.",
+   "meta_printed_sequences_rechecked": {
+    "n": 5,
+    "found_exact": 0,
+    "found_after_dash_normalisation": 5
+   }
+  },
+  {
+   "id": "katsounaros2009thesis_table7p7_k_vs_nacl",
+   "table": "Katsounaros 2009, Table 7.7",
+   "files": [
+    "data/digitized_inputs/katsounaros2009thesis_table7p7_k_vs_nacl/extracted.csv",
+    "data/digitized_inputs/katsounaros2009thesis_table7p7_k_vs_nacl/meta.json"
+   ],
+   "printed_page": 100,
+   "reader_page": 130,
+   "verdict": "accept",
+   "summary": "All six pairs match; mean 0.02973 min-1, spread 10.4 % recomputed. Caption (-2.2 V, 0.05 M NaNO3) and text (rate not significantly affected; nitrite maximum 5.5 vs 0.5 mM) confirmed.",
+   "rows_rebuilt_from_text": 6,
+   "csv_coverage": {
+    "tidy_rows_rebuilt_from_text": 6,
+    "csv_rows": 6,
+    "equal": true
+   },
+   "cells_checked": 30,
+   "mismatches": [],
+   "layout_evidence": {
+    "header_reading": "two columns: NaCl concentration (mol L-1) | k1 (min-1); value pairs alternate in the text layer",
+    "concentrations_ascending": true,
+    "mean_k1": 0.02973,
+    "spread_pct_of_mean": 10.4,
+    "caption_-2.2V_and_0.05M": true,
+    "text_p100_rate_not_affected": true,
+    "text_p101_nitrite_5.5_and_0.5_mM": true
+   },
+   "flag_review": {
+    "dataset flags": "fit_constants_not_raw_data, fit_window_not_stated, potential_vs_ag_agcl_not_rhe: supported."
+   },
+   "units_conditions": "NaCl in mol L-1, k1 in min-1 as printed.",
+   "meta_printed_sequences_rechecked": {
+    "n": 1,
+    "found_exact": 1,
+    "found_after_dash_normalisation": 1
+   }
+  },
+  {
+   "id": "katsounaros2009thesis_table8p5_sn_dissolution",
+   "table": "Katsounaros 2009, Table 8.5",
+   "files": [
+    "data/digitized_inputs/katsounaros2009thesis_table8p5_sn_dissolution/extracted.csv",
+    "data/digitized_inputs/katsounaros2009thesis_table8p5_sn_dissolution/meta.json"
+   ],
+   "printed_page": 125,
+   "reader_page": 155,
+   "verdict": "accept",
+   "summary": "All five pairs match; text quotes 79 mg/L after 4 h (0.1 M) and \"about half (38)\" (0.5 M) confirmed; no further decrease above 0.5 M as stated.",
+   "rows_rebuilt_from_text": 5,
+   "csv_coverage": {
+    "tidy_rows_rebuilt_from_text": 5,
+    "csv_rows": 5,
+    "equal": true
+   },
+   "cells_checked": 25,
+   "mismatches": [],
+   "layout_evidence": {
+    "header_reading": "two columns: NaCl (M) | dissolved tin (mg/L)",
+    "text_p125_79_after_4h_in_0.1M": true,
+    "text_p125_about_half_38_in_0.5M": true,
+    "ratio_38_over_79": 0.48,
+    "text_p125_no_further_decrease_above_0.5M": true,
+    "caption_-1.8V_0.05M": true,
+    "csv_duration_column": {
+     "0.1": "4",
+     "0.5": "4",
+     "1.0": "",
+     "2.0": "",
+     "4.0": ""
+    }
+   },
+   "flag_review": {
+    "duration": "The text attaches \"after 4 hours\" to the 0.1 M value and gives 0.5 M as \"about half\" in the same sentence; 4 h for the 0.5 M row is a close reading, and leaving 1-4 M blank is right.",
+    "dataset flags": "duration_stated_only_for_two_rows, corrosion_not_nitrogen_species, potential_vs_ag_agcl_not_rhe: supported."
+   },
+   "units_conditions": "-1.8 V vs Ag/AgCl, 0.05 M NaNO3, atomic absorption (section 8.2.1): confirmed.",
+   "meta_printed_sequences_rechecked": {
+    "n": 1,
+    "found_exact": 1,
+    "found_after_dash_normalisation": 1
+   }
+  },
+  {
+   "id": "dortsiou2009thesis_table6p1_metals",
+   "table": "Dortsiou 2009, Table 6.1",
+   "files": [
+    "data/digitized_inputs/dortsiou2009thesis_table6p1_metals/extracted.csv",
+    "data/digitized_inputs/dortsiou2009thesis_table6p1_metals/meta.json"
+   ],
+   "printed_page": 111,
+   "reader_page": 147,
+   "verdict": "accept_with_flags",
+   "summary": "All 18 printed values match. Layout confirmed by E - pzc = -2.01 V exactly in every row (text p. 110: potentials always 2.01 V more negative than each pzc) and by the four pzc values quoted on printed p. 107.",
+   "rows_rebuilt_from_text": 6,
+   "csv_coverage": {
+    "tidy_rows_rebuilt_from_text": 6,
+    "csv_rows": 6,
+    "equal": true
+   },
+   "cells_checked": 48,
+   "mismatches": [],
+   "layout_evidence": {
+    "header_text_layer": "-1 Μ pzc E / V Σ Τ / k min ΕΤΑΛΛΑ ΤΑΘΕΡΑ ΑΧΥΤΗΤΑΣ",
+    "header_reading": "small-caps header 'ΜΕΤΑΛΛΑ | pzc | E / V | ΣΤΑΘΕΡΑ ΤΑΧΥΤΗΤΑΣ k / min-1'",
+    "E_minus_pzc_each_row_V": {
+     "Bi": -2.01,
+     "Sn": -2.01,
+     "Al": -2.01,
+     "Pb": -2.01,
+     "Zn": -2.01,
+     "In": -2.01
+    },
+    "all_rows_exactly_-2.01V_as_text_p110_states": true,
+    "pzc_values_match_text_p107": {
+     "Bi": true,
+     "Sn": true,
+     "Al": true,
+     "Pb": true
+    },
+    "caption_potentials_elsewhere": {
+     "Diag6.6_Zn": "'σε –2,24 V vs. Ag/AgCl' (printed p. 113)",
+     "Diag9.2_Zn": "'σε -2,24 V' (no reference electrode, printed p. 164)",
+     "Diag9.3_Al": "'σε δυναμικό 2,13 V' (printed p. 166)",
+     "Diag9.4_Zn": "'σε δυναμικό 2,24 V' (printed p. 167)",
+     "ch9_fitted_k1_vs_table": {
+      "Zn": {
+       "ch9_k1": 0.0211,
+       "table_k": 0.0374
+      },
+      "Al": {
+       "ch9_k1": 0.0252,
+       "table_k": 0.02033
+      }
+     }
+    }
+   },
+   "flag_review": {
+    "caption potentials (Zn, Al)": "Confirmed: Diag 6.6 \"-2,24 V vs Ag/AgCl\", Diag 9.2 \"-2,24 V\" (no reference), Diag 9.4 \"2,24 V\", Diag 9.3 \"2,13 V\", each 0.40 V less negative than Table 6.1. The ch. 9 fitted nitrate constants (Zn 0.0211, Al 0.0252 min-1) differ from Table 6.1 (0.0374, 0.02033), consistent with those figures being different runs.",
+    "dataset flags": "fit_constants_not_raw_data, pzc_reference_scale_not_stated, caption_potentials_differ_by_0p40_V, potential_vs_ag_agcl_not_rhe: supported."
+   },
+   "units_conditions": "0.4 M NaHCO3 / 0.4 M Na2CO3 / 0.05 M NaNO3 (Diags 6.1-6.2), ionic strength 1.6 M (Diag 5.1 caption), cell 12 mL with 2 mL dead space, 2 cm2 cathode: confirmed.",
+   "meta_printed_sequences_rechecked": {
+    "n": 7,
+    "found_exact": 7,
+    "found_after_dash_normalisation": 7
+   }
+  },
+  {
+   "id": "dortsiou2009thesis_table5p1_additions",
+   "table": "Dortsiou 2009, Table 5.1",
+   "files": [
+    "data/digitized_inputs/dortsiou2009thesis_table5p1_additions/extracted.csv",
+    "data/digitized_inputs/dortsiou2009thesis_table5p1_additions/meta.json"
+   ],
+   "printed_page": 91,
+   "reader_page": 127,
+   "verdict": "accept",
+   "summary": "All three values (0, 5, 29 %) and reagent amounts match; the flattened rows carry superscript tokens (\"-\" ion charges, \"-1\" of min-1) before the value, which the CSV reads correctly. Text on printed p. 91 repeats each value.",
+   "rows_rebuilt_from_text": 3,
+   "csv_coverage": {
+    "tidy_rows_rebuilt_from_text": 3,
+    "csv_rows": 3,
+    "equal": true
+   },
+   "cells_checked": 20,
+   "mismatches": [],
+   "layout_evidence": {
+    "header_reading": "two columns: ΑΝΤΙΔΡΑΣΤΗΡΙΑ (reagents) | % ΕΛΑΤΤΩΣΗ ΤΗΣ ΣΥΓΚΕΝΤΡΩΣΗΣ ΤΩΝ ΝΙΤΡΙΚΩΝ ΜΕΤΑ ΑΠΟ ΤΡΕΙΣ ΩΡΕΣ (decrease after three hours)",
+    "rows_text_layer": [
+     {
+      "n": "1",
+      "superscript_tokens": "-",
+      "value": "0",
+      "reagents": "15mM NO και 15mM άλας Angeli 3"
+     },
+     {
+      "n": "2",
+      "superscript_tokens": "- -",
+      "value": "5",
+      "reagents": "15mM NO , 15mM NO και 15 mM υδροξυλαμίνη 3 2"
+     },
+     {
+      "n": "3",
+      "superscript_tokens": "- -1",
+      "value": "29",
+      "reagents": "15mM NO και NO με ροή 10 mL·min 3"
+     }
+    ],
+    "text_p90_non_electrochemical": true,
+    "text_p90_10mL_carbonate_buffer_15mM": true,
+    "text_p91_row_values": {
+     "no change (row 1)": true,
+     "5 % (row 2)": true,
+     "29 % (row 3)": true
+    },
+    "header_three_hours": true
+   },
+   "flag_review": {
+    "dataset flags": "non_electrochemical, endpoint_only, NO_dose_not_quantified_as_concentration: supported.",
+    "context": "Printed p. 90 gives the Angeli salt half-life as about 30 min at pH 9 and stability only above pH 11, while Table 6.2 (printed p. 114) calls it stable above pH 4; at the buffer pH (~9.65) the salt would mostly decompose within the 3 h test."
+   },
+   "units_conditions": "10 mL 0.4 M Na2CO3 / 0.4 M NaHCO3 with 15 mM nitrate, 3 h, no current (printed pp. 90-91): confirmed.",
+   "meta_printed_sequences_rechecked": {
+    "n": 3,
+    "found_exact": 3,
+    "found_after_dash_normalisation": 3
+   }
+  }
+ ],
+ "tables_summary": {
+  "cells_checked_total": 787,
+  "mismatches_total": 0,
+  "verdicts": {
+   "accept_with_flags": 5,
+   "accept": 4
+  }
+ },
+ "corrections_to_brief_checked": {
+  "katsounaros_ch12_angeli_salt_run": {
+   "result": "correction confirmed",
+   "evidence": "Printed p. 190 (reader p. 220): \"a new electrolytic experiment in solution 0,1 M NaOH + 0,5 M Na2N2O3, which showed that N2O3^2- is not reduced; based on the above this route was also excluded\". The flattened subscripts \"2 2 3 / 2 3\" and the \"2-\" superscript identify the trioxodinitrate anion (Angeli salt anion), not N2O. 0.5 M is as printed (ten times the 0.05 M hyponitrite run on p. 189); no potential or duration is given. Section heading (2) on p. 189 names the species \"Ν2Ο3^2- - Angeli salt\".",
+   "claim": "T20"
+  },
+  "dortsiou_table5p1_conditions": {
+   "result": "correction confirmed",
+   "evidence": "Printed p. 90 (reader p. 126): \"the following non-electrochemical experiments were carried out (Table 5.1). In each of them 10 mL of carbonate buffer (0,4 M Na2CO3 / 0,4 M NaHCO3) containing 15 mM nitrate were used.\" Column header (p. 91): \"% decrease of the nitrate concentration after three hours\". Row reagents all start with 15 mM NO3-.",
+   "claim": "T23"
+  }
+ },
+ "claims": {
+  "n_claims": 67,
+  "n_sampled": 67,
+  "sampled_includes": "all 67, including all 10 derived and all 22 with a discrepancy",
+  "results_count": {
+   "confirmed": 57,
+   "confirmed_with_note": 10
+  },
+  "number_scan_unmatched_explained": {
+   "note": "Numbers not found on the cited pages are derived values, repository values, equation/table labels or values printed on a page next to or outside the cited location; none is a mistyped thesis number.",
+   "by_claim": {
+    "T5": [
+     "750"
+    ],
+    "T12": [
+     "5.14",
+     "5.21"
+    ],
+    "T17": [
+     "1.22",
+     "100"
+    ],
+    "T18": [
+     "1",
+     "2.2"
+    ],
+    "T41": [
+     "4.60",
+     "7.53",
+     "7.66",
+     "44"
+    ],
+    "T42": [
+     "4.18",
+     "4.97"
+    ],
+    "T44": [
+     "0.2",
+     "0.8"
+    ],
+    "T59": [
+     "0.60"
+    ],
+    "T60": [
+     "85.5",
+     "85.7"
+    ],
+    "T62": [
+     "0.40",
+     "2.01"
+    ],
+    "T63": [
+     "31.51",
+     "99.67"
+    ]
+   }
+  },
+  "results": [
+   {
+    "id": "T1",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r093-r095, r103",
+    "note": "Cell, Sn foil, #1200, 2/6 cm2 at 2 cm, 12 mL filled with 10 mL, Ag/AgCl 3 M KCl + Luggin, He 12 mL/min at the bottom, ambient; heated or ice/ethylene-glycol bath for the temperature study: all as printed.",
+    "number_scan": {
+     "numbers_scanned": 7,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T2",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r098-r103",
+    "note": "All instrument and method details match sections 5.5.1-5.5.7 and 5.6.2.",
+    "number_scan": {
+     "numbers_scanned": 13,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T3",
+    "status": "unresolved",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r093-r103",
+    "note": "Read every page of ch. 5: no anolyte ammonia analysis, no acid trap and no compartment for the 0.1 mL samples are described. Absence claim, so status unresolved is appropriate.",
+    "number_scan": {
+     "numbers_scanned": 1,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T4",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r085-r088, r100",
+    "note": "40 mL total, 20 + 20 mL, Nafion 117 (H form, Electrosynthesis), undivided 20 mL, 12.56 cm2 facing, 2 mL dead space, Ag/AgCl sat. KCl (p. 64), ambient (p. 66), He 15 mL/min for 30 min (p. 79).",
+    "number_scan": {
+     "numbers_scanned": 7,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T5",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r096-r101",
+    "note": "Matches sections 4.6.1-4.6.8 and 4.7 (N2O below ~500 ppm GC limit in most samples, V = integral C R dt, NOx analyser calibrated at 5.83 ppm).",
+    "number_scan": {
+     "numbers_scanned": 8,
+     "not_on_cited_pages": [
+      "750"
+     ],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T6",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r090, r100",
+    "note": "1 N H2SO4 trap (p. 69) and anolyte + catholyte + trap sum (p. 79) as printed.",
+    "number_scan": {
+     "numbers_scanned": 3,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T7",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "d r095-r099",
+    "note": "All as printed; fill volume correctly marked as an inference.",
+    "number_scan": {
+     "numbers_scanned": 7,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T8",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "d r099, r101, r103-r106, r149",
+    "note": "H2SO4 trap, Agilent 6820 TCD, MS 13X, He 25 mL/min, 7.5 mL loop, naphthylamine because of IC co-elution, OPA 20-2000 ug/L, AS19 248 nm. The ferrozine/hyponitrite reason is stated on printed p. 113 (ch. 6), outside the cited pp. 63-70.",
+    "number_scan": {
+     "numbers_scanned": 8,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T9",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "d r099, r101",
+    "note": "12 mL/min and 1 N in 4.4 / Scheme 4.4; 11 mL/min and 0.1 N in 4.5 text.",
+    "number_scan": {
+     "numbers_scanned": 4,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T10",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "d r102; k r175",
+    "note": "Quote \"this assumption, as follows from our experimental results, is completely wrong\" is a correct translation; Katsounaros list NO, N2O, NH2OH, H2N2O2, NH2NO2 matches.",
+    "number_scan": {
+     "numbers_scanned": 0,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T11",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r229-r230; d r211-r212",
+    "note": "Definitions match both appendices; FE = 1 - FE_H2 route is Katsounaros only.",
+    "number_scan": {
+     "numbers_scanned": 1,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T12",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r104-r105",
+    "note": "Definitions and the N2 x 2 sentence correctly translated.",
+    "number_scan": {
+     "numbers_scanned": 5,
+     "not_on_cited_pages": [
+      "5.14",
+      "5.21"
+     ],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T13",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r105-r106, r137-r138",
+    "note": "Graphite mass-balance phrase and undivided by-difference phrase confirmed; sums recomputed (divided 85.7-98.6 %).",
+    "number_scan": {
+     "numbers_scanned": 2,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T14",
+    "status": "derived",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r111, r115-r116, r166-r167; repo diag6p4, diag9p6",
+    "note": "Derived claim states its basis. Recomputed from the repository digitizations: Diag 6.4 at 90 min gives NH3 28.5 %, N2 70.9 %, N2O 6.0 % only with N2 and N2O x2 (35.5 % and 3.0 % per molecule); Diag 9.6 at 210 min gives N2 85.8 %, N2O 6.0 %, NH3 8.9 % on the N basis.",
+    "number_scan": {
+     "numbers_scanned": 8,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T15",
+    "status": "derived",
+    "has_discrepancy": false,
+    "result": "confirmed_with_note",
+    "reader_pages_read": "d r149, r202-r203; repo diag6p6, diag9p3 meta",
+    "note": "Derived claim names its datasets. The closure (49.94-50.03 mM Zn, 50.00-50.08 mM Al) is taken from those datasets' recorded checks; the verifier did not re-digitize the figures, so this rests on the earlier digitizations.",
+    "number_scan": {
+     "numbers_scanned": 1,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T16",
+    "status": "derived",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r222; d r201; p r121-r122, r217",
+    "note": "Sum of the right-hand sides of eqs 12.23-12.28 and 9.19-9.24 is zero term by term, so total concentration is conserved only on an N-equivalent basis. Polatides eq. 42 has an extra \"2\" before k3 and an extra exponent token relative to eq. 33, and eq. 44 an extra exponent token relative to eq. 35, consistent with -2k3[NO2-]^2 and +k3[NO2-]^2; code line uses k3 and 0.5 k3. Derivation explained.",
+    "number_scan": {
+     "numbers_scanned": 2,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T17",
+    "status": "derived",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "p r117, r129",
+    "note": "70.5 / 29.5 / 2.38 / 2.44 printed on p. 96; 41.0/33.6 = 1.22 and 41.0/(33.6/2) = 2.44 recomputed. Derivation explained.",
+    "number_scan": {
+     "numbers_scanned": 12,
+     "not_on_cited_pages": [
+      "1.22"
+     ],
+     "only_on_adjacent_page": [
+      "100"
+     ]
+    }
+   },
+   {
+    "id": "T18",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r217",
+    "note": "Quote correctly translated; no electrolyte, potential or duration for the NH2OH run.",
+    "number_scan": {
+     "numbers_scanned": 4,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": [
+      "1",
+      "2.2"
+     ]
+    }
+   },
+   {
+    "id": "T19",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r219",
+    "note": "-2.8 V, 0.1 M NaOH + 0.05 M Na2N2O2, N2O:N2 30:1 vs about 1:10, slow N2: as printed.",
+    "number_scan": {
+     "numbers_scanned": 6,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T20",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "k r219-r220",
+    "note": "Text: \"electrolysis in 0,1 M NaOH + 0,5 M Na2N2O3, which showed that N2O3^2- is not reduced\"; the subscripts 2 2 3 / 2 3 and the 2- superscript identify the trioxodinitrate anion, not N2O. 0.5 M as printed; no potential or duration; N2O3^2- not detected by the IC method. The transcriber's correction is right.",
+    "number_scan": {
+     "numbers_scanned": 2,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T21",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r220",
+    "note": "Routes (3)-(5) as printed.",
+    "number_scan": {
+     "numbers_scanned": 0,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T22",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r116-r117",
+    "note": "KNO2 run at -2.0 V, 120 min, 70.5/29.5 %, read as support for consecutive reactions.",
+    "number_scan": {
+     "numbers_scanned": 6,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T23",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed_with_note",
+    "reader_pages_read": "d r126-r127",
+    "note": "Non-electrochemical tests, 10 mL 0.4 M Na2CO3 / 0.4 M NaHCO3 with 15 mM nitrate, header \"after three hours\", values 0/5/29 % confirmed (the transcriber's correction is right). The first cross-reference slip ((5.23) cited for the Angeli decomposition, which is (5.24)) is clear; the second (\"(5.24) has no participation\" where (5.21) is meant) is an interpretation: the sentence can also mean the Angeli/HNO route as a whole does not take part.",
+    "number_scan": {
+     "numbers_scanned": 7,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T24",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "d r123-r125",
+    "note": "All three additions, the 2 x 4 M KOH NO2 scrub, 1.88e-3 M and the ~0.002 M caption as printed.",
+    "number_scan": {
+     "numbers_scanned": 8,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T25",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "d r127-r128",
+    "note": "15 min vs about 100 min incubation; Diag 5.9 axis to 15 mM.",
+    "number_scan": {
+     "numbers_scanned": 2,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T26",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r170-r173",
+    "note": "UV growth 240-280 nm, max 243 nm, stop at 100 min, spectra every 10 min (0-70), decay at 230-270 nm, (9.14), N2O for about one hour.",
+    "number_scan": {
+     "numbers_scanned": 11,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T27",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r172-r174",
+    "note": "Acetate run, AgNO3 precipitate, IR bands, 243 nm in KOH, HCl pH < 1 test, IC result as printed.",
+    "number_scan": {
+     "numbers_scanned": 13,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T28",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "k r173, r218",
+    "note": "Ch. 9 attributes to hyponitrite (9.14); ch. 12 explains the ~60 min post-electrolysis N2O by the homogeneous HNO2 + NH2OH reaction (12.12). Discrepancy is real.",
+    "number_scan": {
+     "numbers_scanned": 4,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T29",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "d r148-r153",
+    "note": "Zn -2.24 V vs Ag/AgCl (Diag 6.6 caption), N2O for ~20 min after stopping at 45 min, ether extraction, GC-MS 62/44/46/30/18, peak 6.83 min at 206 nm, not quantifiable, N2O3^2-/N3-/N2H4 not detected.",
+    "number_scan": {
+     "numbers_scanned": 11,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T30",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "d r119, r150-r151",
+    "note": "Table 6.2 \"unstable at pH 3-13\" vs text \"stable in basic solution\"; pH 9.65 -> 11.3. Same Table 6.2 also calls Angeli's salt stable at pH > 4 while printed p. 90 says stable only above pH 11 (not part of the claim).",
+    "number_scan": {
+     "numbers_scanned": 4,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T31",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r107-r110, r213, r225",
+    "note": "0.319 and 1.708 V/dec, alpha 0.19 vs 0.25 (De et al. first mechanism), Na incorporation mechanism.",
+    "number_scan": {
+     "numbers_scanned": 10,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T32",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r111-r113",
+    "note": "Diag 6.5 caption \"1 h\"; linear k vs E, Frumkin nearly exponential.",
+    "number_scan": {
+     "numbers_scanned": 5,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T33",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r164, r166",
+    "note": "k = 4.56 min-1 cm-2, K = 1.85 M-1, 5.14 min-1 with K = 1.43 M-1, Diag 9.5 range 1.5e-3 to 45e-3 mol/L.",
+    "number_scan": {
+     "numbers_scanned": 12,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T34",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r128, r130-r131",
+    "note": "Slope 0.84 / charge -0.84; Table 7.7 range 0.0284-0.0315; nitrite 5.5 vs 0.5 mM.",
+    "number_scan": {
+     "numbers_scanned": 8,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T35",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r110, r114-r115, r136",
+    "note": "226, 644, 540, 235 mV/dec; orders 0.9 and 0.80; alphas 0.09, 0.131, 0.089, 0.108, 0.091; about 10 %.",
+    "number_scan": {
+     "numbers_scanned": 21,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T36",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed_with_note",
+    "reader_pages_read": "d r112, r116, r132, r144-r145",
+    "note": "Checked H2 from -1.55 V, 0.26 V/decade, alpha 0.23, ionic strength 1.6 M, sqrt[Na+] dependence, first order at -2.4 V. Not checked: -1.4 V onset, -2.25 V, 25-100 mV/s, eq. 5.2. Note the -2.4 V metal list differs between text (Pb, Al, Sn, Bi) and the Diag 6.3 caption (Sn, Bi, Al, In); the claim lists Pb, Al, Sn, Bi and In.",
+    "number_scan": {
+     "numbers_scanned": 9,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T37",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r221-r222, r231",
+    "note": "Equations, five constants, 9.3 %, Excel Solver (2A) and Simplex (2B) giving the same constants, %Error definition.",
+    "number_scan": {
+     "numbers_scanned": 9,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T38",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "d r201-r203",
+    "note": "Scheme, equations, Al and Zn constants, ~10 %, \"9.23 to 9.28\" in the text vs printed 9.19-9.24, unsigned caption potentials.",
+    "number_scan": {
+     "numbers_scanned": 16,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T39",
+    "status": "derived",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "k r222; d r201",
+    "note": "Label mapping recomputed from both equation sets. Derivation explained.",
+    "number_scan": {
+     "numbers_scanned": 0,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T40",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r121-r123",
+    "note": "Constants and initial conditions as printed; reconstruction caveat stated.",
+    "number_scan": {
+     "numbers_scanned": 8,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T41",
+    "status": "derived",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "p r216-r217; repo tin_xcheck_verification.json",
+    "note": "Code listing exact. 7.66e-3 L mol-1 s-1 x 60 / 1000 = 4.60e-4 mM-1 min-1, inside 4.501e-4 to 7.531e-4. The 7.53e-3 fit value is in data/digitized_inputs/tin_xcheck_verification.json. Derivation explained.",
+    "number_scan": {
+     "numbers_scanned": 18,
+     "not_on_cited_pages": [
+      "4.60",
+      "7.53",
+      "7.66",
+      "44"
+     ],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T42",
+    "status": "derived",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "p r117, r123, r216; repo diag5p8_xcheck",
+    "note": "k1 4.9e-4 (p. 102), 3.9e-4 (p. 96), code 0.0295-0.0298 min-1 = 4.92e-4 to 4.97e-4 s-1, k2 code 0.01848-0.01888 min-1 = 3.08e-4 to 3.15e-4 s-1; repository fit 4.18e-4 and 1.76e-4 reproducing the curves confirmed in the cited dataset. Derivation explained.",
+    "number_scan": {
+     "numbers_scanned": 7,
+     "not_on_cited_pages": [
+      "4.18",
+      "4.97"
+     ],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T43",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r216; repo tin_xcheck_verification.json",
+    "note": "All 32 matrix values match the listing; 0.82x / 1.55x statements are in the cited verification file.",
+    "number_scan": {
+     "numbers_scanned": 38,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T44",
+    "status": "derived",
+    "has_discrepancy": true,
+    "result": "confirmed_with_note",
+    "reader_pages_read": "p r192-r195, r198-r199",
+    "note": "Constants, MAE 7 %, half-cycle weights and the k2 anomaly verified (k2 is labelled t1/T in the printed table and in eq. 41 but 0.015/0.075 = 0.2). Minor: model 2 also drops the NH3 -> NO2- step (k-2) of model 1; the claim mentions only the two added steps.",
+    "number_scan": {
+     "numbers_scanned": 17,
+     "not_on_cited_pages": [
+      "0.2",
+      "0.8"
+     ],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T45",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "d r118-r123",
+    "note": "Scheme 5.9-5.11, [X] relation, k1 1.5e-4 min-1, k2 4.9e-4 min-1 mM-1, factor 48 at 180 min.",
+    "number_scan": {
+     "numbers_scanned": 8,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T46",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r188-r191",
+    "note": "NO+ capture constants, phosphate concentration test at pH 4.5, shorter lag and bell-shaped profile with acetate, \"first time at higher pH\".",
+    "number_scan": {
+     "numbers_scanned": 5,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T47",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r186, r197-r199",
+    "note": "9.8 / 8.4 kJ/mol, about 9 kJ/mol, 18-32 kJ/mol, 11.5 kJ/mol (Bhat et al.).",
+    "number_scan": {
+     "numbers_scanned": 11,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T48",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r087; k r095; d r095",
+    "note": "Three statements confirmed; \"no numerical temperature\" is an absence claim not exhaustively provable from the pages read.",
+    "number_scan": {
+     "numbers_scanned": 0,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T49",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed_with_note",
+    "reader_pages_read": "k r186",
+    "note": "Run list and initial pH values confirmed. Rate statements (pH < 4, eq. 10.4) on printed p. 157 not re-read.",
+    "number_scan": {
+     "numbers_scanned": 25,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T50",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "k r191-r192; repo diag10p6",
+    "note": "All selectivity numbers and the \"12 % (pH = 0.6) to 2 % (pH = 14)\" sentence confirmed; digitized 11.96 % at pH 0.76 and 8.06 % at pH 4.0 in the cited dataset.",
+    "number_scan": {
+     "numbers_scanned": 18,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T51",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed_with_note",
+    "reader_pages_read": "k r195-r196",
+    "note": "Checked 9.311e-5 cm2/s and 180 mV; 10 um layer and ~3 pH units not re-read.",
+    "number_scan": {
+     "numbers_scanned": 6,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T52",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "d r119-r120",
+    "note": "pH 9.65 -> 11.3; pH 12 run, same ionic strength.",
+    "number_scan": {
+     "numbers_scanned": 7,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T53",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "p r129",
+    "note": "pH 7 -> 10.3; RE 98.1, 97.2, 92.6.",
+    "number_scan": {
+     "numbers_scanned": 11,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T54",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r166-r170",
+    "note": "All numbers as printed.",
+    "number_scan": {
+     "numbers_scanned": 16,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T55",
+    "status": "derived",
+    "has_discrepancy": true,
+    "result": "confirmed_with_note",
+    "reader_pages_read": "k r174-r175, r220; d r153",
+    "note": "Quotes confirmed: \"the remaining about 70 % ... most probably\" (p. 145) and, in ch. 12, \"the experimental results showed that nitramide is about 70 % of the mass loss\" (p. 190). But the claim's gloss that the 70 % is \"a remainder after the hydroxylamine share (10 %) and the hyponitrite evidence\" is not arithmetic the thesis gives: 100 - 10 = 90, and no hyponitrite share is stated, so the 70 % is asserted rather than derived. Suggest rewording to say no derivation is given.",
+    "number_scan": {
+     "numbers_scanned": 1,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T56",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r175-r177",
+    "note": "All numbers as printed.",
+    "number_scan": {
+     "numbers_scanned": 15,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T57",
+    "status": "stated",
+    "has_discrepancy": false,
+    "result": "confirmed",
+    "reader_pages_read": "k r215-r217",
+    "note": "All rate-maximum times as printed.",
+    "number_scan": {
+     "numbers_scanned": 6,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T58",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed_with_note",
+    "reader_pages_read": "d r117-r118, r129-r130",
+    "note": "All numbers confirmed. The Diag 5.11 caption also calls the N2O series \"hyponitrite\" (υπονιτρώδους), not only Diag 5.10.",
+    "number_scan": {
+     "numbers_scanned": 17,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T59",
+    "status": "unresolved",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "k r111; repo diag6p4",
+    "note": "Text \"(1,15 mM)\" at 15 min; digitized 0.603 mM.",
+    "number_scan": {
+     "numbers_scanned": 6,
+     "not_on_cited_pages": [
+      "0.60"
+     ],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T60",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "k r115, r119, r213, r218, r225",
+    "note": "85 % on printed p. 85; about 90 % on pp. 89, 183, 188, 195.",
+    "number_scan": {
+     "numbers_scanned": 8,
+     "not_on_cited_pages": [
+      "85.5",
+      "85.7"
+     ],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T61",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "k r186-r189; repo diag10p6",
+    "note": "pH 4.0 in the run list, 4.5 in the Diag 10.1 legend and p. 159, \"0,2 M Na2HPO4\" on p. 158, Diag 10.6 run read at pH 4.02.",
+    "number_scan": {
+     "numbers_scanned": 4,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T62",
+    "status": "unresolved",
+    "has_discrepancy": true,
+    "result": "confirmed_with_note",
+    "reader_pages_read": "d r146-r149, r200-r203",
+    "note": "Table and caption values confirmed and 0.40 V offsets exact. Minor: the Diag 9.2 caption reads \"-2,24 V\" with no reference electrode, so \"vs Ag/AgCl\" is printed only in the Diag 6.6 caption. Supporting observation: the ch. 9 fitted nitrate constants (Zn k1 0.0211, Al k1 0.0252 min-1) differ from Table 6.1 (0.0374, 0.02033), consistent with different runs.",
+    "number_scan": {
+     "numbers_scanned": 6,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": [
+      "0.40",
+      "2.01"
+     ]
+    }
+   },
+   {
+    "id": "T63",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "p r105, r138",
+    "note": "All numbers recomputed.",
+    "number_scan": {
+     "numbers_scanned": 23,
+     "not_on_cited_pages": [
+      "31.51",
+      "99.67"
+     ],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T64",
+    "status": "unresolved",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "p r116, r129, r138",
+    "note": "Values and the Diag 5.8 nitrite maximum at 45 min confirmed; mislabel is an inference and correctly left unresolved.",
+    "number_scan": {
+     "numbers_scanned": 13,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T65",
+    "status": "stated",
+    "has_discrepancy": true,
+    "result": "confirmed_with_note",
+    "reader_pages_read": "p r176-r178, r182, r193",
+    "note": "Definition and captions as stated. Additional support for the experiment convention: Table 7.5 lists the square pulse as \"% duration cathodic 80, anodic 20\".",
+    "number_scan": {
+     "numbers_scanned": 3,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T66",
+    "status": "unresolved",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "p r088, r104, r117",
+    "note": "A = 3.1e-4 m2; 3.9e-4 s-1 x 0.05 M x 0.020 L = 3.9e-7 mol/s; N A = 1.3e-8 mol/s needs A = 3.1e-4 m2.",
+    "number_scan": {
+     "numbers_scanned": 7,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   },
+   {
+    "id": "T67",
+    "status": "derived",
+    "has_discrepancy": true,
+    "result": "confirmed",
+    "reader_pages_read": "k r117-r118; repo diag6p7",
+    "note": "Header order and checks reproduced independently (only the NO2/NH3/N2 order fits Diag 6.7 at -2.0 V). Derivation explained.",
+    "number_scan": {
+     "numbers_scanned": 4,
+     "not_on_cited_pages": [],
+     "only_on_adjacent_page": []
+    }
+   }
+  ]
+ },
+ "overall_issues": [
+  {
+   "severity": "minor",
+   "where": "data/digitized_inputs/polatides2007thesis_table5p1_cathodes/extracted.csv (Pb gaseous_products note)",
+   "issue": "Note says \"the text says gaseous selectivity came from the mass balance\"; the text says so only for graphite, and repeats Pb 31,18 % itself. NH3 68,49 is corroborated by Table 5.21 (68,5). Flag is right, note wording should be narrowed.",
+   "edited": false
+  },
+  {
+   "severity": "minor",
+   "where": "data/evidence/tin_series_thesis_notes.json T55",
+   "issue": "The gloss that the 70 % nitramide share is \"a remainder after the hydroxylamine share (10 %) and the hyponitrite evidence\" is a fair reading of \"the remaining about 70 %\", but no hyponitrite share is given in the pages read (100 - 10 = 90), so the arithmetic behind 70 % is not reproducible. Suggest saying the thesis gives no derivation.",
+   "edited": false
+  },
+  {
+   "severity": "minor",
+   "where": "data/evidence/tin_series_thesis_notes.json T62",
+   "issue": "\"-2.24 V vs Ag/AgCl (Diag 6.6, Diag 9.2)\": the Diag 9.2 caption prints \"-2,24 V\" without a reference electrode.",
+   "edited": false
+  },
+  {
+   "severity": "minor",
+   "where": "data/evidence/tin_series_thesis_notes.json T23",
+   "issue": "The second cross-reference \"slip\" (\"(5.24) has no participation\" where (5.21) is meant) is an interpretation; the sentence can be read as the Angeli/HNO route as a whole not taking part. The first slip ((5.23) for the Angeli decomposition) is clear.",
+   "edited": false
+  },
+  {
+   "severity": "minor",
+   "where": "data/evidence/tin_series_thesis_notes.json T58",
+   "issue": "Diag 5.11 caption also labels the N2O series \"hyponitrite\", not only Diag 5.10.",
+   "edited": false
+  },
+  {
+   "severity": "minor",
+   "where": "data/evidence/tin_series_thesis_notes.json T44",
+   "issue": "Model 2 also drops the NH3 -> NO2- step (k-2) of model 1; the claim mentions only the two added steps.",
+   "edited": false
+  },
+  {
+   "severity": "minor",
+   "where": "data/evidence/tin_series_thesis_notes.json T5, T8, T60 locations",
+   "issue": "A quoted value sits on a page outside the cited location: T5 750 uL GC loop (printed p. 69), T8 ferrozine/hyponitrite interference (printed p. 113), T60 Diag 9.6 85.7 % (printed p. 136). The file header says every number was checked on the cited page; that holds only with these pages added.",
+   "edited": false
+  },
+  {
+   "severity": "info",
+   "where": "data/digitized_inputs/katsounaros2009thesis_table6p11_ce_vs_e/meta.json checks.row_sequences_on_page",
+   "issue": "Sequences are written with \"-\" while the page prints an en dash; \"found_on_page: true\" holds only after dash normalisation.",
+   "edited": false
+  },
+  {
+   "severity": "info",
+   "where": "thesis (Polatides Table 5.21)",
+   "issue": "Thesis-side: the text says NO2- selectivity falls in the undivided cell, but Pb rises 0.1 -> 1.1 %. Layout verified, so not a transcription problem.",
+   "edited": false
+  },
+  {
+   "severity": "info",
+   "where": "thesis (Dortsiou Table 6.2 vs printed p. 90)",
+   "issue": "Thesis-side: Angeli salt \"stable at pH > 4\" (Table 6.2) vs \"stable at pH > 11, half-life ~30 min at pH 9\" (p. 90). Relevant context for Table 5.1 row 1.",
+   "edited": false
+  }
+ ],
+ "fixes_applied": [],
+ "fixes_note": "No unambiguous typo was found in the nine extracted.csv files, their meta.json files or the claims file; all issues above are wording or interpretation and were reported, not edited.",
+ "limitations": [
+  "Verification is against the same online-reader text layers the transcriber used; page images were not viewed, so a misprint that is consistent across text layer and image, or a text-layer glyph substitution (e.g. U+2126 OHM SIGN for capital omega in Dortsiou p. 91), cannot be detected by this check beyond the internal-consistency tests.",
+  "Cross-checks against figures (Diag 5.8, 6.4, 6.6, 6.7, 9.3, 9.6, 10.6) use earlier repository digitizations; they were not re-digitized here.",
+  "Claims T36, T49 and T51 were checked only in part (listed per claim); absence claims (T3, T48) were checked by reading the cited chapters, which cannot prove absence elsewhere in the thesis."
+ ]
+}

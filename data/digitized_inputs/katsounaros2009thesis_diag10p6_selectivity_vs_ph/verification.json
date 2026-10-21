@@ -1,0 +1,352 @@
+{
+  "dataset": "katsounaros2009thesis_diag10p6_selectivity_vs_ph",
+  "source": "Katsounaros I., PhD thesis, Aristotle University of Thessaloniki (2009), doi 10.12681/eadd/19491; page images at 300 dpi from the archive reader (local scratch copy, reader page = printed page + 30); Diag 10.6, printed p. 162 (reader p192.jpg); run list p. 156, text pp. 161-162",
+  "verdict": "accept_with_flags",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "summary": "Per-segment calibration of the broken x axis reproduces the extractor's within 0.5 px; all 40 stored selectivities agree with independent reads within 0.12 percentage points (0.17 % of the 70-point span). Marker mapping, the 'not detected' zero-line points, every text fact, the run list and the x-position discrepancies (pH 13.7 run plotted at 14; pH 4.0 vs 4.5) check out. Flags: selectivity basis inferred (N-atom basis fits the sums), occluded markers. One undocumented occlusion (NH3 at pH 4.0) was added to the notes. No values changed.",
+  "method": "Verifier scripts in literature/extraction_scripts/katsounaros_verify/ (axes_find.py, ticks_find.py, blob.py, ring.py, segfit.py, v64*.py, v67*.py, v106*.py, v121*.py, reread_tables.py), written independently; the extractor's scripts in literature/extraction_scripts/katsounaros_new/ were not run or read. Axes were calibrated from tick marks located on the page image by dark-pixel profiles and fitted by least squares; markers were re-read by connected-component centroids after morphological opening (filled markers) or hole filling (open markers), ring fits for open circles, and, for occluded markers, from visible features (apex, base) or by extrapolating the connecting line segments. Stored points were mapped back onto the page with the verifier's calibration and the overlay was inspected by eye.",
+  "calibration_verifier": {
+    "x_left": "pH 0.25, 0.50, 0.75, 1.00 major ticks at px 799.64, 929.06, 1057.73, 1187.39 (the 0.00 tick lies under the y axis); fit 516.77 px/pH, x(0) = 670.48, max residual 0.32 px",
+    "x_right": "pH 4, 6, 8, 10, 12, 14 major ticks at px 1309.16, 1410.5, 1511.68, 1613.46, 1715.21, 1816.5; fit 50.75 px/pH, x(4) = 1308.99, max residual 0.32 px",
+    "break": "break marks at px 1232.6 and 1252.5; all left-segment markers lie below px 1060 and all right-segment markers above px 1300",
+    "y": "ticks 0-70 % every 10 at px 2223.66 ... 1398.37; fit 11.790 px/%, y(0) = 2223.79, max residual 0.20 px (the frame line at px 2247 is below the 0 % tick)",
+    "vs_extractor": "extractor 670.5/1187.5, 1308.5/1816.5 and 2223.5/1398.5 px; agrees within 0.5 px"
+  },
+  "overlay": "verify_overlay.png (session scratch, not retained; contains thesis page images); every stored point lands on its marker on the correct axis segment",
+  "max_abs_deviation_pct_points": 0.117,
+  "max_abs_deviation_fraction_of_axis": 0.0017,
+  "axis_span_used_pct": 70.0,
+  "worst_points": [
+    {
+      "run": 2,
+      "pH_stated": 0.28,
+      "species": "NH2OH",
+      "stored": 27.84,
+      "verifier": 27.957,
+      "dev": -0.117,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 8,
+      "pH_stated": 13.7,
+      "species": "NH2OH",
+      "stored": 0.0,
+      "verifier": 0.11,
+      "dev": -0.11,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 1,
+      "pH_stated": 0.16,
+      "species": "N2O",
+      "stored": 1.19,
+      "verifier": 1.09,
+      "dev": 0.1,
+      "method": "line extrapolation (marker covered by N2)"
+    },
+    {
+      "run": 7,
+      "pH_stated": 9.5,
+      "species": "NH3",
+      "stored": 23.22,
+      "verifier": 23.315,
+      "dev": -0.095,
+      "method": "line extrapolation, mean of both segments (apex under N2)"
+    }
+  ],
+  "checks": [
+    {
+      "name": "marker_mapping",
+      "result": "pass",
+      "detail": "Caption: open triangle NH3, open square NH2OH, open circle NO2-, filled down-triangle N2, star N2O; stored series sit on those markers on both axis segments."
+    },
+    {
+      "name": "x_positions",
+      "result": "pass",
+      "detail": "Markers at pH 0.157, 0.281, 0.458, 0.758 (left) and 3.99-4.00, 6.99-7.01, 9.50, 13.99-14.00 (right). The 1 M NaOH run (stated pH 13.7, p. 156) is drawn at 14.0, as the meta says. The pH 0.20 run is not plotted."
+    },
+    {
+      "name": "selectivity_basis",
+      "result": "pass_inferred",
+      "detail": "Per-run sums of the five stored selectivities: 98.2, 100.1, 100.8, 103.1, 93.8, 93.1, 95.9, 91.7 %. These fit an N-atom basis; on a per-molecule basis the N balance would exceed 100 % by S(N2)+S(N2O). The thesis pages read do not define the basis, so 'N_atom_inferred' is the right label."
+    },
+    {
+      "name": "text_facts",
+      "result": "pass",
+      "detail": "p. 161-162: NH3 60 % at pH 0 -> 21 % at pH 4 (stored 60.05, 20.85); NH2OH 35 % at pH 0, undetectable above pH 0.8 (34.96; zero from pH 0.76); NO2- not detected at pH 0-0.5, then 42-45 % (0.00-0.09; 41.75-45.15); N2 2 -> 20 % and N2O 1 -> 8 % from pH 0 to 4 (1.98, 19.89; 1.19, 8.06); N2O 12 % at pH 0.6 to 2 % at pH 14 (11.96 at 0.76; 1.27 at 14)."
+    },
+    {
+      "name": "run_list_and_conditions",
+      "result": "pass",
+      "detail": "p. 156: -1.8 V vs Ag/AgCl, 0.05 M NaNO3 in x M HCl + (2-x) M NaCl (x = 0.25, 0.5, 0.75, 0.9, 1; pH 0.76, 0.46, 0.28, 0.20, 0.16), 0.2 M NaH2PO4 + 1.8 M NaCl (pH 4.0), 0.3 M NaH2PO4 + 0.1746 M NaOH + 1.5 M NaCl (7.0), 0.3 M Na2CO3 + 0.3 M NaHCO3 + 0.8 M NaCl (9.5), 1 M NaOH + 1 M NaCl (13.7). Diag 10.1 caption lists the phosphate run as pH 4.5 and p. 158 writes Na2HPO4: both as stated in the meta. NH2OH methods (ferrozine/Fe3+ 562 nm; 8-hydroxyquinoline) confirmed on printed p. 71. Zero-current deaeration for non-neutral solutions confirmed on p. 63."
+    },
+    {
+      "name": "occluded_markers",
+      "result": "pass",
+      "detail": "Verifier reads of the occluded markers by line-segment extrapolation or apex offsets: N2O pH 0.16 1.09 (stored 1.19), N2O pH 0.28 6.96 (7.04), NH2OH pH 0.46 16.92 (16.89), NH3 pH 4.0 20.82 (20.85), NH3 pH 9.5 23.32 (23.22), NH3 pH 14 22.80 (22.72), N2O pH 9.5 2.28 (2.29), N2O pH 14 1.26 (1.27)."
+    }
+  ],
+  "claims_tested": [
+    {
+      "claim": "Diag 10.6 values vs text (all text facts listed in meta.checks.text_facts)",
+      "result": "confirmed"
+    },
+    {
+      "claim": "broken x axis calibrated per segment",
+      "result": "confirmed; verifier's independent per-segment fits agree within 0.5 px"
+    }
+  ],
+  "issues": [
+    "Selectivity basis is inferred, not stated in the pages read (flagged).",
+    "N2O at pH 0.16 is almost fully covered by the N2 marker; treat as about 1 +- 0.5 % as the meta says (verifier 1.09).",
+    "The stored initial_pH_read for some rows (e.g. 4.018, 9.528, 14.015) is up to 0.03 pH (1.4 px) off the verifier's marker centres; harmless, since initial_pH_stated carries the condition.",
+    "Source inconsistencies already documented: run at pH 13.7 drawn at 14; phosphate run pH 4.0 (p. 156) vs 4.5 (Diag 10.1 caption); NaH2PO4 vs Na2HPO4; text says NH2OH undetectable above pH 0.8 while the pH 0.76 point is already zero."
+  ],
+  "fixes_applied": [
+    "extracted.csv, run 5 NH3 (pH 4.0): note added 'partly occluded: lower part of the triangle hidden under the N2 marker (full template matched)'. The marker's lower part is under the filled N2 triangle in the image; the row had no note.",
+    "meta.json extraction_method: added the sentence that NH3 at pH 4.0 is also partly occluded and was matched with the full template (score 0.71), since the text listed only five occluded markers."
+  ],
+  "verifier_reread_pct": [
+    {
+      "run": 1,
+      "species": "NH3",
+      "verifier": 60.064,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 1,
+      "species": "NH2OH",
+      "verifier": 34.981,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 1,
+      "species": "NO2",
+      "verifier": 0.047,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 1,
+      "species": "N2",
+      "verifier": 2.055,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 1,
+      "species": "N2O",
+      "verifier": 1.09,
+      "method": "line extrapolation (marker covered by N2)"
+    },
+    {
+      "run": 2,
+      "species": "NH3",
+      "verifier": 57.008,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 2,
+      "species": "NH2OH",
+      "verifier": 27.957,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 2,
+      "species": "NO2",
+      "verifier": 0.011,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 2,
+      "species": "N2",
+      "verifier": 8.05,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 2,
+      "species": "N2O",
+      "verifier": 6.955,
+      "method": "line extrapolation, mean of both segments (lower part under N2)"
+    },
+    {
+      "run": 3,
+      "species": "NH3",
+      "verifier": 55.0,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 3,
+      "species": "NH2OH",
+      "verifier": 16.915,
+      "method": "line extrapolation, mean of both segments (under N2)"
+    },
+    {
+      "run": 3,
+      "species": "NO2",
+      "verifier": 0.018,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 3,
+      "species": "N2",
+      "verifier": 18.005,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 3,
+      "species": "N2O",
+      "verifier": 11.003,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 4,
+      "species": "NH3",
+      "verifier": 26.896,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 4,
+      "species": "NH2OH",
+      "verifier": 0.051,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 4,
+      "species": "NO2",
+      "verifier": 42.225,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 4,
+      "species": "N2",
+      "verifier": 21.892,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 4,
+      "species": "N2O",
+      "verifier": 12.014,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 5,
+      "species": "NH3",
+      "verifier": 20.815,
+      "method": "line extrapolation, mean of both segments (lower part under N2)"
+    },
+    {
+      "run": 5,
+      "species": "NH2OH",
+      "verifier": 0.039,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 5,
+      "species": "NO2",
+      "verifier": 45.005,
+      "method": "ring fit"
+    },
+    {
+      "run": 5,
+      "species": "N2",
+      "verifier": 19.946,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 5,
+      "species": "N2O",
+      "verifier": 8.063,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 6,
+      "species": "NH3",
+      "verifier": 23.59,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 6,
+      "species": "NH2OH",
+      "verifier": 0.048,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 6,
+      "species": "NO2",
+      "verifier": 41.742,
+      "method": "ring fit"
+    },
+    {
+      "run": 6,
+      "species": "N2",
+      "verifier": 21.719,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 6,
+      "species": "N2O",
+      "verifier": 5.988,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 7,
+      "species": "NH3",
+      "verifier": 23.315,
+      "method": "line extrapolation, mean of both segments (apex under N2)"
+    },
+    {
+      "run": 7,
+      "species": "NH2OH",
+      "verifier": 0.031,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 7,
+      "species": "NO2",
+      "verifier": 45.074,
+      "method": "ring fit"
+    },
+    {
+      "run": 7,
+      "species": "N2",
+      "verifier": 25.267,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 7,
+      "species": "N2O",
+      "verifier": 2.276,
+      "method": "apex + mean apex-to-centre offset (lower tips touch the NH2OH square)"
+    },
+    {
+      "run": 8,
+      "species": "NH3",
+      "verifier": 22.8,
+      "method": "line extrapolation (apex under N2)"
+    },
+    {
+      "run": 8,
+      "species": "NH2OH",
+      "verifier": 0.11,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 8,
+      "species": "NO2",
+      "verifier": 43.492,
+      "method": "ring fit"
+    },
+    {
+      "run": 8,
+      "species": "N2",
+      "verifier": 24.372,
+      "method": "filled-hole/filled blob centroid"
+    },
+    {
+      "run": 8,
+      "species": "N2O",
+      "verifier": 1.258,
+      "method": "apex + mean apex-to-centre offset (lower tips merge with the NH2OH square)"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "dataset": "gao2022_fig3c_rates_vs_condition",
+  "figure": "Fig. 3c (main PDF p.7)",
+  "source": "main paper 10451706.pdf (Environ. Sci. Technol. 2022, 56, 11602)",
+  "verdict": "accept",
+  "verdict_basis": "All 18 values within ~1 px of the verifier reading and consistent with the text values.",
+  "date": "2026-10-20",
+  "verifier": "agent team",
+  "independence": "Verifier extracted the embedded raster itself (pymupdf, native resolution), located the ticks with its own code and re-read every value with its own scripts; extractor scripts and readings were not used.",
+  "fixes_applied": [
+    {
+      "date": "2026-10-20",
+      "change": "No change; the verifier listed no issues.",
+      "files": []
+    }
+  ],
+  "meta_edited": false,
+  "max_deviation": {
+    "NO3_removal_gN_m2_d": {
+      "max_abs": 11.6,
+      "csv_row_index_0based": 0,
+      "px": 1.09,
+      "fraction_of_axis_range": 0.0029
+    },
+    "TAN_recovery_g_m2_d": {
+      "max_abs": 10.4,
+      "csv_row_index_0based": 0,
+      "px": 0.98,
+      "fraction_of_axis_range": 0.0026
+    },
+    "EC_kWh_kg": {
+      "max_abs": 0.04,
+      "csv_row_index_0based": 0,
+      "px": 0.3,
+      "fraction_of_axis_range": 0.0008
+    },
+    "units": "left axis 0-4000 (10.64 per px), right EC axis 0-50 (0.133 per px)"
+  },
+  "checks": [
+    {
+      "name": "axis_calibration",
+      "result": "pass",
+      "detail": "Left axis: 5 major ticks (rows 525.5..901.53, 4000..0), residual 3.6 (0.3 px). Right EC axis: orange ticks to the right of the orange axis line located by colour (rows 525.5..901.53, 50..0), residual 0.02."
+    },
+    {
+      "name": "bars",
+      "result": "pass",
+      "detail": "Red bars (first red row) [851.8, 894.4, 905.0, 883.7, 2033.2, 3097.5]; blue hatched bars (top of hatch profile) [521.9, 521.9, 521.9, 521.9, 894.4, 1256.2]. pH 3 NO3- bar top is a partial row 1 px above the others (verifier 521.9 by its threshold, ~531 counting the partial row; stored 533.5): sub-pixel, accepted."
+    },
+    {
+      "name": "EC_markers",
+      "result": "pass",
+      "detail": "Orange filled circles after 7x7 opening (removes error bars), centroid: [30.12, 33.27, 33.56, 29.83, 25.19, 21.8] (legend marker at 38.35 excluded). Max deviation 0.04."
+    },
+    {
+      "name": "units_and_text",
+      "result": "pass",
+      "detail": "Legend units: NO3- removal g-N m-2 d-1; TAN recovery g-(NH4)2SO4 m-2 d-1; EC kWh kg-1 (NH4)2SO4. Text: 894+/-33 and 1258+/-39 g-N; 2030+/-98 and 3100+/-91 g-(NH4)2SO4; EC 25.2+/-3.5 and 21.8+/-3.8; EC 29.8-33.5 at 25 mM. Stored and verifier values agree with all of them."
+    },
+    {
+      "name": "overlay",
+      "result": "pass",
+      "detail": "Stored values drawn on the figure; lines sit on bar tops and crosses on circle centres."
+    }
+  ],
+  "issues": [],
+  "verifier_readings": {
+    "NO3_removal": [
+      521.9,
+      521.9,
+      521.9,
+      521.9,
+      894.4,
+      1256.2
+    ],
+    "TAN_recovery": [
+      851.8,
+      894.4,
+      905.0,
+      883.7,
+      2033.2,
+      3097.5
+    ],
+    "EC": [
+      30.12,
+      33.27,
+      33.56,
+      29.83,
+      25.19,
+      21.8
+    ]
+  },
+  "overlay": "verify_overlay.png (session scratch, not retained; contains publisher figure images)"
+}

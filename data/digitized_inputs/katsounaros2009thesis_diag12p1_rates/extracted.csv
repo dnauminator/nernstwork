@@ -1,0 +1,57 @@
+species,marker,panel,t_min_read,rate_mM_per_min,method,match_score,note
+NO2,open square,top,0.03,3.5794,template_match_right_part,0.87,left half hidden by the y axis
+NO2,open square,top,29.94,2.2025,template_match,0.88,
+NO2,open square,top,59.99,-0.1409,template_match,0.97,
+NO2,open square,top,89.91,-1.5595,template_match,0.94,
+NO2,open square,top,119.96,-1.4691,template_match,0.94,
+NO2,open square,top,150.02,-0.5443,template_match,0.91,
+NO2,open square,top,179.93,-0.1409,template_match,1.00,
+N2,filled circle (caption: filled down-triangle),top,0.00,0.0433,template_match_right_part,0.98,left half hidden by the y axis
+N2,filled circle (caption: filled down-triangle),top,3.96,0.1268,template_match,0.99,
+N2,filled circle (caption: filled down-triangle),top,14.98,0.3284,template_match,0.98,
+N2,filled circle (caption: filled down-triangle),top,30.01,0.6205,template_match,0.98,
+N2,filled circle (caption: filled down-triangle),top,45.04,0.9404,template_match,0.97,
+N2,filled circle (caption: filled down-triangle),top,59.92,1.2533,template_match,0.98,
+N2,filled circle (caption: filled down-triangle),top,74.95,1.5245,template_match,0.99,
+N2,filled circle (caption: filled down-triangle),top,89.98,1.6010,template_match,0.98,
+N2,filled circle (caption: filled down-triangle),top,105.01,1.3924,template_match,0.99,
+N2,filled circle (caption: filled down-triangle),top,120.04,1.0517,template_match,0.99,
+N2,filled circle (caption: filled down-triangle),top,135.06,0.7109,template_match,0.98,
+N2,filled circle (caption: filled down-triangle),top,149.95,0.4536,template_match,0.99,
+N2,filled circle (caption: filled down-triangle),top,164.98,0.2867,template_match,1.00,
+N2,filled circle (caption: filled down-triangle),top,180.01,0.2241,template_match,0.98,
+H2N2O2,open circle,bottom,0.00,0.0596,ring_fit,0.88,left half hidden by the y axis; ring fit on visible arc
+H2N2O2,open circle,bottom,29.93,0.1031,ring_fit,0.70,
+H2N2O2,open circle,bottom,59.96,0.2221,ring_fit,0.71,
+H2N2O2,open circle,bottom,89.93,0.2142,ring_fit,0.37,coincides with the NH3 triangle; low-confidence ring fit
+H2N2O2,open circle,bottom,120.00,0.0910,ring_fit,0.85,
+H2N2O2,open circle,bottom,150.00,0.0171,ring_fit,0.84,
+H2N2O2,open circle,bottom,179.96,-0.0159,ring_fit,0.57,overlaps the NH2OH star
+NH2OH,filled star,bottom,0.00,0.2574,template_match_right_part,0.98,left half hidden by the y axis
+NH2OH,filled star,bottom,30.01,0.4503,template_match,0.95,
+NH2OH,filled star,bottom,60.07,-0.0338,template_match,0.95,
+NH2OH,filled star,bottom,89.98,-0.4122,template_match,1.00,
+NH2OH,filled star,bottom,120.04,-0.0950,template_match,0.97,
+NH2OH,filled star,bottom,149.95,-0.0375,template_match,0.95,
+NH2OH,filled star,bottom,180.01,-0.0004,template_match,0.66,overlaps the H2N2O2 circle and N2O star
+NH3,filled up-triangle,bottom,0.00,0.1093,template_match_right_part,0.99,left half hidden by the y axis
+NH3,filled up-triangle,bottom,29.87,0.1334,template_match,0.83,
+NH3,filled up-triangle,bottom,59.92,0.1928,template_match,0.90,
+NH3,filled up-triangle,bottom,89.98,0.2132,template_match,0.87,coincides with the H2N2O2 circle
+NH3,filled up-triangle,bottom,120.04,0.1501,template_match,0.92,
+NH3,filled up-triangle,bottom,149.95,0.1056,template_match,1.00,
+NH3,filled up-triangle,bottom,179.86,0.1038,template_match,0.98,
+N2O,open star,bottom,0.00,0.0126,template_match_right_part,0.81,left half hidden by the y axis
+N2O,open star,bottom,3.96,0.0330,template_match,0.88,
+N2O,open star,bottom,14.98,0.0886,template_match,0.86,
+N2O,open star,bottom,29.87,0.1647,template_match,0.65,lower part hidden under the NH3 triangle
+N2O,open star,bottom,45.04,0.2519,template_match,0.93,
+N2O,open star,bottom,60.07,0.3279,template_match,0.85,
+N2O,open star,bottom,74.95,0.3650,template_match,0.95,
+N2O,open star,bottom,89.98,0.3353,template_match,0.98,
+N2O,open star,bottom,105.01,0.2315,template_match,0.94,
+N2O,open star,bottom,120.04,0.1257,template_match_lower_part,0.81,upper part hidden under the NH3 triangle
+N2O,open star,bottom,134.92,0.0775,template_match,0.84,
+N2O,open star,bottom,149.95,0.0534,template_match,0.88,
+N2O,open star,bottom,164.98,0.0311,template_match,1.00,
+N2O,open star,bottom,180.01,0.0237,template_match,0.63,overlaps the NH2OH star

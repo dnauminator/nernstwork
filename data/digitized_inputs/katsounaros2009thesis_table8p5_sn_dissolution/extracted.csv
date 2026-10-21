@@ -1,0 +1,6 @@
+table_row,NaCl_M,NaNO3_M,E_V_vs_AgAgCl,duration_h,Sn_dissolved_mg_per_L,value_as_printed,flag,note
+1,0.1,0.05,-1.8,4,79.0,79,,duration from text (printed p. 125)
+2,0.5,0.05,-1.8,4,38.0,38,,duration from text (printed p. 125)
+3,1.0,0.05,-1.8,,36.0,36,,duration not stated; presumably the same 4 h
+4,2.0,0.05,-1.8,,33.0,33,,duration not stated; presumably the same 4 h
+5,4.0,0.05,-1.8,,35.0,35,,duration not stated; presumably the same 4 h

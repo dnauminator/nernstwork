@@ -1,0 +1,126 @@
+{
+ "id": "polatides2007thesis_table7p24_rateconstants",
+ "kind": "inputs_only_thesis_table",
+ "note": "Inputs only. Rate constants of the authors' second (modified) first-order model for pulsed-potential electrolysis on Cu60Zn40, fitted by the Simplex/linear-programming procedure of the appendix. Tables 7.26 and 7.27 hold removal/selectivity results (AC mains feed; other electrodes), not rate constants, and were not transcribed.",
+ "files": {
+  "extracted.csv": "tidy long: one row per constant (k_j and its time-weighted value)"
+ },
+ "csv_columns": {
+  "j": "index of the rate constant (j = -1, 1, ..., 6)",
+  "reaction": "step assigned to k_j in scheme 7.18 and eqs 39-42 (printed pp. 173-174)",
+  "half_cycle": "reduction constants act during the negative potential (time t1), oxidation constants during the positive potential (t2) (printed p. 173)",
+  "time_fraction_label_printed": "t_i in the printed (t_i/T) column, read from the flattened text layer",
+  "time_fraction_expected": "t_i/T implied by the half cycle: t1/T = 0.8 (cathodic -1.5 V, 80 %), t2/T = 0.2 (anodic +1.5 V, 20 %)",
+  "quantity": "k_j or t_i_over_T_times_k_j",
+  "value_per_min": "min-1",
+  "value_as_printed": "as printed",
+  "flag": "'uncertain' where the time weighting is inconsistent",
+  "note": "cell-level note"
+ },
+ "provenance": {
+  "citation": "Polatides C., Electrochemical removal of nitrate from aqueous solutions and environmental samples using constant and pulsed potential, PhD thesis (in Greek), Aristotle University of Thessaloniki, Dept. of Chemical Engineering (2007); supervisor G. Kyriacou",
+  "doi": "10.12681/eadd/15209",
+  "table": "Table 7.24",
+  "printed_page": 178,
+  "reader_page": 199,
+  "page_offset_note": "printed page = online-reader page - 21",
+  "caption_translated": "Table 7.24. Optimal values of the kinetic constants resulting from the solution procedure with the Simplex method, based on the 2nd kinetic model. Columns: optimal values k_j (j = -1,1,2,3,4,5,6) | optimal values (t_i/T) k_j (i = 1,2 and j = -1,1,2,3,4,5,6).",
+  "source_file": "page text layer from the archive's online reader (scratch only, not committed)",
+  "licence": "National Archive of PhD Theses terms: research use with no direct or indirect financial benefit; author must be cited; items protected by copyright"
+ },
+ "model_translated": {
+  "scheme_7p18": "NO3- <-> NO2- (k1 forward, k-1 back), NO2- -> NH3 (k2), NH3 -> N2 (k3), NO2- -> N2 (k4), NH3 -> NO3- (k5), NO3- -> N2 (k6); k1, k2, k4, k6 are reductions during the negative potential, k-1, k3, k5 oxidations during the positive potential; all first order (printed pp. 173-174).",
+  "eqs_39_42": "-d[NO3-]/dt = (t1/T)k1[NO3-] - (t2/T)k-1[NO2-] - (t2/T)k5[NH3] + (t1/T)k6[NO3-]; d[NO2-]/dt = (t1/T)k1[NO3-] - (t2/T)k-1[NO2-] - (t1/T)k4[NO2-] - (t1/T)k2[NO2-]; d[NH3]/dt = (t1/T)k2[NO2-] - (t2/T)k3[NH3] - (t2/T)k5[NH3]; d[N2]/dt = (t1/T)k6[NO3-] + (t1/T)k4[NO2-] + (t2/T)k3[NH3] (reconstructed from the flattened text layer; the N2 equation has no factor 1/2, so N2 is on an N-atom basis if N is conserved).",
+  "fit_target": "Diag 7.8 data (asymmetric square pulse 80 %-20 %, 50 Hz, the run with the highest gaseous selectivity) (printed p. 172)",
+  "fit_method": "Adams-Bashforth-Moulton integration failed for both models; the Simplex/linear-programming route (4th-degree polynomial fits, derivatives at sampling times, Excel Solver; appendix printed pp. 196-197) gave satisfactory results only for model 2 (printed p. 174). N2 fit mean absolute error 7 % (printed p. 177).",
+  "text_printed_p178": "'The reduction reaction of nitrites [sic, nitrates] to nitrites was found to have k1 = 0.003343 min-1 and is slower than the reduction of nitrites to ammonia, k2 = 0.075 min-1. N2 is produced faster by ammonia oxidation, k3 = 0.02865 min-1, than by nitrite reduction, k4 = 0.003522 min-1, while direct reduction of nitrate to nitrogen is the slowest, k6 = 0.000353 min-1.'"
+ },
+ "conditions": {
+  "cathode": "Cu60Zn40 gauze, 100 mesh (section 7.3)",
+  "waveform": "asymmetric square pulse, 50 Hz, cathodic -1.5 V vs Ag/AgCl for 80 % of the period, anodic +1.5 V for 20 %",
+  "electrolyte": "not restated for Diag 7.8; the chapter-7 Cu60Zn40 experiments use 0.1 M K2SO4 + 0.05 M KNO3 (Table 7.5 caption) - inferred",
+  "duration_min": 120,
+  "c0_mM_N": {
+   "NO3": 50.0
+  }
+ },
+ "checks": {
+  "values_found_on_page": [
+   {
+    "printed_sequence": "k = 0,003343 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,025615 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,075 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,02865 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,003522 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,007 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,000353 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,002675 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,005123 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,015 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,00573 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,002818 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,0014 min",
+    "found_on_page": true
+   },
+   {
+    "printed_sequence": "k = 0,000283 min",
+    "found_on_page": true
+   }
+  ],
+  "time_weight_ratios_printed": {
+   "k1": 0.8002,
+   "k-1": 0.2,
+   "k2": 0.2,
+   "k3": 0.2,
+   "k4": 0.8001,
+   "k5": 0.2,
+   "k6": 0.8017
+  },
+  "result": "Six of seven ratios equal the expected t_i/T (0.8 for reductions, 0.2 for oxidations) to <0.1 %. k2 (NO2- -> NH3, a reduction) has 0.015/0.075 = 0.2, the oxidation weight.",
+  "pulse_naming": "Printed p. 155-156 defines an '80 %-20 %' pulse as one with 80 % of the period at the positive potential and 20 % at the cathodic potential, and Diag 7.2 is captioned '20 %-80 %', while every experiment caption uses 'cathodic -1.5 V (80 %), anodic +1.5 V (20 %)'. The values here follow the experiment captions (t1/T = 0.8 cathodic)."
+ },
+ "flags": [
+  "model_constants_not_data",
+  "k2_time_weighting_inconsistent",
+  "subscripts_reconstructed_from_text_layer",
+  "electrolyte_inferred",
+  "potential_vs_ag_agcl_not_rhe"
+ ],
+ "transcription_method": "thesis text layer: per-page text layer of the National Archive of PhD Theses online reader (EKT freader), read and typed in by an agent on 2026-10-20; table layout reconstructed by hand from the flattened text; every row's printed number sequence was checked by script to occur verbatim on the cited page (literature/extraction_scripts/thesis_tables/build_tables.py). Page images of these pages were not viewed. Not yet re-checked by a person."
+}

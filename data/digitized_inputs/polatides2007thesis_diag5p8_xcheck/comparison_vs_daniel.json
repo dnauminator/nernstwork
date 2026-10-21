@@ -1,0 +1,523 @@
+{
+ "thesis_slug": "polatides2007thesis_diag5p8_xcheck",
+ "daniel_dataset": "data/real/polatides2005_fig3_sn85cu15_50mM.json",
+ "daniel_inputs": "data/digitized_inputs/polatides2005_fig3",
+ "basis": "Compared in mM-N; thesis N2 is plotted per molecule and multiplied by 2, as Daniel did. diff_pct_axis uses plotted units (axis 0-50 mM).",
+ "axis_range_as_plotted": 50.0,
+ "thesis_px_resolution_as_plotted": 0.061,
+ "t0_excluded": "t = 0 skipped: Daniel pins t0 to c0 and the thesis product markers pile up at the origin",
+ "per_species": {
+  "NO3": {
+   "n": 7,
+   "mean_diff_mM_N": -0.032,
+   "rms_mM_N": 0.036,
+   "max_abs_mM_N": 0.055,
+   "t_of_max": 75,
+   "rms_pct_axis": 0.071,
+   "max_pct_axis": 0.11
+  },
+  "NO2": {
+   "n": 7,
+   "mean_diff_mM_N": -0.04,
+   "rms_mM_N": 0.044,
+   "max_abs_mM_N": 0.057,
+   "t_of_max": 15,
+   "rms_pct_axis": 0.088,
+   "max_pct_axis": 0.114
+  },
+  "NH3": {
+   "n": 7,
+   "mean_diff_mM_N": 0.024,
+   "rms_mM_N": 0.092,
+   "max_abs_mM_N": 0.18,
+   "t_of_max": 60,
+   "rms_pct_axis": 0.184,
+   "max_pct_axis": 0.361
+  },
+  "N2": {
+   "n": 7,
+   "mean_diff_mM_N": -0.385,
+   "rms_mM_N": 0.39,
+   "max_abs_mM_N": 0.474,
+   "t_of_max": 15,
+   "rms_pct_axis": 0.39,
+   "max_pct_axis": 0.474
+  }
+ },
+ "overall": {
+  "n": 28,
+  "rms_as_plotted": 0.111,
+  "rms_pct_axis": 0.223,
+  "max_abs_as_plotted": 0.237,
+  "mean_diff_as_plotted": -0.06,
+  "linear_fit_daniel_vs_thesis_as_plotted": {
+   "slope": 0.996,
+   "intercept": 0.102
+  }
+ },
+ "species_swap_check": {
+  "rms_mM_N_daniel_series_vs_thesis_series": {
+   "NO3": {
+    "NO3": 0.036,
+    "NO2": 12.941,
+    "NH3": 18.226,
+    "N2": 19.297
+   },
+   "NO2": {
+    "NO3": 12.944,
+    "NO2": 0.044,
+    "NH3": 10.665,
+    "N2": 12.628
+   },
+   "NH3": {
+    "NO3": 18.225,
+    "NO2": 10.657,
+    "NH3": 0.092,
+    "N2": 3.116
+   },
+   "N2": {
+    "NO3": 19.142,
+    "NO2": 12.371,
+    "NH3": 2.782,
+    "N2": 0.39
+   }
+  },
+  "every_series_best_matches_same_species": true
+ },
+ "time_check": {
+  "note": "Thesis marker x positions within 0.1 min of the grid (15-min steps, no 105-min sample). Daniel's WPD X values within 0.16 min; no time shift."
+ },
+ "points": [
+  {
+   "species": "NO3",
+   "t_min": 15,
+   "thesis_mM_N": 39.46,
+   "daniel_mM_N": 39.504,
+   "diff_mM_N": -0.044,
+   "diff_as_plotted": -0.044,
+   "diff_pct_axis": -0.087,
+   "thesis_unc_mM_N": 0.061,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO3",
+   "t_min": 30,
+   "thesis_mM_N": 23.592,
+   "daniel_mM_N": 23.63,
+   "diff_mM_N": -0.038,
+   "diff_as_plotted": -0.038,
+   "diff_pct_axis": -0.076,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO3",
+   "t_min": 45,
+   "thesis_mM_N": 18.305,
+   "daniel_mM_N": 18.316,
+   "diff_mM_N": -0.011,
+   "diff_as_plotted": -0.011,
+   "diff_pct_axis": -0.021,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO3",
+   "t_min": 60,
+   "thesis_mM_N": 10.472,
+   "daniel_mM_N": 10.51,
+   "diff_mM_N": -0.038,
+   "diff_as_plotted": -0.038,
+   "diff_pct_axis": -0.075,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_NH3_triangle"
+  },
+  {
+   "species": "NO3",
+   "t_min": 75,
+   "thesis_mM_N": 6.126,
+   "daniel_mM_N": 6.181,
+   "diff_mM_N": -0.055,
+   "diff_as_plotted": -0.055,
+   "diff_pct_axis": -0.11,
+   "thesis_unc_mM_N": 0.154,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_N2_marker"
+  },
+  {
+   "species": "NO3",
+   "t_min": 90,
+   "thesis_mM_N": 3.001,
+   "daniel_mM_N": 3.032,
+   "diff_mM_N": -0.031,
+   "diff_as_plotted": -0.031,
+   "diff_pct_axis": -0.061,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO3",
+   "t_min": 120,
+   "thesis_mM_N": 1.121,
+   "daniel_mM_N": 1.13,
+   "diff_mM_N": -0.009,
+   "diff_as_plotted": -0.009,
+   "diff_pct_axis": -0.017,
+   "thesis_unc_mM_N": 0.061,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO2",
+   "t_min": 15,
+   "thesis_mM_N": 12.356,
+   "daniel_mM_N": 12.413,
+   "diff_mM_N": -0.057,
+   "diff_as_plotted": -0.057,
+   "diff_pct_axis": -0.114,
+   "thesis_unc_mM_N": 0.061,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO2",
+   "t_min": 30,
+   "thesis_mM_N": 20.017,
+   "daniel_mM_N": 20.022,
+   "diff_mM_N": -0.005,
+   "diff_as_plotted": -0.005,
+   "diff_pct_axis": -0.011,
+   "thesis_unc_mM_N": 0.154,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO2",
+   "t_min": 45,
+   "thesis_mM_N": 23.116,
+   "daniel_mM_N": 23.171,
+   "diff_mM_N": -0.055,
+   "diff_as_plotted": -0.055,
+   "diff_pct_axis": -0.111,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO2",
+   "t_min": 60,
+   "thesis_mM_N": 20.771,
+   "daniel_mM_N": 20.809,
+   "diff_mM_N": -0.038,
+   "diff_as_plotted": -0.038,
+   "diff_pct_axis": -0.076,
+   "thesis_unc_mM_N": 0.061,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO2",
+   "t_min": 75,
+   "thesis_mM_N": 18.498,
+   "daniel_mM_N": 18.513,
+   "diff_mM_N": -0.015,
+   "diff_as_plotted": -0.015,
+   "diff_pct_axis": -0.031,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO2",
+   "t_min": 90,
+   "thesis_mM_N": 12.356,
+   "daniel_mM_N": 12.413,
+   "diff_mM_N": -0.057,
+   "diff_as_plotted": -0.057,
+   "diff_pct_axis": -0.114,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NO2",
+   "t_min": 120,
+   "thesis_mM_N": 8.559,
+   "daniel_mM_N": 8.608,
+   "diff_mM_N": -0.049,
+   "diff_as_plotted": -0.049,
+   "diff_pct_axis": -0.097,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_N2_marker"
+  },
+  {
+   "species": "NH3",
+   "t_min": 15,
+   "thesis_mM_N": 3.11,
+   "daniel_mM_N": 3.098,
+   "diff_mM_N": 0.012,
+   "diff_as_plotted": 0.012,
+   "diff_pct_axis": 0.025,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NH3",
+   "t_min": 30,
+   "thesis_mM_N": 6.425,
+   "daniel_mM_N": 6.312,
+   "diff_mM_N": 0.113,
+   "diff_as_plotted": 0.113,
+   "diff_pct_axis": 0.226,
+   "thesis_unc_mM_N": 0.061,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NH3",
+   "t_min": 45,
+   "thesis_mM_N": 7.751,
+   "daniel_mM_N": 7.69,
+   "diff_mM_N": 0.061,
+   "diff_as_plotted": 0.061,
+   "diff_pct_axis": 0.121,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NH3",
+   "t_min": 60,
+   "thesis_mM_N": 10.199,
+   "daniel_mM_N": 10.379,
+   "diff_mM_N": -0.18,
+   "diff_as_plotted": -0.18,
+   "diff_pct_axis": -0.361,
+   "thesis_unc_mM_N": 0.123,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_NO3_square;on_curve"
+  },
+  {
+   "species": "NH3",
+   "t_min": 75,
+   "thesis_mM_N": 13.614,
+   "daniel_mM_N": 13.528,
+   "diff_mM_N": 0.086,
+   "diff_as_plotted": 0.086,
+   "diff_pct_axis": 0.172,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NH3",
+   "t_min": 90,
+   "thesis_mM_N": 16.06,
+   "daniel_mM_N": 16.02,
+   "diff_mM_N": 0.04,
+   "diff_as_plotted": 0.04,
+   "diff_pct_axis": 0.081,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "NH3",
+   "t_min": 120,
+   "thesis_mM_N": 20.317,
+   "daniel_mM_N": 20.284,
+   "diff_mM_N": 0.033,
+   "diff_as_plotted": 0.033,
+   "diff_pct_axis": 0.066,
+   "thesis_unc_mM_N": 0.092,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2",
+   "t_min": 15,
+   "thesis_mM_N": 0.474,
+   "daniel_mM_N": 0.948,
+   "diff_mM_N": -0.474,
+   "diff_as_plotted": -0.237,
+   "diff_pct_axis": -0.474,
+   "thesis_unc_mM_N": 0.307,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "near_axis;on_curve"
+  },
+  {
+   "species": "N2",
+   "t_min": 30,
+   "thesis_mM_N": 1.623,
+   "daniel_mM_N": 1.997,
+   "diff_mM_N": -0.374,
+   "diff_as_plotted": -0.187,
+   "diff_pct_axis": -0.374,
+   "thesis_unc_mM_N": 0.184,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2",
+   "t_min": 45,
+   "thesis_mM_N": 4.242,
+   "daniel_mM_N": 4.621,
+   "diff_mM_N": -0.379,
+   "diff_as_plotted": -0.189,
+   "diff_pct_axis": -0.379,
+   "thesis_unc_mM_N": 0.184,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2",
+   "t_min": 60,
+   "thesis_mM_N": 7.854,
+   "daniel_mM_N": 8.163,
+   "diff_mM_N": -0.309,
+   "diff_as_plotted": -0.154,
+   "diff_pct_axis": -0.309,
+   "thesis_unc_mM_N": 0.307,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2",
+   "t_min": 75,
+   "thesis_mM_N": 11.811,
+   "daniel_mM_N": 12.099,
+   "diff_mM_N": -0.288,
+   "diff_as_plotted": -0.144,
+   "diff_pct_axis": -0.288,
+   "thesis_unc_mM_N": 0.307,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_NO3_square"
+  },
+  {
+   "species": "N2",
+   "t_min": 90,
+   "thesis_mM_N": 14.449,
+   "daniel_mM_N": 14.854,
+   "diff_mM_N": -0.405,
+   "diff_as_plotted": -0.202,
+   "diff_pct_axis": -0.405,
+   "thesis_unc_mM_N": 0.123,
+   "thesis_method": "template_ncc",
+   "thesis_flags": ""
+  },
+  {
+   "species": "N2",
+   "t_min": 120,
+   "thesis_mM_N": 16.357,
+   "daniel_mM_N": 16.822,
+   "diff_mM_N": -0.465,
+   "diff_as_plotted": -0.232,
+   "diff_pct_axis": -0.465,
+   "thesis_unc_mM_N": 0.246,
+   "thesis_method": "template_ncc",
+   "thesis_flags": "overlaps_NO2_circle"
+  }
+ ],
+ "findings": [
+  "Agreement: NO3 and NO2 agree within 0.06 mM at every point, and NH3 within 0.11 mM except at 60 min (0.18 mM, overlapping symbols). Per-species RMS is 0.04-0.09 mM, under one thesis pixel (0.061 mM). The paper's Fig. 3 and thesis Diag 5.8 are the same raster, and Daniel's digitization of it is precise.",
+  "N2: thesis - Daniel = -0.15 to -0.24 mM N2 at all 7 points (mean -0.19 mM N2 = -0.39 mM-N, about 3 thesis px). Because the sign never changes, this is a marker-anchor difference, not noise: bounding-box centres were used here for the MATLAB 'v' symbol, and its centroid sits 2.3 px (0.14 mM) higher. The effect is at most 0.5 mM-N (1% of c0) and does not matter for kinetics.",
+  "N basis: N2 per molecule confirmed. Thesis eqs 41-44 have d[N2]/dt = k3[NO2]^2 with NO2 consumed at 2k3[NO2]^2. Thesis Table 5.14 at 120 min (N2 33.6% of N = 8.4 mM N2) matches the plotted 8.2 mM N2. Daniel's x2 conversion is correct, so units_unverified can be dropped for the N2 basis.",
+  "The thesis (section 5.3.1, p. 94) states the electrolysis solution: 0.1 M K2SO4 + 0.05 M KNO3. This settles the 'confirm' note in Daniel's conditions.",
+  "Constants (thesis p. 102 prints the same values as the paper: k1 4.9e-4 s-1, k2 1.76e-5 s-1, k3 7.66e-3 L mol-1 s-1): the drawn curves are reproduced to 0.05 mM rms by eqs 41-44 with k1 = 4.18e-04 s-1, k2 = 1.77e-04 s-1 and k3 = 3.77e-03 L mol-1 s-1, where k3 is the coefficient in d[N2]/dt = k3[NO2]^2. (a) The k2 exponent is a typo in the thesis as well; 1.76e-4 reproduces the curves, which confirms Daniel's reading. (b) The printed k1 = 4.9e-4 does not reproduce the drawn NO3 curve (2.2 mM rms; NO3 at 120 min would be 1.5 mM, but the curve shows 2.5). The curves use about 4.2e-4 s-1, which equals Daniel's own data fit, and the thesis text also quotes 3.9e-4 from early-time data (p. 96). (c) The printed k3 = 7.66e-3 matches the nitrite-loss coefficient 2k3 = 7.53e-03, not k3 of eq. 44 as written. So N2 forms at 3.8e-3[NO2]^2 (molecular), and nitrite (mM-N) is consumed at 7.66e-3[NO2]^2 L mol-1 s-1 = 4.6e-4 mM-1 min-1. Check: k1 = 0.0251 min-1, k2 = 0.01056 min-1 and a nitrite loss of 4.6e-4[NO2]^2 mM-1 min-1, with N2 = half of it, reproduce all four curves to 0.06-0.08 mM rms."
+ ],
+ "thesis_vs_paper": [
+  "Same eight sampling times (no 105-min sample) and identical values within one thesis pixel for NO3, NO2 and NH3, so this is the same figure as paper Fig. 3. The thesis copy also shows the t=0 markers.",
+  "The model in the thesis (eqs 41-44, second-order nitrite-to-N2 step, solved with Adams-Bashforth-Moulton in MATLAB 6.5) is the one Daniel describes for the paper. The thesis also prints the first-order version (eqs 32-40), which the author rejected because it did not fit N2 on Sn85Cu15."
+ ],
+ "model_curve_check": {
+  "note": "free continuity trace of the four drawn curves vs eqs 41-44 (50 mM NO3 at t=0); rms in mM as plotted",
+  "fit_to_drawn_curves": {
+   "k1_s": 0.00041773567702551,
+   "k2_s": 0.00017654028238640757,
+   "k3_L_mol_s": 0.0037655506707403043,
+   "rms_mM": 0.04733405901313836,
+   "n_points": {
+    "NO3": 931,
+    "NO2": 1006,
+    "NH3": 1000,
+    "N2": 992
+   }
+  },
+  "printed_and_variant_constants": {
+   "printed_k2_1.76e-5": {
+    "NO3": {
+     "n": 76,
+     "median_resid_mM": 0.29421159592627977,
+     "model_at_120": 1.4681792175052537,
+     "rms_vs_free_trace_mM": 2.179829038742116
+    },
+    "NO2": {
+     "n": 582,
+     "median_resid_mM": -0.13101828867710033,
+     "model_at_120": 12.09100952572778,
+     "rms_vs_free_trace_mM": 1.156070112378041
+    },
+    "NH3": {
+     "n": 296,
+     "median_resid_mM": -0.14708147099616992,
+     "model_at_120": 2.1565877161494758,
+     "rms_vs_free_trace_mM": 11.001352641283871
+    },
+    "N2": {
+     "n": 484,
+     "median_resid_mM": 0.44711926769762733,
+     "model_at_120": 17.142111770308734,
+     "rms_vs_free_trace_mM": 6.140803503836859
+    }
+   },
+   "k2_1.76e-4": {
+    "NO3": {
+     "n": 76,
+     "median_resid_mM": 0.2942115959365023,
+     "model_at_120": 1.4681792174954127,
+     "rms_vs_free_trace_mM": 2.1798290387432346
+    },
+    "NO2": {
+     "n": 149,
+     "median_resid_mM": -0.193982004117615,
+     "model_at_120": 7.982787392078545,
+     "rms_vs_free_trace_mM": 3.133042943954254
+    },
+    "NH3": {
+     "n": 545,
+     "median_resid_mM": -0.06850647314801597,
+     "model_at_120": 17.496398450699093,
+     "rms_vs_free_trace_mM": 1.4295016977540114
+    },
+    "N2": {
+     "n": 195,
+     "median_resid_mM": -0.12995410117621303,
+     "model_at_120": 11.52631746986346,
+     "rms_vs_free_trace_mM": 3.0094868221884084
+    }
+   },
+   "fit_to_drawn": {
+    "NO3": {
+     "rms_vs_free_trace_mM": 0.05391971751382406
+    },
+    "NO2": {
+     "rms_vs_free_trace_mM": 0.049242665454484115
+    },
+    "NH3": {
+     "rms_vs_free_trace_mM": 0.04197168231650028
+    },
+    "N2": {
+     "rms_vs_free_trace_mM": 0.04370948725895241
+    }
+   }
+  },
+  "downstream_note": "worlds W5 (scripts/build_worlds.py) uses R1 k = 0.0294 min-1 (printed k1) and R3 2 NO2 -> 2 SINK with k = 4.6e-4 mM-1 min-1. The repo simulator consumes coeff x k[NO2]^2, so nitrite is lost at 9.2e-4[NO2]^2, twice what the drawn curves imply. Integrated, W5 misses the drawn curves by 1.4-3.1 mM rms (N2 at 120 min: 23 vs 15.4 mM-N). With R1 = 0.0251 min-1 and R3 k = 2.3e-4 the curves are matched to <0.1 mM rms. Not changed here; flagged for whoever owns W5."
+ }
+}
