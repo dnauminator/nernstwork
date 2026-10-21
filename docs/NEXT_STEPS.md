@@ -76,7 +76,7 @@ The LLM side: given a dataset or world observation, propose candidate mechanisms
 ## Recommended order for Daniel right now (Oct 20)
 
 1. Download the NTMO and LTOPO `Exp.json` (outside the repo) so I can summarise them; expect partial grids.
-2. Digitize Chapman Figs. 2-3 (`docs/DIGITIZING.md`), one dataset per phase and per temperature.
+2. ~~Digitize Chapman Figs. 2-3~~: extracted Oct 20 by colour classification (`scripts/extract_chapman_fig2.py`, output in `data/digitized_inputs/chapman2023_fig2/`). Still to do for you (10 min): spot-check 5-10 points per panel against the printed figure and compare `reconstruction.png` with Fig. 2, then set `verified_against_figure` to true in its `meta.json`.
 3. Open the Precursor Genome GitHub and Zenodo links and check the ledger loads.
 4. Confirm the framing and the headline target, then stop; the fitter starts at kickoff.
 

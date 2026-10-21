@@ -1,0 +1,38 @@
+{
+  "id": "chapman2023_fig2_tio2_li2co3",
+  "note": "Not a WebPlotDigitizer export and not convertible by scripts/digitized_to_dataset.py: the dataset schema is nitrogen-based (mM-N). A synthesis dataset schema is still to be written (docs/SPEC.md section 7e). Regenerate with: python scripts/extract_chapman_fig2.py literature/ja3c10916.pdf",
+  "provenance": {
+    "citation": "Hu D., Beauvais M. L., Kamm G. E., Mullens B. G., Sanchez Monserrate B. A., Vornholt S. M., Chupas P. J., Chapman K. W., J. Am. Chem. Soc. 145 (2023) 26545-26549, doi 10.1021/jacs.3c10916",
+    "figures": ["Fig. 2 (700, 725, 750 C)", "Fig. 3 (482 C)"],
+    "extraction": "Colour classification of the raster figure images embedded in the PDF (scripts/extract_chapman_fig2.py). No manual clicking.",
+    "verified_against_figure": false,
+    "verification_todo": "Spot-check 5-10 points per panel against the printed figure (for example Li2TiO3 at 0.5, 1, 2, 5 min and the time anatase reaches zero) and compare reconstruction.png with Fig. 2."
+  },
+  "system": {
+    "reaction": "anatase TiO2 + Li2CO3 -> Li2TiO3 (+ CO2) -> Li4Ti5O12; anatase -> rutile in parallel",
+    "mixing": "5:2 TiO2:Li2CO3 molar ratio, pelletized, loaded in a capillary",
+    "temperatures_C": [482, 700, 725, 750],
+    "initiation": "sample moved into a pre-heated hot zone, heating in under 10 s (grey 'Heating' strip in Fig. 3, about the first 0.17 min)",
+    "atmosphere_note": "not stated in the main text"
+  },
+  "phases": ["anatase", "rutile", "Li2CO3", "Li2TiO3", "Li4Ti5O12"],
+  "files": {
+    "extracted_phase_fractions.csv": "Fig. 2: weight % of each phase and Ti-mole fractions on a 0.05 min grid from 0.05 min to the end of each panel (10 min; 9.76 min at 750 C). Columns wt_* sum to 100 by construction (the figure is a normalised stack). tifrac_* are the fractions of Ti in each Ti-bearing phase, computed from wt_* with nominal molar masses (TiO2 79.866, Li2TiO3 109.75, Li4Ti5O12 459.08 g/mol, 1, 1, 5 Ti per formula unit).",
+    "fig3_482C_li2tio3_relative.csv": "Fig. 3: Li2TiO3 at 482 C in arbitrary units (the y axis has no ticks). Values are the fraction of the image height above the x axis, so only the shape and ratios of slopes are meaningful, not absolute amounts. Time 0 to 5 min on a 0.02 min grid.",
+    "reconstruction.png": "Our own re-plot of the extracted curves for comparison with the printed figures."
+  },
+  "checks_done": [
+    "Stack sums to 100 wt % (by construction).",
+    "Initial wt % at 0.05 min: anatase about 75, Li2CO3 about 25; the 5:2 molar mix gives 73 / 27.",
+    "Maximum Li2TiO3 is 54.2 / 55.4 / 53.7 wt % (700 / 725 / 750 C) against about 52 wt % stated in the text: a bias of about 2 wt %, most likely from the thick boundary lines (5.7 px per wt %).",
+    "Fig. 3 slope ratio, 0.25-0.75 min versus 1-2 min, is 4.1, matching the authors' statement that the fast regime is 4 times the later rate."
+  ],
+  "caveats": [
+    "Weight fractions are normalised to the remaining solid, and CO2 leaves as gas, so wt % has no conserved total. Use the Ti-mole fractions (tifrac_*) for balance checks. Li2CO3 carries no Ti and is tracked in wt % only.",
+    "Li2TiO3 is reported by the authors to be Li-deficient (Li2-xTiO3-x, peak 52 wt % above the 48 wt % stoichiometric maximum), so the nominal molar mass makes the Ti fraction slightly approximate.",
+    "The first 0.2-0.3 min (heating) is unreliable: the axis line and the vertical Li2CO3 label overlap the data, and the t = 0 column is dropped.",
+    "A thin cyan Li2CO3 strip of about 1 wt % runs along the top of every panel to 10 min. It is probably a line-width artefact (the text says Li2CO3 peaks are no longer distinguishable after about 30 s). Treat Li2CO3 below about 2 wt % as zero.",
+    "Boundary lines are 1-2 px thick, so phase fractions carry roughly 1-2 wt % of systematic error. Anatase reaching exactly zero is read from where the red line meets the axis.",
+    "One chemistry, one lab, one capillary geometry. Use as a sanity benchmark, not as evidence about solid-state synthesis in general."
+  ]
+}
