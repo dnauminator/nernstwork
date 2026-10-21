@@ -197,3 +197,12 @@ def test_propose_space_run_plans_and_predicts_held_out_temperature(root, tmp_pat
     assert d["mode"] == "predict" and d["dataset_id"] == "synth_750C"
     row = d["frozen_candidates"][0]
     assert row["rank_among_space"] == 1 and row["rmse_all"] < 0.02
+    own = d["run_candidates"]
+    assert own["n_scored"] == 5 and own["best_predicting"]["rank_among_space"] == 1
+    from nernstwork.report import compare_arms, write_report
+    rep = write_report(run, tmp_path / "report.md")
+    text = (tmp_path / "report.md").read_text()
+    assert "predicted without refitting" in text and "rank 1/2" in text and "Common noise scale" in text
+    cmp = compare_arms([run], tmp_path / "arms.md")
+    assert cmp["rows"][0]["heldout_top1"]["rank_among_space"] == 1
+    assert "predict 750 C" in (tmp_path / "arms.md").read_text()

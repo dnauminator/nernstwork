@@ -912,9 +912,13 @@ def _predict_holdout(run: Run, frozen: dict, hold: list[dict], workers: int | No
     res = _evaluate_on(run, list(allsubs), dev_obs, [p for *_, p in _dev_entries(run)], workers,
                        record_dir=fdir / "evaluations", subs=allsubs)
     code = code_identity()["sha256"]
+    # every valid candidate of this run as well (already fitted on the development data; scoring is a simulation), so
+    # the report can say whether the run's own model space contained a member that predicts the held-out run well
+    run_subs = {f"R:{c['candidate_id']}": {"submission": c["submission"]} for c in run.candidates()
+                if c["validation"]["status"] == "valid"}
     fits = {}
-    for cid in allsubs:
-        sub = allsubs[cid]["submission"]
+    for cid in list(allsubs) + list(run_subs):
+        sub = (allsubs.get(cid) or run_subs[cid])["submission"]
         v = validate_submission(sub, dev_obs, protocol)
         if v["status"] != "valid":
             continue
@@ -936,7 +940,7 @@ def _predict_holdout(run: Run, frozen: dict, hold: list[dict], workers: int | No
                 scores[cid] = {"status": "prediction_failed", "error": f"{type(e).__name__}: {e}"}
                 continue
             pos = {float(t): i for i, t in enumerate(obs.t_union)}
-            nll, rmse, n = 0.0, {}, 0
+            nll, rmse, sse, npts = 0.0, {}, {}, {}
             for ch in obs.channels:
                 idx = [comp.species.index(s) for s in v["observation_map"][ch.name]]
                 pred = Y[idx][:, [pos[float(t)] for t in ch.t]].sum(0)
@@ -944,13 +948,23 @@ def _predict_holdout(run: Run, frozen: dict, hold: list[dict], workers: int | No
                 s = fr["sigma"][ch.name]
                 nll += len(r) * 0.5 * math.log(2 * math.pi * s * s) + float(r @ r) / (2 * s * s)
                 rmse[ch.name] = float(np.sqrt(np.mean(r ** 2)))
-                n += len(r)
-            scores[cid] = {"status": FITTED, "predictive_nll": nll, "rmse": rmse, "n_obs": n,
+                sse[ch.name], npts[ch.name] = float(r @ r), len(r)
+            scores[cid] = {"status": FITTED, "predictive_nll": nll, "rmse": rmse, "sse": sse, "n_obs": sum(npts.values()),
                            "rmse_all": float(np.sqrt(np.mean([x ** 2 for x in rmse.values()]))),
-                           "development_aicc": fr["aicc"]}
+                           "development_aicc": fr["aicc"], "development_sigma": dict(fr["sigma"])}
         ok = {c: s for c, s in scores.items() if s["status"] == FITTED}
         space_ok = {c: s for c, s in ok.items() if c.startswith("S:")}
-        best = min((s["predictive_nll"] for s in ok.values()), default=math.nan)
+        # Primary score: squared error weighted by ONE noise scale per phase shared by every model: the development sigma
+        # of the reference member with the lowest development AICc (the tightest description of the development data, so
+        # the closest estimate of measurement noise; identical for every arm). A model-specific sigma would reward poor
+        # development fits (large sigma) and punish tight ones; that calibration view is kept as predictive_nll.
+        ref = space_ok or ok
+        noise_ref = min(ref.items(), key=lambda kv: kv[1]["development_aicc"])
+        common = {ch.name: float(noise_ref[1]["development_sigma"][ch.name]) for ch in obs.channels}
+        for s in ok.values():
+            s["heldout_score"] = float(sum(s["sse"][ch] / common[ch] ** 2 for ch in common))
+        rank = lambda s, key: 1 + sum(1 for x in space_ok.values() if x[key] < s[key] - 1e-9)
+        best = min((s["heldout_score"] for s in ok.values()), default=math.nan)
         rows = []
         for cid in frozen["candidates"]:
             s = scores.get(f"F:{cid}")
@@ -958,30 +972,41 @@ def _predict_holdout(run: Run, frozen: dict, hold: list[dict], workers: int | No
                    "selected_by_rule": cid in frozen["selected_by_rule"],
                    "agent_concluded_plausible": cid in frozen["agent_concluded_plausible"]}
             if s and s["status"] == FITTED:
-                row.update(predictive_nll=s["predictive_nll"], delta_to_best_overall=s["predictive_nll"] - best,
-                           rank_among_space=1 + sum(1 for x in space_ok.values()
-                                                    if x["predictive_nll"] < s["predictive_nll"] - 1e-9),
-                           n_space=len(space_ok), rmse=s["rmse"], rmse_all=s["rmse_all"],
+                row.update(heldout_score=s["heldout_score"], delta_to_best_overall=s["heldout_score"] - best,
+                           rank_among_space=rank(s, "heldout_score"), n_space=len(space_ok),
+                           rank_by_rmse=rank(s, "rmse_all"), predictive_nll=s["predictive_nll"],
+                           rank_by_predictive_nll=rank(s, "predictive_nll"), rmse=s["rmse"], rmse_all=s["rmse_all"],
                            development_aicc=s["development_aicc"])
             rows.append(row)
-        top = sorted(space_ok.items(), key=lambda kv: kv[1]["predictive_nll"])[:5]
+        top = sorted(space_ok.items(), key=lambda kv: kv[1]["heldout_score"])[:5]
         dev_best = sorted(space_ok.items(), key=lambda kv: kv[1]["development_aicc"])[:1]
+        own = {c: s for c, s in ok.items() if c.startswith("R:")}
+        own_best = min(own.items(), key=lambda kv: kv[1]["heldout_score"]) if own else None
+        own_dev_best = min(own.items(), key=lambda kv: kv[1]["development_aicc"]) if own else None
+        brief = lambda c, s: {"candidate_id": c[2:] if c[:2] in ("R:", "S:", "F:") else c, "heldout_score": s["heldout_score"],
+                              "rank_among_space": rank(s, "heldout_score"), "rmse_all": s["rmse_all"],
+                              "rank_by_predictive_nll": rank(s, "predictive_nll"), "development_aicc": s["development_aicc"]}
+        own_summary = {"n_scored": len(own), "n_valid": sum(1 for c in scores if c.startswith("R:")),
+                       "best_predicting": brief(*own_best) if own_best else None,
+                       "best_development_aicc": brief(*own_dev_best) if own_dev_best else None}
         fdir_h = run.dir / "final" / ds["id"]
         fdir_h.mkdir(parents=True, exist_ok=True)
-        atomic_write_json(fdir_h / "predictions.json", {"dataset_id": ds["id"], "scores": scores})
+        atomic_write_json(fdir_h / "predictions.json", {"dataset_id": ds["id"], "common_sigma": common, "scores": scores})
         out.append({"dataset_id": ds["id"], "sha256": sha, "mode": "predict", "frozen_candidates": rows,
-                    "best_in_spaces": [{"candidate_id": c, "predictive_nll": s["predictive_nll"], "rmse": s["rmse"],
-                                        "structure": allsubs[c]["submission"].get("rationale")} for c, s in top],
-                    "development_aicc_best_in_spaces": [{"candidate_id": c, "predictive_nll": s["predictive_nll"],
-                                                         "rank_among_space": 1 + sum(1 for x in space_ok.values() if
-                                                                                     x["predictive_nll"] < s["predictive_nll"] - 1e-9)}
-                                                        for c, s in dev_best],
+                    "common_sigma": common, "common_sigma_from": noise_ref[0],
+                    "best_in_spaces": [dict(brief(c, s), rmse=s["rmse"], structure=allsubs[c]["submission"].get("rationale"))
+                                       for c, s in top],
+                    "development_aicc_best_in_spaces": [brief(c, s) for c, s in dev_best],
+                    "run_candidates": own_summary,
                     "n_space_fitted": len(space_ok), "n_fits_run": res["n_fits_run"],
                     "interpretation": "Parameter transfer: every candidate is fitted once on the development runs, then "
-                                      "the held-out run is simulated with those parameters (no refitting) and scored by "
-                                      "its Gaussian log-likelihood under the development noise estimate (lower "
-                                      "predictive_nll is better). Rank is among all members of the declared enumeration "
-                                      "spaces scored the same way."})
+                                      "the held-out run is simulated with those parameters (no refitting). Primary score: "
+                                      "squared prediction error weighted by one noise scale per phase shared by all models "
+                                      "(the development sigma of the reference member with the lowest development AICc); "
+                                      "lower is better, and rank is "
+                                      "among all reference-space members. Also reported: rank by RMSE, and the "
+                                      "model-specific predictive log-likelihood (each model's own development sigma), which "
+                                      "measures calibration and penalizes overconfident extrapolation."})
     return out
 
 

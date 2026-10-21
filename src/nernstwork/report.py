@@ -30,7 +30,10 @@ def reaction_text(mech: dict, params: dict | None = None) -> list[str]:
         bits = [rl["family"]]
         if rl.get("time_modulation"):
             tm = rl["time_modulation"]
-            bits.append(f"{tm['kind']}(tau{' tie=' + tm['tau_min']['tie'] if tm['tau_min'].get('tie') else ''})")
+            prm = tm.get("n") if tm["kind"] == "avrami" else tm["tau_min"]
+            bits.append(f"{tm['kind']}({'n' if tm['kind'] == 'avrami' else 'tau'}{' tie=' + prm['tie'] if prm.get('tie') else ''})")
+        if rl.get("temperature_dependence"):
+            bits.append(f"Arrhenius(T_ref {_fmt(rl['temperature_dependence']['T_ref_C'])} C)")
         if "K" in rl["params"]:
             bits.append("K" + (f" tie={rl['params']['K']['tie']}" if rl["params"]["K"].get("tie") else ""))
         if rl.get("potential_dependence"):
@@ -39,7 +42,7 @@ def reaction_text(mech: dict, params: dict | None = None) -> list[str]:
             bits.append("pH-dependent")
         if "k_mt" in rl["params"]:
             bits.append("k_mt")
-        line = f"{r['id']}: {lhs} -> {rhs} [{', '.join(bits)}; e={r.get('electrons')}]"
+        line = f"{r['id']}: {lhs} -> {rhs} [{', '.join(bits)}" + (f"; e={r.get('electrons')}]" if "electrons" in r else "]")
         if params:
             ps = [f"{n}={_fmt(v['value'])} (95% Wald {_fmt(v['wald_ci95'][0])}-{_fmt(v['wald_ci95'][1])}, {v['determinacy']})"
                   for n, v in params.items() if n.startswith(r["id"] + ".")]
@@ -238,13 +241,17 @@ def write_report(run: Run, out: Path | None = None) -> dict:
     fe = final_file(run, which)
     if fe:
         f = read_json(fe)
-        ho = {h["candidate_id"]: h for h in heldout_table(run, which=which)}
+        predict = any(d.get("mode") == "predict" for d in f["datasets"])
+        ho = {} if predict else {h["candidate_id"]: h for h in heldout_table(run, which=which)}
         version = ("current evaluator code" if which == "latest" else "pre-registered evaluation; evaluator code has "
                    "changed since")
         first = final_file(run, "first")
         if which == "latest" and first and read_json(first).get("code_sha256") != f.get("code_sha256"):
             version += "; the pre-registered evaluation (earlier code) is kept in final/final_evaluation.json"
         for d in f["datasets"]:
+            if d.get("mode") == "predict":
+                L += _predict_section(d, version)
+                continue
             L += [f"## Final held-out evaluation: {d['dataset_id']}", "", f"Version: {version}.", "", d["interpretation"],
                   ("Sensitivity: AICc at the lowest NLL any start reached (flags fits whose reported optimum is beaten by "
                   "replicated unconverged starts). See docs/examples/arm_comparison.md for ranks in a shared reference set."), ""]
@@ -278,6 +285,87 @@ def write_report(run: Run, out: Path | None = None) -> dict:
         "- AICc differences assume independent errors; clustered residual signs (adequacy 'poor') make them optimistic.", ""]
     out.write_text("\n".join(L) + "\n")
     return {"report": str(out), "plots_dir": str(pdir)}
+
+
+def _predict_section(d: dict, version: str) -> list[str]:
+    """Held-out section for parameter-transfer (predict-mode) evaluations."""
+    L = [f"## Final held-out evaluation: {d['dataset_id']} (predicted without refitting)", "", f"Version: {version}.", "",
+         d["interpretation"], "", f"Common noise scale per phase (development sigma of {d.get('common_sigma_from')}): "
+         f"{ {k: round(v, 4) for k, v in d['common_sigma'].items()} }", ""]
+    for r in d["frozen_candidates"]:
+        role = "+".join(t for t, on in (("selected", r["selected_by_rule"]), ("agent-plausible", r["agent_concluded_plausible"])) if on)
+        L.append(f"- {r['candidate_id']} ({role}): {r['status']}; held-out score {_fmt(r.get('heldout_score'), 4)}, rank "
+                 f"{r.get('rank_among_space')}/{r.get('n_space')} (by RMSE {r.get('rank_by_rmse')}, by own-sigma "
+                 f"log-likelihood {r.get('rank_by_predictive_nll')}); RMSE {_rmse(r.get('rmse'))} (all {_fmt(r.get('rmse_all'))}); "
+                 f"development AICc {_fmt(r.get('development_aicc'), 5)}")
+    rc = d.get("run_candidates") or {}
+    if rc.get("best_predicting"):
+        b, a = rc["best_predicting"], rc["best_development_aicc"]
+        L.append(f"- This run's own candidates ({rc['n_scored']} scored): best predictor {b['candidate_id']} ranks "
+                 f"{b['rank_among_space']}; the run's best development-AICc member {a['candidate_id']} ranks {a['rank_among_space']}")
+    L.append("- Best reference-space members on the held-out run: " +
+             ", ".join(f"{b['candidate_id']} (score {_fmt(b['heldout_score'], 4)}, RMSE {_fmt(b['rmse_all'])})"
+                       for b in d["best_in_spaces"][:3]))
+    for b in d.get("development_aicc_best_in_spaces", []):
+        L.append(f"- The reference member with the best development AICc, {b['candidate_id']}, ranks {b['rank_among_space']} "
+                 f"(by own-sigma log-likelihood {b['rank_by_predictive_nll']})")
+    return L + [""]
+
+
+def compare_arms_predict(runs: list[Run], out: Path, which: str = "first") -> dict:
+    """Arm comparison for parameter-transfer investigations (fit development temperatures, predict the reserved one)."""
+    rows, ref = [], None
+    for r in runs:
+        ss = inv.summaries(r)
+        fitted = [s for s in ss if s["status"] == FITTED]
+        best = min(fitted, key=lambda s: s["aicc"]) if fitted else None
+        ff = final_file(r, which)
+        fd = read_json(ff)["datasets"][0] if ff else None
+        fz = read_json(r.dir / "frozen.json") if (r.dir / "frozen.json").exists() else {}
+        spaces = sorted((r.dir / "spaces").glob("space-*.json")) if (r.dir / "spaces").exists() else []
+        sources = {}
+        for c in r.candidates():
+            sources[c["origin"]["source"]] = sources.get(c["origin"]["source"], 0) + 1
+        u = usage(r)
+        top1 = next((x for x in (fd or {}).get("frozen_candidates", []) if x["candidate_id"] == fz.get("top1")), None)
+        if fd and ref is None:
+            ref = {"dataset_id": fd["dataset_id"], "n_space": fd["n_space_fitted"], "best": fd["best_in_spaces"][:3],
+                   "dev_best": fd.get("development_aicc_best_in_spaces", [])}
+        rows.append({"run_id": r.id, "arm": r.config()["arm"], "models": (u["llm"] or {}).get("models"),
+                     "candidates": len(ss), "sources": sources, "n_spaces": len(spaces),
+                     "n_fitted": len(fitted), "best_dev": best["candidate_id"] if best else None,
+                     "best_dev_aicc": best["aicc"] if best else None, "frozen_top1": fz.get("top1"),
+                     "heldout_top1": top1, "heldout_frozen": (fd or {}).get("frozen_candidates", []),
+                     "own_space": (fd or {}).get("run_candidates"), "llm": u["llm"], "numerics": u["numerics"]})
+    L = ["# Arm comparison: Chapman 2023, fit 700 + 725 C, predict 750 C", "",
+         ("Every arm shares the protocol, the development data and the reference space. The 750 C run is predicted with "
+          "development parameters (no refitting). Held-out score: squared error weighted by one common noise scale per "
+          "phase, the development sigma of the reference member with the lowest development AICc (lower is better). "
+          "Ranks are among the "
+          f"{ref['n_space'] if ref else '-'} reference-space members scored the same way; the own-sigma log-likelihood rank "
+          "measures calibration (it penalizes models whose development noise estimate understates the extrapolation error)."), "",
+         "| run | arm | model | candidates (by source) | spaces | best development AICc | frozen top-1 | held-out score | "
+         "held-out rank | rank by RMSE | rank by own-sigma NLL | RMSE all | own space: best predictor rank | "
+         "own space: dev-best rank | LLM cost, list USD |",
+         "|" + "---|" * 15]
+    for x in rows:
+        h, o, llm = x["heldout_top1"] or {}, x["own_space"] or {}, x["llm"] or {}
+        bp, bd = o.get("best_predicting") or {}, o.get("best_development_aicc") or {}
+        L.append(f"| {x['run_id']} | {x['arm']} | {', '.join(x['models'] or ['-'])} | {x['candidates']} {x['sources']} | "
+                 f"{x['n_spaces']} | {_fmt(x['best_dev_aicc'], 5)} | {x['frozen_top1']} | {_fmt(h.get('heldout_score'), 4)} | "
+                 f"{h.get('rank_among_space')}/{h.get('n_space')} | {h.get('rank_by_rmse')} | {h.get('rank_by_predictive_nll')} | "
+                 f"{_fmt(h.get('rmse_all'))} | {bp.get('rank_among_space', '-')} | "
+                 f"{bd.get('rank_among_space', '-')} | {_fmt(llm.get('cost_usd'))} |")
+    if ref:
+        L += ["", "Reference space on the held-out run: best members " +
+              ", ".join(f"{b['candidate_id']} ({_fmt(b['heldout_score'], 4)})" for b in ref["best"]) +
+              "; the member with the best development AICc ranks " +
+              ", ".join(str(b["rank_among_space"]) for b in ref["dev_best"]) + "."]
+    res = {"rows": rows, "reference": ref}
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text("\n".join(L) + "\n")
+    (out.with_suffix(".json")).write_text(json.dumps(res, indent=1, default=str) + "\n")
+    return {"report": str(out), **res}
 
 
 def min_nll_aicc(fit_res: dict) -> float | None:
@@ -368,6 +456,8 @@ def heldout_table(run: Run, reference: dict | None = None, which: str = "first")
 
 def compare_arms(runs: list[Run], out: Path, which: str = "first") -> dict:
     """Compare arms that share protocol and development data. Numbers only; interpretation is left to the reader."""
+    if runs and runs[0].config()["config_snapshot"].get("final_evaluation", {}).get("mode") == "predict":
+        return compare_arms_predict(runs, out, which)
     base = None
     for r in runs:
         rc = r.config()
