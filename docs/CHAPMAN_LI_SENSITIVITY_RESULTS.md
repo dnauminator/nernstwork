@@ -1,8 +1,10 @@
 # Chapman lithium sensitivity — results snapshot
 
-Generated 2026-10-22 15:57:21 UTC.
+Generated 2026-10-22 16:22:53 UTC.
 
 **This is an in-progress retrospective sensitivity analysis.** Every count below comes from saved result files. A recorded outcome may be a failed fit; a missing outcome may be queued, running, or not scheduled. No full-campaign conclusion follows from a provisional winner.
+
+**The fig2_lower fixed-input sweep over the 904-dynamics union was stopped on Oct 22 and will not be completed.** Fitting the starting carbonate within 0.25–0.40 drives every shortlisted carbonate-dependent model to 0.39–0.40 and recovers its nominal-lithium fit and 750 °C prediction, and separate per-temperature amounts overfit, so the data reject the fixed lower amounts; rankings under that assumption cannot change the conclusion. The baseline rows are complete. Other fig2_lower__fixed rows stay partial (marked provisional) and are not pending. The fresh lower-lithium Opus run's own frozen held-out evaluation is final and recorded in docs/PROGRESS.md (Oct 22); its rows here are partial refits of its candidates.
 
 The primary comparison changes only the starting Li2CO3 assumption in the original Fig. 2 inputs. Fits use 700 + 725 °C; predictions use 750 °C with frozen kinetics. The lower initial amounts are hypotheses (0.28, 0.30, 0.36 formula units per mole Ti), not new measured starting compositions. The S1 comparison changes extraction on the same time grid and uses the same published experiments.
 
@@ -17,14 +19,14 @@ The declared union contains **860 originally valid dynamics** and **904 includin
 | fig2_lower__per_temperature | 6 / 904 | 6 / 860 | 6 | none recorded | 898 |
 | fig2_lower__shared | 14 / 904 | 14 / 860 | 14 | none recorded | 890 |
 | s1_nominal__fixed | 436 / 904 | 400 / 860 | 430 | execution_error: 1, nonconvergence: 6 | 468 |
-| s1_lower__fixed | 301 / 904 | 281 / 860 | 293 | nonconvergence: 6, execution_error: 2 | 603 |
+| s1_lower__fixed | 336 / 904 | 312 / 860 | 328 | nonconvergence: 6, execution_error: 2 | 568 |
 
 For S1 and optional fitted-initial-state modes, the 904 denominator above describes coverage of the old union. Their smaller declared target lists are tracked below; a target list alone does not establish that all its work has started.
 
 | Follow-up | Recorded / declared targets | Audited predictions | Missing |
 |---|---:|---:|---:|
 | [s1_nominal__fixed](../data/derived/chapman_li_sensitivity/extraction_shortlist_v1.json) | 436 / 436 | 430 | 0 |
-| [s1_lower__fixed](../data/derived/chapman_li_sensitivity/extraction_shortlist_v1.json) | 301 / 436 | 293 | 135 |
+| [s1_lower__fixed](../data/derived/chapman_li_sensitivity/extraction_shortlist_v1.json) | 336 / 436 | 328 | 100 |
 | [fig2_lower__shared](../data/derived/chapman_li_sensitivity/initial_amount_shortlist_v1.json) | 14 / 14 | 14 | 0 |
 | [fig2_lower__per_temperature](../data/derived/chapman_li_sensitivity/per_temperature_shortlist_v1.json) | 6 / 6 | 6 | 0 |
 
@@ -37,7 +39,7 @@ For S1 and optional fitted-initial-state modes, the 904 denominator above descri
 | fig2_lower__per_temperature | 0 / 154 | 0 | 4 / 208 | 4 |
 | fig2_lower__shared | 0 / 154 | 0 | 11 / 208 | 11 |
 | s1_nominal__fixed | 154 / 154 | 153 | 208 / 208 | 206 |
-| s1_lower__fixed | 154 / 154 | 154 | 108 / 208 | 100 |
+| s1_lower__fixed | 154 / 154 | 154 | 134 / 208 | 126 |
 
 ### Fresh lower-lithium proposals — separate set
 
@@ -64,7 +66,7 @@ Independent prediction checks are recorded separately from the original runner o
 | fig2_lower__per_temperature | predicted: 6 |
 | fig2_lower__shared | predicted: 14 |
 | s1_nominal__fixed | predicted: 178, not_rescored: 257, not_attempted_fit_failed: 1 |
-| s1_lower__fixed | not_rescored: 300, predicted: 1 |
+| s1_lower__fixed | not_rescored: 335, predicted: 1 |
 
 ## Selection and prediction are separate
 
@@ -119,7 +121,7 @@ The common score is `sum((prediction − observation)^2 / reference_sigma[channe
 | s1_lower__fixed; Fixed baseline | development-selected | [`f4912de543`](../data/derived/chapman_li_sensitivity/results/s1_lower__fixed/f4912de54388c5cb145a12111274f52cad0e423341409b93a11cb1f209e9d26c.json) | -854.7 | 806.9 | 0.0291 | 5 (154/154 baseline scored) |
 | s1_lower__fixed; Fixed baseline | retrospective best | [`c4fa4bab6b`](../data/derived/chapman_li_sensitivity/results/s1_lower__fixed/c4fa4bab6b5014aa8354f8837032f071ccd7d2d7858586b0b61f6cd65b181b04.json) | -766.4 | 639.4 | 0.03097 | 1 (154/154 baseline scored) |
 | s1_lower__fixed; Saved Opus1, originally valid | development-selected (provisional) | [`55837a0951`](../data/derived/chapman_li_sensitivity/results/s1_lower__fixed/55837a095104afa9ecafc1d182927c6f900456be6b80e7a018580fe6a6966564.json) | -753.1 | 1805 | 0.05337 | 50 (154/154 baseline scored) |
-| s1_lower__fixed; Saved Opus1, originally valid | retrospective best (provisional) | [`65286a5841`](../data/derived/chapman_li_sensitivity/results/s1_lower__fixed/65286a5841fb22e409ba0fd09fe5b90cc52d725657e938c717b2e44abf43fc8a.json) | -602.9 | 701.6 | 0.05 | 4 (154/154 baseline scored) |
+| s1_lower__fixed; Saved Opus1, originally valid | retrospective best (provisional) | [`864955a9c2`](../data/derived/chapman_li_sensitivity/results/s1_lower__fixed/864955a9c260fdb87dc408da7296d2da5dbf1a986aef57cb417685e0d229e898.json) | -627.1 | 566.5 | 0.03306 | 1 (154/154 baseline scored) |
 | s1_lower__fixed; Originally valid union | development-selected (provisional) | [`f4912de543`](../data/derived/chapman_li_sensitivity/results/s1_lower__fixed/f4912de54388c5cb145a12111274f52cad0e423341409b93a11cb1f209e9d26c.json) | -854.7 | 806.9 | 0.0291 | 5 (154/154 baseline scored) |
 | s1_lower__fixed; Originally valid union | retrospective best (provisional); optimizer warning | [`5c0deed6a5`](../data/derived/chapman_li_sensitivity/results/s1_lower__fixed/5c0deed6a5a45967a35b10dee399c29d9e0a88b73613e41a1cbd4bad85c279e6.json) | -455.4 | 437.5 | 0.06139 | 1 (154/154 baseline scored) |
 | s1_lower__fixed; Union including repairs | development-selected (provisional) | [`f4912de543`](../data/derived/chapman_li_sensitivity/results/s1_lower__fixed/f4912de54388c5cb145a12111274f52cad0e423341409b93a11cb1f209e9d26c.json) | -854.7 | 806.9 | 0.0291 | 5 (154/154 baseline scored) |
@@ -227,7 +229,7 @@ Full same-candidate parameter changes, including rate constants, activation ener
 | fig2_lower__per_temperature | 6 | 6 | 6 | 5 | 0 | 0 |
 | fig2_lower__shared | 14 | 14 | 14 | 13 | 0 | 0 |
 | s1_nominal__fixed | 430 | 430 | 333 | 373 | 59 | 0 |
-| s1_lower__fixed | 295 | 295 | 203 | 270 | 72 | 0 |
+| s1_lower__fixed | 330 | 330 | 229 | 304 | 81 | 0 |
 
 Residual adequacy is the existing heuristic for clustered signs or serial correlation. Passing it is not proof of the mechanism. Numerical failure, incomplete optimization and limited identifiability are reported separately from chemistry. Budget exhaustion alone is distinct from a lower-start warning: the existing fitter can accept a minimum replicated by independent starts even when its formal stopping criterion is unmet. Those counts remain separate in the snapshot JSON. Different chemistry/source aliases can share identical fitted dynamics, so a dynamics winner does not uniquely identify a physical mechanism.
 
@@ -378,7 +380,7 @@ The fresh Opus curve will be added after its choice is frozen and its prediction
 
 ## Provenance and interpretation limits
 
-Prediction checks: **0 problems** across 2004 saved files. The summary independently recomputes weighted scores and RMSE, checks the expected 750 °C observations, and rejects mixed input/evaluator identities within a scenario. Prediction audit failures are excluded from prediction ranking, not silently repaired. They do not replace the model selected by development AICc; its missing prediction remains visible. Where a hash-matched independent score file exists, it takes precedence: only `predicted` or `predicted_verified_fallback` outcomes enter prediction rankings. Numerical disagreement or scoring failure is not replaced with an older prediction. Files not independently rescored still use audited runner predictions. A successful independent prediction can rescue a runner prediction error without converting a failed fit into a successful fit.
+Prediction checks: **0 problems** across 2039 saved files. The summary independently recomputes weighted scores and RMSE, checks the expected 750 °C observations, and rejects mixed input/evaluator identities within a scenario. Prediction audit failures are excluded from prediction ranking, not silently repaired. They do not replace the model selected by development AICc; its missing prediction remains visible. Where a hash-matched independent score file exists, it takes precedence: only `predicted` or `predicted_verified_fallback` outcomes enter prediction rankings. Numerical disagreement or scoring failure is not replaced with an older prediction. Files not independently rescored still use audited runner predictions. A successful independent prediction can rescue a runner prediction error without converting a failed fit into a successful fit.
 
 Separate checks: recovery 0 problems; profiles 0; supply-rule evidence 0. These do not change any primary result or ranking.
 

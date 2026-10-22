@@ -893,6 +893,16 @@ def feasibility_report(snapshot):
     return lines
 
 
+STOPPED_LOWER_SWEEP = (
+    "**The fig2_lower fixed-input sweep over the 904-dynamics union was stopped on Oct 22 and will not be completed.** "
+    "Fitting the starting carbonate within 0.25–0.40 drives every shortlisted carbonate-dependent model to 0.39–0.40 "
+    "and recovers its nominal-lithium fit and 750 °C prediction, and separate per-temperature amounts overfit, so the "
+    "data reject the fixed lower amounts; rankings under that assumption cannot change the conclusion. The baseline "
+    "rows are complete. Other fig2_lower__fixed rows stay partial (marked provisional) and are not pending. The fresh "
+    "lower-lithium Opus run's own frozen held-out evaluation is final and recorded in docs/PROGRESS.md (Oct 22); its "
+    "rows here are partial refits of its candidates.")
+
+
 def render_report(snapshot, output, figure_dir, campaign):
     summary, groups = snapshot["summaries"], snapshot["membership_counts"]
     stage = ("Both primary Fig. 2 × 904 outcome grids have been recorded; failures remain part of the result."
@@ -901,6 +911,7 @@ def render_report(snapshot, output, figure_dir, campaign):
              f"**{stage}** Every count below comes from saved result files. "
              "A recorded outcome may be a failed fit; a missing outcome may be queued, running, or not scheduled. "
              "No full-campaign conclusion follows from a provisional winner.", "",
+             *([] if snapshot["primary_fixed_grid_all_outcomes_recorded"] else [STOPPED_LOWER_SWEEP, ""]),
              "The primary comparison changes only the starting Li2CO3 assumption in the original Fig. 2 inputs. "
              "Fits use 700 + 725 °C; predictions use 750 °C with frozen kinetics. The lower initial amounts are hypotheses "
              "(0.28, 0.30, 0.36 formula units per mole Ti), not new measured starting compositions. "
