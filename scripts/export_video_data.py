@@ -173,6 +173,52 @@ def shot3() -> dict:
             "adequacy": conclusion.get("adequacy"), "n_reference": shot4_reference_count()}
 
 
+def shot7() -> dict:
+    """What to measure next: the planner's ranked designs for Opus run 1 and, for the top design, the predicted rutile of
+    the leading models and of the rival the top design separates (no refitting; development parameters)."""
+    from nernstwork.data import parts_of
+    run = Run(ROOT, "chapman750-propose_space-opus1")
+    plans = sorted((run.dir / "analyses").glob("plan-*.json"))
+    plan = json.loads(plans[-1].read_text())
+    plan = plan.get("plan", plan)
+    designs = {d["design"]["name"]: d for d in plan["designs"]}
+    top = plan["ranking"][0]["design"]
+    top_d = designs[top]
+    pairs = top_d["pairs"]
+    sep = [p for p in pairs if p["separable"]]
+    frozen = json.loads((run.dir / "frozen.json").read_text())
+    P, dev_obs = run.protocol(), inv._dev_obs(run)
+    base = parts_of(dev_obs)[0].conditions
+    cond = type(base)(E_V=base.E_V, pH=base.pH, T_C=float(top_d["design"]["temperature_C"]))
+    t = np.round(np.linspace(0.0, float(top_d["design"]["t_end_min"]), 241), 4)
+    max_rhs = int(P.get("ode", {}).get("max_rhs_evals", DEFAULT_MAX_RHS_EVALS))
+    rule = frozen["top1"]
+    plausible = [c for c in frozen["agent_concluded_plausible"] if c != rule]
+    rival = next(c for c in sep[0]["pair"] if c not in frozen["agent_concluded_plausible"]) if sep else None
+    curves = {}
+    for cid in [rule, *plausible, *([rival] if rival else [])]:
+        sub = run.candidate(cid)["submission"]
+        v = validate_submission(sub, dev_obs, P)
+        body = run.cache.result(fit_key(v["dynamics_hash"], dev_obs.sha256, P, code_identity()["sha256"]))
+        fr = inv._translate(sub, v, dev_obs, P, body["result"])
+        comp = compile_mechanism(sub["mechanism"], dev_obs.conditions, P.get("bounds"))
+        Y = comp.simulate(np.array(fr["theta"]), t, top_d["design"]["c0"], conditions=cond, max_rhs=max_rhs)
+        curves[cid] = {ch: [round(float(x), 5) for x in Y[[comp.species.index(s) for s in v["observation_map"][ch]]].sum(0)]
+                       for ch in CHANNELS}
+    pair_of = lambda a, b: next(p for p in pairs if set(p["pair"]) == {a, b})
+    std, _ = load_dataset(REPO / "data" / "real" / "chapman2023_fig2_725C.json")
+    return {"model_name": run_label(run.id)[0], "run": run_label(run.id)[1], "standard_c0": std["conditions"]["c0"],
+            "ranking": [{"design": r["design"], "U": round(r["U"], 2), "separable_pairs": r["separable_pairs"],
+                         "spec": {k: designs[r["design"]]["design"].get(k) for k in ("c0", "temperature_C", "t_end_min")}}
+                        for r in plan["ranking"][:5]],
+            "top": top, "n_models": len(plan["models"]), "n_pairs": top_d["n_pairs"],
+            "rule": rule, "plausible": plausible, "rival": rival,
+            "rival_rationale": run.candidate(rival)["submission"].get("rationale", "") if rival else "",
+            "separated": sep[0] if sep else None,
+            "leading_pair": pair_of(rule, plausible[0]) if plausible else None,
+            "t": t.tolist(), "curves": curves}
+
+
 def shot4_reference_count() -> int:
     _, ev = final_rows(Run(ROOT, "chapman750-propose_space-opus1"))
     return ev["n_space_fitted"]
@@ -181,7 +227,7 @@ def shot4_reference_count() -> int:
 def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     data = {"generated_by": "scripts/export_video_data.py", "code_sha256": code_identity()["sha256"],
-            "shot1": shot1(), "shot3": shot3(), "shot4": shot4(), "shot5": shot5(), "shot5b": shot5b()}
+            "shot1": shot1(), "shot3": shot3(), "shot4": shot4(), "shot5": shot5(), "shot5b": shot5b(), "shot7": shot7()}
     OUT.write_text(json.dumps(data, indent=1))
     print(f"wrote {OUT.relative_to(REPO)}")
     for m in data["shot4"]["models"]:

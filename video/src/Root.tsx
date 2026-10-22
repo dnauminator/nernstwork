@@ -5,6 +5,8 @@ import { SHOT3_FRAMES, Shot3Loop } from "./Shot3Loop";
 import { SHOT4_FRAMES, Shot4Reveal } from "./Shot4Reveal";
 import { SHOT5_FRAMES, Shot5Ranks } from "./Shot5Ranks";
 import { SHOT5B_FRAMES, Shot5bRuns } from "./Shot5bRuns";
+import { SHOT7_FRAMES, Shot7Plan } from "./Shot7Plan";
+import { SHOT9_FRAMES, Shot9Close } from "./Shot9Close";
 import { FPS, H, W } from "./theme";
 
 /** Fades a shot in from and out to the page colour so shots cut together cleanly. */
@@ -25,12 +27,14 @@ const Shots4to5: React.FC = () => (
 	</Series>
 );
 
-/** Every built shot in story order (shots 2, 6, 7, 8 and the close are still to come). */
+/** Every built shot in story order (shots 2, 6 and 8 are still to come). */
 const Draft: React.FC = () => (
 	<Series>
 		<Series.Sequence durationInFrames={SHOT1_FRAMES}><Faded><Shot1Open /></Faded></Series.Sequence>
 		<Series.Sequence durationInFrames={SHOT3_FRAMES}><Faded><Shot3Loop /></Faded></Series.Sequence>
 		<Series.Sequence durationInFrames={SHOT4_FRAMES + SHOT5_FRAMES + SHOT5B_FRAMES}><Shots4to5 /></Series.Sequence>
+		<Series.Sequence durationInFrames={SHOT7_FRAMES}><Faded><Shot7Plan /></Faded></Series.Sequence>
+		<Series.Sequence durationInFrames={SHOT9_FRAMES}><Faded><Shot9Close /></Faded></Series.Sequence>
 	</Series>
 );
 
@@ -42,6 +46,9 @@ export const Root: React.FC = () => (
 		<Composition id="Shot5Ranks" component={Shot5Ranks} durationInFrames={SHOT5_FRAMES} fps={FPS} width={W} height={H} />
 		<Composition id="Shot5bRuns" component={Shot5bRuns} durationInFrames={SHOT5B_FRAMES} fps={FPS} width={W} height={H} />
 		<Composition id="Shots4to5" component={Shots4to5} durationInFrames={SHOT4_FRAMES + SHOT5_FRAMES + SHOT5B_FRAMES} fps={FPS} width={W} height={H} />
-		<Composition id="Draft" component={Draft} durationInFrames={SHOT1_FRAMES + SHOT3_FRAMES + SHOT4_FRAMES + SHOT5_FRAMES + SHOT5B_FRAMES} fps={FPS} width={W} height={H} />
+		<Composition id="Shot7Plan" component={Shot7Plan} durationInFrames={SHOT7_FRAMES} fps={FPS} width={W} height={H} />
+		<Composition id="Shot9Close" component={Shot9Close} durationInFrames={SHOT9_FRAMES} fps={FPS} width={W} height={H} />
+		<Composition id="Draft" component={Draft}
+			durationInFrames={SHOT1_FRAMES + SHOT3_FRAMES + SHOT4_FRAMES + SHOT5_FRAMES + SHOT5B_FRAMES + SHOT7_FRAMES + SHOT9_FRAMES} fps={FPS} width={W} height={H} />
 	</>
 );
