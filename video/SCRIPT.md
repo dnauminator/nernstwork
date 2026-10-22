@@ -2,7 +2,7 @@
 
 About 2:29 at a relaxed pace (roughly 155 words a minute). Daniel narrates. Every shot below is built and plays in
 order in the `Draft` composition (`npx remotion render src/index.ts Draft out/draft.mp4`); shots can be retimed to the
-recording. Shots 2, 6 and 8 are optional inserts listed at the end.
+recording. The nitrate test bed and the Wang rutile/anatase link are left to the submission description.
 
 The question: can an AI infer how a material forms from time-resolved data, and prove it on a temperature it never
 saw? The answer the video gives: it finds strong candidate pathways, the selection among them is the weak point, and it
@@ -41,15 +41,7 @@ experiments that saves, so the narration claims no number.
 - One chemistry, two runs per model. The models are overconfident about their own prediction error.
 - The lithium inconsistency was checked: fitting the starting carbonate returns it to the nominal 0.4 per Ti and
   recovers the original results; the lower plotted amounts were not adopted.
-
-## Optional inserts if there is time
-
-| # | After | On screen | Voiceover |
-|---|---|---|---|
-| 2 | 1 | The network lights up step by step, then multiplies into a grid of small networks | Which phase turns into which? At what rate? Are there steps we can't see? Even a handful of plausible steps combine into hundreds of candidate pathways, and the curves alone don't say which one is right. |
-| 6 | 5b | One network diagram with each run's activation energies converging on each step | The runs agree on the chemistry: the same network, with similar activation energies from both models. They also flagged that the published phase fractions hold more lithium than the recipe supplied. |
-| 8 | 7 | Nitrate test bed; the Wang rutile time course and fit; anatase (700 °C) and rutile (900 °C) side by side | The same engine runs on electrochemical nitrate reduction, our test bed. Valency's literature search found a link: Wang and colleagues made titanium dioxide at 700 °C, anatase, and at 900 °C, rutile, for nitrate-to-ammonia catalysts, and rutile performed best. That's the same change our models track. Closing the loop needs time courses for both. |
-
-Facts for the inserts: Wang et al., J. Hazard. Mater. 488 (2025) 137174, section 2.1.2 (700 °C anatase, 900 °C rutile,
-3 h) and Fig. 3e,f (at −0.5 V, conversion about 98% vs 85%, NH₃ FE about 79% vs 71%, read by eye); the rutile
-time-course fit is in `docs/examples/wang2025_figS18/README.md`; the article has no anatase time course.
+- Extraction: on the cleaner SI Fig. S1 extraction (Daniel's), the agent's other pick still ranks #1 of the reference
+  models at 750 °C (RMSE 0.021) and the rule's pick #4 (0.024); the baseline's pick changes to a different model and
+  ranks #5 instead of #11. Sources: `docs/CHAPMAN_LI_SENSITIVITY_RESULTS.md` (s1_nominal rows) and the s1_nominal
+  score records in `data/derived/chapman_li_sensitivity/scores/` (local).

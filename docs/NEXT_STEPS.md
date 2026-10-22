@@ -19,7 +19,7 @@ Last updated Oct 22 during the lithium sensitivity campaign. Team: Daniel and Ja
 1. **Selection for extrapolation.** Development AICc picks poorly transferring members inside large spaces (Chapman
    top-1 ranks 4/36/11/36). Try selection on held-out time (fit early, predict late) or a complexity penalty tuned on the
    nitrate test bed, and report calibration: tight models are overconfident at 750 C.
-2. **Chapman lithium sensitivity: only S1 lower is left.** It runs on spark-f7e2 and syncs back by itself (`nernstwork-li-s1-sync-oct22`). When it finishes, rerun `scripts/summarize_chapman_li_sensitivity.py` and push the refreshed [results](CHAPMAN_LI_SENSITIVITY_RESULTS.md). The fig2_lower fixed sweep is stopped for good (PROGRESS, Oct 22).
+2. **Chapman lithium sensitivity: closed for the demo.** The S1 lower-lithium job on spark-f7e2 hit its own 8 GB memory cap at 12:22 on Oct 22 and stopped at 336/436; it is left stopped, like the fig2_lower fixed sweep (PROGRESS, Oct 22), because the data reject the lower amounts. The headline holds on the S1 extraction (see `video/SCRIPT.md` caveats). Rerun `scripts/summarize_chapman_li_sensitivity.py` only if either is resumed.
 3. **Plausibility rules for synthesis** with Daniel. Element balance is in. Still to add: at most two reactants per
    step, non-negative driving force (McDermott and Bartel are in `literature/04_synthesis/`), and a cap on unassigned
    material.

@@ -27,7 +27,7 @@ const Shots4to5: React.FC = () => (
 	</Series>
 );
 
-/** Every built shot in story order (shots 2, 6 and 8 are still to come). */
+/** The full video: every shot in story order, timed to SCRIPT.md. */
 const Draft: React.FC = () => (
 	<Series>
 		<Series.Sequence durationInFrames={SHOT1_FRAMES}><Faded><Shot1Open /></Faded></Series.Sequence>
