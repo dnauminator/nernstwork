@@ -2,7 +2,7 @@
 
 Only what is still to do. Background, findings and the dated record are in `docs/PROGRESS.md`; design and data facts in `docs/SPEC.md`; the investigator's own notes in `docs/INVESTIGATOR.md`. When a task is done, delete it here and add one dated line to PROGRESS.
 
-Last updated Oct 21 (hackathon day 1). Team: Daniel and Jarrod. Split: Jarrod the model side, Daniel literature and data.
+Last updated Oct 21 evening (hackathon day 1). Team: Daniel and Jarrod. Split: Jarrod the model side, Daniel literature and data.
 
 ## Deadlines and gates
 
@@ -11,27 +11,37 @@ Last updated Oct 21 (hackathon day 1). Team: Daniel and Jarrod. Split: Jarrod th
 
 ## Decisions needed (Daniel and Jarrod, today)
 
-1. **Which domain does the demo run on?** Current plan: synthesis first, nitrate reduction as a labelled illustration (SPEC section 1b). The evaluator today only runs the nitrate worlds.
+1. **Which domain does the demo run on?** Current plan: synthesis first, nitrate reduction as a labelled illustration (SPEC section 1b). The evaluator now runs both (Chapman results in `docs/SYNTHESIS.md`).
 2. **Which dataset is the headline?** Suggestion (mine, not agreed): fit on Chapman (time-resolved, works in a Ti-equivalent basis, so closest to what the evaluator already does), and show LTOPO as the branch-point example (target only at 700 C, polymorph split in 10 of 14 sets; SPEC section 7e). YBCO as the largest but time-less table.
-3. **Who owns the schema extension?** One person, one branch, the other rebases (it touches `schema/mechanism.schema.json` and `src/nernstwork/model.py`).
 
 ## Jarrod (model side)
 
-1. **Extend the schema and evaluator from mM-N to a conserved element (Ti for Chapman), then phases and elements** (SPEC section 7e). Done when the evaluator fits Chapman Figs. 2-3 (`data/digitized_inputs/chapman2023_fig2/`) with the enumeration baseline and reports identifiability.
-2. **Plausibility rules for synthesis** with Daniel: element balance, at most two reactants per step, non-negative driving force (McDermott and Bartel are in `literature/04_synthesis/`), cap on unassigned material. Done when they reject a candidate in `docs/INVESTIGATOR.md` style output.
-3. **Proposer and reviewer on a synthesis case** once item 1 works. Optional after that: Valency Bond citations on each candidate.
-4. **Marimo app skeleton and a Pyodide check** (does scipy and the fit run in the WASM export at interactive speed). Do the check early.
-5. Small: W5's declared bounds for the second-order step disagree with the protocol's (`docs/INVESTIGATOR.md` question 6); pick narrowing the world or widening the protocol.
-6. **Valency access:** ask for it. If granted, run the seeds and queries of `scripts/openalex_citation_pass.py` there and compare lists (PROGRESS, OpenAlex entry).
+1. **Selection for extrapolation.** Development AICc picks poorly transferring members inside large spaces (Chapman
+   top-1 ranks 4/36/11/36). Try selection on held-out time (fit early, predict late) or a complexity penalty tuned on the
+   nitrate test bed, and report calibration: tight models are overconfident at 750 C.
+2. **Chapman v2 datasets from 0.35 min**, then rerun the baseline and one model run. Done when the held-out ranks are
+   reported for both versions.
+3. **Plausibility rules for synthesis** with Daniel. Element balance is in. Still to add: at most two reactants per
+   step, non-negative driving force (McDermott and Bartel are in `literature/04_synthesis/`), and a cap on unassigned
+   material.
+4. **Marimo app skeleton and a Pyodide check** (does scipy and the fit run in the WASM export at interactive speed). Do
+   the check early.
+5. **Second time-resolved case.** Kamm et al. JACS 2022 (same group: completion at three temperatures x two packings)
+   needs a diffusion-limited (t^1/2) rate law the engine does not have; Bianchini 2020 is the alternative.
+6. Small: W5's declared bounds for the second-order step disagree with the protocol's (`docs/INVESTIGATOR.md` question
+   6); pick narrowing the world or widening the protocol.
+7. **Valency access:** ask for it. If granted, run the seeds and queries of `scripts/openalex_citation_pass.py` there and
+   compare lists (PROGRESS, OpenAlex entry).
 
 ## Daniel (literature and data)
 
-1. **Spot-check the Chapman extraction** (10 min): 5-10 points per panel against the printed figure, compare `reconstruction.png` with Fig. 2, then set `verified_against_figure` to true in `data/digitized_inputs/chapman2023_fig2/meta.json`. Paper and SI are in `literature/04_synthesis/`.
+1. **Chapman extraction:** an assistant checked it against the printed figure (`VERIFICATION.md` next to `meta.json`).
+   Apply the five `meta.json` corrections listed there, give it a quick look yourself, then set `verified_against_figure`
+   with the scope "t >= 0.35 min".
 2. **Check the curated hackathon datasets** (the gate above) and confirm sponsor access and the deadline.
 3. **Read, about 1.5 h:** the J. Phys. Chem. C 2026 SrCrO3 Bayesian paper (doi 10.1021/acs.jpcc.6c02717) and the Chem. Mater. 2026 diffusion-limited selectivity paper (10.1021/acs.chemmater.6c01610), because they set how far our novelty claim can go; then ARROWS3's main text for what it already covers. Write the result in the one-pager's "relation to prior work", not here.
-4. **Confirm Jarrod has the synthesis zip** and knows the three ARROWS3 files are renamed (`ExpYBCO.json` and so on) and must not be committed (no licence found).
-5. **Data converters** (with Claude): ARROWS3 tables to the dataset schema once item 1 of Jarrod's list lands. Rules: drop unverified YBCO entries, normalise phase names (`.cif` and numeric suffixes), keep LTOPO polymorph names distinct, carry a measurement-noise flag.
-6. Low priority: finish the SI-table match (names normalised); fetch the extra papers listed in PROGRESS section 2c.
+4. **Data converters** (with Claude): ARROWS3 tables to the dataset schema (the element-basis schema is in; see `scripts/chapman_to_dataset.py` for a converter). Rules: drop unverified YBCO entries, normalise phase names (`.cif` and numeric suffixes), keep LTOPO polymorph names distinct, carry a measurement-noise flag.
+5. Low priority: finish the SI-table match (names normalised); fetch the extra papers listed in PROGRESS section 2c.
 
 ## Shared (day 2)
 

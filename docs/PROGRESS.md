@@ -7,6 +7,28 @@ Rules: findings and results go here. When a task in NEXT_STEPS is finished, dele
 ## Change log
 
 **Oct 21**
+- (Jarrod) Model side built and run on `jarrod/investigator-pipeline`, rebased on main (`docs/SYNTHESIS.md`):
+  - Element-balance mechanisms, Arrhenius and Avrami rate laws, and joint fits of several temperatures.
+  - A `propose_space` arm: the model proposes parts, code enumerates and fits every combination, and the model
+    interprets the result.
+  - An experiment planner (Buzzi-Ferraris criterion).
+  - A held-out "predict" mode: fit 700 + 725 C, predict 750 C without refitting.
+- (Jarrod) Chapman results, ranked among the 153-member reference space (`docs/examples/chapman750/`):
+  - Every model-proposed space (Opus 5.5 and Gemini 4 Argon, two runs each) contains a member ranking 1st-4th on 750 C,
+    and Opus run 1's beats every reference member.
+  - The rule-selected top-1 ranks 4/36/11/36 against the baseline's 11. In every run, the agent's own plausible set held
+    a member that transfers better.
+  - All runs agree on the network: Li2CO3-limited first-order lithiation (Ea 210-224 kJ/mol), Avrami anatase -> rutile
+    (n 2.7-3.0), Avrami Li2TiO3 + anatase -> spinel (n 2.4-2.5) and a rutile -> spinel route whose Ea is not
+    identifiable.
+  - Recommended next runs: half the Li2CO3 at 725 C to 30 min, or a run at 775-800 C.
+- (Jarrod) Chapman extraction checked against the printed Fig. 2 (`data/digitized_inputs/chapman2023_fig2/VERIFICATION.md`):
+  - Within 1 wt % from 0.35 min (42 spot checks); unreliable before that.
+  - The published fractions imply 0.95-1.02 Li per Ti against 0.8 in the mix. Every model run found this and proposed
+    Li-deficient Li2TiO3 (x about 0.4).
+  - Five `meta.json` corrections are listed.
+- (Jarrod) Nitrate test bed, Gemini 4 Argon against Opus 5.5 on identical evidence: Gemini's selections rank 6th-16th of
+  731 on the held-out run, against 54th-121st for Opus (`docs/INVESTIGATOR.md` section 8).
 - Hackathon kickoff. Aryan is not joining; the team is Daniel and Jarrod. Agreed split: Jarrod the model side (evaluator, agent, schema extension), Daniel literature and data.
 - All three ARROWS3 tables (YBCO, NTMO, LTOPO) inspected; LTOPO found to be a polymorph branch point at 700 C (findings below). Precursor Genome ledger opened and loads. A-Lab SI inspected.
 - Synthesis literature folder `04_synthesis` assembled (reference-list papers, ARROWS data and black-box scripts, `MP_Energetics.json`) and zipped for Jarrod.
@@ -142,6 +164,11 @@ To do: read the SrCrO3 paper and the Chem. Mater. 2026 paper in full (about 1 h)
 
 ## Open data issues (as of Oct 21)
 
+- **Chapman, first 0.3 min:** the extraction is wrong there, by up to 22 wt % (label overlap). The Oct 21 datasets start at
+  0.3 min and so carry part of that error, the same for every arm. The next version starts at 0.35 min.
+- **Chapman lithium balance:** the published phase fractions use more Li than the 5:2 mix supplies, at 0.95-1.02 against
+  0.8 Li per Ti. This is not an extraction error, because the printed labels and SI Fig. S1 agree. The authors' Li2-xTiO3
+  needs x of about 0.4-0.6, and the paper gives no value.
 - **Liao Fig. 50a/50b catalyst assignment (Jarrod's Q2): resolved Oct 21.** The SI caption (a = W-MoS2, b = MoS2) is right and the files are labelled correctly. Main-text Fig. 5e plots NO3--N against time out to 48 h for all three catalysts; read off the plot, W-MoS2 (orange) ends near 150 ug/mL N (about 11 mM) and MoS2 (pink) near 65 ug/mL (about 4.6 mM), matching our 50a final 11.47 mM and 50b final 4.55 mM. The main-text sentence "residual NO3- 4.64 mM and 11.78 mM" for "W-MoS2 and MoS2" lists them in the reverse order. Values read by eye from the figure, so treat the matching as clear but approximate.
 - The printed Polatides k3 undershoots the digitized N2 curve (simulated N2 is 23 mM-N at 120 min against 34), so W5 is a good world but not an exact reproduction of Fig. 3. Do not tune a method against it.
 - W5's potential axis maps the paper's Ag/AgCl scale to RHE at an assumed pH 7; the alphas are unaffected.
