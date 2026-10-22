@@ -9,7 +9,7 @@ Daniel Naumov and Jarrod Barnes for the Open Scientific Intelligence Hackathon, 
 **Result (solid-state synthesis, [Hu et al., JACS 2023](https://doi.org/10.1021/jacs.3c10916)):** fitted at 700 and
 725 C and frozen, every AI-proposed search space contained a model ranking in the top 4 of 153 code-built reference
 models at 750 C, but picking it by best fit chose models ranking 4th to 36th. Details and caveats:
-`docs/SYNTHESIS.md`; the hackathon write-up: `docs/submission/WRITEUP.md`; the video and its sourced script: `video/`.
+`docs/SYNTHESIS.md`; the hackathon write-up: `docs/submission/WRITEUP.md`; the video ([YouTube](https://youtu.be/4ZEwg3ITO3o), 3:42) and its sourced script: `video/`.
 
 **Reproduce the 750 C test** (Python 3.12; the LLM arm also needs Node and model credentials, see `docs/INVESTIGATOR.md`):
 

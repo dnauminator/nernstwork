@@ -37,4 +37,4 @@ One chemistry, two runs per model, and a retrospective test: the data are publis
 
 A language-model agent can narrow a large space of reaction pathways to a short list that contains good predictors, and suggest what to measure next. Choosing among them still takes data. The practical use is targeted experiments, chosen because they tell rival explanations apart.
 
-Video: [YouTube link]. Code, runs and results: [github.com/dnauminator/nernstwork](https://github.com/dnauminator/nernstwork) (results in `docs/SYNTHESIS.md`; video script and sources in `video/SCRIPT.md`). Daniel Naumov and Jarrod Barnes, Open Scientific Intelligence Hackathon, October 2026.
+Video: https://youtu.be/4ZEwg3ITO3o. Code, runs and results: [github.com/dnauminator/nernstwork](https://github.com/dnauminator/nernstwork) (results in `docs/SYNTHESIS.md`; video script and sources in `video/SCRIPT.md`). Daniel Naumov and Jarrod Barnes, Open Scientific Intelligence Hackathon, October 2026.
