@@ -1,0 +1,882 @@
+{
+ "rows": [
+  {
+   "run_id": "chapman750-enumeration",
+   "arm": "enumeration",
+   "models": null,
+   "candidates": 154,
+   "sources": {
+    "enumerator": 154
+   },
+   "n_spaces": 0,
+   "n_fitted": 153,
+   "best_dev": "C32c8c435ed",
+   "best_dev_aicc": -851.4799364615404,
+   "frozen_top1": "C32c8c435ed",
+   "heldout_top1": {
+    "candidate_id": "C32c8c435ed",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": false,
+    "heldout_score": 1071.713595081404,
+    "delta_to_best_overall": 467.8922273981002,
+    "rank_among_space": 11,
+    "n_space": 153,
+    "rank_by_rmse": 7,
+    "predictive_nll": 281.04274848805994,
+    "rank_by_predictive_nll": 124,
+    "rmse": {
+     "anatase": 0.03093024607048401,
+     "rutile": 0.04886085788193229,
+     "Li2TiO3": 0.022133503478856432,
+     "Li4Ti5O12": 0.014005667897892225
+    },
+    "rmse_all": 0.031741590478635735,
+    "development_aicc": -851.4799364615404
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C32c8c435ed",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": false,
+     "heldout_score": 1071.713595081404,
+     "delta_to_best_overall": 467.8922273981002,
+     "rank_among_space": 11,
+     "n_space": 153,
+     "rank_by_rmse": 7,
+     "predictive_nll": 281.04274848805994,
+     "rank_by_predictive_nll": 124,
+     "rmse": {
+      "anatase": 0.03093024607048401,
+      "rutile": 0.04886085788193229,
+      "Li2TiO3": 0.022133503478856432,
+      "Li4Ti5O12": 0.014005667897892225
+     },
+     "rmse_all": 0.031741590478635735,
+     "development_aicc": -851.4799364615404
+    }
+   ],
+   "own_space": {
+    "n_scored": 153,
+    "n_valid": 153,
+    "best_predicting": {
+     "candidate_id": "Caefe0c1626",
+     "heldout_score": 603.8213676833038,
+     "rank_among_space": 1,
+     "rmse_all": 0.03056432489383971,
+     "rank_by_predictive_nll": 56,
+     "development_aicc": -770.2568618573135
+    },
+    "best_development_aicc": {
+     "candidate_id": "C32c8c435ed",
+     "heldout_score": 1071.713595081404,
+     "rank_among_space": 11,
+     "rmse_all": 0.031741590478635735,
+     "rank_by_predictive_nll": 124,
+     "development_aicc": -851.4799364615404
+    }
+   },
+   "llm": null,
+   "numerics": {
+    "fits_committed_by_this_run": 154,
+    "fits_reused": 0,
+    "fit_cpu_s": 15841.687067536002,
+    "profile_wall_s": 0.0,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   }
+  },
+  {
+   "run_id": "chapman750-propose_space-opus1",
+   "arm": "propose_space",
+   "models": [
+    "anthropic/claude-opus-5-5"
+   ],
+   "candidates": 208,
+   "sources": {
+    "agent_space": 204,
+    "agent": 4
+   },
+   "n_spaces": 2,
+   "n_fitted": 204,
+   "best_dev": "C914ebc19e9",
+   "best_dev_aicc": -1195.9874393570294,
+   "frozen_top1": "C914ebc19e9",
+   "heldout_top1": {
+    "candidate_id": "C914ebc19e9",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": true,
+    "heldout_score": 744.0941530445691,
+    "delta_to_best_overall": 272.53356794311804,
+    "rank_among_space": 4,
+    "n_space": 153,
+    "rank_by_rmse": 1,
+    "predictive_nll": 704.9801705151398,
+    "rank_by_predictive_nll": 150,
+    "rmse": {
+     "anatase": 0.02023703455344367,
+     "rutile": 0.04003230652275545,
+     "Li2TiO3": 0.017774426999074576,
+     "Li4Ti5O12": 0.011716033229804508
+    },
+    "rmse_all": 0.02482598851423864,
+    "development_aicc": -1195.9874393570294
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C74b7349674",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 565.6066818355686,
+     "delta_to_best_overall": 94.0460967341175,
+     "rank_among_space": 1,
+     "n_space": 153,
+     "rank_by_rmse": 1,
+     "predictive_nll": 451.91862003838065,
+     "rank_by_predictive_nll": 145,
+     "rmse": {
+      "anatase": 0.02025552073588538,
+      "rutile": 0.034430281746609295,
+      "Li2TiO3": 0.016103916829186833,
+      "Li4Ti5O12": 0.010208610191642051
+     },
+     "rmse_all": 0.022131890343568963,
+     "development_aicc": -1193.5413791391322
+    },
+    {
+     "candidate_id": "C914ebc19e9",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "heldout_score": 744.0941530445691,
+     "delta_to_best_overall": 272.53356794311804,
+     "rank_among_space": 4,
+     "n_space": 153,
+     "rank_by_rmse": 1,
+     "predictive_nll": 704.9801705151398,
+     "rank_by_predictive_nll": 150,
+     "rmse": {
+      "anatase": 0.02023703455344367,
+      "rutile": 0.04003230652275545,
+      "Li2TiO3": 0.017774426999074576,
+      "Li4Ti5O12": 0.011716033229804508
+     },
+     "rmse_all": 0.02482598851423864,
+     "development_aicc": -1195.9874393570294
+    }
+   ],
+   "own_space": {
+    "n_scored": 204,
+    "n_valid": 204,
+    "best_predicting": {
+     "candidate_id": "C46a055142c",
+     "heldout_score": 471.56058510145107,
+     "rank_among_space": 1,
+     "rmse_all": 0.02326270087045469,
+     "rank_by_predictive_nll": 102,
+     "development_aicc": -1119.239809998919
+    },
+    "best_development_aicc": {
+     "candidate_id": "C914ebc19e9",
+     "heldout_score": 744.0941530445691,
+     "rank_among_space": 4,
+     "rmse_all": 0.02482598851423864,
+     "rank_by_predictive_nll": 150,
+     "development_aicc": -1195.9874393570294
+    }
+   },
+   "llm": {
+    "models": [
+     "anthropic/claude-opus-5-5"
+    ],
+    "sessions": {
+     "investigator": 1
+    },
+    "input_tokens": 94,
+    "output_tokens": 48845,
+    "cache_read_tokens": 3334850,
+    "cache_write_tokens": 450277,
+    "cost_usd": 3.8956310000000003,
+    "wall_s": 2271.491,
+    "tool_calls": 38,
+    "cost_note": "list prices from the Pi model table"
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 188,
+    "fits_reused": 20,
+    "fit_cpu_s": 20401.599743359995,
+    "profile_wall_s": 774.0211098909999,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   }
+  },
+  {
+   "run_id": "chapman750-propose_space-opus2",
+   "arm": "propose_space",
+   "models": [
+    "anthropic/claude-opus-5-5"
+   ],
+   "candidates": 256,
+   "sources": {
+    "agent_space": 252,
+    "agent": 4
+   },
+   "n_spaces": 2,
+   "n_fitted": 248,
+   "best_dev": "C3a9765bced",
+   "best_dev_aicc": -1072.7869406484492,
+   "frozen_top1": "C3a9765bced",
+   "heldout_top1": {
+    "candidate_id": "C3a9765bced",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": true,
+    "heldout_score": 1567.2686057916046,
+    "delta_to_best_overall": 963.4472381083008,
+    "rank_among_space": 36,
+    "n_space": 153,
+    "rank_by_rmse": 16,
+    "predictive_nll": 628.9217093690033,
+    "rank_by_predictive_nll": 149,
+    "rmse": {
+     "anatase": 0.013783783935534685,
+     "rutile": 0.04396672016414438,
+     "Li2TiO3": 0.05228630410890628,
+     "Li4Ti5O12": 0.017127912661633788
+    },
+    "rmse_all": 0.0358827541135267,
+    "development_aicc": -1072.7869406484492
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C0b314011ab",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1572.4850554525103,
+     "delta_to_best_overall": 968.6636877692065,
+     "rank_among_space": 36,
+     "n_space": 153,
+     "rank_by_rmse": 16,
+     "predictive_nll": 629.5042739129138,
+     "rank_by_predictive_nll": 149,
+     "rmse": {
+      "anatase": 0.013116956805487016,
+      "rutile": 0.04450208686024901,
+      "Li2TiO3": 0.05236588858416918,
+      "Li4Ti5O12": 0.017150790063927373
+     },
+     "rmse_all": 0.036016753663332464,
+     "development_aicc": -1071.0635303244953
+    },
+    {
+     "candidate_id": "C65b4c315c5",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 660.9863943956816,
+     "delta_to_best_overall": 57.16502671237777,
+     "rank_among_space": 4,
+     "n_space": 153,
+     "rank_by_rmse": 1,
+     "predictive_nll": 112.17799895126754,
+     "rank_by_predictive_nll": 98,
+     "rmse": {
+      "anatase": 0.012776855689039164,
+      "rutile": 0.03839712034768901,
+      "Li2TiO3": 0.03336985963409259,
+      "Li4Ti5O12": 0.010940743460055753
+     },
+     "rmse_all": 0.026790083481352017,
+     "development_aicc": -1069.594049657542
+    },
+    {
+     "candidate_id": "C3a9765bced",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1567.2686057916046,
+     "delta_to_best_overall": 963.4472381083008,
+     "rank_among_space": 36,
+     "n_space": 153,
+     "rank_by_rmse": 16,
+     "predictive_nll": 628.9217093690033,
+     "rank_by_predictive_nll": 149,
+     "rmse": {
+      "anatase": 0.013783783935534685,
+      "rutile": 0.04396672016414438,
+      "Li2TiO3": 0.05228630410890628,
+      "Li4Ti5O12": 0.017127912661633788
+     },
+     "rmse_all": 0.0358827541135267,
+     "development_aicc": -1072.7869406484492
+    },
+    {
+     "candidate_id": "Cdf1ae59ce5",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "heldout_score": 653.6132923201593,
+     "delta_to_best_overall": 49.79192463685547,
+     "rank_among_space": 4,
+     "n_space": 153,
+     "rank_by_rmse": 1,
+     "predictive_nll": 109.54311523844926,
+     "rank_by_predictive_nll": 97,
+     "rmse": {
+      "anatase": 0.013417336782513107,
+      "rutile": 0.03773911145805645,
+      "Li2TiO3": 0.03319105066262545,
+      "Li4Ti5O12": 0.010886424476024453
+     },
+     "rmse_all": 0.026572662371035293,
+     "development_aicc": -1071.3568852497256
+    }
+   ],
+   "own_space": {
+    "n_scored": 247,
+    "n_valid": 248,
+    "best_predicting": {
+     "candidate_id": "C10673dc735",
+     "heldout_score": 623.8854989376443,
+     "rank_among_space": 4,
+     "rmse_all": 0.04925149937276231,
+     "rank_by_predictive_nll": 73,
+     "development_aicc": -944.0472765308252
+    },
+    "best_development_aicc": {
+     "candidate_id": "C3a9765bced",
+     "heldout_score": 1567.2686057916046,
+     "rank_among_space": 36,
+     "rmse_all": 0.0358827541135267,
+     "rank_by_predictive_nll": 149,
+     "development_aicc": -1072.7869406484492
+    }
+   },
+   "llm": {
+    "models": [
+     "anthropic/claude-opus-5-5"
+    ],
+    "sessions": {
+     "investigator": 1
+    },
+    "input_tokens": 92,
+    "output_tokens": 38573,
+    "cache_read_tokens": 3007502,
+    "cache_write_tokens": 278910,
+    "cost_usd": 2.7678784,
+    "wall_s": 1581.861,
+    "tool_calls": 40,
+    "cost_note": "list prices from the Pi model table"
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 95,
+    "fits_reused": 161,
+    "fit_cpu_s": 29549.42942091199,
+    "profile_wall_s": 104.40016527199987,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   }
+  },
+  {
+   "run_id": "chapman750-propose_space-gemini1",
+   "arm": "propose_space",
+   "models": [
+    "openrouter/google/gemini-4-argon"
+   ],
+   "candidates": 178,
+   "sources": {
+    "agent_space": 174,
+    "agent": 4
+   },
+   "n_spaces": 2,
+   "n_fitted": 175,
+   "best_dev": "C7cafaafde1",
+   "best_dev_aicc": -1137.0975213867434,
+   "frozen_top1": "C7cafaafde1",
+   "heldout_top1": {
+    "candidate_id": "C7cafaafde1",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": true,
+    "heldout_score": 1040.4043002719843,
+    "delta_to_best_overall": 436.5829325886805,
+    "rank_among_space": 11,
+    "n_space": 153,
+    "rank_by_rmse": 1,
+    "predictive_nll": 472.4671019859461,
+    "rank_by_predictive_nll": 147,
+    "rmse": {
+     "anatase": 0.020701080234417073,
+     "rutile": 0.036729633033746406,
+     "Li2TiO3": 0.03290203297495646,
+     "Li4Ti5O12": 0.01398998097259052
+    },
+    "rmse_all": 0.027639934909311995,
+    "development_aicc": -1137.0975213867434
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C116eeb966f",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1026.261585280162,
+     "delta_to_best_overall": 422.44021759685825,
+     "rank_among_space": 11,
+     "n_space": 153,
+     "rank_by_rmse": 2,
+     "predictive_nll": 303.0851438853083,
+     "rank_by_predictive_nll": 130,
+     "rmse": {
+      "anatase": 0.015767621248114854,
+      "rutile": 0.05356977453775662,
+      "Li2TiO3": 0.016792973032122262,
+      "Li4Ti5O12": 0.013663221949462307
+     },
+     "rmse_all": 0.02994589371327868,
+     "development_aicc": -1056.5551421067469
+    },
+    {
+     "candidate_id": "C2e8725331b",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1004.7249836550185,
+     "delta_to_best_overall": 400.90361597171466,
+     "rank_among_space": 10,
+     "n_space": 153,
+     "rank_by_rmse": 2,
+     "predictive_nll": 256.6473941240087,
+     "rank_by_predictive_nll": 120,
+     "rmse": {
+      "anatase": 0.017036590407759435,
+      "rutile": 0.052356695966884526,
+      "Li2TiO3": 0.01647938244767742,
+      "Li4Ti5O12": 0.01353003521299041
+     },
+     "rmse_all": 0.029521606172480362,
+     "development_aicc": -1024.4665989040761
+    },
+    {
+     "candidate_id": "Ccb7da202d0",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1420.693406042886,
+     "delta_to_best_overall": 816.8720383595821,
+     "rank_among_space": 20,
+     "n_space": 153,
+     "rank_by_rmse": 9,
+     "predictive_nll": 484.5003038377694,
+     "rank_by_predictive_nll": 147,
+     "rmse": {
+      "anatase": 0.012896380921390182,
+      "rutile": 0.04046202727935691,
+      "Li2TiO3": 0.04953038715530268,
+      "Li4Ti5O12": 0.01633105591022167
+     },
+     "rmse_all": 0.033628317424909834,
+     "development_aicc": -1030.8862444612316
+    },
+    {
+     "candidate_id": "C7cafaafde1",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1040.4043002719843,
+     "delta_to_best_overall": 436.5829325886805,
+     "rank_among_space": 11,
+     "n_space": 153,
+     "rank_by_rmse": 1,
+     "predictive_nll": 472.4671019859461,
+     "rank_by_predictive_nll": 147,
+     "rmse": {
+      "anatase": 0.020701080234417073,
+      "rutile": 0.036729633033746406,
+      "Li2TiO3": 0.03290203297495646,
+      "Li4Ti5O12": 0.01398998097259052
+     },
+     "rmse_all": 0.027639934909311995,
+     "development_aicc": -1137.0975213867434
+    },
+    {
+     "candidate_id": "C850e9c3bf8",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1429.9089523458345,
+     "delta_to_best_overall": 826.0875846625306,
+     "rank_among_space": 20,
+     "n_space": 153,
+     "rank_by_rmse": 9,
+     "predictive_nll": 487.21821917415605,
+     "rank_by_predictive_nll": 147,
+     "rmse": {
+      "anatase": 0.012534130429304517,
+      "rutile": 0.0407705410358548,
+      "Li2TiO3": 0.04957633428468089,
+      "Li4Ti5O12": 0.01638316928631611
+     },
+     "rmse_all": 0.0337103937938496,
+     "development_aicc": -1029.0423169929322
+    }
+   ],
+   "own_space": {
+    "n_scored": 175,
+    "n_valid": 175,
+    "best_predicting": {
+     "candidate_id": "C8844d22842",
+     "heldout_score": 603.8213676833066,
+     "rank_among_space": 1,
+     "rmse_all": 0.030564324893839777,
+     "rank_by_predictive_nll": 56,
+     "development_aicc": -770.2568618573135
+    },
+    "best_development_aicc": {
+     "candidate_id": "C7cafaafde1",
+     "heldout_score": 1040.4043002719843,
+     "rank_among_space": 11,
+     "rmse_all": 0.027639934909311995,
+     "rank_by_predictive_nll": 147,
+     "development_aicc": -1137.0975213867434
+    }
+   },
+   "llm": {
+    "models": [
+     "openrouter/google/gemini-4-argon"
+    ],
+    "sessions": {
+     "investigator": 1
+    },
+    "input_tokens": 2064531,
+    "output_tokens": 123532,
+    "cache_read_tokens": 11307926,
+    "cache_write_tokens": 0,
+    "cost_usd": 6.4951745999999995,
+    "wall_s": 4139.3550000000005,
+    "tool_calls": 96,
+    "cost_note": "list prices from the Pi model table"
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 2,
+    "fits_reused": 176,
+    "fit_cpu_s": 1443.1663631840001,
+    "profile_wall_s": 49.019925693000005,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   }
+  },
+  {
+   "run_id": "chapman750-propose_space-gemini2",
+   "arm": "propose_space",
+   "models": [
+    "openrouter/google/gemini-4-argon"
+   ],
+   "candidates": 220,
+   "sources": {
+    "agent_space": 216,
+    "agent": 4
+   },
+   "n_spaces": 2,
+   "n_fitted": 217,
+   "best_dev": "Cf53e5b4f3d",
+   "best_dev_aicc": -1120.9623953118123,
+   "frozen_top1": "Cf53e5b4f3d",
+   "heldout_top1": {
+    "candidate_id": "Cf53e5b4f3d",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": true,
+    "heldout_score": 1586.953369824043,
+    "delta_to_best_overall": 983.1320021407391,
+    "rank_among_space": 36,
+    "n_space": 153,
+    "rank_by_rmse": 11,
+    "predictive_nll": 803.5914987787953,
+    "rank_by_predictive_nll": 151,
+    "rmse": {
+     "anatase": 0.022093006848608706,
+     "rutile": 0.03904383246624654,
+     "Li2TiO3": 0.04947825203597401,
+     "Li4Ti5O12": 0.017314482435341647
+    },
+    "rmse_all": 0.03449786417955508,
+    "development_aicc": -1120.9623953118123
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C72c549087c",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1070.005923673182,
+     "delta_to_best_overall": 466.18455598987816,
+     "rank_among_space": 11,
+     "n_space": 153,
+     "rank_by_rmse": 1,
+     "predictive_nll": 299.0381741066517,
+     "rank_by_predictive_nll": 128,
+     "rmse": {
+      "anatase": 0.018058370089218182,
+      "rutile": 0.044614648443878975,
+      "Li2TiO3": 0.022193483932685793,
+      "Li4Ti5O12": 0.014136399588421994
+     },
+     "rmse_all": 0.027426994496499258,
+     "development_aicc": -1043.910000491804
+    },
+    {
+     "candidate_id": "C319215e03e",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1088.0011283411773,
+     "delta_to_best_overall": 484.17976065787343,
+     "rank_among_space": 12,
+     "n_space": 153,
+     "rank_by_rmse": 1,
+     "predictive_nll": 358.69464277717066,
+     "rank_by_predictive_nll": 132,
+     "rmse": {
+      "anatase": 0.018108211102322753,
+      "rutile": 0.032021101241970884,
+      "Li2TiO3": 0.039452048239743215,
+      "Li4Ti5O12": 0.014353752620532376
+     },
+     "rmse_all": 0.027909463263726966,
+     "development_aicc": -1049.2786319749619
+    },
+    {
+     "candidate_id": "C64bf23cf69",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1459.8216780783202,
+     "delta_to_best_overall": 856.0003103950164,
+     "rank_among_space": 22,
+     "n_space": 153,
+     "rank_by_rmse": 8,
+     "predictive_nll": 570.7533152556205,
+     "rank_by_predictive_nll": 148,
+     "rmse": {
+      "anatase": 0.01777886927564904,
+      "rutile": 0.0366116044876226,
+      "Li2TiO3": 0.04636480836751336,
+      "Li4Ti5O12": 0.016637210973924284
+     },
+     "rmse_all": 0.03194913934609909,
+     "development_aicc": -1052.3735347445304
+    },
+    {
+     "candidate_id": "Cf53e5b4f3d",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1586.953369824043,
+     "delta_to_best_overall": 983.1320021407391,
+     "rank_among_space": 36,
+     "n_space": 153,
+     "rank_by_rmse": 11,
+     "predictive_nll": 803.5914987787953,
+     "rank_by_predictive_nll": 151,
+     "rmse": {
+      "anatase": 0.022093006848608706,
+      "rutile": 0.03904383246624654,
+      "Li2TiO3": 0.04947825203597401,
+      "Li4Ti5O12": 0.017314482435341647
+     },
+     "rmse_all": 0.03449786417955508,
+     "development_aicc": -1120.9623953118123
+    },
+    {
+     "candidate_id": "C7365f815da",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 983.988537438166,
+     "delta_to_best_overall": 380.16716975486213,
+     "rank_among_space": 10,
+     "n_space": 153,
+     "rank_by_rmse": 1,
+     "predictive_nll": 402.1258119664085,
+     "rank_by_predictive_nll": 133,
+     "rmse": {
+      "anatase": 0.022908795363324224,
+      "rutile": 0.04491936443092591,
+      "Li2TiO3": 0.02049450496165132,
+      "Li4Ti5O12": 0.013496713005553804
+     },
+     "rmse_all": 0.028039027272065063,
+     "development_aicc": -1113.718897821177
+    },
+    {
+     "candidate_id": "C3a1637243d",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1109.2607360504696,
+     "delta_to_best_overall": 505.4393683671658,
+     "rank_among_space": 13,
+     "n_space": 153,
+     "rank_by_rmse": 1,
+     "predictive_nll": 319.26759835762346,
+     "rank_by_predictive_nll": 130,
+     "rmse": {
+      "anatase": 0.017640424961445047,
+      "rutile": 0.045545889906671175,
+      "Li2TiO3": 0.021986365053243275,
+      "Li4Ti5O12": 0.014396373695347593
+     },
+     "rmse_all": 0.027732059534235635,
+     "development_aicc": -1049.0740776787045
+    },
+    {
+     "candidate_id": "C14d2227611",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 1452.4250940600793,
+     "delta_to_best_overall": 848.6037263767755,
+     "rank_among_space": 22,
+     "n_space": 153,
+     "rank_by_rmse": 8,
+     "predictive_nll": 578.4785896259137,
+     "rank_by_predictive_nll": 148,
+     "rmse": {
+      "anatase": 0.018532441443720904,
+      "rutile": 0.0360778391757465,
+      "Li2TiO3": 0.046274222999065265,
+      "Li4Ti5O12": 0.016598218821427875
+     },
+     "rmse_all": 0.031866386866364366,
+     "development_aicc": -1051.6276687415848
+    },
+    {
+     "candidate_id": "Ccfb959a619",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "heldout_score": 977.8512027793063,
+     "delta_to_best_overall": 374.02983509600244,
+     "rank_among_space": 10,
+     "n_space": 153,
+     "rank_by_rmse": 1,
+     "predictive_nll": 284.3197287404627,
+     "rank_by_predictive_nll": 125,
+     "rmse": {
+      "anatase": 0.017188180308826254,
+      "rutile": 0.0312981757089522,
+      "Li2TiO3": 0.03706493836570588,
+      "Li4Ti5O12": 0.013597737144616158
+     },
+     "rmse_all": 0.026616336414619583,
+     "development_aicc": -1050.1864099995908
+    }
+   ],
+   "own_space": {
+    "n_scored": 217,
+    "n_valid": 217,
+    "best_predicting": {
+     "candidate_id": "C8844d22842",
+     "heldout_score": 603.8213676833066,
+     "rank_among_space": 1,
+     "rmse_all": 0.030564324893839777,
+     "rank_by_predictive_nll": 56,
+     "development_aicc": -770.2568618573135
+    },
+    "best_development_aicc": {
+     "candidate_id": "Cf53e5b4f3d",
+     "heldout_score": 1586.953369824043,
+     "rank_among_space": 36,
+     "rmse_all": 0.03449786417955508,
+     "rank_by_predictive_nll": 151,
+     "development_aicc": -1120.9623953118123
+    }
+   },
+   "llm": {
+    "models": [
+     "openrouter/google/gemini-4-argon"
+    ],
+    "sessions": {
+     "investigator": 1
+    },
+    "input_tokens": 930215,
+    "output_tokens": 136672,
+    "cache_read_tokens": 11999116,
+    "cache_write_tokens": 0,
+    "cost_usd": 4.427061600000002,
+    "wall_s": 4642.65,
+    "tool_calls": 103,
+    "cost_note": "list prices from the Pi model table"
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 89,
+    "fits_reused": 131,
+    "fit_cpu_s": 16172.268093712,
+    "profile_wall_s": 233.41909849999956,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   }
+  }
+ ],
+ "reference": {
+  "dataset_id": "chapman2023_fig2_750C",
+  "n_space": 153,
+  "best": [
+   {
+    "candidate_id": "enum-9db30b59d8",
+    "heldout_score": 603.8213676833038,
+    "rank_among_space": 1,
+    "rmse_all": 0.03056432489383971,
+    "rank_by_predictive_nll": 56,
+    "development_aicc": -770.2568618573135,
+    "rmse": {
+     "anatase": 0.036136753077803625,
+     "rutile": 0.03670226967984559,
+     "Li2TiO3": 0.031263123848684946,
+     "Li4Ti5O12": 0.010315395747535951
+    },
+    "structure": "enumerated: A1:avrami,A2:avrami,A3:first_order,A4:first_order | space chapman-core-v1"
+   },
+   {
+    "candidate_id": "enum-0d02fc61ca",
+    "heldout_score": 604.1886789874557,
+    "rank_among_space": 2,
+    "rmse_all": 0.030728271278915968,
+    "rank_by_predictive_nll": 55,
+    "development_aicc": -763.6377664945018,
+    "rmse": {
+     "anatase": 0.03623962585672998,
+     "rutile": 0.03700575352369911,
+     "Li2TiO3": 0.03143045188931589,
+     "Li4Ti5O12": 0.010310045640222282
+    },
+    "structure": "enumerated: A1:avrami,A2:avrami,A3:first_order,A4:first_order,A5:first_order | space chapman-core-v1"
+   },
+   {
+    "candidate_id": "enum-c0459e266c",
+    "heldout_score": 605.9575270796352,
+    "rank_among_space": 3,
+    "rmse_all": 0.030542822297232958,
+    "rank_by_predictive_nll": 47,
+    "development_aicc": -763.2982900708901,
+    "rmse": {
+     "anatase": 0.036109372634938484,
+     "rutile": 0.03654722211485613,
+     "Li2TiO3": 0.0313844671299768,
+     "Li4Ti5O12": 0.010338518370024558
+    },
+    "structure": "enumerated: A1:avrami,A2:avrami,A3:first_order,A4:first_order,A6:first_order | space chapman-core-v1"
+   }
+  ],
+  "dev_best": [
+   {
+    "candidate_id": "enum-ef52513024",
+    "heldout_score": 1071.713595081404,
+    "rank_among_space": 11,
+    "rmse_all": 0.031741590478635735,
+    "rank_by_predictive_nll": 124,
+    "development_aicc": -851.4799364615404
+   }
+  ]
+ }
+}
