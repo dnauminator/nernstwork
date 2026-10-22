@@ -13,7 +13,15 @@ from nernstwork.enumerate import enumerate_space, validate_synthesis_space
 from nernstwork.evaluate import run_fit, validate_submission
 from nernstwork.mechanism import R
 from nernstwork.mechanism import simulate as ref_simulate
-from nernstwork.model import INSUFFICIENT_DATA, INVALID_CHEMISTRY, INVALID_SUBMISSION, CompileError, Conditions, compile_mechanism
+from nernstwork.model import (
+    INSUFFICIENT_DATA,
+    INVALID_CHEMISTRY,
+    INVALID_SUBMISSION,
+    CompileError,
+    Compiled,
+    Conditions,
+    compile_mechanism,
+)
 
 GRID = [0.3, 0.5, 0.8, 1.2, 2.0, 3.0, 4.5, 6.0, 8.0, 10.0]
 TRUE = {"k1": 0.6, "Ea1": 200.0, "k2": 0.25, "Ea2": 260.0, "n2": 1.6, "T_ref": 712.5}
@@ -153,7 +161,7 @@ def test_synthesis_space_enumeration_and_plain_language_errors(root):
     assert len(enumerate_space(core)) == 154
 
 
-def test_propose_space_run_plans_and_predicts_held_out_temperature(root, tmp_path, protocol):
+def test_propose_space_run_plans_and_predicts_held_out_temperature(root, tmp_path, protocol, monkeypatch):
     paths = {}
     for T in (700.0, 725.0, 750.0):
         p = tmp_path / f"synth_{T:g}C.json"
@@ -192,7 +200,17 @@ def test_propose_space_run_plans_and_predicts_held_out_temperature(root, tmp_pat
                        "recommended_experiments": [], "narrative": "test"})
     fz = inv.freeze(run)
     assert fz["top1"] == best
+    budgets, sim = [], Compiled.simulate
+
+    def recording(self, *a, max_rhs=None, **kw):
+        budgets.append(max_rhs)
+        return sim(self, *a, max_rhs=max_rhs, **kw)
+
+    monkeypatch.setattr(Compiled, "simulate", recording)
     out = inv.final_evaluate(run, workers=2)
+    # held-out predictions run under the fitting compute budget, so a member that is pathologically stiff at the new
+    # temperature fails like any other prediction instead of integrating for hours
+    assert budgets and set(budgets) == {protocol["ode"]["max_rhs_evals"]}
     d = out["datasets"][0]
     assert d["mode"] == "predict" and d["dataset_id"] == "synth_750C"
     row = d["frozen_candidates"][0]

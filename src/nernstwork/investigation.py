@@ -9,6 +9,7 @@ from __future__ import annotations
 import concurrent.futures as cf
 import json
 import math
+import multiprocessing as mp
 import os
 import shutil
 import time
@@ -43,6 +44,7 @@ from .evaluate import (
     translate_fit,
     validate_submission,
 )
+from .fit import DEFAULT_MAX_RHS_EVALS
 from .model import FITTED, INVALID_SUBMISSION, Conditions, compile_mechanism
 from .review import validate_response, validate_review
 from .store import (
@@ -460,6 +462,19 @@ def evaluate(run: Run, cids: list[str] | None = None, workers: int | None = None
                         record_dir=None)
 
 
+def _batched_process_map(fn, args, workers):
+    """Release worker memory between bounded batches without in-pool recycling.
+
+    Python 3.12 can strand queued work when ProcessPoolExecutor workers reach
+    max_tasks_per_child (CPython issue 115634). Closing a whole spawn pool after
+    each batch avoids that path and preserves input order and exception handling.
+    """
+    batch_size = workers * 20
+    for offset in range(0, len(args), batch_size):
+        with cf.ProcessPoolExecutor(max_workers=workers, mp_context=mp.get_context("spawn")) as ex:
+            yield from ex.map(fn, args[offset:offset + batch_size])
+
+
 def _evaluate_on(run: Run, cids, obs, dataset_paths, workers, record_dir: Path | None, subs: dict | None = None) -> dict:
     """Evaluate candidates on one dataset, or several fitted jointly. record_dir None means the run's development
     evaluations."""
@@ -487,11 +502,8 @@ def _evaluate_on(run: Run, cids, obs, dataset_paths, workers, record_dir: Path |
             for a in args:
                 outcomes[a[3]] = _fit_worker(a)
         else:
-            # recycle workers so memory that accumulates over many fits is returned (spawned workers; fork is not
-            # compatible with max_tasks_per_child)
-            with cf.ProcessPoolExecutor(max_workers=n, max_tasks_per_child=20) as ex:
-                for r in ex.map(_fit_worker, args):
-                    outcomes[r["fit_key"]] = r
+            for r in _batched_process_map(_fit_worker, args, n):
+                outcomes[r["fit_key"]] = r
     for cid, cand, v, fk in plan:
         fit_body = run.cache.result(fk) if fk else None
         fit_res = fit_body["result"] if fit_body else None
@@ -935,11 +947,14 @@ def _predict_holdout(run: Run, frozen: dict, hold: list[dict], workers: int | No
         if sha != h["sha256"]:
             raise InvestigationError(f"{h['path']} changed since the run was created")
         obs = observation_set(ds, sha, protocol.get("exclude_t0", True))
+        # the fitting compute budget per solve: a parameter set that is pathologically stiff at the held-out condition
+        # fails like any other prediction instead of integrating for hours
+        max_rhs = int(protocol.get("ode", {}).get("max_rhs_evals", DEFAULT_MAX_RHS_EVALS))
         scores = {}
         for cid, (sub, v, fr) in fits.items():
             comp = compile_mechanism(sub["mechanism"], dev_obs.conditions, protocol.get("bounds"))
             try:
-                Y = comp.simulate(np.array(fr["theta"]), obs.t_union, obs.c0, conditions=obs.conditions)
+                Y = comp.simulate(np.array(fr["theta"]), obs.t_union, obs.c0, conditions=obs.conditions, max_rhs=max_rhs)
             except Exception as e:  # noqa: BLE001 - a failed prediction is recorded, not hidden
                 scores[cid] = {"status": "prediction_failed", "error": f"{type(e).__name__}: {e}"}
                 continue
