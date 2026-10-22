@@ -1,0 +1,237 @@
+1
+00:00:00,000 --> 00:00:04,700
+If you heat titanium dioxide with lithium
+carbonate, you will form a battery material.
+
+2
+00:00:05,500 --> 00:00:08,500
+X-rays let us watch each substance
+rise and fall in real time.
+
+3
+00:00:09,100 --> 00:00:13,100
+Our question, can an AI agent work out
+the reaction steps from curves like these?
+
+4
+00:00:13,700 --> 00:00:17,700
+Does its set of candidate pathways include
+one that correctly forecasts a new experiment,
+
+5
+00:00:18,100 --> 00:00:21,600
+and can we pick that one only
+using the data it was fitted to?
+
+6
+00:00:21,600 --> 00:00:28,900
+We fit at 700 and 725 degrees and forecast the
+750 degree experiment, which no model has seen.
+
+7
+00:00:31,033 --> 00:00:36,433
+NernstWork splits the job. The AI reads the
+data and the notes from the literature and
+
+8
+00:00:36,433 --> 00:00:41,333
+proposes the building blocks, which substances,
+which steps, and how fast each might run,
+
+9
+00:00:41,533 --> 00:00:46,533
+each with a reason. Code then checks that
+every combination conserves atoms and fits
+
+10
+00:00:46,533 --> 00:00:52,533
+them all the same way, using only the 700
+and 725 degree data. The picks are locked
+
+11
+00:00:52,533 --> 00:00:57,833
+in before we load 750. Finally, the AI tells
+us what the data can't settle and which
+
+12
+00:00:57,833 --> 00:00:58,533
+experiment would.
+
+13
+00:01:00,033 --> 00:01:07,233
+First, what code alone would do? It tries
+153 combinations of a fixed menu of steps and
+
+14
+00:01:07,233 --> 00:01:13,533
+picks the best fit. That pick ranks 11th at
+forecasting 750 degrees. Now the AI's route.
+
+15
+00:01:14,033 --> 00:01:20,233
+It adds its own steps, code fits every combination,
+and the same best fit rule picks one. That one
+
+16
+00:01:20,233 --> 00:01:25,733
+ranks 4th, but the agent also named the second
+plausible model before seeing 750, and that
+
+17
+00:01:25,933 --> 00:01:26,433
+one ranks first.
+
+18
+00:01:27,833 --> 00:01:32,949
+Each gray line is one reference model. On
+the left is its ranking by how well it fit
+
+19
+00:01:32,949 --> 00:01:37,333
+the data we had. On its right is its
+ranking at forecasting 750 degrees.
+
+20
+00:01:38,333 --> 00:01:41,233
+As you can see, the best fit
+is not the best forecaster.
+
+21
+00:01:42,733 --> 00:01:48,233
+Across four AI runs, two Claude and two
+Gemini, every set of candidates held a
+
+22
+00:01:48,233 --> 00:01:52,333
+top-four forecaster, though we only
+know that after seeing the 750 degree
+
+23
+00:01:52,333 --> 00:01:58,633
+results. Picking by the best fit chose
+anywhere from fourth to 36th best, so
+
+24
+00:01:58,633 --> 00:02:03,033
+the AI shrinks hundreds of possibilities
+to a short list and choosing among them
+
+25
+00:02:03,033 --> 00:02:03,833
+takes an experiment.
+
+26
+00:02:05,100 --> 00:02:07,800
+So, the agent suggests what to measure next.
+
+27
+00:02:08,200 --> 00:02:11,400
+The experiment where its candidate
+explanations would disagree the most.
+
+28
+00:02:12,100 --> 00:02:15,800
+Its top pick is to halve the
+lithium carbonate at 725 degrees.
+
+29
+00:02:16,400 --> 00:02:20,500
+That would test its rival idea that forming
+the battery material is linked to a second
+
+30
+00:02:20,500 --> 00:02:23,400
+form of titanium dioxide, rutile forming.
+
+31
+00:02:24,100 --> 00:02:28,100
+By two minutes, the two explanations
+differ by far more than measurement noise.
+
+32
+00:02:28,100 --> 00:02:32,200
+Two of its leading models can't be
+told apart, and the agent says so.
+
+33
+00:02:33,067 --> 00:02:38,667
+Did the AI's candidates include a model that
+correctly forecasts the 750-degree experiment
+
+34
+00:02:38,667 --> 00:02:41,267
+having only seen 700 and 725?
+
+35
+00:02:41,867 --> 00:02:43,067
+Yes, every time.
+
+36
+00:02:43,567 --> 00:02:47,167
+Can we pick that model using
+only the 700 and 725 data?
+
+37
+00:02:47,667 --> 00:02:48,367
+Not reliably.
+
+38
+00:02:49,067 --> 00:02:52,667
+The chemistry agreed across models and
+the agent said what it couldn't settle.
+
+39
+00:02:53,367 --> 00:02:57,967
+One illustration of why this matters is that
+a study we found through Valency made titanium
+
+40
+00:02:57,967 --> 00:03:01,167
+dioxide catalysts at 700 and 900 degrees.
+
+41
+00:03:01,167 --> 00:03:06,567
+Two different crystal forms and a rutile one
+worked better for turning nitrate into ammonia.
+
+42
+00:03:07,067 --> 00:03:08,767
+That's one example, not a result.
+
+43
+00:03:09,467 --> 00:03:11,467
+The AI is useful for proposing pathways.
+
+44
+00:03:12,067 --> 00:03:14,367
+Choosing among them still
+takes a targeted experiment.
+
+45
+00:03:15,467 --> 00:03:20,367
+Through NernstWork, we've shown that an AI
+agent can narrow a large space of possible
+
+46
+00:03:20,367 --> 00:03:25,367
+reaction pathways in solid-state synthesis
+down to a short list of good candidates and
+
+47
+00:03:25,367 --> 00:03:26,567
+suggest what to measure next.
+
+48
+00:03:27,167 --> 00:03:32,267
+The implication is more targeted experiments
+in physical labs, experiments chosen because
+
+49
+00:03:32,267 --> 00:03:35,767
+they tell rival explanations
+apart rather than tried blindly.
+
+50
+00:03:36,267 --> 00:03:38,867
+It points to a better way
+to design experiments.
