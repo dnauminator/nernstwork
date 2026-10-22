@@ -132,10 +132,56 @@ def shot5b() -> dict:
     return {"runs": out}
 
 
+def shot1() -> dict:
+    """Cold open: the measured 725 C phase amounts, drawn over time."""
+    ds, _ = load_dataset(REPO / "data" / "real" / "chapman2023_fig2_725C.json")
+    cite = ds["provenance"].get("citation", "")
+    authors, _, journal = cite.partition(", J. ")
+    return {"temperature_C": ds["conditions"]["temperature_C"],
+            "series": {s["species"]: {"t": s["t_min"], "y": s["y"]} for s in ds["series"] if s["species"] in CHANNELS},
+            "short_citation": f"{authors.split(',')[0]} et al., J. {journal}" if journal else cite}
+
+
+def shot3() -> dict:
+    """How it works, shown for one run: the search space the agent proposed, the fitted candidates, the frozen picks,
+    and the agent's conclusion (what is unresolved, what to measure next)."""
+    run = Run(ROOT, "chapman750-propose_space-opus1")
+    frozen = json.loads((run.dir / "frozen.json").read_text())
+    spaces = []
+    for f in sorted((run.dir / "spaces").glob("space-*.json")):
+        d = json.loads(f.read_text())
+        sp = d["space"]
+        spaces.append({"space_id": sp["space_id"], "n_members": d["n_members"], "elements": sp["conservation"]["elements"],
+                       "steps": [{"id": st["id"], "reactants": list(st["reactants"]), "products": list(st["products"]),
+                                  "rate_laws": st["rate_laws"], "support": sorted({s["basis"] for s in st["support"]})}
+                                 for st in sp["steps"]]})
+    # the space the frozen picks came from is shown on screen
+    pick_space = frozen["candidates"][frozen["top1"]]["rationale"].split("| space ")[-1].strip()
+    fitted = []
+    for f in (run.dir / "evaluations").glob("*.json"):
+        s = json.loads(f.read_text())["summary"]
+        if s.get("status") == "fitted":
+            fitted.append((s["aicc"], s["candidate_id"]))
+    fitted.sort()
+    order = [c for _, c in fitted]
+    conclusion = json.loads(sorted((run.dir / "conclusions").glob("*.json"))[-1].read_text())["conclusion"]
+    name, detail = run_label(run.id)
+    return {"model_name": name, "run": detail, "spaces": spaces, "shown_space": pick_space,
+            "n_candidates": frozen["n_candidates_in_run"], "n_fitted": frozen["n_fitted"],
+            "fitted_by_aicc": order, "rule_pick": frozen["top1"], "plausible": frozen["agent_concluded_plausible"],
+            "next_experiments": [e["design"] for e in conclusion.get("recommended_experiments", [])],
+            "adequacy": conclusion.get("adequacy"), "n_reference": shot4_reference_count()}
+
+
+def shot4_reference_count() -> int:
+    _, ev = final_rows(Run(ROOT, "chapman750-propose_space-opus1"))
+    return ev["n_space_fitted"]
+
+
 def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     data = {"generated_by": "scripts/export_video_data.py", "code_sha256": code_identity()["sha256"],
-            "shot4": shot4(), "shot5": shot5(), "shot5b": shot5b()}
+            "shot1": shot1(), "shot3": shot3(), "shot4": shot4(), "shot5": shot5(), "shot5b": shot5b()}
     OUT.write_text(json.dumps(data, indent=1))
     print(f"wrote {OUT.relative_to(REPO)}")
     for m in data["shot4"]["models"]:

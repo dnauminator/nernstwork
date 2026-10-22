@@ -1,6 +1,671 @@
 {
  "generated_by": "scripts/export_video_data.py",
  "code_sha256": "4935f45a7126e4900720ac0dbe6f2fdaee80005cb40dfffe30553d017405ca83",
+ "shot1": {
+  "temperature_C": 725,
+  "series": {
+   "anatase": {
+    "t": [
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     1.0,
+     1.2,
+     1.5,
+     2.0,
+     2.5,
+     3.0,
+     3.5,
+     4.0,
+     5.0,
+     6.0,
+     7.0,
+     8.0,
+     9.0,
+     9.5
+    ],
+    "y": [
+     0.5155,
+     0.48707,
+     0.4558,
+     0.42677,
+     0.3977,
+     0.36877,
+     0.31023,
+     0.2431,
+     0.12053,
+     0.02823,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "rutile": {
+    "t": [
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     1.0,
+     1.2,
+     1.5,
+     2.0,
+     2.5,
+     3.0,
+     3.5,
+     4.0,
+     5.0,
+     6.0,
+     7.0,
+     8.0,
+     9.0,
+     9.5
+    ],
+    "y": [
+     0.04755,
+     0.0495,
+     0.05237,
+     0.06157,
+     0.07323,
+     0.08863,
+     0.12097,
+     0.1644,
+     0.24907,
+     0.31343,
+     0.3327,
+     0.33127,
+     0.3307,
+     0.3264,
+     0.32397,
+     0.31753,
+     0.31447,
+     0.30807,
+     0.3057,
+     0.30463
+    ]
+   },
+   "Li2TiO3": {
+    "t": [
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     1.0,
+     1.2,
+     1.5,
+     2.0,
+     2.5,
+     3.0,
+     3.5,
+     4.0,
+     5.0,
+     6.0,
+     7.0,
+     8.0,
+     9.0,
+     9.5
+    ],
+    "y": [
+     0.4369,
+     0.46013,
+     0.47287,
+     0.47983,
+     0.48437,
+     0.4861,
+     0.47217,
+     0.45707,
+     0.43297,
+     0.41073,
+     0.3998,
+     0.38747,
+     0.37777,
+     0.37033,
+     0.35857,
+     0.35203,
+     0.3458,
+     0.33883,
+     0.33243,
+     0.32923
+    ]
+   },
+   "Li4Ti5O12": {
+    "t": [
+     0.3,
+     0.4,
+     0.5,
+     0.6,
+     0.7,
+     0.8,
+     1.0,
+     1.2,
+     1.5,
+     2.0,
+     2.5,
+     3.0,
+     3.5,
+     4.0,
+     5.0,
+     6.0,
+     7.0,
+     8.0,
+     9.0,
+     9.5
+    ],
+    "y": [
+     0.0,
+     0.00065,
+     0.00379,
+     0.00636,
+     0.00893,
+     0.0113,
+     0.01933,
+     0.02708,
+     0.03948,
+     0.04951,
+     0.0535,
+     0.05625,
+     0.05831,
+     0.06067,
+     0.06349,
+     0.06609,
+     0.06795,
+     0.07061,
+     0.07238,
+     0.07322
+    ]
+   }
+  },
+  "short_citation": "Hu D. et al., J. Am. Chem. Soc. 145 (2023) 26545-26549"
+ },
+ "shot3": {
+  "model_name": "Claude Opus 5.5",
+  "run": "run 1",
+  "spaces": [
+   {
+    "space_id": "LTO-TiLi-x1.6-v1",
+    "n_members": 136,
+    "elements": [
+     "Ti",
+     "Li"
+    ],
+    "steps": [
+     {
+      "id": "S1",
+      "reactants": [
+       "anatase",
+       "Li2CO3"
+      ],
+      "products": [
+       "Li2TiO3"
+      ],
+      "rate_laws": [
+       "first_order",
+       "avrami"
+      ],
+      "support": [
+       "data",
+       "literature"
+      ]
+     },
+     {
+      "id": "S2",
+      "reactants": [
+       "anatase"
+      ],
+      "products": [
+       "rutile"
+      ],
+      "rate_laws": [
+       "first_order",
+       "avrami"
+      ],
+      "support": [
+       "data",
+       "literature"
+      ]
+     },
+     {
+      "id": "S2c",
+      "reactants": [
+       "anatase",
+       "Li2CO3"
+      ],
+      "products": [
+       "rutile",
+       "Li2CO3"
+      ],
+      "rate_laws": [
+       "first_order"
+      ],
+      "support": [
+       "data",
+       "speculative"
+      ]
+     },
+     {
+      "id": "S3",
+      "reactants": [
+       "Li2TiO3",
+       "anatase"
+      ],
+      "products": [
+       "Li4Ti5O12"
+      ],
+      "rate_laws": [
+       "first_order",
+       "avrami"
+      ],
+      "support": [
+       "data",
+       "literature"
+      ]
+     },
+     {
+      "id": "S4",
+      "reactants": [
+       "Li2TiO3",
+       "rutile"
+      ],
+      "products": [
+       "Li4Ti5O12"
+      ],
+      "rate_laws": [
+       "first_order",
+       "avrami"
+      ],
+      "support": [
+       "data",
+       "literature"
+      ]
+     },
+     {
+      "id": "S6",
+      "reactants": [
+       "Li2TiO3"
+      ],
+      "products": [
+       "Li4Ti5O12",
+       "Li2O"
+      ],
+      "rate_laws": [
+       "first_order"
+      ],
+      "support": [
+       "data",
+       "speculative"
+      ]
+     }
+    ]
+   },
+   {
+    "space_id": "LTO-Tionly-nominal-v1",
+    "n_members": 140,
+    "elements": [
+     "Ti"
+    ],
+    "steps": [
+     {
+      "id": "S1",
+      "reactants": [
+       "anatase",
+       "Li2CO3"
+      ],
+      "products": [
+       "Li2TiO3"
+      ],
+      "rate_laws": [
+       "first_order"
+      ],
+      "support": [
+       "data",
+       "literature"
+      ]
+     },
+     {
+      "id": "S2",
+      "reactants": [
+       "anatase"
+      ],
+      "products": [
+       "rutile"
+      ],
+      "rate_laws": [
+       "first_order",
+       "avrami"
+      ],
+      "support": [
+       "data",
+       "literature"
+      ]
+     },
+     {
+      "id": "S2c",
+      "reactants": [
+       "anatase",
+       "Li2CO3"
+      ],
+      "products": [
+       "rutile",
+       "Li2CO3"
+      ],
+      "rate_laws": [
+       "first_order"
+      ],
+      "support": [
+       "data",
+       "speculative"
+      ]
+     },
+     {
+      "id": "S3",
+      "reactants": [
+       "Li2TiO3",
+       "anatase"
+      ],
+      "products": [
+       "Li4Ti5O12"
+      ],
+      "rate_laws": [
+       "first_order",
+       "avrami"
+      ],
+      "support": [
+       "data",
+       "literature"
+      ]
+     },
+     {
+      "id": "S4",
+      "reactants": [
+       "Li2TiO3",
+       "rutile"
+      ],
+      "products": [
+       "Li4Ti5O12"
+      ],
+      "rate_laws": [
+       "first_order",
+       "avrami"
+      ],
+      "support": [
+       "data",
+       "literature"
+      ]
+     },
+     {
+      "id": "S6",
+      "reactants": [
+       "Li2TiO3"
+      ],
+      "products": [
+       "Li4Ti5O12",
+       "Li2O"
+      ],
+      "rate_laws": [
+       "first_order"
+      ],
+      "support": [
+       "data",
+       "speculative"
+      ]
+     },
+     {
+      "id": "S5",
+      "reactants": [
+       "anatase",
+       "Li2CO3"
+      ],
+      "products": [
+       "Li4Ti5O12"
+      ],
+      "rate_laws": [
+       "first_order"
+      ],
+      "support": [
+       "data",
+       "speculative"
+      ]
+     }
+    ]
+   }
+  ],
+  "shown_space": "LTO-Tionly-nominal-v1",
+  "n_candidates": 208,
+  "n_fitted": 204,
+  "fitted_by_aicc": [
+   "C914ebc19e9",
+   "C74b7349674",
+   "Ccc7944ce27",
+   "C7ff91ce572",
+   "C03fa9abdf3",
+   "Cfe21fe0234",
+   "C46a055142c",
+   "Cecd2a1f23b",
+   "C5021a0a15d",
+   "C6af069469d",
+   "Cb8ff151347",
+   "Ce46f4e1309",
+   "C825fbf9b4f",
+   "C3a9765bced",
+   "Cdf1ae59ce5",
+   "C0b314011ab",
+   "C5d49e3621a",
+   "C65b4c315c5",
+   "C7296bde8f4",
+   "C9bb035c339",
+   "C521637495e",
+   "C8e5bd742db",
+   "C59af8c1911",
+   "Cc29ab2f7d9",
+   "Cd27ad91d3b",
+   "C678253b6f3",
+   "Cdb7106c66c",
+   "C99651fdd34",
+   "C3b0450a17e",
+   "Ce2b1853de7",
+   "C2634a737de",
+   "C68e6230118",
+   "Cd24db024a7",
+   "C51aba94a5b",
+   "C4ff6a7744b",
+   "C934d4febac",
+   "Cd1b4e4b724",
+   "C60c80b85f9",
+   "C37565bb790",
+   "C81604e2389",
+   "Ca48386feb9",
+   "C399c041a99",
+   "Cb9da2abf5f",
+   "C5cc70f64b7",
+   "Caaa3b9986a",
+   "C7c05b0b6bb",
+   "C774cb7d314",
+   "C6d994a9c59",
+   "C2f9c49b29e",
+   "Ca301235e75",
+   "C47b8b83f06",
+   "C6268917ef8",
+   "Cc45a4f685a",
+   "C298ea7fff8",
+   "Cb66aaf939f",
+   "C0f1d60385d",
+   "C6b8c8cb9a1",
+   "C45172fa846",
+   "C0b44bedc1e",
+   "C50ee8edae5",
+   "Cf62e532c38",
+   "C10df343889",
+   "Cdf67e94a17",
+   "C2ccb6b2cea",
+   "Ca08e75f79a",
+   "C384391449f",
+   "Cf5634c5412",
+   "C2cb122c40a",
+   "C23cf849ed5",
+   "C734a1581a3",
+   "C7f95cbf9fa",
+   "C5798facf04",
+   "C02c73fd151",
+   "C093182a4bd",
+   "C2cec3a7cf3",
+   "C08e8b1d588",
+   "C00644be55f",
+   "C646cfacd40",
+   "C9810d0da0f",
+   "C9e89a943c8",
+   "C5616920793",
+   "C030f4e3ceb",
+   "C4df550bef2",
+   "C6363892764",
+   "C824778fd29",
+   "Cc5491f90ee",
+   "C0028e69153",
+   "C80cfb12d5b",
+   "C17a28eba1a",
+   "C8d03e4ea67",
+   "C07ef80becb",
+   "Cd7b7a8f89d",
+   "Cdf29c01d33",
+   "C708913cde4",
+   "Ca01e7d31f7",
+   "C308a553d84",
+   "C3cecfca3fb",
+   "Cadd484085c",
+   "C5291e9cc9a",
+   "C6e5b448341",
+   "C69cbe7c973",
+   "C343148f835",
+   "Cc9365bc4ce",
+   "Ca3963e1f2b",
+   "Cd90f7e912a",
+   "Cbf5d62d6b3",
+   "Cb0e8a70c8d",
+   "C1fa8104b88",
+   "C7dd86638c8",
+   "Cff27205fbe",
+   "C98fc0be7b3",
+   "C8bd2181ed0",
+   "Cc96411ebd8",
+   "Cfed563459c",
+   "C4b99e59b80",
+   "Cf4308db59c",
+   "Cd16dc540d1",
+   "C274e548f18",
+   "C780aa30647",
+   "Ce2217fd27a",
+   "C74c8746962",
+   "C093c4ac2cd",
+   "C246e48100f",
+   "Cdee8b36c0b",
+   "C540618ce2c",
+   "Caf48ba371d",
+   "Cf824e8ae44",
+   "C31757e367c",
+   "C5ab4fad8da",
+   "C5df5e53ef9",
+   "Cb78813204d",
+   "Cc41a21ccdc",
+   "C0a5640436c",
+   "C4051cda9e6",
+   "C95396fa49d",
+   "C1a1553ae86",
+   "C8d6a76a1a3",
+   "C98b38a91db",
+   "Cda0468f09d",
+   "Cd136546bf1",
+   "Cc3d76b3016",
+   "Cae4106bd66",
+   "C0d6aecd615",
+   "C71cc9df640",
+   "C2854a6dca5",
+   "C191370c63e",
+   "Ca563b730aa",
+   "Cfdbe19897f",
+   "C754525c319",
+   "Cac6562e6df",
+   "Cfe41673a7d",
+   "Ca88c803730",
+   "C6077373c4b",
+   "C22b922929e",
+   "C7842b0b537",
+   "Cb38bb1ad60",
+   "Cc2b54ebfc4",
+   "Ce3176b7b88",
+   "C8b7869951c",
+   "C3ac5f3ae64",
+   "C5f8d7a29ff",
+   "Cb812e4c68b",
+   "C02597ce0d4",
+   "Ceded7f245c",
+   "C4f4594f87d",
+   "Cea4f153c3a",
+   "C2badb6fde8",
+   "Cbcfa074e72",
+   "C7657755d8b",
+   "C9a56a67c19",
+   "Cec693b2efe",
+   "C22809c9f74",
+   "C1e1b38083a",
+   "Cf7c1cf1548",
+   "C075458d8be",
+   "Cf97a4bdd3e",
+   "C1c6e5c03e2",
+   "Cceb04dc425",
+   "C8fa85d005e",
+   "C5a6a208bac",
+   "C60a65039ce",
+   "C963f9390d4",
+   "Cb723c87200",
+   "C607e0f28a6",
+   "C852f8d6036",
+   "C9c0b7d61c8",
+   "C21986c4d48",
+   "C327e1ab8c6",
+   "Cf716e90d65",
+   "Cf0ebb10152",
+   "C84c1d5cb15",
+   "Cdc58f29e57",
+   "C830cfc326a",
+   "C4237f051fd",
+   "Ce0cc33c3cc",
+   "C998e9867aa",
+   "C2308d18c7b",
+   "C77af452343",
+   "C6262d45dff",
+   "C7241ee1860",
+   "Cbb405ce50f",
+   "C108c687933",
+   "C0916aa6dc0",
+   "Cda0ed10702"
+  ],
+  "rule_pick": "C914ebc19e9",
+  "plausible": [
+   "C914ebc19e9",
+   "C74b7349674"
+  ],
+  "next_experiments": [
+   "Li2CO3_x0.5_T725_long30: half the Li2CO3 (anatase 1.0, Li2CO3 0.2 mol per mol Ti), 725 C, sampled to 30 min",
+   "T725_long30 (standard 5:2 mix, 725 C, sampled to 30 min)",
+   "Li2CO3_x1.5_T725C (default menu)",
+   "mixed anatase:rutile 0.5:0.5 precursor at 725 C, to 30 min"
+  ],
+  "adequacy": "uncertain",
+  "n_reference": 153
+ },
  "shot4": {
   "temperature_C": 750,
   "t": [
