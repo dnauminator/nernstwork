@@ -4,6 +4,8 @@ from pathlib import Path
 import sys
 import pytest
 
+pytest.importorskip('fcntl')  # the queue script locks with fcntl.flock (POSIX only); skip on Windows instead of failing collection
+
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
 spec=importlib.util.spec_from_file_location('chapman_completion_queue',ROOT/'scripts/complete_chapman_li_campaign.py')
