@@ -2,7 +2,7 @@
 
 Only what is still to do. Background, findings and the dated record are in `docs/PROGRESS.md`; design and data facts in `docs/SPEC.md`; the investigator's own notes in `docs/INVESTIGATOR.md`. When a task is done, delete it here and add one dated line to PROGRESS.
 
-Last updated Oct 21 evening (hackathon day 1). Team: Daniel and Jarrod. Split: Jarrod the model side, Daniel literature and data.
+Last updated Oct 22 during the lithium sensitivity campaign. Team: Daniel and Jarrod. Split: Jarrod the model side, Daniel literature and data. Earlier submission notes below are historical planning context, not newly verified deadlines.
 
 ## Deadlines and gates
 
@@ -19,15 +19,13 @@ Last updated Oct 21 evening (hackathon day 1). Team: Daniel and Jarrod. Split: J
 1. **Selection for extrapolation.** Development AICc picks poorly transferring members inside large spaces (Chapman
    top-1 ranks 4/36/11/36). Try selection on held-out time (fit early, predict late) or a complexity penalty tuned on the
    nitrate test bed, and report calibration: tight models are overconfident at 750 C.
-2. **Chapman v2 datasets**, then rerun the baseline and one model run. Prefer `data/digitized_inputs/chapman2023_sifig_s1/` (SI Fig. S1; correct from t = 0, same CSV columns as the Fig. 2 extraction, so `scripts/chapman_to_dataset.py` already reads it unchanged (checked, output not committed); but its `GRID` starts at 0.3 min and `T_MIN` is 0.3, so the early-time advantage is unused until those are changed, and its notes text describes the Fig. 2 extraction). The Fig. 2 files in `data/real/` stay as they are so the `chapman750-*` runs remain reproducible. Done when the held-out ranks are reported for both versions.
-   reported for both versions.
+2. **Complete the running Chapman sensitivity campaign.** Compare nominal carbonate 0.4 with 0.28/0.30/0.36, the original and supplementary-figure extractions, and bounded fitted starting amounts. Preserve the original `data/real/` inputs. The primary time grid stays at 0.3–9.5 min to isolate these changes; cleaner S1 curves do not remove the first ten seconds of heating. Close exact candidate coverage, targeted numerical rescues, fresh AI selection and parameter profiles before reporting final rankings. See [protocol](CHAPMAN_LI_SENSITIVITY_PROTOCOL.md) and [current results](CHAPMAN_LI_SENSITIVITY_RESULTS.md).
 3. **Plausibility rules for synthesis** with Daniel. Element balance is in. Still to add: at most two reactants per
    step, non-negative driving force (McDermott and Bartel are in `literature/04_synthesis/`), and a cap on unassigned
    material.
 4. **Marimo app skeleton and a Pyodide check** (does scipy and the fit run in the WASM export at interactive speed). Do
    the check early.
-5. **Second time-resolved case.** Kamm et al. JACS 2022 (same group: completion at three temperatures x two packings)
-   needs a diffusion-limited (t^1/2) rate law the engine does not have; Bianchini 2020 is the alternative.
+5. **Second time-resolved case.** Zeng's LTOPO data are promising once scan times, starting states and the phase-fraction method are established. Kamm fits only a slow regime after three minutes; Kosuge's integrated diffusion laws require a defined reaction extent and singularity treatment before network use. See [literature review](LITERATURE_REVIEW_OCT22.md) and [LTOPO data contract](LTOPO_OCT22.md).
 6. Small: W5's declared bounds for the second-order step disagree with the protocol's (`docs/INVESTIGATOR.md` question
    6); pick narrowing the world or widening the protocol.
 7. **Valency access:** ask for it. If granted, run the seeds and queries of `scripts/openalex_citation_pass.py` there and
@@ -35,12 +33,10 @@ Last updated Oct 21 evening (hackathon day 1). Team: Daniel and Jarrod. Split: J
 
 ## Daniel (literature and data)
 
-1. ~~Chapman extraction~~: done Oct 21. `VERIFICATION.md` was cross-read by Daniel; its five `meta.json` corrections are applied and `verified_against_figure` is set with the scope "t >= 0.35 min". Because SI Fig. S1 (separate line curves) is cleaner than the stacked Fig. 2, there is a second extraction, `data/digitized_inputs/chapman2023_sifig_s1/` (`scripts/extract_chapman_si_s1.py`): it agrees with the Fig. 2 extraction to 0.2-0.55 wt % RMS, is correct before 0.35 min (rutile about 4 wt % at t = 0, the 750 C Li2TiO3 peak at 0.3 min), and sums to 99.5-101.7 wt %. Still to do for you: a spot-check of the S1 extraction against the printed SI figure, then set its `verified_against_figure`.
-   Apply the five `meta.json` corrections listed there, give it a quick look yourself, then set `verified_against_figure`
-   with the scope "t >= 0.35 min".
+1. **Finish S1 extraction verification and clarify the initial state.** The Fig. 2 metadata corrections are already applied. The Oct 22 independent S1 check resolved 23 of 24 predefined anchors; fitting-window differences were at most 0.50 wt%, but the earliest 750 C carbonate point differed by 1.06 wt% and one late anatase point was obscured. This supports those anchors, not every extracted point. The actual S1 row sums are 97.55–101.73 wt%. Keep full-extraction verification false until the remaining values are checked. Distinguish the prepared 5:2 mixture from carbonate remaining in the first frame, and establish heating, initial rutile and any unobserved material before interpreting fitted initial lithium physically. Details are in [the literature checks](LITERATURE_REVIEW_OCT22.md).
 2. **Curated hackathon datasets and sponsors.** Datasets: looked at on both computers; nothing kinetic that is not already used (re-read of the awesome-matchem-datasets list on Oct 21 in PROGRESS). Still to do: sponsor access and the deadline (8 pm EDT Oct 22, confirmed by Daniel). Marimo: trial it (see PROGRESS, marimo note). Valency is Jarrod's.
 3. ~~Read the SrCrO3 and Chem. Mater. 2026 papers~~: done Oct 21 (PROGRESS, Oct 21 evening). Still to do: ARROWS3's main text for what it already covers, and put the result in the one-pager's "relation to prior work".
-4. **Data converters** (with Claude): ARROWS3 to an endpoint dataset is done (`scripts/arrows3_to_endpoint.py`, `schema/endpoint_dataset.schema.json` sketch; unverified YBCO entries dropped and why, SPEC 7e). Still to do: Jarrod decides how an endpoint dataset (a temperature series at one hold) enters the fit; until then the LTOPO example is a table and a figure, not a fit. Keep `data/arrows3/` uncommitted (licence unconfirmed).
+4. **Connect LTOPO measurements with their provenance.** The endpoint converter exists (`scripts/arrows3_to_endpoint.py`, `schema/endpoint_dataset.schema.json` sketch). Reconcile the two identical XRD patterns with different yields and the paper/table yield discrepancy before using those endpoint records quantitatively. For a kinetic case, obtain Zeng's scan/time mapping, starting-state information and phase-fraction method. The current LTOPO example remains an endpoint table and a separately labeled synthetic identifiability check, not a measured kinetic fit. See [the LTOPO audit](LTOPO_OCT22.md). Keep `data/arrows3/` uncommitted (licence unconfirmed).
 5. Low priority: finish the SI-table match (names normalised); fetch the extra papers listed in PROGRESS section 2c.
 
 ## Shared (day 2)

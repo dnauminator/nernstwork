@@ -84,3 +84,15 @@ def test_polatides2005_fig3_and_published_scheme(root, validator):
 
     assert abs(nh3(1.76e-4)[-1] - obs["NH3"][-1]) < 5.0  # corrected exponent reproduces the figure
     assert nh3(1.76e-5)[-1] < 0.25 * obs["NH3"][-1]  # printed exponent does not
+
+
+def test_wang2025_figS18_sigma_abs(root, validator):
+    ds = _build(root, "wang2025_figS18_rtio2cu2o")
+    assert not list(validator("dataset.schema.json").iter_errors(ds))
+    by = {s["species"]: s for s in ds["series"]}
+    assert by["NO3"]["y"][0] == 3.5697 and by["NH3"]["y"][0] == 0.0  # pinned c0, mg N/L -> mM-N
+    assert abs(by["NH3"]["y"][-1] - 45.053 * 0.0713944) < 1e-3
+    # per-point error bars carried in mM-N; null where the bar was not readable
+    assert by["NO3"]["sigma"][0] is None and abs(by["NO3"]["sigma"][1] - 4.46 * 0.0713944) < 1e-4
+    assert by["NH3"]["sigma"][-1] is None and len(by["NO2"]["sigma"]) == 7
+    assert 0.88 < min(ds["quality"]["n_closure"]["fraction"]) < 0.92  # about 4.5 mg N/L unaccounted

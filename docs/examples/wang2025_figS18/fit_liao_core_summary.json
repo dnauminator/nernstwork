@@ -1,0 +1,1883 @@
+{
+ "dataset": "data/real/wang2025_figS18_rtio2cu2o.json",
+ "space": "configs/spaces/liao_core.json",
+ "protocol": "configs/protocols/mle-profiled-v1.json",
+ "evaluator": "nernstwork.evaluate (validate_submission, run_fit, annotate, evaluation_summary, rank) called directly, sequential, no investigation run",
+ "units": "rate constants in min-1 (time in min); amounts in mM-N",
+ "n_candidates": 36,
+ "wall_s": 175.9,
+ "ranking": [
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NO2,NO3>SINK | mass_action | shared_activation",
+   "delta_aicc": 0.0,
+   "k_total": 7,
+   "nll": -29.011,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.0745,
+    "NO2": 0.0302,
+    "NH3": 0.0397
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0745,
+    "NO2": 0.05,
+    "NH3": 0.05
+   },
+   "unobserved_N_end_mM": 0.31790177093442024,
+   "params": {
+    "R1.k": {
+     "value": 0.27239567036083445,
+     "wald_ci95": [
+      0.1836313260822816,
+      0.404067229782358
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 10.026463885902295,
+     "wald_ci95": [
+      6.526113423456796,
+      15.404264610842993
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.025481438586197967,
+     "wald_ci95": [
+      0.022829623989003917,
+      0.028441279310378535
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.00251479154413478,
+     "wald_ci95": [
+      0.00186378075488732,
+      0.003393197667627025
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NO2 | mass_action | shared_activation",
+   "delta_aicc": 0.89,
+   "k_total": 7,
+   "nll": -28.565,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.0819,
+    "NO2": 0.0289,
+    "NH3": 0.0393
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0819,
+    "NO2": 0.05,
+    "NH3": 0.05
+   },
+   "unobserved_N_end_mM": 0.31636895864492687,
+   "params": {
+    "R1.k": {
+     "value": 0.2785906445000383,
+     "wald_ci95": [
+      0.18412292678114153,
+      0.4215267949504269
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 10.583377974808544,
+     "wald_ci95": [
+      6.850154425608288,
+      16.351148076156896
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.027378407240776555,
+     "wald_ci95": [
+      0.01613799400260984,
+      0.0464479775442093
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.028019676339254142,
+     "wald_ci95": [
+      0.024597639902979335,
+      0.031917788261526046
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NH3,NO3>NO2,NO3>SINK | mass_action | shared_activation",
+   "delta_aicc": 5.08,
+   "k_total": 8,
+   "nll": -29.871,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.0752,
+    "NO2": 0.0248,
+    "NH3": 0.0332
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0752,
+    "NO2": 0.05,
+    "NH3": 0.05
+   },
+   "unobserved_N_end_mM": 0.3172039759206962,
+   "params": {
+    "R1.k": {
+     "value": 0.06468097404176365,
+     "wald_ci95": [
+      0.023244514691720522,
+      0.1799834695831044
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "tie:tau_cat": {
+     "value": 11.5848195197793,
+     "wald_ci95": [
+      7.314322720861681,
+      18.348663085794055
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.020140680694210145,
+     "wald_ci95": [
+      0.013607315528075457,
+      0.029810951174695198
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.006536216837410717,
+     "wald_ci95": [
+      0.0027462997000349157,
+      0.015556252125399211
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R4.k": {
+     "value": 0.002622406442245778,
+     "wald_ci95": [
+      0.0019152713302370205,
+      0.0035906220908559776
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NO2,NO3>SINK | mass_action | shared_activation",
+   "delta_aicc": 6.8,
+   "k_total": 8,
+   "nll": -29.011,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.0745,
+    "NO2": 0.0302,
+    "NH3": 0.0397
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0745,
+    "NO2": 0.05,
+    "NH3": 0.05
+   },
+   "unobserved_N_end_mM": 0.3179017516684774,
+   "params": {
+    "R1.k": {
+     "value": 0.2723956616403755,
+     "wald_ci95": [
+      0.1836313039232096,
+      0.4040672526702006
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 10.026461239848821,
+     "wald_ci95": [
+      6.526111342467238,
+      15.404261392234353
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 1.0000000000000021e-07,
+     "wald_ci95": [
+      1e-07,
+      1.0000010453715656e-07
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.025481445341234563,
+     "wald_ci95": [
+      0.022829631434147436,
+      0.028441285114534427
+     ],
+     "determinacy": "well_determined"
+    },
+    "R4.k": {
+     "value": 0.002514781786186872,
+     "wald_ci95": [
+      0.0018637709764338472,
+      0.0033931891375612385
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NH3,NO3>NO2 | mass_action | shared_activation",
+   "delta_aicc": 7.69,
+   "k_total": 8,
+   "nll": -28.564,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.0807,
+    "NO2": 0.0294,
+    "NH3": 0.0399
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0807,
+    "NO2": 0.05,
+    "NH3": 0.05
+   },
+   "unobserved_N_end_mM": 0.3172290532869464,
+   "params": {
+    "R1.k": {
+     "value": 0.27655566942462134,
+     "wald_ci95": [
+      0.1834490562400608,
+      0.4169170442109825
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 10.529772850276688,
+     "wald_ci95": [
+      6.8250430095631565,
+      16.245482427446387
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.02725836571358745,
+     "wald_ci95": [
+      0.016136211295345017,
+      0.04604665170627916
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 1.0000219713419377e-07,
+     "wald_ci95": [
+      1.0000204080128267e-07,
+      1.0000235346734928e-07
+     ],
+     "determinacy": "well_determined"
+    },
+    "R4.k": {
+     "value": 0.028042733746120853,
+     "wald_ci95": [
+      0.02464325945078579,
+      0.0319111567820932
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>SINK,NO3>NH3,NO3>NO2 | mass_action | shared_activation",
+   "delta_aicc": 8.96,
+   "k_total": 7,
+   "nll": -24.533,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1299,
+    "NO2": 0.0194,
+    "NH3": 0.0559
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1299,
+    "NO2": 0.05,
+    "NH3": 0.0559
+   },
+   "unobserved_N_end_mM": 0.34836772172395963,
+   "params": {
+    "R1.k": {
+     "value": 0.038963918877464414,
+     "wald_ci95": [
+      0.018100801625867406,
+      0.08387401871307314
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "tie:tau_cat": {
+     "value": 16.92939646738626,
+     "wald_ci95": [
+      10.609971549334183,
+      27.012745832286026
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.027716473250653875,
+     "wald_ci95": [
+      0.0227388296975593,
+      0.03378374787408992
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.0030823463029431876,
+     "wald_ci95": [
+      0.0020816458714903083,
+      0.004564109035734116
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NO2,NO3>SINK | mass_action | none",
+   "delta_aicc": 9.51,
+   "k_total": 6,
+   "nll": -21.472,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1041,
+    "NO2": 0.0229,
+    "NH3": 0.1128
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1041,
+    "NO2": 0.05,
+    "NH3": 0.1128
+   },
+   "unobserved_N_end_mM": 0.28007491513607324,
+   "params": {
+    "R1.k": {
+     "value": 0.21757809321592475,
+     "wald_ci95": [
+      0.150150448179526,
+      0.3152852836701209
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.02081757634008314,
+     "wald_ci95": [
+      0.019337432885403245,
+      0.022411014287336835
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.0018057743970617106,
+     "wald_ci95": [
+      0.0011003858737939152,
+      0.0029633433604894536
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NO2 | mass_action | none",
+   "delta_aicc": 10.1,
+   "k_total": 6,
+   "nll": -21.177,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1043,
+    "NO2": 0.0215,
+    "NH3": 0.1197
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1043,
+    "NO2": 0.05,
+    "NH3": 0.1197
+   },
+   "unobserved_N_end_mM": 0.28153547100534265,
+   "params": {
+    "R1.k": {
+     "value": 0.21999096618546016,
+     "wald_ci95": [
+      0.14951985836793935,
+      0.32367623760128933
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.019229730482219647,
+     "wald_ci95": [
+      0.01010497229951001,
+      0.03659411658523182
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.02260837209350366,
+     "wald_ci95": [
+      0.020743286099886935,
+      0.024641153106455066
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NH3,NO3>NO2,NO3>SINK | mass_action | shared_activation",
+   "delta_aicc": 13.58,
+   "k_total": 9,
+   "nll": -29.871,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.0752,
+    "NO2": 0.0248,
+    "NH3": 0.0332
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0752,
+    "NO2": 0.05,
+    "NH3": 0.05
+   },
+   "unobserved_N_end_mM": 0.31720373759072845,
+   "params": {
+    "R1.k": {
+     "value": 0.06468032759146704,
+     "wald_ci95": [
+      0.023244375320424226,
+      0.1799809510760877
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "tie:tau_cat": {
+     "value": 11.584832321889081,
+     "wald_ci95": [
+      7.314329063401595,
+      18.348687728286478
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 1.0000000000000021e-07,
+     "wald_ci95": [
+      1e-07,
+      1.0000014360978309e-07
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.02014073386153126,
+     "wald_ci95": [
+      0.013607409398825326,
+      0.02981090291264773
+     ],
+     "determinacy": "well_determined"
+    },
+    "R4.k": {
+     "value": 0.006536179663759052,
+     "wald_ci95": [
+      0.002746300594568498,
+      0.015556070111709638
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R5.k": {
+     "value": 0.002622394810641362,
+     "wald_ci95": [
+      0.0019152599211968984,
+      0.003590611627575409
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>SINK,NO3>NH3,NO3>NO2,NO3>SINK | mass_action | shared_activation",
+   "delta_aicc": 13.94,
+   "k_total": 8,
+   "nll": -25.441,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1653,
+    "NO2": 0.0229,
+    "NH3": 0.0308
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1653,
+    "NO2": 0.05,
+    "NH3": 0.05
+   },
+   "unobserved_N_end_mM": 0.318643292560618,
+   "params": {
+    "R1.k": {
+     "value": 0.03671787690991307,
+     "wald_ci95": [
+      0.008341279298114299,
+      0.16163018124525744
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "tie:tau_cat": {
+     "value": 18.420067831940695,
+     "wald_ci95": [
+      11.732223711083064,
+      28.920254786206584
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.02741169294908164,
+     "wald_ci95": [
+      0.02236197209474981,
+      0.033601728289033496
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.002779823104257064,
+     "wald_ci95": [
+      0.0007915597796837799,
+      0.009762265200043897
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R4.k": {
+     "value": 1.0000000000000021e-07,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO3>NH3,NO3>NO2,NO3>SINK | mass_action | shared_activation",
+   "delta_aicc": 14.53,
+   "k_total": 7,
+   "nll": -21.745,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1689,
+    "NO2": 0.0626,
+    "NH3": 0.0286
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1689,
+    "NO2": 0.0626,
+    "NH3": 0.05
+   },
+   "unobserved_N_end_mM": 0.26773662783613045,
+   "params": {
+    "R1.k": {
+     "value": 0.027040022046184213,
+     "wald_ci95": [
+      0.02212127059913785,
+      0.03305247720655904
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 18.00356899382612,
+     "wald_ci95": [
+      11.456103207705876,
+      28.293084536584335
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.0004189800849372975,
+     "wald_ci95": [
+      0.00012679507597709863,
+      0.0013844726242032564
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R3.k": {
+     "value": 0.0022462308006317216,
+     "wald_ci95": [
+      0.0013149283228340906,
+      0.0038371314406186394
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NO2 | mass_action | shared_activation",
+   "delta_aicc": 14.59,
+   "k_total": 6,
+   "nll": -18.932,
+   "adequacy": "poor",
+   "rmse_mM_N": {
+    "NO3": 0.0591,
+    "NO2": 0.0213,
+    "NH3": 0.308
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0591,
+    "NO2": 0.05,
+    "NH3": 0.308
+   },
+   "unobserved_N_end_mM": null,
+   "params": {
+    "R1.k": {
+     "value": 0.33379286404472847,
+     "wald_ci95": [
+      0.20510998144872275,
+      0.5432094298884077
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 7.596366506420892,
+     "wald_ci95": [
+      4.120473480441119,
+      14.004406137737238
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.027483561340707265,
+     "wald_ci95": [
+      0.024217575438499065,
+      0.031189998597780075
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>SINK,NO3>NH3,NO3>NO2 | mass_action | none",
+   "delta_aicc": 14.81,
+   "k_total": 6,
+   "nll": -18.824,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.099,
+    "NO2": 0.0155,
+    "NH3": 0.1951
+   },
+   "sigma_mM_N": {
+    "NO3": 0.099,
+    "NO2": 0.05,
+    "NH3": 0.1951
+   },
+   "unobserved_N_end_mM": 0.3627318532945936,
+   "params": {
+    "R1.k": {
+     "value": 0.033400313342736576,
+     "wald_ci95": [
+      0.014956216887397213,
+      0.07458978027612224
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R2.k": {
+     "value": 0.020653610052257198,
+     "wald_ci95": [
+      0.01889695129151306,
+      0.022573567641161255
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.0024597002015441204,
+     "wald_ci95": [
+      0.0014814980498361683,
+      0.004083788758375511
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NH3,NO3>NO2,NO3>SINK | mass_action | none",
+   "delta_aicc": 15.08,
+   "k_total": 7,
+   "nll": -21.473,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1039,
+    "NO2": 0.0223,
+    "NH3": 0.1136
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1039,
+    "NO2": 0.05,
+    "NH3": 0.1136
+   },
+   "unobserved_N_end_mM": 0.2801706858322528,
+   "params": {
+    "R1.k": {
+     "value": 0.14070600038268447,
+     "wald_ci95": [
+      6.467325458456534e-05,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.007983253106341449,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R3.k": {
+     "value": 0.01284829219003486,
+     "wald_ci95": [
+      2.827114782478937e-06,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R4.k": {
+     "value": 0.001807561175170699,
+     "wald_ci95": [
+      0.0010970919638443666,
+      0.0029781253620120166
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NO2,NO3>SINK | mass_action | none",
+   "delta_aicc": 15.08,
+   "k_total": 7,
+   "nll": -21.472,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1041,
+    "NO2": 0.0229,
+    "NH3": 0.1128
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1041,
+    "NO2": 0.05,
+    "NH3": 0.1128
+   },
+   "unobserved_N_end_mM": 0.28007353396689444,
+   "params": {
+    "R1.k": {
+     "value": 0.217577420510705,
+     "wald_ci95": [
+      0.1501502029474911,
+      0.31528384901782225
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 1.0000000028408021e-07,
+     "wald_ci95": [
+      1e-07,
+      1.0000026028276743e-07
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.020817582852701157,
+     "wald_ci95": [
+      0.0193374389986175,
+      0.022411021224685464
+     ],
+     "determinacy": "well_determined"
+    },
+    "R4.k": {
+     "value": 0.0018057549865528476,
+     "wald_ci95": [
+      0.0011003696799612706,
+      0.0029633232638464216
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NO2,NO3>SINK | mass_action | shared_deactivation",
+   "delta_aicc": 15.08,
+   "k_total": 7,
+   "nll": -21.47,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1041,
+    "NO2": 0.0229,
+    "NH3": 0.1128
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1041,
+    "NO2": 0.05,
+    "NH3": 0.1128
+   },
+   "unobserved_N_end_mM": 0.280063226163334,
+   "params": {
+    "R1.k": {
+     "value": 0.21758907772853028,
+     "wald_ci95": [
+      0.14933635143080576,
+      0.3170360484445709
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 999999.9999995951,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.02081825696011437,
+     "wald_ci95": [
+      0.0176295700580153,
+      0.024583686467175347
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.001805759921293889,
+     "wald_ci95": [
+      0.0010904690999758511,
+      0.002990244192543854
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NH3,NO3>NO2 | mass_action | none",
+   "delta_aicc": 15.67,
+   "k_total": 7,
+   "nll": -21.177,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1043,
+    "NO2": 0.0215,
+    "NH3": 0.1197
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1043,
+    "NO2": 0.05,
+    "NH3": 0.1197
+   },
+   "unobserved_N_end_mM": 0.281532265924775,
+   "params": {
+    "R1.k": {
+     "value": 0.2200033414073973,
+     "wald_ci95": [
+      0.14952412692034758,
+      0.3237034131368216
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.01923066178003127,
+     "wald_ci95": [
+      0.010105106601305307,
+      0.036597174783904285
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 1.0011264108849655e-07,
+     "wald_ci95": [
+      1.0011248589599855e-07,
+      1.0011279628123511e-07
+     ],
+     "determinacy": "well_determined"
+    },
+    "R4.k": {
+     "value": 0.022608309403107724,
+     "wald_ci95": [
+      0.020743214295913494,
+      0.02464110174898714
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NO2 | mass_action | shared_deactivation",
+   "delta_aicc": 15.67,
+   "k_total": 7,
+   "nll": -21.176,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1043,
+    "NO2": 0.0215,
+    "NH3": 0.1197
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1043,
+    "NO2": 0.05,
+    "NH3": 0.1197
+   },
+   "unobserved_N_end_mM": 0.2815202464129072,
+   "params": {
+    "R1.k": {
+     "value": 0.22000945039334405,
+     "wald_ci95": [
+      0.14835463603827836,
+      0.3262733107301891
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 999999.9176565207,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.01923031120935984,
+     "wald_ci95": [
+      0.009899382180680602,
+      0.03735635845341266
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.022609053865703433,
+     "wald_ci95": [
+      0.019256189392578033,
+      0.026545715057170183
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NH3,NO3>NO2 | mass_action | shared_activation",
+   "delta_aicc": 18.94,
+   "k_total": 7,
+   "nll": -19.542,
+   "adequacy": "poor",
+   "rmse_mM_N": {
+    "NO3": 0.0587,
+    "NO2": 0.0126,
+    "NH3": 0.2969
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0587,
+    "NO2": 0.05,
+    "NH3": 0.2969
+   },
+   "unobserved_N_end_mM": null,
+   "params": {
+    "R1.k": {
+     "value": 0.04599062332926425,
+     "wald_ci95": [
+      0.012778835172884362,
+      0.1655187977306736
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "tie:tau_cat": {
+     "value": 7.8628560485901,
+     "wald_ci95": [
+      4.339196049628887,
+      14.247917018208362
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.0235766935171766,
+     "wald_ci95": [
+      0.018457495446856518,
+      0.030115704419558468
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.004120149141277432,
+     "wald_ci95": [
+      0.0013310361326922505,
+      0.012753695057122918
+     ],
+     "determinacy": "moderately_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NH3,NO3>NO2 | mass_action | none",
+   "delta_aicc": 19.36,
+   "k_total": 6,
+   "nll": -16.548,
+   "adequacy": "poor",
+   "rmse_mM_N": {
+    "NO3": 0.1156,
+    "NO2": 0.0135,
+    "NH3": 0.2472
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1156,
+    "NO2": 0.05,
+    "NH3": 0.2472
+   },
+   "unobserved_N_end_mM": null,
+   "params": {
+    "R1.k": {
+     "value": 0.05354118866786576,
+     "wald_ci95": [
+      0.010776259099919609,
+      0.2660161432077465
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R2.k": {
+     "value": 0.01760551793660425,
+     "wald_ci95": [
+      0.011757454691374484,
+      0.02636236072791188
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.004394157692529825,
+     "wald_ci95": [
+      0.000953325711123688,
+      0.020253961056038126
+     ],
+     "determinacy": "moderately_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NO2 | mass_action | shared_deactivation",
+   "delta_aicc": 19.64,
+   "k_total": 6,
+   "nll": -16.411,
+   "adequacy": "poor",
+   "rmse_mM_N": {
+    "NO3": 0.1059,
+    "NO2": 0.017,
+    "NH3": 0.2702
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1059,
+    "NO2": 0.05,
+    "NH3": 0.2702
+   },
+   "unobserved_N_end_mM": null,
+   "params": {
+    "R1.k": {
+     "value": 0.2586065741691774,
+     "wald_ci95": [
+      0.1639137548580044,
+      0.40800334457259496
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 999999.9999999979,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.022504313348911717,
+     "wald_ci95": [
+      0.01861878451624594,
+      0.02720070791216822
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>SINK,NO3>NH3,NO3>NO2,NO3>SINK | mass_action | none",
+   "delta_aicc": 20.37,
+   "k_total": 7,
+   "nll": -18.824,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.099,
+    "NO2": 0.0155,
+    "NH3": 0.1951
+   },
+   "sigma_mM_N": {
+    "NO3": 0.099,
+    "NO2": 0.05,
+    "NH3": 0.1951
+   },
+   "unobserved_N_end_mM": 0.3627343658500395,
+   "params": {
+    "R1.k": {
+     "value": 0.033399313528469116,
+     "wald_ci95": [
+      0.007106901105213271,
+      0.1569621031246227
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R2.k": {
+     "value": 0.020653605868052177,
+     "wald_ci95": [
+      0.018893174806694016,
+      0.02257807063753527
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.0024596205009945736,
+     "wald_ci95": [
+      0.0006118172079304689,
+      0.009888138042695147
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R4.k": {
+     "value": 1.0000000000000021e-07,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>SINK,NO3>NH3,NO3>NO2 | mass_action | shared_deactivation",
+   "delta_aicc": 20.38,
+   "k_total": 7,
+   "nll": -18.823,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.099,
+    "NO2": 0.0155,
+    "NH3": 0.1951
+   },
+   "sigma_mM_N": {
+    "NO3": 0.099,
+    "NO2": 0.05,
+    "NH3": 0.1951
+   },
+   "unobserved_N_end_mM": 0.36272419076920387,
+   "params": {
+    "R1.k": {
+     "value": 0.033401684534893165,
+     "wald_ci95": [
+      0.014745864281054961,
+      0.0756600297211404
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "tie:tau_cat": {
+     "value": 999999.9999999979,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.020654298505092646,
+     "wald_ci95": [
+      0.01714958462831207,
+      0.02487524077015852
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.002459752098697823,
+     "wald_ci95": [
+      0.0014754816773239667,
+      0.004100613704686407
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NH3,NO3>NO2,NO3>SINK | mass_action | none",
+   "delta_aicc": 21.88,
+   "k_total": 8,
+   "nll": -21.473,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1039,
+    "NO2": 0.0223,
+    "NH3": 0.1136
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1039,
+    "NO2": 0.05,
+    "NH3": 0.1136
+   },
+   "unobserved_N_end_mM": 0.28017337364359046,
+   "params": {
+    "R1.k": {
+     "value": 0.1406320226131116,
+     "wald_ci95": [
+      6.54770192302075e-05,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 1.0026404914064861e-07,
+     "wald_ci95": [
+      1.0026313626386197e-07,
+      1.0026496202574684e-07
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.007990838407377552,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R4.k": {
+     "value": 0.01284075676261341,
+     "wald_ci95": [
+      2.866631993829593e-06,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R5.k": {
+     "value": 0.0018075740485094484,
+     "wald_ci95": [
+      0.0010970940206556413,
+      0.0029781621987988154
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NH3,NO3>NO2,NO3>SINK | mass_action | shared_deactivation",
+   "delta_aicc": 21.88,
+   "k_total": 8,
+   "nll": -21.472,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1039,
+    "NO2": 0.0223,
+    "NH3": 0.1136
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1039,
+    "NO2": 0.05,
+    "NH3": 0.1136
+   },
+   "unobserved_N_end_mM": 0.28015910657616383,
+   "params": {
+    "R1.k": {
+     "value": 0.14066008341342037,
+     "wald_ci95": [
+      5.72434667715873e-05,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "tie:tau_cat": {
+     "value": 999999.9999996565,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.00798890134747483,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R3.k": {
+     "value": 0.01284334876451869,
+     "wald_ci95": [
+      2.4403293323349353e-06,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R4.k": {
+     "value": 0.0018075493605738393,
+     "wald_ci95": [
+      0.0010887536775685415,
+      0.003000894286949685
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NO2,NO3>SINK | mass_action | shared_deactivation",
+   "delta_aicc": 21.88,
+   "k_total": 8,
+   "nll": -21.47,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1041,
+    "NO2": 0.0229,
+    "NH3": 0.1128
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1041,
+    "NO2": 0.05,
+    "NH3": 0.1128
+   },
+   "unobserved_N_end_mM": 0.280060211734292,
+   "params": {
+    "R1.k": {
+     "value": 0.21759077599148316,
+     "wald_ci95": [
+      0.1493370219019055,
+      0.317039573935495
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 999999.9999996278,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 1.0000087361609366e-07,
+     "wald_ci95": [
+      1e-07,
+      2.920593937868964e-06
+     ],
+     "determinacy": "poorly_determined"
+    },
+    "R3.k": {
+     "value": 0.02081825127482264,
+     "wald_ci95": [
+      0.017629523356875103,
+      0.024583738162872036
+     ],
+     "determinacy": "well_determined"
+    },
+    "R4.k": {
+     "value": 0.0018057281588947302,
+     "wald_ci95": [
+      0.0010904366103475537,
+      0.0029902280911002126
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO3>NH3,NO3>NO2 | mass_action | shared_activation",
+   "delta_aicc": 22.21,
+   "k_total": 6,
+   "nll": -15.125,
+   "adequacy": "poor",
+   "rmse_mM_N": {
+    "NO3": 0.0586,
+    "NO2": 0.0616,
+    "NH3": 0.3155
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0586,
+    "NO2": 0.0616,
+    "NH3": 0.3155
+   },
+   "unobserved_N_end_mM": null,
+   "params": {
+    "R1.k": {
+     "value": 0.02730408844553079,
+     "wald_ci95": [
+      0.02399066445951249,
+      0.031075139544364142
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 8.005603763911035,
+     "wald_ci95": [
+      4.449674760203138,
+      14.403230590682698
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.0005066370011431359,
+     "wald_ci95": [
+      0.00021134104420351198,
+      0.0012145347908858514
+     ],
+     "determinacy": "moderately_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO3>NH3,NO3>NO2,NO3>SINK | mass_action | none",
+   "delta_aicc": 22.36,
+   "k_total": 6,
+   "nll": -15.05,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.0998,
+    "NO2": 0.06,
+    "NH3": 0.1925
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0998,
+    "NO2": 0.06,
+    "NH3": 0.1925
+   },
+   "unobserved_N_end_mM": 0.29762337636671593,
+   "params": {
+    "R1.k": {
+     "value": 0.020708918332970113,
+     "wald_ci95": [
+      0.018954818223756192,
+      0.02262534483101155
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.0003489940426568056,
+     "wald_ci95": [
+      0.00012297982684992095,
+      0.000990380657785245
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R3.k": {
+     "value": 0.0019492141012172886,
+     "wald_ci95": [
+      0.0009704874926035153,
+      0.003914976381809539
+     ],
+     "determinacy": "moderately_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NH3,NO3>NO2 | mass_action | shared_deactivation",
+   "delta_aicc": 22.47,
+   "k_total": 8,
+   "nll": -21.176,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1043,
+    "NO2": 0.0215,
+    "NH3": 0.1197
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1043,
+    "NO2": 0.05,
+    "NH3": 0.1197
+   },
+   "unobserved_N_end_mM": 0.28152753103975425,
+   "params": {
+    "R1.k": {
+     "value": 0.22001033035058226,
+     "wald_ci95": [
+      0.1483628426755481,
+      0.3262578728477677
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 999985.8726255135,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.0192310255934544,
+     "wald_ci95": [
+      0.009898644731688007,
+      0.037361917252386426
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 1.0147112824481944e-07,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R4.k": {
+     "value": 0.022608912827118296,
+     "wald_ci95": [
+      0.019261478092549862,
+      0.026538095195401783
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO3>NH3,NO3>NO2 | mass_action | none",
+   "delta_aicc": 23.72,
+   "k_total": 5,
+   "nll": -12.05,
+   "adequacy": "poor",
+   "rmse_mM_N": {
+    "NO3": 0.1016,
+    "NO2": 0.0608,
+    "NH3": 0.3076
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1016,
+    "NO2": 0.0608,
+    "NH3": 0.3076
+   },
+   "unobserved_N_end_mM": null,
+   "params": {
+    "R1.k": {
+     "value": 0.022405018341894768,
+     "wald_ci95": [
+      0.02048270248965167,
+      0.024507744871764617
+     ],
+     "determinacy": "well_determined"
+    },
+    "R2.k": {
+     "value": 0.00041802896078323073,
+     "wald_ci95": [
+      0.00017588343152710753,
+      0.000993545614480323
+     ],
+     "determinacy": "moderately_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>SINK,NO3>NH3,NO3>NO2,NO3>SINK | mass_action | shared_deactivation",
+   "delta_aicc": 27.18,
+   "k_total": 8,
+   "nll": -18.823,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.099,
+    "NO2": 0.0155,
+    "NH3": 0.1951
+   },
+   "sigma_mM_N": {
+    "NO3": 0.099,
+    "NO2": 0.05,
+    "NH3": 0.1951
+   },
+   "unobserved_N_end_mM": 0.36273161205966004,
+   "params": {
+    "R1.k": {
+     "value": 0.033401048933467625,
+     "wald_ci95": [
+      0.006763162944451284,
+      0.1649568521443355
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "tie:tau_cat": {
+     "value": 999999.9999999979,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.020654344382868776,
+     "wald_ci95": [
+      0.01709122503689515,
+      0.02496029049791511
+     ],
+     "determinacy": "well_determined"
+    },
+    "R3.k": {
+     "value": 0.0024597123476761736,
+     "wald_ci95": [
+      0.0005924166421446199,
+      0.010212719229845119
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R4.k": {
+     "value": 1.0000000000000021e-07,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO3>NH3,NO3>NO2,NO3>SINK | mass_action | shared_deactivation",
+   "delta_aicc": 27.92,
+   "k_total": 7,
+   "nll": -15.048,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.0998,
+    "NO2": 0.06,
+    "NH3": 0.1925
+   },
+   "sigma_mM_N": {
+    "NO3": 0.0998,
+    "NO2": 0.06,
+    "NH3": 0.1925
+   },
+   "unobserved_N_end_mM": 0.2975796399607427,
+   "params": {
+    "R1.k": {
+     "value": 0.02070949354326178,
+     "wald_ci95": [
+      0.018887565599503043,
+      0.02270716787502174
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 999999.7762015051,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.0003489536335457167,
+     "wald_ci95": [
+      0.00012291047103619784,
+      0.0009907100455981233
+     ],
+     "determinacy": "moderately_determined"
+    },
+    "R3.k": {
+     "value": 0.0019489617222225796,
+     "wald_ci95": [
+      0.0009610967626650881,
+      0.003952205378525912
+     ],
+     "determinacy": "moderately_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO3>NH3,NO3>NO2 | mass_action | shared_deactivation",
+   "delta_aicc": 28.36,
+   "k_total": 6,
+   "nll": -12.05,
+   "adequacy": "poor",
+   "rmse_mM_N": {
+    "NO3": 0.1018,
+    "NO2": 0.0609,
+    "NH3": 0.3068
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1018,
+    "NO2": 0.0609,
+    "NH3": 0.3068
+   },
+   "unobserved_N_end_mM": null,
+   "params": {
+    "R1.k": {
+     "value": 0.02238554660656753,
+     "wald_ci95": [
+      0.018515275338603338,
+      0.02706482554056404
+     ],
+     "determinacy": "well_determined"
+    },
+    "tie:tau_cat": {
+     "value": 999876.1413382157,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.0004196396063690376,
+     "wald_ci95": [
+      0.00017478222718585835,
+      0.001007524632617846
+     ],
+     "determinacy": "moderately_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO2>SINK,NO3>NH3,NO3>NO2,NO3>SINK | mass_action | shared_deactivation",
+   "delta_aicc": 30.38,
+   "k_total": 9,
+   "nll": -21.472,
+   "adequacy": "no_systematic_misfit_detected",
+   "rmse_mM_N": {
+    "NO3": 0.1039,
+    "NO2": 0.0223,
+    "NH3": 0.1136
+   },
+   "sigma_mM_N": {
+    "NO3": 0.1039,
+    "NO2": 0.05,
+    "NH3": 0.1136
+   },
+   "unobserved_N_end_mM": 0.280161637641658,
+   "params": {
+    "R1.k": {
+     "value": 0.1407228436520544,
+     "wald_ci95": [
+      5.662939097209069e-05,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "tie:tau_cat": {
+     "value": 999999.9986270281,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 1.0013831508049379e-07,
+     "wald_ci95": [
+      1e-07,
+      2.246686755696385e-05
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R3.k": {
+     "value": 0.007982648264611425,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R4.k": {
+     "value": 0.012849612658014768,
+     "wald_ci95": [
+      2.410928290646874e-06,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R5.k": {
+     "value": 0.0018075580223617512,
+     "wald_ci95": [
+      0.0010887583448540583,
+      0.003000910183280646
+     ],
+     "determinacy": "well_determined"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NO2 | mass_action | none",
+   "delta_aicc": 61.81,
+   "k_total": 5,
+   "nll": 6.993,
+   "adequacy": "poor",
+   "rmse_mM_N": {
+    "NO3": 0.8667,
+    "NO2": 0.0464,
+    "NH3": 1.1249
+   },
+   "sigma_mM_N": {
+    "NO3": 0.8667,
+    "NO2": 0.05,
+    "NH3": 1.1249
+   },
+   "unobserved_N_end_mM": null,
+   "params": {
+    "R1.k": {
+     "value": 0.10488106134561057,
+     "wald_ci95": [
+      0.0010021082469199906,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 9.999664500325062,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    }
+   }
+  },
+  {
+   "rationale": "enumerated: NO2>NH3,NO3>NH3,NO3>NO2 | mass_action | shared_deactivation",
+   "delta_aicc": 66.87,
+   "k_total": 7,
+   "nll": 4.425,
+   "adequacy": "poor",
+   "rmse_mM_N": {
+    "NO3": 0.8667,
+    "NO2": 0.0107,
+    "NH3": 1.1013
+   },
+   "sigma_mM_N": {
+    "NO3": 0.8667,
+    "NO2": 0.05,
+    "NH3": 1.1013
+   },
+   "unobserved_N_end_mM": null,
+   "params": {
+    "R1.k": {
+     "value": 0.016826179549366008,
+     "wald_ci95": [
+      0.0002589645763878961,
+      1.0932781702290604
+     ],
+     "determinacy": "poorly_determined"
+    },
+    "tie:tau_cat": {
+     "value": 701708.8815631161,
+     "wald_ci95": [
+      1.0,
+      1000000.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R2.k": {
+     "value": 0.9969748319570537,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    },
+    "R3.k": {
+     "value": 0.07384881118686637,
+     "wald_ci95": [
+      1e-07,
+      10.0
+     ],
+     "determinacy": "not_determined_locally"
+    }
+   }
+  }
+ ]
+}

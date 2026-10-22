@@ -1,0 +1,388 @@
+{
+ "calibration": {
+  "y_tick_rows": [
+   42.5,
+   126.0,
+   208.5,
+   291.5,
+   374.5,
+   457.5
+  ],
+  "x_tick_cols": [
+   102.5,
+   203.5,
+   305.5,
+   406.5,
+   507.5,
+   609.5,
+   710.5
+  ],
+  "mg_per_px": 0.1205439944754994,
+  "y_tick_max_residual_mg": 0.042499352165144444,
+  "x_tick_max_residual_min": 0.10575278461477922
+ },
+ "template": {
+  "n_px": 215,
+  "height_px": 19,
+  "width_px": 20
+ },
+ "points": {
+  "NO3": [
+   {
+    "t_min": 0,
+    "value_mg_N_per_L": 49.996,
+    "template_centre_mg": 49.963,
+    "template_visible_fraction": 0.67,
+    "line_end_estimates_mg": [
+     49.996
+    ],
+    "estimates_used": 1,
+    "estimate_spread_mg": null,
+    "cap_rows_top_bottom": [
+     null,
+     null
+    ],
+    "error_bar_half_length_mg": null
+   },
+   {
+    "t_min": 30,
+    "value_mg_N_per_L": 26.393,
+    "template_centre_mg": 26.336,
+    "template_visible_fraction": 0.99,
+    "line_end_estimates_mg": [
+     26.443,
+     26.399
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.107,
+    "cap_rows_top_bottom": [
+     202.0,
+     276.0
+    ],
+    "error_bar_half_length_mg": 4.46
+   },
+   {
+    "t_min": 60,
+    "value_mg_N_per_L": 13.009,
+    "template_centre_mg": 13.076,
+    "template_visible_fraction": 0.95,
+    "line_end_estimates_mg": [
+     12.965,
+     12.986
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.111,
+    "cap_rows_top_bottom": [
+     325.0,
+     375.0
+    ],
+    "error_bar_half_length_mg": 3.014
+   },
+   {
+    "t_min": 90,
+    "value_mg_N_per_L": 4.005,
+    "template_centre_mg": 3.975,
+    "template_visible_fraction": 0.98,
+    "line_end_estimates_mg": [
+     4.022,
+     4.019
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.047,
+    "cap_rows_top_bottom": [
+     414.0,
+     435.0
+    ],
+    "error_bar_half_length_mg": 1.266
+   },
+   {
+    "t_min": 120,
+    "value_mg_N_per_L": 1.442,
+    "template_centre_mg": 1.323,
+    "template_visible_fraction": 0.87,
+    "line_end_estimates_mg": [
+     1.444,
+     1.441
+    ],
+    "estimates_used": 2,
+    "estimate_spread_mg": 0.003,
+    "cap_rows_top_bottom": [
+     441.0,
+     null
+    ],
+    "error_bar_half_length_mg": 0.544
+   },
+   {
+    "t_min": 150,
+    "value_mg_N_per_L": 0.396,
+    "template_centre_mg": 0.419,
+    "template_visible_fraction": 0.47,
+    "line_end_estimates_mg": [
+     0.374,
+     0.419
+    ],
+    "estimates_used": 2,
+    "estimate_spread_mg": 0.045,
+    "cap_rows_top_bottom": [
+     null,
+     null
+    ],
+    "error_bar_half_length_mg": null
+   },
+   {
+    "t_min": 180,
+    "value_mg_N_per_L": 0.419,
+    "template_centre_mg": 0.118,
+    "template_visible_fraction": 0.23,
+    "line_end_estimates_mg": [
+     0.419
+    ],
+    "estimates_used": 1,
+    "estimate_spread_mg": null,
+    "cap_rows_top_bottom": [
+     null,
+     null
+    ],
+    "error_bar_half_length_mg": null
+   }
+  ],
+  "NO2": [
+   {
+    "t_min": 0,
+    "value_mg_N_per_L": 0.01,
+    "template_centre_mg": 49.963,
+    "template_visible_fraction": 0.0,
+    "line_end_estimates_mg": [
+     0.01
+    ],
+    "estimates_used": 1,
+    "estimate_spread_mg": null,
+    "cap_rows_top_bottom": [
+     null,
+     null
+    ],
+    "error_bar_half_length_mg": null
+   },
+   {
+    "t_min": 30,
+    "value_mg_N_per_L": 2.006,
+    "template_centre_mg": 1.986,
+    "template_visible_fraction": 1.0,
+    "line_end_estimates_mg": [
+     2.006,
+     2.026
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.04,
+    "cap_rows_top_bottom": [
+     433.0,
+     449.0
+    ],
+    "error_bar_half_length_mg": 0.964
+   },
+   {
+    "t_min": 60,
+    "value_mg_N_per_L": 1.252,
+    "template_centre_mg": 1.263,
+    "template_visible_fraction": 0.99,
+    "line_end_estimates_mg": [
+     1.239,
+     1.253
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.024,
+    "cap_rows_top_bottom": [
+     445.0,
+     null
+    ],
+    "error_bar_half_length_mg": 0.252
+   },
+   {
+    "t_min": 90,
+    "value_mg_N_per_L": 1.015,
+    "template_centre_mg": 1.022,
+    "template_visible_fraction": 0.99,
+    "line_end_estimates_mg": [
+     1.007,
+     1.015
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.015,
+    "cap_rows_top_bottom": [
+     447.0,
+     null
+    ],
+    "error_bar_half_length_mg": 0.248
+   },
+   {
+    "t_min": 120,
+    "value_mg_N_per_L": 0.395,
+    "template_centre_mg": 0.359,
+    "template_visible_fraction": 0.79,
+    "line_end_estimates_mg": [
+     0.4,
+     0.39
+    ],
+    "estimates_used": 2,
+    "estimate_spread_mg": 0.01,
+    "cap_rows_top_bottom": [
+     null,
+     null
+    ],
+    "error_bar_half_length_mg": null
+   },
+   {
+    "t_min": 150,
+    "value_mg_N_per_L": 0.062,
+    "template_centre_mg": 0.299,
+    "template_visible_fraction": 0.63,
+    "line_end_estimates_mg": [
+     0.115,
+     0.009
+    ],
+    "estimates_used": 2,
+    "estimate_spread_mg": 0.106,
+    "cap_rows_top_bottom": [
+     null,
+     null
+    ],
+    "error_bar_half_length_mg": null
+   },
+   {
+    "t_min": 180,
+    "value_mg_N_per_L": 0.066,
+    "template_centre_mg": 0.057,
+    "template_visible_fraction": 0.29,
+    "line_end_estimates_mg": [
+     0.066
+    ],
+    "estimates_used": 1,
+    "estimate_spread_mg": null,
+    "cap_rows_top_bottom": [
+     null,
+     null
+    ],
+    "error_bar_half_length_mg": null
+   }
+  ],
+  "NH3": [
+   {
+    "t_min": 0,
+    "value_mg_N_per_L": 0.008,
+    "template_centre_mg": 0.057,
+    "template_visible_fraction": 0.53,
+    "line_end_estimates_mg": [
+     0.008
+    ],
+    "estimates_used": 1,
+    "estimate_spread_mg": null,
+    "cap_rows_top_bottom": [
+     null,
+     null
+    ],
+    "error_bar_half_length_mg": null
+   },
+   {
+    "t_min": 30,
+    "value_mg_N_per_L": 16.508,
+    "template_centre_mg": 16.512,
+    "template_visible_fraction": 1.0,
+    "line_end_estimates_mg": [
+     16.503,
+     16.508
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.009,
+    "cap_rows_top_bottom": [
+     293.5,
+     346.5
+    ],
+    "error_bar_half_length_mg": 3.194
+   },
+   {
+    "t_min": 60,
+    "value_mg_N_per_L": 32.001,
+    "template_centre_mg": 31.941,
+    "template_visible_fraction": 0.99,
+    "line_end_estimates_mg": [
+     32.046,
+     32.017
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.104,
+    "cap_rows_top_bottom": [
+     181.0,
+     203.0
+    ],
+    "error_bar_half_length_mg": 1.326
+   },
+   {
+    "t_min": 90,
+    "value_mg_N_per_L": 39.941,
+    "template_centre_mg": 39.897,
+    "template_visible_fraction": 1.0,
+    "line_end_estimates_mg": [
+     39.96,
+     39.965
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.068,
+    "cap_rows_top_bottom": [
+     105.5,
+     146.0
+    ],
+    "error_bar_half_length_mg": 2.441
+   },
+   {
+    "t_min": 120,
+    "value_mg_N_per_L": 43.853,
+    "template_centre_mg": 43.815,
+    "template_visible_fraction": 1.0,
+    "line_end_estimates_mg": [
+     43.865,
+     43.878
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.063,
+    "cap_rows_top_bottom": [
+     85.5,
+     101.0
+    ],
+    "error_bar_half_length_mg": 0.934
+   },
+   {
+    "t_min": 150,
+    "value_mg_N_per_L": 44.952,
+    "template_centre_mg": 44.96,
+    "template_visible_fraction": 1.0,
+    "line_end_estimates_mg": [
+     44.966,
+     44.929
+    ],
+    "estimates_used": 3,
+    "estimate_spread_mg": 0.037,
+    "cap_rows_top_bottom": [
+     78.0,
+     null
+    ],
+    "error_bar_half_length_mg": 0.792
+   },
+   {
+    "t_min": 180,
+    "value_mg_N_per_L": 45.053,
+    "template_centre_mg": 44.96,
+    "template_visible_fraction": 0.6,
+    "line_end_estimates_mg": [
+     45.053
+    ],
+    "estimates_used": 1,
+    "estimate_spread_mg": null,
+    "cap_rows_top_bottom": [
+     null,
+     null
+    ],
+    "error_bar_half_length_mg": null
+   }
+  ]
+ }
+}

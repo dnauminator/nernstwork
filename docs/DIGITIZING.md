@@ -29,6 +29,7 @@ The converter clamps any negative digitized time or concentration to 0 (click no
 - `pin_t0_to_c0`: true to set t = 0 points to the stated initial concentrations (removes click noise at the axis).
 - `conditions` (catalyst, electrolyte, potential as reported, pH, `c0_mM_N`) and `provenance` (citation, figure). Leave `potential_V_vs_RHE` null unless you converted it.
 - `sigma`: optional relative error per species if the figure has error bars you want to carry.
+- `sigma_abs`: optional absolute error per point instead, in plotted units keyed by nominal time (`{"NO3": {"30": 4.46}}`), for error bars read point by point; times without an entry get `null`.
 
 ## Axis calibration checklist (the usual source of error)
 

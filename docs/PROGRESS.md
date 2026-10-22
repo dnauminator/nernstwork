@@ -6,6 +6,17 @@ Rules: findings and results go here. When a task in NEXT_STEPS is finished, dele
 
 ## Change log
 
+**Oct 22, sensitivity campaign in progress**
+- (Jarrod) Reconstructed the Claude-session decisions and all saved synthesis proposals. The declared comparison covers 904 historical dynamics under both initial-lithium assumptions, with the original 860 identified separately, plus one fresh lower-lithium Opus run. Inputs, original cache entries and prior selections are preserved. Follow completion and numerical limits in [the campaign report](CHAPMAN_LI_SENSITIVITY_RESULTS.md) and [protocol](CHAPMAN_LI_SENSITIVITY_PROTOCOL.md); rankings remain provisional until the scheduled sets finish.
+- The original selected Opus model declares Ti-only conservation. Its carbonate supply rule limits the intermediate below the measured development peaks at 0.28/0.30 carbonate. Three independent extended-budget optimizations agree on the recovered lower-lithium fit, whose 750 C RMSE is about 0.05092 versus 0.02483 at nominal lithium. This is a retrospective, model-conditional sensitivity result with poor residual adequacy, not evidence of lithium conservation or a measured Li-deficient composition. It qualifies the broader chemistry interpretation recorded on Oct 21.
+- Reviewed Daniel's Kosuge attachments and the synthesis sources. [Literature checks](LITERATURE_REVIEW_OCT22.md) separate remaining carbonate in the first frame from the weighed amount and the heating transient. [LTOPO audit](LTOPO_OCT22.md) found a duplicated XRD pattern and a paper/table yield mismatch, established the fixed-hold kinetic ambiguity with an explicitly synthetic example, and identified a separate time-resolved LTOPO paper needing scan/time mapping.
+- Fresh lower-lithium Opus run (`chapman-li-oct22-opus1`, Opus 5.5, $3.99) froze and was evaluated at 750 C:
+  - Opus rejected lithium balance at 0.28/0.30 carbonate: stoichiometric Li2TiO3 by 641 AICc, Li-deficient Li2TiO3 (Li/Ti = 1) by 31 or more. All three plausible models conserve only Ti.
+  - Its rule-selected top-1 ranks 10th of the 151 scored reference members (43rd by RMSE), RMSE 0.046; the Oct 21 nominal-lithium pick ranked 4th (0.025). It underpredicts rutile after 2 min (about 0.10 per Ti) and overpredicts Li2TiO3 (about 0.05). The baseline's pick ranks 11th (0.030).
+  - Its space again holds a member that beats every reference member on the held-out score (462 vs 603), with RMSE 0.032 against 0.031 and a poor development rank, so only identifiable in hindsight.
+- Held-out predictions now run under the protocol's per-solve RHS budget, as fits do. One reference member (`enum-9e4bf653cd`) is so stiff at 750 C on the lower-lithium inputs that uncapped LSODA ran for 40 min without finishing; it now counts as a failed prediction. On the five Oct 21 runs the cap changes no reported rank or RMSE (one poorly fitting Gemini 2 candidate, `Cf873269e18`, would become a failed prediction).
+- Repaired a worker-recycling deadlock in evaluation scheduling and resumed the same paid AI run from its committed results. Numerical code, fitting protocol and candidate definitions are unchanged. Relevant investigation and real-process regression checks pass. Supplementary-figure fits run on bounded existing CPU capacity on both Sparks.
+
 **Oct 21**
 - (Jarrod) Model side built and run on `jarrod/investigator-pipeline`, rebased on main (`docs/SYNTHESIS.md`):
   - Element-balance mechanisms, Arrhenius and Avrami rate laws, and joint fits of several temperatures.

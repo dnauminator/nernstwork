@@ -1,0 +1,155 @@
+{
+  "id": "wang2025_figS18_rtio2cu2o",
+  "provenance": {
+    "citation": "Wang J., Dong W., Song Q., Zhang S., Li M., Chen J., Zhang S., Lu J., Unveiling heterointerface activation effects with different titanium dioxide crystal phases for electrocatalytic nitrate-to-ammonia reduction, J. Hazard. Mater. 488 (2025) 137174",
+    "doi": "10.1016/j.jhazmat.2025.137174",
+    "figure": "SI Fig. S18, 'Time-dependent concentration changes of NO3- and ammonia during the NITRR using R-TiO2/Cu2O' (the plot also shows NO2--N)",
+    "file": "Supplementary data 1-s2.0-S030438942500086X-mmc1.docx, downloaded 2026-10-22 from https://ars.els-cdn.com/content/image/1-s2.0-S030438942500086X-mmc1.docx (no login needed); not committed. The main article is paywalled and was not seen.",
+    "notes": "Only time course in the SI; it is for R-TiO2/Cu2O alone. The A-TiO2/Cu2O comparison in the SI is endpoint-only (Table S2: NH3 yield 2.3 vs 1.1 mol h-1 m-2, FE 85.7 vs 67.0% at -0.5 V vs RHE) plus chronoamperometry (Fig. S12, five potentials, 3 h). Caveats: (1) the Fig. S18 caption gives no potential, electrolyte volume or cell; (2) the SI does not state which calcination temperature produced the R-TiO2 sample. SI Fig. S4 shows TiO2 calcined at 700 C (anatase), 800 C (mostly rutile with some anatase) and 900 C (rutile) by peak positions (anatase 101 at about 25.3 deg, rutile 110 at about 27.4 deg), so R-TiO2 is plausibly the 900 C material; not verified against the main text. (3) In Fig. S4 the reference-stick legend appears to swap the labels: the sticks labelled 'TiO2-Rutile PDF#21-1276' sit at anatase positions and those labelled 'TiO2-Anatase PDF#21-1272' at rutile positions (the PDF numbers themselves match the true phases: 21-1272 anatase, 21-1276 rutile). (4) Near-zero values at 120-180 min come from overlapped or frame-clipped markers and rely on the connecting-line readings. Licence/terms: publisher copyright (Elsevier); the SI file is publicly downloadable but carries no reuse licence.",
+    "verified_against_figure": false,
+    "source_type": "digitized",
+    "extraction": "Raster extraction of SI Fig. S18 by scripts/extract_wang2025_figS18.py (native 736x538 px TIFF, 220 dpi, word/media/image18.tiff in the SI .docx; flat Origin fills, no antialiasing). Axes: linear fits to outward tick-mark centres, 0.1205 mg L-1 per px, max tick residual 0.04 mg L-1 (y) and 0.11 min (x). Values: occlusion-tolerant template match of the legend triangle (centre = legend line row = triangle centroid; checked on the t = 0 NO3 marker, 49.96 vs the stated 50) averaged with the end values of straight lines fitted to the connecting segments between markers (Origin draws segments through the data points). Template and line estimates agree within 0.12 mg L-1 wherever both are available. Where a marker is less than 90% visible (NO3 120/150/180, NO2 120/150/180, NH3 180; the t = 0 markers are clipped by the axes) only the line estimates are used. Error-bar caps read by eye from per-row width profiles (script option --profiles); cap rows are listed in the script. Per-point estimates, visible fractions and cap rows are in extracted_points.json. An overlay of the readings on the figure was checked by eye at 3x zoom (scratch, not committed; the figure is publisher copyright). wpd_datasets.csv is the script's output in the unified WebPlotDigitizer layout, not a WebPlotDigitizer export. Converted with scripts/digitized_to_dataset.py."
+  },
+  "conditions": {
+    "catalyst": "R-TiO2/Cu2O (rutile TiO2 / Cu2O heterostructure); electrode geometric area 1.5 x 1.5 cm (SI Text S6)",
+    "electrolyte": "1 M Na2SO4 + 50 mg L-1 NO3--N (as in SI Fig. S12 and Table S2; the Fig. S18 caption does not restate it)",
+    "cell": "other",
+    "potential_V_vs_RHE": null,
+    "potential_as_reported": "not stated in the Fig. S18 caption. SI Table S2 reports the R-TiO2/Cu2O performance at -0.5 V vs RHE; Fig. S12 chronoamperometry used -0.9 to -1.3 V (reference not given in that caption; the ECSA text uses SCE). Which potential Fig. S18 used is not verified; the 3 h chronoamperometry in Fig. S12 suggests potentiostatic electrolysis, so potential_mode is left unknown rather than asserted.",
+    "potential_mode": "unknown",
+    "pH": null,
+    "temperature_C": null,
+    "volume_mL": null,
+    "stirring": "not stated in the SI",
+    "c0_mM_N": {
+      "NO3": 3.5697
+    },
+    "notes": "Neutral sulfate electrolyte (pH not stated in the SI). Cell type, volume and membrane not stated in the SI. Analysis by UV-Vis (NO3-: 220/275 nm; NO2-: Griess, 540 nm; NH4+: Nessler, 420 nm; SI Texts S2-S4); gas products not measured."
+  },
+  "series": [
+    {
+      "species": "NO3",
+      "t_min": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "y": [
+        3.5697,
+        1.884,
+        0.929,
+        0.286,
+        0.103,
+        0.028,
+        0.03
+      ],
+      "reported_unit": "mg L-1 as N (axis 'Concentration (mg L-1)'; legend NO3--N, NO2--N, NH4+-N)",
+      "conversion": "mM-N = digitized y * 0.0713944",
+      "sigma": [
+        null,
+        0.3184,
+        0.2152,
+        0.0904,
+        0.0388,
+        null,
+        null
+      ]
+    },
+    {
+      "species": "NO2",
+      "t_min": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "y": [
+        0.0,
+        0.143,
+        0.089,
+        0.072,
+        0.028,
+        0.004,
+        0.005
+      ],
+      "reported_unit": "mg L-1 as N (axis 'Concentration (mg L-1)'; legend NO3--N, NO2--N, NH4+-N)",
+      "conversion": "mM-N = digitized y * 0.0713944",
+      "sigma": [
+        null,
+        0.0688,
+        0.018,
+        0.0177,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "species": "NH3",
+      "t_min": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "y": [
+        0.0,
+        1.179,
+        2.285,
+        2.852,
+        3.131,
+        3.209,
+        3.217
+      ],
+      "reported_unit": "mg L-1 as N (axis 'Concentration (mg L-1)'; legend NO3--N, NO2--N, NH4+-N)",
+      "conversion": "mM-N = digitized y * 0.0713944",
+      "sigma": [
+        null,
+        0.228,
+        0.0947,
+        0.1743,
+        0.0667,
+        0.0565,
+        null
+      ]
+    }
+  ],
+  "quality": {
+    "n_closure": {
+      "t_min": [
+        0,
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "fraction": [
+        1.0,
+        0.8981,
+        0.9253,
+        0.8992,
+        0.9138,
+        0.9079,
+        0.911
+      ]
+    },
+    "flags": [
+      "potential_unverified",
+      "unobserved_sink_suspected",
+      "extraction_unverified"
+    ],
+    "n_basis_note": "All three species are plotted as N on one mg L-1 axis (legend NO3--N, NO2--N, NH4+-N) and NO3--N starts at the stated 50 mg N L-1, so no N-atom conversion is needed. Observed closure falls to 0.91 at 150-180 min (50 mg N L-1 in, 45.5 recovered as NO3- + NO2- + NH4+). The authors did not measure gas products and treat the gap as N2 (SI Text S5: N2O 'regarded as N2'); the gap is therefore an unobserved sink, not a reading error, although reading uncertainty near 0 mg L-1 (overlapped markers) is about +/-0.1 mg L-1 per species."
+  }
+}

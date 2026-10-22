@@ -22,6 +22,8 @@ meta.json options beyond the dataset schema:
     "snap_tol_min": 5                   snapping tolerance (default 5)
     "pin_t0_to_c0": true                at t=0 set y to conditions.c0_mM_N[species] (0 if absent); removes click noise
     "sigma":        {"NO3": 0.05}       optional relative 1-sigma per species
+    "sigma_abs":    {"NO3": {"30": 4.46}}  optional absolute 1-sigma per point in plotted units, keyed by nominal time
+                    (for example error-bar half-lengths read off the figure); converted with to_mM_N, null where absent
     "name_map":     {"Nitrate": "NO3"}  map WPD dataset names to species ids
     "derived_series": {"Ag/AgCl": "reported_n_loss"}  datasets that are not species (here: the authors' plotted
                     loss of mass balance); stored under quality.reported_n_loss, never as a series
@@ -103,8 +105,13 @@ def build(folder):
         s = {"species": sp, "t_min": t, "y": y, "reported_unit": meta.get("reported_unit", "mol L-1"),
              "conversion": f"mM-N = digitized y * {f}"}
         rel = meta.get("sigma", {}).get(sp)
+        ab = meta.get("sigma_abs", {}).get(sp)
+        if rel is not None and ab is not None:
+            raise SystemExit(f"{sp}: give sigma (relative) or sigma_abs (per point), not both")
         if rel is not None:
             s["sigma"] = [round(rel * v, 3) for v in y]
+        elif ab is not None:
+            s["sigma"] = [round(ab[f"{tt:g}"] * f, 4) if f"{tt:g}" in ab else None for tt in t]
         series.append(s)
     quality_extra = {}
     for name, kind in derived.items():
