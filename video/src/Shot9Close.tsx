@@ -43,7 +43,13 @@ export const Shot9Close: React.FC = () => {
 						<div key={k} style={{ opacity: o, transform: `translateY(${(1 - o) * 14}px)`, display: "flex", gap: 26, marginBottom: 20 }}>
 							<div style={{ fontSize: 30, fontWeight: 700, color: C.muted, width: 30, fontVariantNumeric: "tabular-nums" }}>{k + 1}</div>
 							<div>
-								<div style={{ fontSize: 34, fontWeight: 700 }}>{head}</div>
+								<div style={{ fontSize: 34, fontWeight: 700, display: "flex", alignItems: "center", gap: 16 }}>
+									{head}
+									{k < 2 ? (
+										<span style={{ fontSize: 18, fontWeight: 600, color: C.ink2, border: `1.5px solid ${C.axis}`, borderRadius: 999,
+											padding: "3px 12px" }}>answers Q{k + 1}</span>
+									) : null}
+								</div>
 								<div style={{ fontSize: 23, color: C.ink2, marginTop: 5 }}>{sub}</div>
 							</div>
 						</div>

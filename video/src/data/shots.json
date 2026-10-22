@@ -189,7 +189,14 @@
     ]
    }
   },
-  "short_citation": "Hu D. et al., J. Am. Chem. Soc. 145 (2023) 26545-26549"
+  "short_citation": "Hu D. et al., J. Am. Chem. Soc. 145 (2023) 26545-26549",
+  "development_C": [
+   700,
+   725
+  ],
+  "heldout_C": [
+   750
+  ]
  },
  "shot3": {
   "model_name": "Claude Opus 5.5",

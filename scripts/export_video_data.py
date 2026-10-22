@@ -137,9 +137,14 @@ def shot1() -> dict:
     ds, _ = load_dataset(REPO / "data" / "real" / "chapman2023_fig2_725C.json")
     cite = ds["provenance"].get("citation", "")
     authors, _, journal = cite.partition(", J. ")
+    # the study design, from the Opus run 1 manifest: which temperatures were fitted and which was held out
+    man = Run(ROOT, "chapman750-propose_space-opus1").manifest()["datasets"]
+    temp = lambda d: load_dataset(REPO / d["path"])[0]["conditions"]["temperature_C"]
     return {"temperature_C": ds["conditions"]["temperature_C"],
             "series": {s["species"]: {"t": s["t_min"], "y": s["y"]} for s in ds["series"] if s["species"] in CHANNELS},
-            "short_citation": f"{authors.split(',')[0]} et al., J. {journal}" if journal else cite}
+            "short_citation": f"{authors.split(',')[0]} et al., J. {journal}" if journal else cite,
+            "development_C": sorted(temp(d) for d in man if d["role"] == "development"),
+            "heldout_C": [temp(d) for d in man if d["role"] == "final_holdout"]}
 
 
 def shot3() -> dict:
