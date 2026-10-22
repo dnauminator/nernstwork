@@ -95,6 +95,20 @@ def read_json(path: Path):
 
 
 def pid_alive(pid: int) -> bool:
+    if os.name == "nt":
+        # os.kill(pid, 0) is not a liveness probe on Windows (signal 0 is CTRL_C_EVENT and raises WinError 87), so ask
+        # the OS for the process exit code instead.
+        import ctypes
+        kernel32 = ctypes.windll.kernel32
+        kernel32.OpenProcess.restype = ctypes.c_void_p
+        handle = kernel32.OpenProcess(0x1000, False, pid)  # PROCESS_QUERY_LIMITED_INFORMATION
+        if not handle:
+            return ctypes.GetLastError() == 5  # ERROR_ACCESS_DENIED: the process exists but is not ours
+        try:
+            code = ctypes.c_ulong()
+            return bool(kernel32.GetExitCodeProcess(ctypes.c_void_p(handle), ctypes.byref(code))) and code.value == 259  # STILL_ACTIVE
+        finally:
+            kernel32.CloseHandle(ctypes.c_void_p(handle))
     try:
         os.kill(pid, 0)
         return True

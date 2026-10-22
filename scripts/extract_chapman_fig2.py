@@ -110,8 +110,11 @@ def panel_curves(im, T):
 def fig3_curve(im):
     """Li2TiO3 at 482 C: relative y (fraction of the plot height above the x axis), t in min."""
     h, w, _ = im.shape
-    dark = (im.sum(axis=2) < 300)
-    y_axis = int(np.argmax(dark[300:, 100:900].sum(axis=1))) + 300  # x-axis line = darkest long row
+    r0, g0, b0 = im[..., 0], im[..., 1], im[..., 2]
+    gray_px = (abs(r0 - g0) < 12) & (abs(g0 - b0) < 12) & (r0 < 215)
+    # x-axis line = the row with the longest gray run between the curve's left and right ends (row 463 in the 515 px image).
+    # The previous 'darkest row' rule picked row 499, the tick-label text, and offset every value by about +0.07.
+    y_axis = 400 + int(np.argmax(gray_px[400:490, 100:900].sum(axis=1)))
     x0, x5 = 43.0, 943.0
     r, g, b = im[..., 0], im[..., 1], im[..., 2]
     magenta = (r > 200) & (b > 200) & (g < 190)

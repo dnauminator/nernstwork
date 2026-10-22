@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nernstwork/endpoint_dataset.schema.json",
+  "title": "Endpoint dataset (sketch v0)",
+  "description": "Solid-state synthesis outcomes without a time axis: for each precursor set and temperature, the phases found after one fixed hold (ARROWS3 tables). SKETCH: the time-resolved dataset schema (dataset.schema.json) cannot hold these, and no part of the evaluator reads this format yet. Expect changes once the model side decides how a temperature series at one hold time enters the fit.",
+  "type": "object",
+  "required": ["id", "provenance", "system", "experiments", "quality"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+$" },
+    "provenance": {
+      "type": "object",
+      "required": ["source_type", "citation"],
+      "additionalProperties": false,
+      "properties": {
+        "source_type": { "type": "string", "enum": ["repository_file", "source_data", "digitized", "manual_table"] },
+        "citation": { "type": "string" },
+        "doi": { "type": "string" },
+        "file": { "type": "string", "description": "Source file name. Not redistributed when the licence is unconfirmed." },
+        "extraction": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "system": {
+      "type": "object",
+      "required": ["target", "temperatures_C"],
+      "additionalProperties": false,
+      "properties": {
+        "target": { "type": "string", "description": "Target phase formula as written in the source settings." },
+        "precursors_considered": { "type": "array", "items": { "type": "string" } },
+        "temperatures_C": { "type": "array", "items": { "type": "number" } },
+        "hold_h": { "type": ["number", "null"], "description": "Hold time at each temperature, null if not recorded." },
+        "heating_rate_C_per_min": { "type": ["number", "null"] },
+        "atmosphere": { "type": ["string", "null"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["precursor_set", "temperature_C", "phases", "wt_sum", "target_present"],
+        "additionalProperties": false,
+        "properties": {
+          "precursor_set": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "Precursor formulas as written in the source." },
+          "stoichiometry": { "type": ["array", "null"], "items": { "type": "number" } },
+          "temperature_C": { "type": "number" },
+          "phases": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "raw_name", "wt_percent"],
+              "additionalProperties": false,
+              "properties": {
+                "name": { "type": "string", "description": "Formula with the file suffix and structure index removed (LiTiPO5_2.cif -> LiTiPO5)." },
+                "structure_id": { "type": ["string", "null"], "description": "Index suffix of the source structure file, kept so that polymorphs stay distinct. It indexes a structure within that source's own formula list, so it is only comparable within one formula." },
+                "raw_name": { "type": "string" },
+                "wt_percent": { "type": "number", "minimum": 0 }
+              }
+            }
+          },
+          "wt_sum": { "type": "number", "description": "Sum of the reported weight percents (98-102 in the ARROWS3 tables); no amorphous or unidentified material is visible in it." },
+          "target_present": { "type": "boolean", "description": "True if any phase has the target formula (any structure)." },
+          "target_wt_percent": { "type": "number", "description": "Total weight percent of phases with the target formula." }
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "required": ["flags"],
+      "additionalProperties": false,
+      "properties": {
+        "flags": { "type": "array", "items": { "type": "string", "enum": ["endpoint_only", "weights_semiquantitative", "unverified_entries_dropped", "sparse", "phase_label_noise", "partial_design_grid"] } },
+        "dropped_entries": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["count", "reason"],
+          "properties": {
+            "count": { "type": "integer", "minimum": 0 },
+            "reason": { "type": "string" },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["precursor_set", "temperature_C"],
+                "additionalProperties": false,
+                "properties": {
+                  "precursor_set": { "type": "array", "items": { "type": "string" } },
+                  "temperature_C": { "type": "number" },
+                  "inferred_from": { "type": ["string", "null"], "description": "The source's own note on where the entry was copied from." }
+                }
+              }
+            }
+          }
+        },
+        "counts": { "type": "object", "additionalProperties": { "type": "integer" } },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

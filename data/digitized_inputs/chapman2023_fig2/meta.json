@@ -3,36 +3,54 @@
   "note": "Not a WebPlotDigitizer export and not convertible by scripts/digitized_to_dataset.py: the dataset schema is nitrogen-based (mM-N). A synthesis dataset schema is still to be written (docs/SPEC.md section 7e). Regenerate with: python scripts/extract_chapman_fig2.py literature/ja3c10916.pdf",
   "provenance": {
     "citation": "Hu D., Beauvais M. L., Kamm G. E., Mullens B. G., Sanchez Monserrate B. A., Vornholt S. M., Chupas P. J., Chapman K. W., J. Am. Chem. Soc. 145 (2023) 26545-26549, doi 10.1021/jacs.3c10916",
-    "figures": ["Fig. 2 (700, 725, 750 C)", "Fig. 3 (482 C)"],
+    "figures": [
+      "Fig. 2 (700, 725, 750 C)",
+      "Fig. 3 (482 C)"
+    ],
     "extraction": "Colour classification of the raster figure images embedded in the PDF (scripts/extract_chapman_fig2.py). No manual clicking.",
-    "verified_against_figure": false,
-    "verification_todo": "Spot-check 5-10 points per panel against the printed figure (for example Li2TiO3 at 0.5, 1, 2, 5 min and the time anatase reaches zero) and compare reconstruction.png with Fig. 2."
+    "verified_against_figure": true,
+    "verification_todo": "Spot-check 5-10 points per panel against the printed figure (for example Li2TiO3 at 0.5, 1, 2, 5 min and the time anatase reaches zero) and compare reconstruction.png with Fig. 2.",
+    "verification_todo_status": "Done Oct 21 (see verification_scope and verification_note); the text above is kept because the converter reads this key and the committed datasets carry it.",
+    "verification_scope": "t >= 0.35 min only (values at t <= 0.3 min are wrong by up to 22 wt %)",
+    "verification_note": "Checked against the printed Fig. 2 and SI Fig. S1 by an assistant subagent (42 spot checks, all within 1 wt % from 0.35 min; see VERIFICATION.md), then cross-read by Daniel against the paper and SI on Oct 21. Independently, scripts/extract_chapman_si_s1.py reads SI Fig. S1 and agrees with this extraction to 0.2-0.55 wt % RMS over 0.35-9.5 min. For new fits prefer data/digitized_inputs/chapman2023_sifig_s1/, which is also correct before 0.35 min."
   },
   "system": {
     "reaction": "anatase TiO2 + Li2CO3 -> Li2TiO3 (+ CO2) -> Li4Ti5O12; anatase -> rutile in parallel",
     "mixing": "5:2 TiO2:Li2CO3 molar ratio, pelletized, loaded in a capillary",
-    "temperatures_C": [482, 700, 725, 750],
-    "initiation": "sample moved into a pre-heated hot zone, heating in under 10 s (grey 'Heating' strip in Fig. 3, about the first 0.17 min)",
+    "temperatures_C": [
+      482,
+      700,
+      725,
+      750
+    ],
+    "initiation": "sample moved into a pre-heated hot zone; SI Fig. S2 shows it within 50 K of target after 6 s and within 7 K after 10 s (measured at 750 C); t = 0 is insertion into the hot zone. The grey 'Heating' strip in Fig. 3 spans about the first 0.17 min",
     "atmosphere_note": "not stated in the main text"
   },
-  "phases": ["anatase", "rutile", "Li2CO3", "Li2TiO3", "Li4Ti5O12"],
+  "phases": [
+    "anatase",
+    "rutile",
+    "Li2CO3",
+    "Li2TiO3",
+    "Li4Ti5O12"
+  ],
   "files": {
     "extracted_phase_fractions.csv": "Fig. 2: weight % of each phase and Ti-mole fractions on a 0.05 min grid from 0.05 min to the end of each panel (10 min; 9.76 min at 750 C). Columns wt_* sum to 100 by construction (the figure is a normalised stack). tifrac_* are the fractions of Ti in each Ti-bearing phase, computed from wt_* with nominal molar masses (TiO2 79.866, Li2TiO3 109.75, Li4Ti5O12 459.08 g/mol, 1, 1, 5 Ti per formula unit).",
-    "fig3_482C_li2tio3_relative.csv": "Fig. 3: Li2TiO3 at 482 C in arbitrary units (the y axis has no ticks). Values are the fraction of the image height above the x axis, so only the shape and ratios of slopes are meaningful, not absolute amounts. Time 0 to 5 min on a 0.02 min grid.",
+    "fig3_482C_li2tio3_relative.csv": "Fig. 3: Li2TiO3 at 482 C in arbitrary units (the y axis has no ticks). Values are the fraction of the image height above the x axis, so only the shape and ratios of slopes are meaningful, not absolute amounts. Time 0 to 5 min on a 0.02 min grid. The x-axis row was corrected on Oct 21 (it was taken from the tick-label text row, offsetting every value by about +0.07); slope ratios are unchanged.",
     "reconstruction.png": "Our own re-plot of the extracted curves for comparison with the printed figures."
   },
   "checks_done": [
     "Stack sums to 100 wt % (by construction).",
-    "Initial wt % at 0.05 min: anatase about 75, Li2CO3 about 25; the 5:2 molar mix gives 73 / 27.",
-    "Maximum Li2TiO3 is 54.2 / 55.4 / 53.7 wt % (700 / 725 / 750 C) against about 52 wt % stated in the text: a bias of about 2 wt %, most likely from the thick boundary lines (5.7 px per wt %).",
-    "Fig. 3 slope ratio, 0.25-0.75 min versus 1-2 min, is 4.1, matching the authors' statement that the fast regime is 4 times the later rate."
+    "From t >= 0.35 min the extraction matches the printed figure within 1 wt % (42 spot checks, VERIFICATION.md) and matches an independent read of SI Fig. S1 to 0.2-0.55 wt % RMS.",
+    "Maximum Li2TiO3 is 54.2 / 55.4 / 53.7 wt % (700 / 725 / 750 C) against printed maxima of about 54.4 / 55.7 / 55.5-56 wt %; the authors' '~52 wt %' is their approximate figure, so there is no systematic 2 wt % bias from line thickness. The 750 C peak is lost because it lies at 0.28-0.30 min.",
+    "Fig. 3 slope ratio, 0.25-0.75 min versus 1-2 min, is 4.1, matching the authors' statement that the fast regime is 4 times the later rate (baseline corrected Oct 21; the ratio is unchanged)."
   ],
   "caveats": [
     "Weight fractions are normalised to the remaining solid, and CO2 leaves as gas, so wt % has no conserved total. Use the Ti-mole fractions (tifrac_*) for balance checks. Li2CO3 carries no Ti and is tracked in wt % only.",
-    "Li2TiO3 is reported by the authors to be Li-deficient (Li2-xTiO3-x, peak 52 wt % above the 48 wt % stoichiometric maximum), so the nominal molar mass makes the Ti fraction slightly approximate.",
-    "The first 0.2-0.3 min (heating) is unreliable: the axis line and the vertical Li2CO3 label overlap the data, and the t = 0 column is dropped.",
-    "A thin cyan Li2CO3 strip of about 1 wt % runs along the top of every panel to 10 min. It is probably a line-width artefact (the text says Li2CO3 peaks are no longer distinguishable after about 30 s). Treat Li2CO3 below about 2 wt % as zero.",
-    "Boundary lines are 1-2 px thick, so phase fractions carry roughly 1-2 wt % of systematic error. Anatase reaching exactly zero is read from where the red line meets the axis.",
+    "Li2TiO3 is reported by the authors to be Li-deficient (Li2-xTiO3-x), so the nominal molar mass makes the Ti fraction approximate. With nominal formulas the printed fractions imply 0.95-1.02 Li per Ti against 0.8 supplied by the 5:2 mix (VERIFICATION.md); the extraction reproduces the printed values, so this is a property of the published fractions.",
+    "Values at t <= 0.3 min are wrong by up to 22 wt % (Li2TiO3) and 14 wt % (Li2CO3): the vertical Li2CO3 label and the converging lines corrupt the stacked figure. The rutile impurity of about 4 wt % present from t = 0 is read as 0, and anatase tails below 1 wt % are cut to 0, so anatase reaches zero too early at 700 and 725 C. Use data/digitized_inputs/chapman2023_sifig_s1/ for early times.",
+    "The thin cyan Li2CO3 strip along the top is real but small: SI Fig. S1 plots Li2CO3 at 0.5-0.9 wt % (700 and 750 C) and 1.7-1.9 wt % (725 C) through 600 s. Treating it as zero is defensible because the text says its peaks are indistinguishable after about 30 s.",
+    "The 750 C panel's last columns (after about 9.5 min) are an edge artefact.",
+    "Boundary lines are 1-2 px thick (5.7 px per wt %), so phase fractions carry roughly 1 wt % of error.",
     "One chemistry, one lab, one capillary geometry. Use as a sanity benchmark, not as evidence about solid-state synthesis in general."
   ]
 }

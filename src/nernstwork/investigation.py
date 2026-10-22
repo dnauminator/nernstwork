@@ -507,7 +507,7 @@ def _evaluate_on(run: Run, cids, obs, dataset_paths, workers, record_dir: Path |
                "protocol_sha256": protocol_hash(protocol), "code_sha256": code["sha256"], "created_at": now(),
                "fit_outcome": outcomes.get(fk, {}).get("outcome", "reused" if fk else None),
                "validation_status": v["status"], "annotations": notes, "summary": summ}
-        path = (run.evaluation_path(cid, fk) if record_dir is None else record_dir / f"{cid}__{(fk or 'nofit')[:16]}.json")
+        path = (run.evaluation_path(cid, fk) if record_dir is None else record_dir / f"{cid.replace(':', '_')}__{(fk or 'nofit')[:16]}.json")  # cid may be "S:name"; a colon is invalid in Windows file names
         if create_once_json(path, rec) and record_dir is None:
             run.event("evaluation_recorded", candidate_id=cid, fit_key=fk, status=summ["status"])
         summaries.append(summ)

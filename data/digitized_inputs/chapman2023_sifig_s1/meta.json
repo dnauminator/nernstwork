@@ -1,0 +1,22 @@
+{
+  "id": "chapman2023_sifig_s1_tio2_li2co3",
+  "note": "Preferred source for the Chapman time courses. SI Fig. S1 plots the same Rietveld results as main-text Fig. 2 as separate line curves, so it has none of the label and boundary-line problems of the stacked area before 0.35 min. Same CSV columns as chapman2023_fig2/extracted_phase_fractions.csv (so scripts/chapman_to_dataset.py can read it once its grid and T_MIN settings are adapted). Regenerate with: python scripts/extract_chapman_si_s1.py literature/ja3c10916_si_001.pdf",
+  "provenance": {
+    "citation": "Hu D., Beauvais M. L., Kamm G. E., Mullens B. G., Sanchez Monserrate B. A., Vornholt S. M., Chupas P. J., Chapman K. W., J. Am. Chem. Soc. 145 (2023) 26545-26549, doi 10.1021/jacs.3c10916, Supporting Information Fig. S1",
+    "figure": "SI Fig. S1 (a 700 C, b 725 C, c 750 C), phase abundances from Rietveld analysis, wt % against time in s, 0-600 s",
+    "extraction": "Colour classification of the five line colours in the raster panels embedded in the SI PDF (scripts/extract_chapman_si_s1.py). No manual clicking. Axes calibrated from the gray y axis and the curve end at 600 s; the zero level is taken from the anatase curve once it is fully consumed (or the axis bottom, whichever is lower).",
+    "verified_against_figure": false,
+    "verification_todo": "Spot-check 5-10 points per panel against the printed SI Fig. S1 (for example Li2TiO3 at 20, 70, 200 s, rutile at 300 s and the time anatase reaches zero) and compare reconstruction.png with the figure.",
+    "verification_note": "Checked by the extraction's author only: (1) agrees with the main-text Fig. 2 extraction to 0.2-0.55 wt % RMS (max 1.9) over 0.35-9.5 min for every phase and temperature; (2) per-row phase sum 99.5-101.7 wt %; (3) initial composition at 700 C of about 75.5 anatase, 3.9 rutile, 20.5 Li2CO3, matching the printed figure; (4) Li2TiO3 maxima of 54.4 / 55.7 / 56.0 wt % at 70 s, 42 s and 17 s, matching the printed maxima, including the 750 C peak at 0.3 min that main-text Fig. 2 loses. A human spot-check against the printed SI figure is still to do."
+  },
+  "units": "t_min = minutes (the figure is in seconds, 0-600 s; grid 0.05 min = 3 s); wt_* in weight %; tifrac_* = fraction of Ti in each Ti-bearing phase from nominal molar masses (TiO2 79.866, Li2TiO3 109.75, Li4Ti5O12 459.08 g/mol; 1, 1, 5 Ti per formula unit); wt_sum is the sum of the five weight fractions.",
+  "caveats": [
+    "Weight % is not conserved (CO2 leaves as gas); use tifrac_* for Ti balance. Unlike the main-text stack, the five wt % here are separate Rietveld abundances, so wt_sum is a closure check (99.5-101.7), not 100 by construction.",
+    "Li2TiO3 is Li-deficient according to the authors; the nominal Ti fraction is approximate, and the published fractions imply 0.95-1.02 Li per Ti against 0.8 supplied.",
+    "Each grid value is the mean of the pixel columns within +-1.6 s of the grid time; neighbouring grid values are not independent measurements (about 1.4 px per second against 3 s grid steps). The first grid time (0.05 min) includes the heating period (about 6-10 s to reach temperature).",
+    "Where two curves overlap (rutile and Li4Ti5O12 at 725 C around 130-200 s, cyan hidden under red on the baseline) the hidden curve is linearly interpolated; gaps longer than 15 s are interpolated only when both ends are below 3 wt %.",
+    "Zero level: the gray axis bottom row and the anatase baseline differ by up to 4 px (0.9 wt %) between panels; the anatase baseline is used. Treat absolute levels near zero as +-0.5 wt %.",
+    "The 750 C curves end near 585 s, so that grid stops at about 9.7 min.",
+    "One chemistry, one lab, one capillary geometry."
+  ]
+}

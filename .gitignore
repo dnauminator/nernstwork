@@ -16,3 +16,6 @@ agent/node_modules/
 /investigations/
 # Barrera et al. 2023 data are CC BY-NC-ND 4.0: reshaped copies stay local until the owner decides (docs/DATASETS.md)
 /data/digitized_inputs/barrera2023_*
+
+# ARROWS3 derived tables: the licence of the ARROWS3 data is unconfirmed (docs/SPEC.md 7e), so they stay local
+/data/arrows3/
