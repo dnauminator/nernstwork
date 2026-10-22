@@ -27,3 +27,7 @@ Read `docs/SPEC.md` first, then `docs/NEXT_STEPS.md` (what to do now); `docs/PRO
 ## Status
 
 Schemas, simulator, four worlds, six real datasets and the first calibration are in. The fitter (maximum likelihood with identifiability diagnostics), enumeration baseline, LLM proposer/reviewer loop and a discrimination check for experiments are in (`docs/INVESTIGATOR.md`); a full information-gain experiment planner is not. W3 uses the published Katsounaros 2012 constants; W5 uses the Polatides 2005 constants and Fig. 6 alphas; W1 uses illustrative parameters; W4 (model A vs model B trap) can now be built from the digitized Katsounaros curves.
+
+## Licence
+
+The code, schemas, scripts and our own documentation are released under the MIT licence (`LICENSE`). **The licence covers our work only.** The datasets under `data/` are digitized or transcribed from published papers, supporting information, theses and repositories, and each remains under its source's terms (several are CC BY-NC 4.0 or publisher copyright). They are included for non-commercial research use with attribution; the per-source terms and how each was checked are in `docs/DATASETS.md` section 7 and in each dataset's metadata. The ARROWS3 tables, publisher PDFs and the Barrera 2023 data are deliberately not in the repository. If you reuse a dataset, follow its source's terms, not the MIT licence.

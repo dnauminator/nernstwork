@@ -48,6 +48,14 @@ Did the AI's candidates include a model that correctly forecasts the 750-degree 
 
 *Change from the script: Question 1 reworded (the old 'predict a new temperature' was unclear). Catalysis sentences marked optional: weakest-supported claim, cut first.*
 
+### Conclusion (closing, after shot 9; 80 words, about 31 seconds)
+
+Through NernstWork, we've shown that an AI agent can narrow a large space of possible reaction pathways in solid-state synthesis down to a short list of good candidates, and suggest what to measure next. The implication is more targeted experiments in physical labs: experiments chosen because they tell rival explanations apart, rather than tried blindly. We haven't yet measured how much that saves, and choosing among candidates still takes data. But it points to a better way to design experiments.
+
+*Why these words:* 'solid-state synthesis', not 'catalytic chemistry' (what we tested is the synthesis of a battery anode material; the nitrate catalysis link is one illustrative study in the optional shot 9 sentence), and the experiment-design benefit is stated as an implication with 'we haven't yet measured how much that saves' (the planner's suggestions are untested and no savings number exists).
+
+*Note for the splice:* the last two sentences of shot 9 ('The AI is useful for proposing pathways. Choosing among them still takes a targeted experiment.') overlap with this paragraph; cut them from shot 9. Total without the optional catalysis sentences and with this conclusion: about 543 words (about 3.5 minutes). Check the video length limit on the event page before recording.
+
 ## Say it this way
 
 - Numbers: "seven hundred", "seven twenty-five", "seven fifty" (or "700 degrees"); "one fifty-three" for 153; "NernstWork" as one word.
