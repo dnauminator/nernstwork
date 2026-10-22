@@ -101,7 +101,7 @@
         "basis_note": { "type": "string", "description": "How amounts on conditions.basis were derived from the reported quantities (e.g. weight fractions to mol per mol Ti), and what that basis cannot show." },
         "flags": {
           "type": "array",
-          "items": { "type": "string", "enum": ["unobserved_sink_suspected", "noisy", "sparse", "single_species_only", "units_unverified", "potential_unverified", "normalised_fractions", "extraction_unverified", "time_origin_uncertain"] }
+          "items": { "type": "string", "enum": ["unobserved_sink_suspected", "noisy", "sparse", "single_species_only", "units_unverified", "potential_unverified", "normalised_fractions", "extraction_unverified", "time_origin_uncertain", "effective_initial_lithium_sensitivity"] }
         }
       }
     }

@@ -1,0 +1,95 @@
+{
+  "investigation_id": "chapman-li-oct22",
+  "question": "Retrospective sensitivity of Chapman reaction networks to lower effective starting carbonate. Which reaction pathways and rate laws are supported by the in situ phase-fraction time courses of anatase TiO2 + Li2CO3 at 700 and 725 C (Hu, ..., Chapman, JACS 2023), what do these data leave ambiguous, and which feasible experiment would best separate the surviving pathways? Candidates are judged afterwards by how well they predict a reserved temperature without refitting.",
+  "system_boundary": "A pellet of a 5:2 molar anatase TiO2 : Li2CO3 mix moved into a pre-heated hot zone (heating in under 10 s; t = 0 is insertion). Measured: anatase, rutile, Li2TiO3 and Li4Ti5O12, as Rietveld weight fractions of the crystalline solid from in situ X-ray scattering, converted here to mol of each phase per mol of total Ti. Not measured: Li2CO3 after about 30 s, CO2, amorphous or poorly crystalline material, and the Li content of the Li-Ti-O phases. The Ti fractions sum to 1 by construction (a normalised stack), so they cannot reveal unobserved Ti; lithium is not observed directly. Every model must conserve the elements it declares in mechanism.conservation, and every dataset initial species (anatase, Li2CO3) must appear in the model.",
+  "datasets": {
+    "development": [
+      "data/derived/chapman_li_sensitivity/inputs/fig2_lower/chapman2023_fig2_700C.json",
+      "data/derived/chapman_li_sensitivity/inputs/fig2_lower/chapman2023_fig2_725C.json"
+    ],
+    "final_holdout": [
+      "data/derived/chapman_li_sensitivity/inputs/fig2_lower/chapman2023_fig2_750C.json"
+    ],
+    "excluded": [
+      {
+        "path": "data/digitized_inputs/chapman2023_fig2/fig3_482C_li2tio3_relative.csv",
+        "reason": "482 C curve has arbitrary units (no y-axis ticks); shape only, not a fitting target"
+      }
+    ],
+    "partition_policy": "Development uses 700 and 725 C. The proposer does not see 750 C phase observations. The wider research team has inspected earlier 750 C results, so this is retrospective sensitivity. Freeze kinetics before predicting 750 C. Evaluation uses a common reference noise scale across candidates and also reports RMSE; do not use each candidate noise to rank predictive accuracy."
+  },
+  "protocol": "configs/protocols/synthesis-mle-v1.json",
+  "enumeration_spaces": [
+    "configs/spaces/chapman_core.json"
+  ],
+  "final_evaluation": {
+    "mode": "predict"
+  },
+  "evidence": {
+    "documents": [
+      "data/evidence/chapman2023_notes.json"
+    ],
+    "include_literature_index": false,
+    "include_reference_simulator": true,
+    "conventions": [
+      "Amounts are mol of each phase (formula units) per mol of total Ti. The datasets give anatase, rutile, Li2TiO3 and Li4Ti5O12 (Li4Ti5O12 = Ti fraction / 5). Time is in minutes from insertion into the hot zone.",
+      "Mechanisms declare 'conservation': {\"basis\": \"elements\", \"elements\": [...]} and every species a 'composition' (atoms per formula unit of the conserved elements, non-integer allowed for non-stoichiometric phases). Every reaction must conserve each listed element. Elements not listed are not tracked (e.g. conserving only Ti treats the Li source as unlimited).",
+      "Dataset initial species are anatase 1.0 and effective Li2CO3 0.28 at 700 C, 0.30 at 725 C, mol per mol Ti. Both must be model species. These values are hypotheses inferred from early crystalline fractions, not assayed weighed composition. Original nominal mixture was 5:2. Lithium is not measured directly. Li2CO3 must be observable=false.",
+      "Rate laws: power_law with orders per reactant (order 1 in each reactant phase means the step stops when any reactant is exhausted), mass_action, langmuir_saturation. temperature_dependence: Arrhenius, k quoted at T_ref_C, Ea in kJ/mol (free Ea needs both temperatures; choose T_ref_C inside 700-725 C). time_modulation kind avrami: JMAK factor n (k t)^(n-1) with free exponent n, common time origin t = 0.",
+      "Parameters with the same 'tie' name are one free parameter (e.g. one Avrami exponent shared by several steps).",
+      "Measured channels map to model species by id (observation_map can lump species, e.g. a Li-deficient and a stoichiometric Li2TiO3 both counted as the Li2TiO3 channel).",
+      "Proposed starting values of free parameters are ignored: every candidate gets the same deterministic multistart.",
+      "nw_submit_space takes the parts of a hypothesis space (species with compositions, candidate steps with allowed rate-law forms and literature or data support, and combination rules); code enumerates and fits every member. You do not pick among the members: the shared evaluator ranks them."
+    ]
+  },
+  "contamination_audit": {
+    "repository_annotations_withheld": [
+      "LITERATURE.md (project index; its Chapman row summarises the authors' analysis)",
+      "docs/SPEC.md section 7e and docs/NEXT_STEPS.md (record the authors' Avrami slopes and mechanism reading)",
+      "data/digitized_inputs/chapman2023_fig2/meta.json (states 750 C maxima)"
+    ],
+    "annotations_shown": [
+      "dataset quality flags and basis notes written by the converter from each development file's own numbers"
+    ],
+    "literature": "The paper's abstract describes the authors' Avrami analysis across 700-750 C; claims C8-C10 are withheld from the evidence pack and the article, its abstract records (ACS, Europe PMC, PubMed, OpenAlex, Semantic Scholar) are blocked for the investigator's fetch tool. Pretraining may include the 2023 paper.",
+    "honest_label": "Retrospective analysis with literature-informed priors, not blind discovery: the proposer sees the 700 and 725 C runs and curated notes, and its pretraining may include this paper and general Li4Ti5O12 synthesis knowledge."
+  },
+  "fetch_policy": {
+    "enabled": true,
+    "allow_hosts": [
+      "doi.org",
+      "www.doi.org",
+      "api.crossref.org",
+      "arxiv.org",
+      "export.arxiv.org",
+      "pubs.rsc.org",
+      "www.sciencedirect.com",
+      "link.springer.com",
+      "www.nature.com"
+    ],
+    "deny_patterns": [
+      "jacs.3c10916",
+      "3c10916",
+      "38019924",
+      "ja3c10916"
+    ],
+    "max_bytes": 400000
+  },
+  "agent": {
+    "model": {
+      "provider": "anthropic",
+      "id": "claude-opus-5-5"
+    },
+    "thinking": "high",
+    "prompts": "synthesis",
+    "arms": {
+      "propose_space": {
+        "candidate_budget": 4,
+        "space_budget": 2,
+        "max_space_members": 150,
+        "max_turn_prompts": 6
+      }
+    },
+    "max_cost_usd_per_run": 6
+  }
+}
