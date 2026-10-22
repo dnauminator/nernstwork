@@ -1,7 +1,8 @@
 // Shot 4: the models were fitted at 700 and 725 C and frozen; they predict 750 C, then the sealed measurements land.
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Easing, interpolate, spring, useVideoConfig } from "remotion";
 import data from "./data/shots.json";
+import { useFrame } from "./time";
 import { Axes, LegendItem, Title, linear, niceTicks, partialPath } from "./components/chart";
 import { C, PHASES, fontFamily } from "./theme";
 
@@ -20,13 +21,15 @@ const ORDER: Role[] = ["baseline", "rule", "plausible"];
 const DRAW_START: Record<Role, number> = { baseline: 50, rule: 72, plausible: 94 };
 const REVEAL = 215;
 const BOARD = 330;
+// rows appear in the narration's order (baseline, then the rule's pick, then the agent's other pick), in rank position
+const ROW_START: Record<Role, number> = { baseline: BOARD, rule: BOARD + 70, plausible: BOARD + 140 };
 
 export const SHOT4_FRAMES = 600;
 
 const Panel: React.FC<{ phase: (typeof PHASES)[number]; x0: number; y0: number; w: number; h: number; showX: boolean }> = ({
 	phase, x0, y0, w, h, showX,
 }) => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const { fps } = useVideoConfig();
 	const ml = 78, mb = showX ? 74 : 40, mt = 62;
 	const obs = (S.observations as Record<string, { t: number[]; y: number[] }>)[phase.id];
@@ -67,11 +70,11 @@ const Panel: React.FC<{ phase: (typeof PHASES)[number]; x0: number; y0: number; 
 };
 
 const ScoreRow: React.FC<{ role: Role; start: number }> = ({ role, start }) => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const { fps } = useVideoConfig();
 	const m = S.models.find((mm) => mm.role === role)!;
 	const s = spring({ frame: frame - start, fps, config: { damping: 200 } });
-	const count = Math.round(interpolate(frame, [start, start + 40], [m.n_space, m.rank], {
+	const count = Math.round(interpolate(frame, [start, start + 12], [m.n_space, m.rank], {
 		extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic),
 	}));
 	return (
@@ -92,7 +95,7 @@ const ScoreRow: React.FC<{ role: Role; start: number }> = ({ role, start }) => {
 };
 
 export const Shot4Reveal: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const titleIn = interpolate(frame, [0, 20], [0, 1], { extrapolateRight: "clamp" });
 	const sealed = interpolate(frame, [30, 45, REVEAL - 20, REVEAL], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 	const revealedNote = interpolate(frame, [REVEAL, REVEAL + 20], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -135,8 +138,8 @@ export const Shot4Reveal: React.FC = () => {
 				<div style={{ opacity: boardHead, fontSize: 24, color: C.ink2, marginBottom: 30, lineHeight: 1.35 }}>
 					Rank at {S.temperature_C} °C among {nSpace} reference models
 				</div>
-				{ranked.map((r, i) => (
-					<ScoreRow key={r} role={r} start={BOARD + i * 40} />
+				{ranked.map((r) => (
+					<ScoreRow key={r} role={r} start={ROW_START[r]} />
 				))}
 			</div>
 		</AbsoluteFill>

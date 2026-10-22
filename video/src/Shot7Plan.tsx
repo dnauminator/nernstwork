@@ -2,8 +2,9 @@
 // predicted rutile of the leading model and of the agent's own rival explanation, which the design separates. (The
 // agent's other leading model tracks the leading one within the noise, so it is stated, not drawn.) All values from the run's planner analysis and frozen fits (scripts/export_video_data.py).
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, interpolate} from "remotion";
 import data from "./data/shots.json";
+import { useFrame } from "./time";
 import { Axes, LegendItem, Title, linear, niceTicks, partialPath } from "./components/chart";
 import { C, fontFamily } from "./theme";
 
@@ -21,7 +22,7 @@ const designLabel = (sp: Spec) => {
 };
 
 export const Shot7Plan: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const titleIn = interpolate(frame, [0, 18], [0, 1], clamp);
 	const menuHead = interpolate(frame, [15, 35], [0, 1], clamp);
 	const Umax = Math.max(...S.ranking.map((r) => r.U));

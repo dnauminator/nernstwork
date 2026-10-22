@@ -2,8 +2,9 @@
 // (B) The test case: the measured 725 C phase amounts draw themselves beside the study design (temperatures fitted and
 // held out, read from the run manifest).
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, interpolate} from "remotion";
 import data from "./data/shots.json";
+import { useFrame } from "./time";
 import { Axes, linear, niceTicks, partialPath } from "./components/chart";
 import { C, PHASES, fontFamily } from "./theme";
 
@@ -21,7 +22,7 @@ const DRAW0 = B0 + 40, DRAW1 = B0 + 200;
 const X0 = 170, X1 = 1180, Y0 = 930, Y1 = 330;
 
 const Question: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const k = interpolate(frame, [0, 15], [0, 1], clamp);
 	const q = interpolate(frame, [8, 30], [0, 1], clamp);
 	const s1 = interpolate(frame, [150, 170], [0, 1], clamp);
@@ -50,7 +51,7 @@ const Question: React.FC = () => {
 };
 
 const TestCase: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const series = S.series as Record<string, { t: number[]; y: number[] }>;
 	const tmax = Math.max(...Object.values(series).flatMap((s) => s.t));
 	const yTicks = niceTicks(Math.max(...Object.values(series).flatMap((s) => s.y)), 5);

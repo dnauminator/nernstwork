@@ -2,8 +2,9 @@
 // the best model in the run's own space (known only after the test), the agent's best plausible model, and the rule's
 // pick. The caption is computed from the same data.
 import React from "react";
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, spring, useVideoConfig } from "remotion";
 import data from "./data/shots.json";
+import { useFrame } from "./time";
 import { LegendItem, Title, linear } from "./components/chart";
 import { C, fontFamily } from "./theme";
 
@@ -19,7 +20,7 @@ const MARKS = [
 ] as const;
 
 export const Shot5bRuns: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const { fps } = useVideoConfig();
 	const nSpace = R[0].n_space;
 	const maxRank = Math.max(...R.flatMap((r) => [r.rule_pick_rank, r.best_plausible_rank ?? 0, r.own_space_best_rank]));

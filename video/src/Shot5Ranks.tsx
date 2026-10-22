@@ -1,8 +1,9 @@
 // Shot 5: the 153 reference models ranked by fit (700 + 725 C) and by prediction (750 C); the dots travel from one
 // ranking to the other. The baseline's pick and the frozen picks of the first Claude Opus 5.5 run are highlighted.
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, interpolate} from "remotion";
 import data from "./data/shots.json";
+import { useFrame } from "./time";
 import { Title, linear } from "./components/chart";
 import { C, fontFamily } from "./theme";
 
@@ -22,7 +23,7 @@ const MODEL = S.opus_picks[0].model_name;
 const pickName = (role: string) => `${MODEL} · ${role === "rule" ? "rule's pick" : "agent's other pick"}`;
 
 export const Shot5Ranks: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const titleIn = interpolate(frame, [0, 20], [0, 1], clamp);
 	const colsIn = interpolate(frame, [20, 45], [0, 1], clamp);
 	const base = S.reference.find((r) => r.id === S.baseline_pick)!;

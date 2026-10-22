@@ -2,8 +2,9 @@
 // qualitative ones restate docs/SYNTHESIS.md (observations 4-6), the run conclusions, and for the catalysis link
 // docs/VALENCY_BRIDGE_OCT22.md and docs/examples/wang2025_figS18/README.md (Wang et al., J. Hazard. Mater. 2025).
 import React from "react";
-import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, interpolate} from "remotion";
 import data from "./data/shots.json";
+import { useFrame } from "./time";
 import { C, fontFamily } from "./theme";
 
 export const SHOT9_FRAMES = 900;
@@ -24,7 +25,7 @@ const FINDINGS: [string, string][] = [
 ];
 
 export const Shot9Close: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const titleIn = interpolate(frame, [0, 18], [0, 1], clamp);
 	const closeIn = interpolate(frame, [650, 680], [0, 1], clamp);
 	const creditsIn = interpolate(frame, [710, 740], [0, 1], clamp);

@@ -1,8 +1,7 @@
 # NernstWork video: final script
 
-About 2:49 at a relaxed pace (roughly 155 words a minute). Daniel narrates. Every shot below is built and plays in
-order in the `Draft` composition (`npx remotion render src/index.ts Draft out/draft.mp4`); shots can be retimed to the
-recording.
+The final cut is the narrated `Final` composition (3:42), described first below; the silent `Draft` (2:49) and the
+planned voiceover follow for reference.
 
 The research question, stated in the opening shot: can a language-model agent infer a solid-state reaction pathway
 from time-resolved phase data? (1) Does the pathway space it proposes contain a model that predicts an unseen
@@ -15,6 +14,32 @@ Each shot carries one idea, the on-screen text stands without the narration, and
 pictures. Colours mean one thing throughout: blue the selection rule's pick, orange the agent's other plausible model,
 aqua the best model in a search space, light gray the baseline, red (shot 7 only) the agent's rival explanation; the
 four phase colours appear only in shot 1.
+
+## Narration as recorded (Daniel, Oct 22) and the final cut
+
+Daniel recorded one clip per shot plus a closing statement, deliberately "a little less technical so that it's
+accessible", and sent `silence.mp3` as room tone "as a baseline for any sort of audio editing". The `Final` composition
+(`npx remotion render src/index.ts Final out/final.mp4`) times each shot to its clip and anchors the visual beats to his
+words (`make_timing.py`, timestamps from the transcripts); his room tone fills every gap; the mix is normalised to
+-16 LUFS integrated, -1.5 dBTP. Total 3:42.
+
+Transcribed with IBM Granite Speech 5.0 2B (best open model on the Hugging Face Open ASR Leaderboard, 5.06% average WER,
+Oct 2026) and cross-checked with faster-whisper small.en word timestamps. Granite garbles the spoken numbers "700 and
+725" (as "772.5", "707.5", "705"); word-level timing confirms Daniel says "700 and 725" in shots 1 and 9, and "can't
+settle" in shot 3.
+
+| Shot | In the cut | As recorded | Check against the sources |
+|---|---|---|---|
+| 1 | 0:00–0:30 | If you heat titanium dioxide with lithium carbonate, you will form a battery material. X-rays let us watch each substance rise and fall in real time. Our question: can an AI agent work out the reaction steps from curves like these? Does its set of candidate pathways include one that correctly forecasts a new experiment, and can we pick that one only using the data it was fitted to? We fit at 700 and 725 degrees and forecast the 750 degree experiment, which no model has seen. | Matches the research question and the study design |
+| 3 | 0:30–1:00 | NernstWork splits the job. The AI reads the data and the notes from the literature and proposes the building blocks: which substances, which steps, and how fast each might run, each with a reason. Code then checks that every combination conserves atoms and fits them all the same way, using only the 700 and 725 degree data. The picks are locked in before we load 750. Finally, the AI tells us what the data can't settle and which experiment would. | Matches (element balance, one protocol, frozen before 750 °C) |
+| 4 | 1:00–1:28 | First, what code alone would do. It tries 153 combinations of a fixed menu of steps and picks the best fit. That pick ranks 11th at forecasting 750 degrees. Now the AI's route. It adds its own steps, code fits every combination, and the same best-fit rule picks one. That one ranks fourth, but the agent also named the second plausible model before seeing 750, and that one ranks first. | Matches: ranks 11, 4, 1. (The baseline enumerates 154 networks; 153 fitted and form the reference set.) Scoreboard rows now appear in his order |
+| 5 | 1:28–1:43 | Each gray line is one reference model. On the left is its ranking by how well it fit the data we had; on the right, its ranking at forecasting 750 degrees. As you can see, the best fit is not the best forecaster. | Matches |
+| 5b | 1:43–2:05 | Across four AI runs, two Claude and two Gemini, every set of candidates held a top-four forecaster, though we only know that after seeing the 750 degree results. Picking by the best fit chose anywhere from fourth to 36th best, so the AI shrinks hundreds of possibilities to a short list, and choosing among them takes an experiment. | Matches, with the hindsight caveat stated |
+| 7 | 2:05–2:33 | So the agent suggests what to measure next: the experiment where its candidate explanations would disagree the most. Its top pick is to halve the lithium carbonate at 725 degrees. That would test its rival idea that forming the battery material is linked to a second form of titanium dioxide, rutile, forming. By two minutes, the two explanations differ by far more than measurement noise. Two of its leading models can't be told apart, and the agent says so. | Matches (rival: rutile formation coupled to the spinel; 7.2σ of the fitted noise at 2 min) |
+| 9 | 2:33–3:16 | Did the AI's candidates include a model that correctly forecasts the 750 degree experiment, having only seen 700 and 725? Yes, every time. Can we pick that model using only the 700 and 725 data? Not reliably. The chemistry agreed across models, and the agent said what it couldn't settle. One illustration of why this matters: a study we found through Valency made titanium dioxide catalysts at 700 and 900 degrees, two different crystal forms, and the rutile one worked better for turning nitrate into ammonia. That's one example, not a result. The AI is useful for proposing pathways. Choosing among them still takes a targeted experiment. | "Correctly forecasts… every time" is slightly stronger than the data: every AI search space held a top-4 forecaster, #1 in 3 of 4 runs. The on-screen findings carry the exact numbers |
+| End | 3:16–3:42 | Through NernstWork, we've shown that an AI agent can narrow a large space of possible reaction pathways in solid-state synthesis down to a short list of good candidates and suggest what to measure next. The implication is more targeted experiments in physical labs, experiments chosen because they tell rival explanations apart rather than tried blindly. It points to a better way to design experiments. | Supported within the scope in the caveats below (retrospective, one chemistry). New end card carries this statement and the credits |
+
+## Planned voiceover (the script Daniel worked from)
 
 | # | Time | On screen | Voiceover |
 |---|---|---|---|

@@ -1,5 +1,8 @@
 import React from "react";
-import { AbsoluteFill, Composition, Series, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, Composition, Sequence, Series, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import timing from "./data/timing.json";
+import { Timed } from "./time";
+import { SHOT_END_FRAMES, ShotEnd } from "./ShotEnd";
 import { SHOT1_FRAMES, Shot1Open } from "./Shot1Open";
 import { SHOT3_FRAMES, Shot3Loop } from "./Shot3Loop";
 import { SHOT4_FRAMES, Shot4Reveal } from "./Shot4Reveal";
@@ -38,8 +41,33 @@ const Draft: React.FC = () => (
 	</Series>
 );
 
+const SHOT_COMPONENTS: Record<string, React.FC> = {
+	Shot1Open, Shot3Loop, Shot4Reveal, Shot5Ranks, Shot5bRuns, Shot7Plan, Shot9Close, ShotEnd,
+};
+
+/** The narrated cut: each shot timed to Daniel's clip, beats anchored to his words (src/data/timing.json, make_timing.py). */
+const Final: React.FC = () => (
+	<Series>
+		{timing.shots.map((sh) => {
+			const Comp = SHOT_COMPONENTS[sh.id];
+			return (
+				<Series.Sequence key={sh.id} durationInFrames={sh.frames}>
+					<Faded><Timed anchors={sh.anchors as [number, number][]}><Comp /></Timed></Faded>
+					{(sh.audio as { src: string; from: number }[]).map((a) => (
+						<Sequence key={a.src} from={a.from}><Audio src={staticFile(a.src)} /></Sequence>
+					))}
+					{((sh as { room_tone?: number[][] }).room_tone ?? []).map(([g0, g1]) => (
+						<Sequence key={`rt${g0}`} from={g0} durationInFrames={g1 - g0}><Audio src={staticFile("audio/silence.mp3")} loop /></Sequence>
+					))}
+				</Series.Sequence>
+			);
+		})}
+	</Series>
+);
+
 export const Root: React.FC = () => (
 	<>
+		<Composition id="Final" component={Final} durationInFrames={timing.total_frames} fps={FPS} width={W} height={H} />
 		<Composition id="Shot1Open" component={Shot1Open} durationInFrames={SHOT1_FRAMES} fps={FPS} width={W} height={H} />
 		<Composition id="Shot3Loop" component={Shot3Loop} durationInFrames={SHOT3_FRAMES} fps={FPS} width={W} height={H} />
 		<Composition id="Shot4Reveal" component={Shot4Reveal} durationInFrames={SHOT4_FRAMES} fps={FPS} width={W} height={H} />
@@ -48,6 +76,7 @@ export const Root: React.FC = () => (
 		<Composition id="Shots4to5" component={Shots4to5} durationInFrames={SHOT4_FRAMES + SHOT5_FRAMES + SHOT5B_FRAMES} fps={FPS} width={W} height={H} />
 		<Composition id="Shot7Plan" component={Shot7Plan} durationInFrames={SHOT7_FRAMES} fps={FPS} width={W} height={H} />
 		<Composition id="Shot9Close" component={Shot9Close} durationInFrames={SHOT9_FRAMES} fps={FPS} width={W} height={H} />
+		<Composition id="ShotEnd" component={ShotEnd} durationInFrames={SHOT_END_FRAMES} fps={FPS} width={W} height={H} />
 		<Composition id="Draft" component={Draft}
 			durationInFrames={SHOT1_FRAMES + SHOT3_FRAMES + SHOT4_FRAMES + SHOT5_FRAMES + SHOT5B_FRAMES + SHOT7_FRAMES + SHOT9_FRAMES} fps={FPS} width={W} height={H} />
 	</>

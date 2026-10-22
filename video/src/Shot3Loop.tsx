@@ -2,8 +2,9 @@
 // builds and fits every combination; (3) everything is frozen and tested on a sealed temperature; (4) the AI reports
 // what the data cannot settle and plans the next experiment. Content comes from the run's own files.
 import React from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Easing, interpolate} from "remotion";
 import data from "./data/shots.json";
+import { useFrame } from "./time";
 import { designText, rateLaw, species } from "./components/chem";
 import { C, fontFamily } from "./theme";
 
@@ -30,7 +31,7 @@ const UNRESOLVED = [
 ];
 
 const Card: React.FC<{ i: number; children: React.ReactNode }> = ({ i, children }) => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const st = STAGES[i];
 	const appear = interpolate(frame, [st.start, st.start + 18], [0, 1], clamp);
 	const active = frame >= st.start && frame < st.end;
@@ -52,7 +53,7 @@ const Card: React.FC<{ i: number; children: React.ReactNode }> = ({ i, children 
 };
 
 const Proposal: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const sp = S.spaces.find((s) => s.space_id === S.shown_space)!;
 	return (
 		<div>
@@ -77,7 +78,7 @@ const Proposal: React.FC = () => {
 };
 
 const FitGrid: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const st = STAGES[1];
 	const n = S.n_candidates, nFit = S.n_fitted;
 	const cols = 16, cell = 18, gap = 3;
@@ -120,7 +121,7 @@ const FitGrid: React.FC = () => {
 };
 
 const Sealed: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const st = STAGES[2];
 	const o = interpolate(frame, [st.start + 20, st.start + 40], [0, 1], clamp);
 	const o2 = interpolate(frame, [st.start + 60, st.start + 80], [0, 1], clamp);
@@ -141,7 +142,7 @@ const Sealed: React.FC = () => {
 };
 
 const Report: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const st = STAGES[3];
 	const next = S.next_experiments[0];
 	return (
@@ -164,7 +165,7 @@ const Report: React.FC = () => {
 };
 
 export const Shot3Loop: React.FC = () => {
-	const frame = useCurrentFrame();
+	const frame = useFrame();
 	const titleIn = interpolate(frame, [0, 18], [0, 1], clamp);
 	const loopP = interpolate(frame, [900, 950], [0, 1], { ...clamp, easing: Easing.inOut(Easing.cubic) });
 	const yLoop = TOP + CARD_H + 56, xa = cardX(3) + CARD_W / 2, xb = cardX(0) + CARD_W / 2;

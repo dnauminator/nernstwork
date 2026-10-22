@@ -13,6 +13,9 @@ only). The compositions hardcode no result.
     npx remotion render src/index.ts Shots4to5 out/shots4to5.mp4 --codec=h264 --crf=18
     npx remotion still src/index.ts Shot4Reveal out/f.png --frame=520
 
+    # narrated cut: time the shots to the clips in public/audio/, render, then normalise loudness (see SCRIPT.md)
+    python3 make_timing.py && npx remotion render src/index.ts Final out/final.mp4 --codec=h264 --crf=18 --audio-codec=aac
+
 | Composition | Length | Shows |
 |---|---|---|
 | `Shot1Open` | 27 s | The research question and its two sub-questions, then the test case: the 725 °C phase amounts draw themselves beside the study design |
@@ -23,7 +26,9 @@ only). The compositions hardcode no result.
 | `Shot7Plan` | 24 s | The planner's ranked experiments; under the top pick the leading model and the agent's own rival split at 2 min |
 | `Shot9Close` | 30 s | What we found (computed from the runs, plus the first link to catalysis), the conclusion, credits |
 | `Shots4to5` | 54 s | Shots 4, 5 and 5b in sequence |
-| `Draft` | 2:49 | The full video in story order; the narration is in `SCRIPT.md` |
+| `Draft` | 2:49 | The full video in story order, silent |
+| `ShotEnd` | 25 s | End card under Daniel's closing statement, with credits |
+| `Final` | 3:42 | The narrated cut: each shot timed to Daniel's clip (`public/audio/`), beats anchored to his words by `make_timing.py`, room tone in the gaps |
 
 Colours follow the entity across shots (dataviz reference palette, dark steps, validated all-pairs): blue is the
 selection rule's pick, orange the agent's other plausible model, aqua the best model in a run's own space, light gray
