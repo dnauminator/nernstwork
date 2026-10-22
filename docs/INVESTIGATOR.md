@@ -232,8 +232,10 @@ Because these change the evaluator's code hash, enumeration runs started before 
 Full tables: `docs/examples/arm_comparison.md` (all runs, current evaluator). Per-run reports with candidate structures,
 parameters, profiles, reviews, responses, conclusions and plots: `docs/examples/liao50-*.md`. The pre-registered comparison of
 the first four runs, made before the convergence-policy fix, is kept unchanged in `docs/examples/arm_comparison_preregistered.md`.
-Model for every agent run: `anthropic/claude-opus-5-5` (thinking high) through Pi 1.3.0. Each agent arm ran twice: run 1
-without the sandbox toolkit, run 2 with it. Two runs per arm are case results, not performance estimates.
+Model for the first four agent runs: `anthropic/claude-opus-5-5` (thinking high) through Pi 1.3.0; run 1 without the
+sandbox toolkit, run 2 with it. On Oct 21 the same arms were run twice with `openrouter/google/gemini-4-argon` (thinking
+high, toolkit on), with a byte-identical evidence pack, protocol and evaluator code (65c1ac7c107b). Two runs per arm and
+model are case results, not performance estimates.
 
 | Run | Candidates | Dev best AICc (Fig. 50b) | Held-out AICc of the frozen selection (rank / 731) | Best agent-plausible candidate on held-out (rank) | LLM cost (list), session time |
 |---|---|---|---|---|---|
@@ -243,6 +245,10 @@ without the sandbox toolkit, run 2 with it. Two runs per arm are case results, n
 | Propose only, run 2 | 10 | 163.43 | 193.11 (58) | same as selection | $1.34, 9 min |
 | Critique and revision, run 1 | 10 (6 + 4 revisions) | 168.74 | 193.88 (58) | 165.61 (7) | $6.49 (about $2.3 lost to a host bug), 54 min |
 | Critique and revision, run 2 | 10 (6 + 4 revisions) | 166.25 | 187.47 (54); 207.70 (121) | 168.17 (9) | $3.00, 18 min |
+| Gemini 4 Argon, propose only, run 1 | 10 | 131.05 | 159.13 (6) | same as selection | $4.48, 80 min |
+| Gemini 4 Argon, propose only, run 2 | 10 | 143.01 | 160.18 (6); 161.42 (7); 166.97 (8) | 154.25 (2) | $3.98, 87 min |
+| Gemini 4 Argon, critique and revision, run 1 | 10 (6 + 4 revisions) | 143.01 | 161.42 (7); 166.97 (8) | same as selection | $4.68, 80 min |
+| Gemini 4 Argon, critique and revision, run 2 | 10 (6 + 4 revisions) | 154.23 | 172.72 (16) | 154.77 (2) | $3.89, 69 min |
 
 The held-out reference set is every member of every declared enumeration space (pre-declared and post-hoc) refit on Fig. 50a:
 731 of 733 structures fit (2 do not converge). The frozen selection is a code rule (development AICc within 2 of the best),
@@ -291,6 +297,15 @@ What the measurements say:
    multistart can miss the optimum of a larger model: in critique run 2, a candidate that contains the best candidate as a
    special case (one extra rate constant at its lower bound) fitted 3.8 NLL worse. The investigator noticed and left it
    unresolved. Starting larger models from the fits of the models they contain would close this gap.
+
+9. **Gemini 4 Argon (Oct 21) chose much better than Opus 5.5 on this case.** Its development bests (131.0-154.2) beat
+   every Opus run (163.4-168.7) and the post-hoc enumeration (151.5), and its rule-selected candidates rank 6th to 16th
+   of 731 on the held-out run (Opus: 54th to 121st); two of its agent-plausible candidates rank 2nd. The behaviour
+   differed: Gemini ran dozens of exploratory fits in the sandbox toolkit before submitting (89-116 tool calls per run),
+   in effect searching the space itself, and took 69-87 min and $3.9-4.7 per run. Through OpenRouter its long reasoning
+   turns were repeatedly dropped ("upstream idle timeout"), so every Gemini run needed host restarts (up to 15) that resumed
+   from the store; the thinking level was not lowered. With one case and two runs per arm this is a lead, not a ranking of
+   models.
 
 ## 9. Limitations (current)
 

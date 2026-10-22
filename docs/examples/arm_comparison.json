@@ -10,7 +10,7 @@
    "best_candidate": "C6d5e25b6d8",
    "best_name": "enum-2ed1b3b4a8",
    "best_aicc": 204.95233516966857,
-   "best_delta_to_overall": 53.40857066797065,
+   "best_delta_to_overall": 73.89837011457186,
    "best_in_declared_space": true,
    "best_in_space_aicc": 204.95233516966857,
    "best_outside_space_aicc": null,
@@ -171,7 +171,7 @@
    "best_candidate": "C7a268d59de",
    "best_name": "enum-fff2762723",
    "best_aicc": 151.54376450169792,
-   "best_delta_to_overall": 0.0,
+   "best_delta_to_overall": 20.48979944660121,
    "best_in_declared_space": true,
    "best_in_space_aicc": 151.54376450169792,
    "best_outside_space_aicc": null,
@@ -262,7 +262,7 @@
    "best_candidate": "C99c623cc3e",
    "best_name": "powerlaw_direct_NH3escape_deact",
    "best_aicc": 166.24875298712504,
-   "best_delta_to_overall": 14.704988485427123,
+   "best_delta_to_overall": 35.19478793202833,
    "best_in_declared_space": false,
    "best_in_space_aicc": 274.7572597380157,
    "best_outside_space_aicc": 166.24875298712504,
@@ -376,7 +376,7 @@
    "best_candidate": "Cb899debfb5",
    "best_name": "comprop_N2_pHshutoff_powerlaw",
    "best_aicc": 168.73878035864584,
-   "best_delta_to_overall": 17.19501585694792,
+   "best_delta_to_overall": 37.68481530354913,
    "best_in_declared_space": false,
    "best_in_space_aicc": null,
    "best_outside_space_aicc": 168.73878035864584,
@@ -583,7 +583,7 @@
    "best_candidate": "C8ff8e358e4",
    "best_name": "KG_powerlaw_NO2NH3_coupling",
    "best_aicc": 163.42654678329643,
-   "best_delta_to_overall": 11.882782281598509,
+   "best_delta_to_overall": 32.37258172819972,
    "best_in_declared_space": false,
    "best_in_space_aicc": 247.5738913159332,
    "best_outside_space_aicc": 163.42654678329643,
@@ -699,7 +699,7 @@
    "best_candidate": "C99c623cc3e",
    "best_name": "c3_parallel_pl_NH4_transport_no_deact",
    "best_aicc": 166.24875298712504,
-   "best_delta_to_overall": 14.704988485427123,
+   "best_delta_to_overall": 35.19478793202833,
    "best_in_declared_space": false,
    "best_in_space_aicc": 246.9985675751407,
    "best_outside_space_aicc": 166.24875298712504,
@@ -867,9 +867,730 @@
      "n_space_fitted": 731
     }
    ]
+  },
+  {
+   "run_id": "liao50-propose_only-gemini1",
+   "arm": "propose_only",
+   "candidates": 10,
+   "status_counts": {
+    "fitted": 10
+   },
+   "best_candidate": "Cdacf4d1fda",
+   "best_name": "C10_dual_pathway_zeroorder_hidden",
+   "best_aicc": 131.0539650550967,
+   "best_delta_to_overall": 0.0,
+   "best_in_declared_space": false,
+   "best_in_space_aicc": 246.9985675751407,
+   "best_outside_space_aicc": 131.0539650550967,
+   "dev_fits_numerically_unreliable": 0,
+   "sensitivity_best": {
+    "candidate_id": "Cdacf4d1fda",
+    "aicc": 131.05396476923076
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 6,
+    "fits_reused": 4,
+    "fit_cpu_s": 297.56966639999996,
+    "profile_wall_s": 327.0406259869924,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   },
+   "llm": {
+    "models": [
+     "openrouter/google/gemini-4-argon"
+    ],
+    "sessions": {
+     "investigator": 1
+    },
+    "input_tokens": 1061729,
+    "output_tokens": 155620,
+    "cache_read_tokens": 7970567,
+    "cache_write_tokens": 0,
+    "cost_usd": 4.476714699999999,
+    "wall_s": 4799.654,
+    "tool_calls": 89,
+    "cost_note": "list prices from the Pi model table"
+   },
+   "frozen_top1": "Cdacf4d1fda",
+   "frozen_selected": [
+    "Cdacf4d1fda"
+   ],
+   "agent_plausible": [
+    "Cdacf4d1fda",
+    "Cc27c260c8f"
+   ],
+   "heldout_top1": {
+    "candidate_id": "Cdacf4d1fda",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": true,
+    "aicc": 159.129490897177,
+    "delta_aicc_to_best_overall": 0.0,
+    "rank_among_space": 6,
+    "n_space": 731,
+    "rmse": {
+     "NO3": 1.9734430395162776,
+     "NO2": 0.4386699767433756,
+     "NH3": 0.7569469216305853
+    },
+    "adequacy": "poor",
+    "adequacy_reasons": [
+     "NO3: residual signs cluster (runs test p=0.007)",
+     "NO3: residuals are serially correlated (lag-1 r=0.57)",
+     "NO2: residual signs cluster (runs test p=0.025)"
+    ],
+    "dataset_id": "liao2025_wmos2_suppfig50a",
+    "numerically_unreliable": false,
+    "replicates": 8,
+    "best_space_aicc_protocol": 153.66997582901152,
+    "sensitivity_aicc": 159.12949076923078,
+    "sensitivity_rank": 6,
+    "sensitivity_best_space": 153.66997676923077,
+    "n_space_fitted": 731
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "Cc27c260c8f",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "aicc": 162.57178661052336,
+     "delta_aicc_to_best_overall": 3.4422957133463683,
+     "rank_among_space": 7,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.973413385840545,
+      "NO2": 0.4386941395623826,
+      "NH3": 0.7569388697767344
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.57)",
+      "NO2: residual signs cluster (runs test p=0.025)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 1,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 162.57178631578947,
+     "sensitivity_rank": 7,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    },
+    {
+     "candidate_id": "Cdacf4d1fda",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "aicc": 159.129490897177,
+     "delta_aicc_to_best_overall": 0.0,
+     "rank_among_space": 6,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.9734430395162776,
+      "NO2": 0.4386699767433756,
+      "NH3": 0.7569469216305853
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.57)",
+      "NO2: residual signs cluster (runs test p=0.025)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 8,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 159.12949076923078,
+     "sensitivity_rank": 6,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    }
+   ]
+  },
+  {
+   "run_id": "liao50-propose_only-gemini2",
+   "arm": "propose_only",
+   "candidates": 10,
+   "status_counts": {
+    "fitted": 10
+   },
+   "best_candidate": "C1a420ff7fa",
+   "best_name": "c06_ser_par_no2_branch",
+   "best_aicc": 143.01032831170332,
+   "best_delta_to_overall": 11.956363256606608,
+   "best_in_declared_space": false,
+   "best_in_space_aicc": 246.9985675751407,
+   "best_outside_space_aicc": 143.01032831170332,
+   "dev_fits_numerically_unreliable": 0,
+   "sensitivity_best": {
+    "candidate_id": "C1a420ff7fa",
+    "aicc": 143.01032876923077
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 6,
+    "fits_reused": 4,
+    "fit_cpu_s": 159.916214592,
+    "profile_wall_s": 230.03629771299893,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   },
+   "llm": {
+    "models": [
+     "openrouter/google/gemini-4-argon"
+    ],
+    "sessions": {
+     "investigator": 1
+    },
+    "input_tokens": 883555,
+    "output_tokens": 140117,
+    "cache_read_tokens": 8135233,
+    "cache_write_tokens": 0,
+    "cost_usd": 3.9818033000000006,
+    "wall_s": 5190.3640000000005,
+    "tool_calls": 116,
+    "cost_note": "list prices from the Pi model table"
+   },
+   "frozen_top1": "C1a420ff7fa",
+   "frozen_selected": [
+    "C1a420ff7fa",
+    "Cda222e794b",
+    "Cd19c0c2114"
+   ],
+   "agent_plausible": [
+    "C1a420ff7fa",
+    "Cda222e794b",
+    "Cd19c0c2114",
+    "Cb18c56104e"
+   ],
+   "heldout_top1": {
+    "candidate_id": "C1a420ff7fa",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": true,
+    "aicc": 161.41604388550502,
+    "delta_aicc_to_best_overall": 7.165798711661978,
+    "rank_among_space": 7,
+    "n_space": 731,
+    "rmse": {
+     "NO3": 1.8499744352053418,
+     "NO2": 0.3868545836782338,
+     "NH3": 0.9793128231851334
+    },
+    "adequacy": "poor",
+    "adequacy_reasons": [
+     "NO3: residuals are serially correlated (lag-1 r=0.55)",
+     "NH3: residual signs cluster (runs test p=0.028)",
+     "NH3: residuals are serially correlated (lag-1 r=0.51)"
+    ],
+    "dataset_id": "liao2025_wmos2_suppfig50a",
+    "numerically_unreliable": false,
+    "replicates": 8,
+    "best_space_aicc_protocol": 153.66997582901152,
+    "sensitivity_aicc": 161.41604476923078,
+    "sensitivity_rank": 7,
+    "sensitivity_best_space": 153.66997676923077,
+    "n_space_fitted": 731
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "Cb18c56104e",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "aicc": 154.25024517384304,
+     "delta_aicc_to_best_overall": 0.0,
+     "rank_among_space": 2,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.9934607497480732,
+      "NO2": 0.36251472534459034,
+      "NH3": 0.7099262990806409
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.55)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 6,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 154.25024431578947,
+     "sensitivity_rank": 2,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    },
+    {
+     "candidate_id": "Cda222e794b",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "aicc": 160.18402362998057,
+     "delta_aicc_to_best_overall": 5.9337784561375315,
+     "rank_among_space": 6,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.9190385663257536,
+      "NO2": 0.35976567522713393,
+      "NH3": 0.9790264833057988
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.55)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 8,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 160.18402276923078,
+     "sensitivity_rank": 6,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    },
+    {
+     "candidate_id": "Cd19c0c2114",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "aicc": 166.96997069077986,
+     "delta_aicc_to_best_overall": 12.719725516936819,
+     "rank_among_space": 8,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.837280676716808,
+      "NO2": 0.4699629610304819,
+      "NH3": 0.9557363900960483
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.55)",
+      "NO2: residuals are serially correlated (lag-1 r=0.56)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 3,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 166.96997076923077,
+     "sensitivity_rank": 8,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    },
+    {
+     "candidate_id": "C1a420ff7fa",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "aicc": 161.41604388550502,
+     "delta_aicc_to_best_overall": 7.165798711661978,
+     "rank_among_space": 7,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.8499744352053418,
+      "NO2": 0.3868545836782338,
+      "NH3": 0.9793128231851334
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residuals are serially correlated (lag-1 r=0.55)",
+      "NH3: residual signs cluster (runs test p=0.028)",
+      "NH3: residuals are serially correlated (lag-1 r=0.51)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 8,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 161.41604476923078,
+     "sensitivity_rank": 7,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    }
+   ]
+  },
+  {
+   "run_id": "liao50-critique_revise-gemini1",
+   "arm": "critique_revise",
+   "candidates": 10,
+   "status_counts": {
+    "fitted": 10
+   },
+   "best_candidate": "C1a420ff7fa",
+   "best_name": "dual_path_step_deact_n2",
+   "best_aicc": 143.01032831170332,
+   "best_delta_to_overall": 11.956363256606608,
+   "best_in_declared_space": false,
+   "best_in_space_aicc": 246.9985675751407,
+   "best_outside_space_aicc": 143.01032831170332,
+   "dev_fits_numerically_unreliable": 0,
+   "sensitivity_best": {
+    "candidate_id": "C1a420ff7fa",
+    "aicc": 143.01032876923077
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 7,
+    "fits_reused": 3,
+    "fit_cpu_s": 224.690496816,
+    "profile_wall_s": 361.1962761430186,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   },
+   "llm": {
+    "models": [
+     "openrouter/google/gemini-4-argon"
+    ],
+    "sessions": {
+     "investigator": 1,
+     "reviewer": 1
+    },
+    "input_tokens": 560227,
+    "output_tokens": 213677,
+    "cache_read_tokens": 14230020,
+    "cache_write_tokens": 0,
+    "cost_usd": 4.680226000000001,
+    "wall_s": 4806.065,
+    "tool_calls": 115,
+    "cost_note": "list prices from the Pi model table"
+   },
+   "frozen_top1": "C1a420ff7fa",
+   "frozen_selected": [
+    "C1a420ff7fa",
+    "C3d81e8b104",
+    "Cd19c0c2114"
+   ],
+   "agent_plausible": [
+    "C1a420ff7fa",
+    "C3d81e8b104",
+    "Cd19c0c2114"
+   ],
+   "heldout_top1": {
+    "candidate_id": "C1a420ff7fa",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": true,
+    "aicc": 161.41604388550502,
+    "delta_aicc_to_best_overall": 0.0,
+    "rank_among_space": 7,
+    "n_space": 731,
+    "rmse": {
+     "NO3": 1.8499744352053418,
+     "NO2": 0.3868545836782338,
+     "NH3": 0.9793128231851334
+    },
+    "adequacy": "poor",
+    "adequacy_reasons": [
+     "NO3: residuals are serially correlated (lag-1 r=0.55)",
+     "NH3: residual signs cluster (runs test p=0.028)",
+     "NH3: residuals are serially correlated (lag-1 r=0.51)"
+    ],
+    "dataset_id": "liao2025_wmos2_suppfig50a",
+    "numerically_unreliable": false,
+    "replicates": 8,
+    "best_space_aicc_protocol": 153.66997582901152,
+    "sensitivity_aicc": 161.41604476923078,
+    "sensitivity_rank": 7,
+    "sensitivity_best_space": 153.66997676923077,
+    "n_space_fitted": 731
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C1a420ff7fa",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "aicc": 161.41604388550502,
+     "delta_aicc_to_best_overall": 0.0,
+     "rank_among_space": 7,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.8499744352053418,
+      "NO2": 0.3868545836782338,
+      "NH3": 0.9793128231851334
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residuals are serially correlated (lag-1 r=0.55)",
+      "NH3: residual signs cluster (runs test p=0.028)",
+      "NH3: residuals are serially correlated (lag-1 r=0.51)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 8,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 161.41604476923078,
+     "sensitivity_rank": 7,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    },
+    {
+     "candidate_id": "Cd19c0c2114",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "aicc": 166.96997069077986,
+     "delta_aicc_to_best_overall": 5.553926805274841,
+     "rank_among_space": 8,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.837280676716808,
+      "NO2": 0.4699629610304819,
+      "NH3": 0.9557363900960483
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.55)",
+      "NO2: residuals are serially correlated (lag-1 r=0.56)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 3,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 166.96997076923077,
+     "sensitivity_rank": 8,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    },
+    {
+     "candidate_id": "C3d81e8b104",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "aicc": 161.41604388550502,
+     "delta_aicc_to_best_overall": 0.0,
+     "rank_among_space": 7,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.8499744352053418,
+      "NO2": 0.3868545836782338,
+      "NH3": 0.9793128231851334
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residuals are serially correlated (lag-1 r=0.55)",
+      "NH3: residual signs cluster (runs test p=0.028)",
+      "NH3: residuals are serially correlated (lag-1 r=0.51)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 8,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 161.41604476923078,
+     "sensitivity_rank": 7,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    }
+   ]
+  },
+  {
+   "run_id": "liao50-critique_revise-gemini2",
+   "arm": "critique_revise",
+   "candidates": 10,
+   "status_counts": {
+    "fitted": 10
+   },
+   "best_candidate": "C4bef486db1",
+   "best_name": "C5_v2_full_series_parallel_NO2_to_NH3_and_N2",
+   "best_aicc": 154.23494310556845,
+   "best_delta_to_overall": 23.180978050471737,
+   "best_in_declared_space": false,
+   "best_in_space_aicc": 246.9985675751407,
+   "best_outside_space_aicc": 154.23494310556845,
+   "dev_fits_numerically_unreliable": 0,
+   "sensitivity_best": {
+    "candidate_id": "C4bef486db1",
+    "aicc": 154.234944
+   },
+   "numerics": {
+    "fits_committed_by_this_run": 8,
+    "fits_reused": 2,
+    "fit_cpu_s": 185.46588856,
+    "profile_wall_s": 95.3085230619763,
+    "note": "current evaluator code only; earlier code versions' records are excluded"
+   },
+   "llm": {
+    "models": [
+     "openrouter/google/gemini-4-argon"
+    ],
+    "sessions": {
+     "investigator": 1,
+     "reviewer": 1
+    },
+    "input_tokens": 486656,
+    "output_tokens": 191021,
+    "cache_read_tokens": 10094868,
+    "cache_write_tokens": 0,
+    "cost_usd": 3.8930087999999996,
+    "wall_s": 4111.106,
+    "tool_calls": 101,
+    "cost_note": "list prices from the Pi model table"
+   },
+   "frozen_top1": "C4bef486db1",
+   "frozen_selected": [
+    "C4bef486db1"
+   ],
+   "agent_plausible": [
+    "C4bef486db1",
+    "C27d286ccc0",
+    "C4e60f25464",
+    "C39de24b5ec"
+   ],
+   "heldout_top1": {
+    "candidate_id": "C4bef486db1",
+    "status": "fitted",
+    "selected_by_rule": true,
+    "agent_concluded_plausible": true,
+    "aicc": 172.71691132415145,
+    "delta_aicc_to_best_overall": 17.946295858165968,
+    "rank_among_space": 16,
+    "n_space": 731,
+    "rmse": {
+     "NO3": 1.4358398439827567,
+     "NO2": 0.7389373398620444,
+     "NH3": 1.0139826290471468
+    },
+    "adequacy": "poor",
+    "adequacy_reasons": [
+     "NO2: residual signs cluster (runs test p=0.009)",
+     "NO2: residuals are serially correlated (lag-1 r=0.77)",
+     "NH3: residual signs cluster (runs test p=0.025)",
+     "NH3: residuals are serially correlated (lag-1 r=0.51)"
+    ],
+    "dataset_id": "liao2025_wmos2_suppfig50a",
+    "numerically_unreliable": false,
+    "replicates": 2,
+    "best_space_aicc_protocol": 153.66997582901152,
+    "sensitivity_aicc": 172.716912,
+    "sensitivity_rank": 16,
+    "sensitivity_best_space": 153.66997676923077,
+    "n_space_fitted": 731
+   },
+   "heldout_frozen": [
+    {
+     "candidate_id": "C39de24b5ec",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "aicc": 165.10729890204772,
+     "delta_aicc_to_best_overall": 10.33668343606223,
+     "rank_among_space": 7,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.8382864061847382,
+      "NO2": 0.5440539079871548,
+      "NH3": 0.9423466733572544
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO3: residuals are serially correlated (lag-1 r=0.53)",
+      "NO2: residuals are serially correlated (lag-1 r=0.65)",
+      "NH3: residuals are serially correlated (lag-1 r=0.54)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 10,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 165.10729790243903,
+     "sensitivity_rank": 7,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    },
+    {
+     "candidate_id": "C27d286ccc0",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "aicc": 169.04538613465047,
+     "delta_aicc_to_best_overall": 14.274770668664985,
+     "rank_among_space": 11,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.613146705566086,
+      "NO2": 0.43144008682278895,
+      "NH3": 1.5204568004791066
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.038)",
+      "NO2: residual signs cluster (runs test p=0.028)",
+      "NO2: residuals are serially correlated (lag-1 r=0.54)",
+      "NH3: residual signs cluster (runs test p=0.006)",
+      "NH3: residuals are serially correlated (lag-1 r=0.65)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 12,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 169.04538590243902,
+     "sensitivity_rank": 11,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    },
+    {
+     "candidate_id": "C4bef486db1",
+     "status": "fitted",
+     "selected_by_rule": true,
+     "agent_concluded_plausible": true,
+     "aicc": 172.71691132415145,
+     "delta_aicc_to_best_overall": 17.946295858165968,
+     "rank_among_space": 16,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.4358398439827567,
+      "NO2": 0.7389373398620444,
+      "NH3": 1.0139826290471468
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO2: residual signs cluster (runs test p=0.009)",
+      "NO2: residuals are serially correlated (lag-1 r=0.77)",
+      "NH3: residual signs cluster (runs test p=0.025)",
+      "NH3: residuals are serially correlated (lag-1 r=0.51)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 2,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 172.716912,
+     "sensitivity_rank": 16,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    },
+    {
+     "candidate_id": "C4e60f25464",
+     "status": "fitted",
+     "selected_by_rule": false,
+     "agent_concluded_plausible": true,
+     "aicc": 154.7706154659855,
+     "delta_aicc_to_best_overall": 0.0,
+     "rank_among_space": 2,
+     "n_space": 731,
+     "rmse": {
+      "NO3": 1.6064969843860892,
+      "NO2": 0.44768988854835895,
+      "NH3": 0.9668839678312432
+     },
+     "adequacy": "poor",
+     "adequacy_reasons": [
+      "NO3: residual signs cluster (runs test p=0.007)",
+      "NO2: residual signs cluster (runs test p=0.028)",
+      "NO2: residuals are serially correlated (lag-1 r=0.57)",
+      "NH3: residual signs cluster (runs test p=0.007)",
+      "NH3: residuals are serially correlated (lag-1 r=0.55)"
+     ],
+     "dataset_id": "liao2025_wmos2_suppfig50a",
+     "numerically_unreliable": false,
+     "replicates": 12,
+     "best_space_aicc_protocol": 153.66997582901152,
+     "sensitivity_aicc": 154.77061590243903,
+     "sensitivity_rank": 2,
+     "sensitivity_best_space": 153.66997676923077,
+     "n_space_fitted": 731
+    }
+   ]
   }
  ],
- "best_overall_aicc": 151.54376450169792,
- "sensitivity_best_overall_aicc": 151.5437647692308,
+ "best_overall_aicc": 131.0539650550967,
+ "sensitivity_best_overall_aicc": 131.05396476923076,
  "note": "All arms share the protocol, development data, validator and fitter (same deterministic multistart). Candidates outside the declared enumeration spaces enlarge the model space; compare best_in_space_aicc with the enumeration arm to separate discovery within the space from expansion of the space. 'Sensitivity' scores every fit by the lowest NLL any start reached, applied identically to all arms and all space members; it exposes fits where unconverged starts replicated a better optimum than the one the protocol reports."
 }
