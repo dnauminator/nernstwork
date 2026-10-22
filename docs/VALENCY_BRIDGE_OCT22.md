@@ -121,11 +121,13 @@ One kind of data our engine could fit: batch NO3RR time courses (nitrate, nitrit
 - This has the same three-species structure as the W1–W5 worlds and could be digitized and fitted directly.
 - The SI has no time course for A-TiO2/Cu2O. The anatase sample appears only in endpoint numbers (Table S2) and in chronoamperometry current traces (Fig. S12, five potentials for 3 h each).
 - SI Fig. S4 shows the polymorph is set by calcination temperature: by peak positions (anatase 101 at about 25.3°, rutile 110 at about 27.4°), TiO2 calcined at 700 °C is anatase, at 800 °C mostly rutile with some anatase, and at 900 °C rutile. The reference-stick legend in that figure appears to have the anatase and rutile labels swapped relative to the stick positions.
-- The SI does not say which calcination temperatures made the A and R samples. A-TiO2 (Fig. S5a) is anatase-only, consistent with 700 °C. Not verified against the main text.
+- The SI does not say which calcination temperatures made the A and R samples. The main text does (section 2.1.2, checked Oct 22 from the article Daniel sent): R-TiO2 was calcined at 900 °C and A-TiO2 at 700 °C, each for 3 h at 5 °C/min.
 
 **Digitized and fitted (October 22).** Fig. S18 is now `data/real/wang2025_figS18_rtio2cu2o.json` (mM-N, error bars as per-point sigma where readable, not yet verified against the figure). A fit of the `liao_core` nitrate networks prefers NO3⁻→NO2⁻→NH4⁺ with 9% of nitrate going to an unmeasured sink and a ~10 min start-up lag. Rate constants, the significance of the missing N and the caveats are in `docs/examples/wang2025_figS18/README.md`.
 
-**What this means.** Wang 2025 is the closest thing found to the target data: a calcination temperature sets the TiO2 polymorph, the same anatase/rutile pair as Chapman's precursors, and one catalyst has a three-species NO3RR time course. Turning it into a synthesis-to-rate-constant pair would need the anatase time course. The paywalled main text might contain one; someone with institutional access would have to check its figures.
+**Main article checked (Oct 22).** It has no anatase time course either. Its only time course is the rutile one in SI Fig. S18; the anatase catalyst appears as endpoints at five potentials (Fig. 3e NH3 FE, Fig. 3f NO3⁻ conversion). By eye at −0.5 V: conversion about 98% (R) vs 85% (A), NH3 FE about 79% vs 71%. The electrolysis time for those endpoints is not stated in the methods paragraph.
+
+**What this means.** Wang 2025 is the closest thing found to the target data: a calcination temperature (700 vs 900 °C) sets the TiO2 polymorph, the same anatase/rutile pair as Chapman's precursors, and the rutile catalyst has a three-species NO3RR time course. A fitted synthesis-to-rate-constant pair would need the anatase time course, which neither the article nor the SI contains. The link stays an illustration, supported by endpoint comparisons.
 
 ## (d) Against the novelty notes in SPEC 7e
 
