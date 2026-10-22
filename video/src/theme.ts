@@ -17,6 +17,7 @@ export const C = {
 	plausible: "#d95926", // the agent's other plausible model
 	ownBest: "#199e70", // best model in the run's own space (known only after the held-out test)
 	baseline: "#c3c2b7", // the code-only baseline's pick
+	rival: "#e66767", // shot 7: the agent's own rival explanation (red, used nowhere else; passes all-pairs against blue)
 	reference: "#898781", // the 153 reference models
 };
 

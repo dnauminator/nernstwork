@@ -1,6 +1,6 @@
 // Shot 7: what to measure next. The planner's ranked experiments for Claude Opus 5.5 run 1, and under the top design the
-// predicted rutile of the two leading models (indistinguishable) and of the agent's own rival explanation, which the
-// design separates. All values from the run's planner analysis and frozen fits (scripts/export_video_data.py).
+// predicted rutile of the leading model and of the agent's own rival explanation, which the design separates. (The
+// agent's other leading model tracks the leading one within the noise, so it is stated, not drawn.) All values from the run's planner analysis and frozen fits (scripts/export_video_data.py).
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame } from "remotion";
 import data from "./data/shots.json";
@@ -10,7 +10,6 @@ import { C, fontFamily } from "./theme";
 const S = data.shot7;
 export const SHOT7_FRAMES = 720;
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-const RIVAL = "#9085e9"; // a further validated categorical slot (dark violet): the rival model is a new entity here
 
 type Spec = { c0: Record<string, number>; temperature_C: number; t_end_min: number };
 const std = S.standard_c0 as Record<string, number>;
@@ -75,8 +74,8 @@ export const Shot7Plan: React.FC = () => {
 			<div style={{ position: "absolute", left: X0, top: 196, opacity: chartIn, color: C.ink }}>
 				<div style={{ fontSize: 26, fontWeight: 600 }}>Predicted {ch} under the top pick</div>
 				<div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 14 }}>
-					<LegendItem color={C.rule} label="Leading models: rutile by nucleation and growth" opacity={leadP > 0 ? 1 : 0} />
-					<LegendItem color={RIVAL} label="Its own rival: the spinel helps rutile form" opacity={rivalP > 0 ? 1 : 0} />
+					<LegendItem color={C.rule} label="Leading model: rutile by nucleation and growth" opacity={leadP > 0 ? 1 : 0} />
+					<LegendItem color={C.rival} label="The agent's own rival: the spinel helps rutile form" opacity={rivalP > 0 ? 1 : 0} />
 				</div>
 			</div>
 			<svg width={1920} height={1080} style={{ position: "absolute", left: 0, top: 0 }}>
@@ -84,10 +83,8 @@ export const Shot7Plan: React.FC = () => {
 					<Axes x={x} y={y} xTicks={[0, 5, 10, 15, 20, 25, 30]} yTicks={yTicks} x0={X0} x1={X1} y0={Y0} y1={Y1}
 						xLabel="minutes" fontSize={20} />
 				</g>
-				<path d={partialPath(S.t, curves[S.plausible[0]][ch], x, y, leadP)} fill="none" stroke={C.plausible} strokeWidth={7}
-					strokeLinecap="round" opacity={0.9} />
 				<path d={partialPath(S.t, curves[S.rule][ch], x, y, leadP)} fill="none" stroke={C.rule} strokeWidth={3.5} strokeLinecap="round" />
-				<path d={partialPath(S.t, curves[S.rival!][ch], x, y, rivalP)} fill="none" stroke={RIVAL} strokeWidth={4} strokeLinecap="round" />
+				<path d={partialPath(S.t, curves[S.rival!][ch], x, y, rivalP)} fill="none" stroke={C.rival} strokeWidth={4} strokeLinecap="round" />
 				<g opacity={gapIn} style={{ fontFamily }}>
 					<line x1={x(gap.t_min)} x2={x(gap.t_min)} y1={y(yr) - 4} y2={y(yv) + 4} stroke={C.ink} strokeWidth={2} />
 					<line x1={x(gap.t_min) - 8} x2={x(gap.t_min) + 8} y1={y(yr)} y2={y(yr)} stroke={C.ink} strokeWidth={2} />
@@ -101,8 +98,8 @@ export const Shot7Plan: React.FC = () => {
 				</g>
 			</svg>
 			<div style={{ position: "absolute", left: X0, top: 900, width: 860, opacity: noteIn, fontSize: 22, color: C.ink2, lineHeight: 1.4 }}>
-				The two leading models (blue and orange, overlapping) stay within {lead.in_noise_sigma.toFixed(1)}σ of each other.
-				The agent reports them as indistinguishable.
+				The agent's other leading model stays within {lead.in_noise_sigma.toFixed(1)}σ of the blue line under this design.
+				The agent reports the two as indistinguishable.
 			</div>
 		</AbsoluteFill>
 	);

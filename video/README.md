@@ -16,15 +16,15 @@ only). The compositions hardcode no result.
 | Composition | Length | Shows |
 |---|---|---|
 | `Shot1Open` | 20 s | The measured 725 °C phase amounts draw themselves, then the research question |
-| `Shot3Loop` | 33 s | How it works, from Claude Opus 5.5 run 1's own files: proposed steps, 204 of 208 pathways fitted, frozen and sealed, what's unresolved and the next experiment |
+| `Shot3Loop` | 34 s | How it works, from Claude Opus 5.5 run 1's own files: proposed steps, 204 of 208 pathways checked for element balance and fitted, frozen and sealed, what's unresolved and the next experiment |
 | `Shot4Reveal` | 20 s | Fitted at 700 + 725 °C and frozen: the baseline pick and the Opus picks predict 750 °C, then the sealed measurements land; rank among the 153 reference models and RMSE |
 | `Shot5Ranks` | 18 s | The 153 reference models ranked by fit and by 750 °C prediction; the baseline pick (#1 by fit) lands #11, the Opus picks land #1 and #4 |
 | `Shot5bRuns` | 16 s | Baseline and all four AI runs: best model in the run's search space, the agent's best plausible model, the rule's pick |
-| `Shot7Plan` | 24 s | The planner's ranked experiments; under the top pick the two leading models overlap and the agent's own rival splits off at 2 min |
-| `Shot9Close` | 18 s | What we found (computed from the runs), the closing line, credits |
+| `Shot7Plan` | 24 s | The planner's ranked experiments; under the top pick the leading model and the agent's own rival split at 2 min |
+| `Shot9Close` | 30 s | What we found (computed from the runs, plus the first link to catalysis), the conclusion, credits |
 | `Shots4to5` | 54 s | Shots 4, 5 and 5b in sequence |
-| `Draft` | 2:29 | Every built shot in story order; the narration is in `SCRIPT.md` |
+| `Draft` | 2:42 | The full video in story order; the narration is in `SCRIPT.md` |
 
 Colours follow the entity across shots (dataviz reference palette, dark steps, validated all-pairs): blue is the
 selection rule's pick, orange the agent's other plausible model, aqua the best model in a run's own space, light gray
-the baseline. Remotion is used under its free licence (individuals, companies with up to three employees, non-profits).
+the baseline, red (shot 7 only) the agent's rival explanation; the four phase colours appear only in shot 1. Remotion is used under its free licence (individuals, companies with up to three employees, non-profits).

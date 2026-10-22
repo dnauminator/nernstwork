@@ -8,15 +8,15 @@ import { designText, rateLaw, species } from "./components/chem";
 import { C, fontFamily } from "./theme";
 
 const S = data.shot3;
-export const SHOT3_FRAMES = 990;
+export const SHOT3_FRAMES = 1020;
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 const CARD_W = 405, GAP = 40, LEFT = 96, TOP = 250, CARD_H = 650;
 const STAGES = [
 	{ start: 20, end: 270, title: "The AI proposes the parts", who: S.model_name },
-	{ start: 270, end: 520, title: "Code fits every combination", who: "deterministic code" },
+	{ start: 270, end: 520, title: "Code checks and fits every combination", who: "deterministic code" },
 	{ start: 520, end: 700, title: "Frozen, then tested", who: "sealed temperature" },
-	{ start: 700, end: 990, title: "The AI says what's unresolved", who: S.model_name },
+	{ start: 700, end: 1020, title: "The AI says what's unresolved", who: S.model_name },
 ];
 const cardX = (i: number) => LEFT + i * (CARD_W + GAP);
 
@@ -96,7 +96,7 @@ const FitGrid: React.FC = () => {
 			<div style={{ fontSize: 46, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
 				{shown}<span style={{ fontSize: 22, color: C.muted, fontWeight: 400 }}> of {n} pathways fitted</span>
 			</div>
-			<div style={{ fontSize: 18, color: C.ink2, margin: "6px 0 18px" }}>to the 700 and 725 °C runs, same fitting protocol for all</div>
+			<div style={{ fontSize: 18, color: C.ink2, margin: "6px 0 18px" }}>each checked for element balance, then fitted to the 700 and 725 °C runs with one protocol</div>
 			<svg width={cols * (cell + gap)} height={Math.ceil(n / cols) * (cell + gap)}>
 				{Array.from({ length: n }, (_, k) => {
 					const aiccRank = rankOf(k);
@@ -173,9 +173,9 @@ export const Shot3Loop: React.FC = () => {
 		<AbsoluteFill style={{ background: C.page, fontFamily }}>
 			<div style={{ position: "absolute", left: 96, top: 64, opacity: titleIn, color: C.ink }}>
 				<div style={{ fontSize: 28, color: C.ink2, fontWeight: 500, marginBottom: 10 }}>
-					How NernstWork works, shown for {S.model_name}, {S.run}
+					One run, start to finish: {S.model_name}, {S.run}
 				</div>
-				<div style={{ fontSize: 58, fontWeight: 700, letterSpacing: -0.5 }}>The AI proposes, code tests, the data decide</div>
+				<div style={{ fontSize: 58, fontWeight: 700, letterSpacing: -0.5 }}>How NernstWork works</div>
 			</div>
 			{[0, 1, 2].map((i) => {
 				const o = interpolate(frame, [STAGES[i + 1].start - 12, STAGES[i + 1].start + 4], [0, 1], clamp);

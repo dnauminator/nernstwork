@@ -82,7 +82,7 @@ export const Shot5bRuns: React.FC = () => {
 				})}
 			</svg>
 			<div style={{ position: "absolute", left: X0, top: 1000, opacity: captionIn, fontSize: 26, color: C.ink }}>
-				Picking by best fit chose #{Math.min(...rules)} to #{Math.max(...rules)}. Telling the candidates apart is the next experiment's job.
+				Picking by best fit chose #{Math.min(...rules)} to #{Math.max(...rules)}.
 			</div>
 		</AbsoluteFill>
 	);
