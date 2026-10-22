@@ -193,13 +193,25 @@ def write_report(run: Run, out: Path | None = None) -> dict:
         L += [f"![top fits]({pdir.name}/top_fits.png)", ""]
     adir = run.dir / "analyses"
     if adir.exists():
+        plans = sorted(adir.glob("plan-*.json"), key=lambda q: int(q.stem.rsplit("-", 1)[1]))
+        if plans:
+            d = read_json(plans[-1])
+            L += [f"## Experiment plan ({plans[-1].name}, the last of {len(plans)})", "", d["method"], "",
+                  f"Models ({d.get('weights', 'Akaike weights')}): " +
+                  ", ".join(f"{m['candidate_id']} (AICc {_fmt(m['aicc'], 6)}, w {_fmt(m['weight'])})" for m in d["models"]), "",
+                  "| design | U | bounded score | separable pairs |", "|---|---|---|---|"]
+            L += [f"| {r['design']} | {_fmt(r['U'])} | {_fmt(r['bounded_score'])} | {r['separable_pairs']} |" for r in d["ranking"]]
+            if d.get("note"):
+                L += ["", d["note"]]
+            L.append("")
         for p in sorted(adir.glob("discrimination-*.json")):
             d = read_json(p)
             L += [f"## Discrimination analysis ({p.name})", "", d["note"], ""]
             for des in d["designs"]:
                 L.append(f"- Design `{des['design'].get('name')}` {json.dumps(des['design'])}:")
                 for row in des["comparisons"][:5]:
-                    L.append(f"  - {row['quantity']}: max spread {_fmt(row['max_spread_mM_N'])} mM-N at "
+                    L.append(f"  - {row['quantity']}: max spread {_fmt(row.get('max_spread_mM_N', row.get('max_spread')))}"
+                             f"{' mM-N' if 'max_spread_mM_N' in row else ''} at "
                              f"{_fmt(row['at_t_min'])} min ({_fmt(row['spread_in_dev_sigma'])} dev sigma); "
                              f"{ {k: round(v, 2) for k, v in row['values_at_t'].items()} }")
             L.append("")

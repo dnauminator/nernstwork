@@ -487,7 +487,9 @@ def _evaluate_on(run: Run, cids, obs, dataset_paths, workers, record_dir: Path |
             for a in args:
                 outcomes[a[3]] = _fit_worker(a)
         else:
-            with cf.ProcessPoolExecutor(max_workers=n) as ex:
+            # recycle workers so memory that accumulates over many fits is returned (spawned workers; fork is not
+            # compatible with max_tasks_per_child)
+            with cf.ProcessPoolExecutor(max_workers=n, max_tasks_per_child=20) as ex:
                 for r in ex.map(_fit_worker, args):
                     outcomes[r["fit_key"]] = r
     for cid, cand, v, fk in plan:
@@ -691,6 +693,7 @@ def discriminate(run: Run, cids: list[str], designs: list[dict]) -> dict:
             chans = {ch: Y[[comp.species.index(s) for s in sps]].sum(0) for ch, sps in om.items()}
             mapped = {x for v in om.values() for x in v}
             el, w = _basis_weights(mech)
+            basis_el = el
             un = [s for s in comp.species if s not in mapped]
             chans[f"unmeasured_{el}_total"] = (np.sum([w[s] * Y[comp.species.index(s)] for s in un], axis=0) if un
                                               else np.zeros_like(t))
@@ -705,7 +708,8 @@ def discriminate(run: Run, cids: list[str], designs: list[dict]) -> dict:
             spread = arr.max(0) - arr.min(0)
             i = int(spread.argmax())
             s_ch = (sig or {}).get(k)
-            rows.append({"quantity": k, "max_spread": float(spread[i]), "at_t_min": float(t[i]),
+            row_units = {"max_spread_mM_N": float(spread[i])} if basis_el == "N" else {}  # electrochemical field name
+            rows.append({"quantity": k, "max_spread": float(spread[i]), **row_units, "at_t_min": float(t[i]),
                          "spread_in_dev_sigma": float(spread[i] / s_ch) if s_ch else None,
                          "values_at_t": {cid: float(preds[cid][k][i]) for cid in preds}})
         rows.sort(key=lambda r: -r["max_spread"])

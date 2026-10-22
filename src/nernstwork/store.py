@@ -20,6 +20,7 @@ Arbitrary shell commands run by an agent are not covered by any exactly-once pro
 """
 from __future__ import annotations
 
+import calendar
 import json
 import math
 import os
@@ -103,6 +104,32 @@ def pid_alive(pid: int) -> bool:
         return True
 
 
+def boot_time() -> float | None:
+    """Epoch seconds of the last boot (Linux), or None where unknown."""
+    try:
+        for line in Path("/proc/stat").read_text().splitlines():
+            if line.startswith("btime "):
+                return float(line.split()[1])
+    except OSError:
+        pass
+    return None
+
+
+def attempt_alive(a: dict) -> bool:
+    """An attempt is alive only on this host, with a live pid, and if it started after the last boot (a pid recorded
+    before a reboot may have been reused by an unrelated process)."""
+    if a["host"] != socket.gethostname() or not pid_alive(a["pid"]):
+        return False
+    bt = boot_time()
+    if bt is None:
+        return True
+    try:
+        started = calendar.timegm(time.strptime(a["started"][:19], "%Y-%m-%dT%H:%M:%S"))  # stored in UTC
+    except (KeyError, ValueError):
+        return True
+    return started >= bt
+
+
 class FitCache:
     def __init__(self, root: Path):
         self.root = Path(root) / "cache" / "fits"
@@ -134,7 +161,7 @@ class FitCache:
         host = socket.gethostname()
         for p in sorted(d.glob("*.json")):
             a = read_json(p)
-            if a["state"] == "running" and a["host"] == host and a["pid"] != os.getpid() and pid_alive(a["pid"]):
+            if a["state"] == "running" and a["host"] == host and a["pid"] != os.getpid() and attempt_alive(a):
                 return a
         return None
 
@@ -161,15 +188,15 @@ class FitCache:
                 continue
             key = a["fit_key"]
             res = self.dir(key) / "result.json"
-            if res.exists() and not (a["host"] == host and pid_alive(a["pid"])):
+            if res.exists() and not attempt_alive(a):
                 mine = read_json(res).get("committed_by_attempt") == a["attempt_id"]
                 a.update(state="committed" if mine else "superseded", ended=now(),
                          note="committed; process ended before closing the attempt" if mine
                          else "result committed by another attempt")
                 atomic_write_json(p, a)
                 out["superseded"].append(a["attempt_id"])
-            elif a["host"] == host and not pid_alive(a["pid"]):
-                a.update(state="abandoned", ended=now(), note="process no longer alive")
+            elif a["host"] == host and not attempt_alive(a):
+                a.update(state="abandoned", ended=now(), note="process no longer alive (or started before the last boot)")
                 atomic_write_json(p, a)
                 out["abandoned"].append(a["attempt_id"])
             else:
